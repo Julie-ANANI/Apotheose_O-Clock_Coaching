@@ -9,4 +9,4 @@ const router = require('./router');
 app.use('/v1',router);
 
 app.listen(port, () => {
-    console.log('Server running on : localhost etc')});
+    console.log('Server running on : localhost:3000/v1')});
