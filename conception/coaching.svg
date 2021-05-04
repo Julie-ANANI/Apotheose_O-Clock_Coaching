@@ -1,0 +1,83 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="712" height="136" view_box="0 0 712 136"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Tue, 04 May 2021 08:46:02</desc>
+
+<rect id="frame" x="0" y="0" width="712" height="136" fill="#ffffbf" stroke="none" stroke-width="0"/>
+
+<!-- Association INTERAGIR -->
+<line x1="354" y1="68" x2="495" y2="68" stroke="#f46d43" stroke-width="2"/>
+<text x="426" y="85.0" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+<line x1="636" y1="68" x2="495" y2="68" stroke="#f46d43" stroke-width="2"/>
+<text x="542" y="85.0" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-INTERAGIR">
+	<path d="M 523 43 a 14 14 90 0 1 14 14 V 68 h -84 V 57 a 14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+	<path d="M 537 68.0 v 11 a 14 14 90 0 1 -14 14 H 467 a 14 14 90 0 1 -14 -14 V 68.0 H 84" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+	<rect x="453" y="43" width="84" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+	<line x1="453" y1="68" x2="537" y2="68" stroke="#f46d43" stroke-width="1"/>
+	<text x="460" y="60.7" fill="#000000" font-family="Verdana" font-size="12">INTERAGIR</text>
+</g>
+
+<!-- Association CONTENIR -->
+<line x1="76" y1="68" x2="215" y2="68" stroke="#f46d43" stroke-width="2"/>
+<text x="148" y="85.0" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+<line x1="354" y1="68" x2="215" y2="68" stroke="#f46d43" stroke-width="2"/>
+<text x="261" y="85.0" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-CONTENIR">
+	<path d="M 241 43 a 14 14 90 0 1 14 14 V 68 h -80 V 57 a 14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+	<path d="M 255 68.0 v 11 a 14 14 90 0 1 -14 14 H 189 a 14 14 90 0 1 -14 -14 V 68.0 H 80" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+	<rect x="175" y="43" width="80" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+	<line x1="175" y1="68" x2="255" y2="68" stroke="#f46d43" stroke-width="1"/>
+	<text x="182" y="60.7" fill="#000000" font-family="Verdana" font-size="12">CONTENIR</text>
+</g>
+
+<!-- Entity UTILISATEUR -->
+<g id="entity-UTILISATEUR">
+	<g id="frame-UTILISATEUR">
+		<rect x="569" y="17" width="134" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0"/>
+		<rect x="569" y="42.0" width="134" height="77" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0"/>
+		<rect x="569" y="17" width="134" height="102" fill="none" stroke="#74add1" stroke-width="2"/>
+		<line x1="569" y1="42" x2="703" y2="42" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="594" y="34.7" fill="#000000" font-family="Verdana" font-size="12">UTILISATEUR</text>
+	<text x="574" y="59.7" fill="#000000" font-family="Verdana" font-size="12">utilisateur API</text>
+	<text x="574" y="76.8" fill="#000000" font-family="Verdana" font-size="12">statut admin</text>
+	<text x="574" y="93.8" fill="#000000" font-family="Verdana" font-size="12">date de création</text>
+	<text x="574" y="110.8" fill="#000000" font-family="Verdana" font-size="12">date de modification</text>
+</g>
+
+<!-- Entity THÈME -->
+<g id="entity-THÈME">
+	<g id="frame-THÈME">
+		<rect x="9" y="9" width="134" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0"/>
+		<rect x="9" y="34.0" width="134" height="93" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0"/>
+		<rect x="9" y="9" width="134" height="118" fill="none" stroke="#74add1" stroke-width="2"/>
+		<line x1="9" y1="34" x2="143" y2="34" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="54" y="26.7" fill="#000000" font-family="Verdana" font-size="12">THÈME</text>
+	<text x="14" y="51.7" fill="#000000" font-family="Verdana" font-size="12">intitulé</text>
+	<text x="14" y="68.8" fill="#000000" font-family="Verdana" font-size="12">description</text>
+	<text x="14" y="85.8" fill="#000000" font-family="Verdana" font-size="12">position</text>
+	<text x="14" y="102.8" fill="#000000" font-family="Verdana" font-size="12">date de création</text>
+	<text x="14" y="119.8" fill="#000000" font-family="Verdana" font-size="12">date de modification</text>
+</g>
+
+<!-- Entity MISSION -->
+<g id="entity-MISSION">
+	<g id="frame-MISSION">
+		<rect x="287" y="9" width="134" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0"/>
+		<rect x="287" y="34.0" width="134" height="93" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0"/>
+		<rect x="287" y="9" width="134" height="118" fill="none" stroke="#74add1" stroke-width="2"/>
+		<line x1="287" y1="34" x2="421" y2="34" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="326" y="26.7" fill="#000000" font-family="Verdana" font-size="12">MISSION</text>
+	<text x="292" y="51.7" fill="#000000" font-family="Verdana" font-size="12">intitulé</text>
+	<text x="292" y="68.8" fill="#000000" font-family="Verdana" font-size="12">astuces</text>
+	<text x="292" y="85.8" fill="#000000" font-family="Verdana" font-size="12">position</text>
+	<text x="292" y="102.8" fill="#000000" font-family="Verdana" font-size="12">date de création</text>
+	<text x="292" y="119.8" fill="#000000" font-family="Verdana" font-size="12">date de modification</text>
+</g>
+</svg>
