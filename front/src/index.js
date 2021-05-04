@@ -1,5 +1,14 @@
 // == Import : npm
 import React from 'react';
+
+
+// ReactDOM is a package that provides DOM specific methods that can be used at the top level of a web app to enable an efficient way of managing DOM elements of the web page. ReactDOM provides the developers with an API containing the following methods and a few more. 
+
+// render()
+// findDOMNode()
+// unmountComponentAtNode()
+// hydrate()
+// createPortal()
 import { render } from 'react-dom';
 
 // == Import : local
