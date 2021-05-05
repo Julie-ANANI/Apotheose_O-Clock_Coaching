@@ -12,7 +12,7 @@ class MissionNotUpdatedError extends Error {
     message = 'Mission not updated';
 };
 
-class NoAddMissionError extends Error {
+class NoMissionAddedError extends Error {
     message = 'Mission not added';
 };
 
@@ -105,7 +105,7 @@ class Mission {
         WHERE mission.theme_id = $1;`, [tid]);
         
         if (rows) {
-            return rows.map(row => new Post(row));
+            return rows.map(row => new Mission(row));
         } else {
             throw new NoMissionFoundInTheme();
         };
@@ -152,10 +152,14 @@ class Mission {
             if(rows[0]){
                 this.id = rows[0].id;
             }else{
-                throw new NoAddMissionError();
+                throw new NoMissionAddedError();
             };
         };
-    };
+    }
+
+    async delete () {
+        // TODO: delete mission method
+    }
 };
 
 module.exports = Mission;

@@ -118,7 +118,11 @@ class Theme {
             
 
         };
-    };
+    }
+
+    async delete () {
+        // TODO: delete theme method
+    }
 };
 
 module.exports = Theme;
