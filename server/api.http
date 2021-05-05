@@ -5,9 +5,9 @@ GET http://localhost:3000/v1/
 
 # Tous les thèmes
 
-GET http://localhost:3000/v1/themes
+GET http://localhost:3000/v1/api/themes
 
 ###
 
 # Un seul thème
-GET http://localhost:3000/v1/themes/1
+GET http://localhost:3000/v1/api/themes/1
