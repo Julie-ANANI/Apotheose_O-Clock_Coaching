@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
+import 'semantic-ui-css/semantic.min.css';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import axios from 'axios';
 
@@ -11,15 +12,18 @@ import 'semantic-ui-css/semantic.min.css';
  
 // import Header from 'src/components/Header';
 import StudentDashboard from 'src/components/StudentDashboard';
+import  Header from 'src/components/Header';
 
 // == Composant
 const App = () => { 
 
-return(
-  <div className="app">
+  return(
+    <div className="app">
+      <Header></Header>
       <StudentDashboard></StudentDashboard>
-  </div>
-);}
+    </div>
+  )
+}
 
 // == Export
 export default App;

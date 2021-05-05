@@ -1,0 +1,10 @@
+[core]
+	engine = pg
+	# plan_file = sqitch.plan
+	top_dir = migrations
+ [engine "pg"]
+	target = db:pg:vrai-nom-de-la-db
+	# registry = sqitch
+	# client = psql
+[deploy]
+	verify = true
