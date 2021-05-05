@@ -1,6 +1,21 @@
 const db = require('../database');
 
-class ThemeNotFound extends Error { message = 'No theme found with this id'; };
+class NoThemeError extends Error {
+    message = 'No theme found in database';
+};
+
+class UnknownThemeError extends Error {
+    message = 'No theme found with this id';
+};
+
+class ThemeNotAdded extends Error {
+    message = 'Theme not added'
+};
+
+class ThemeNotUpdated extends Error { 
+    message = 'Theme was not updated';
+};
+
 
 /**
  * An entity representing a coaching theme
@@ -26,9 +41,13 @@ class Theme {
     constructor(data = {}) {
         for (const prop in data) {
             this[prop] = data[prop];
-        }
-    }
-    static ThemeNotFound = ThemeNotFound;
+        };
+    };
+    static NoThemeError = NoThemeError;
+    static UnknowThemeError = UnknowThemeError;
+    static ThemeNotAdded = ThemeNotAdded;
+    static ThemeNotUpdated = ThemeNotUpdated;
+
 
     /**
      * Fetches every theme in the database
@@ -39,8 +58,14 @@ class Theme {
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM theme;');
 
-        return rows.map(row => new Theme(row));
-    }
+        if (rows) {
+            return rows.map(row => new Theme(row));
+        } else {
+            throw new NoThemeError();
+        };
+
+        
+    };
     /**
       * Fetches a single category.
       * 
@@ -52,19 +77,48 @@ class Theme {
       */
     static async findOne(id) {
 
-        try {
-            const { rows } = await db.query('SELECT * FROM theme WHERE id = $1;', [id]);
+        const { rows } = await db.query('SELECT * FROM theme WHERE id = $1;', [id]);
 
+        if (rows[0]) {
+            return new Theme(rows[0]);
+        } else {
+            throw new UnknownThemeError();
+        };
+        
+    };
+    /**
+      * Inserts a new theme in the DB or updates the database if the record alredy exists.
+      * 
+      * @async
+      * @function save
+      * @returns [Array] Instances of the class Theme.
+      * @throws {Error} a potential SQL error.
+      */
+     async save() {
+        if (this.id) {
+            // PUT route
+            // TODO: create SQL function update_theme AND trigger for updating timestamp
+            const { rows }= await db.query('UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4;', [this.title, this.description, this.position, this.id]);
             if (rows[0]) {
                 return new Theme(rows[0]);
             } else {
-                return null;
-            }
-        } catch (err) {
-            throw new ThemeNotFound(err);
-        }
-    }
+                throw new ThemeNotUpdated();
+            };
+        } else {
+                // POST route
+                // TODO: create SQL function to insert a new theme
+                const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
+                    this.title,
+                    this.description,
+                    this.position
+                ]);
 
-}
+                this.id = rows[0].id;
+                throw new ThemeNotAdded();
+            
+
+        };
+    };
+};
 
 module.exports = Theme;

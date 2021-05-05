@@ -10,7 +10,7 @@ CREATE TABLE theme (
     description TEXT NULL,
     position INT NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    modified_at TIMESTAMPTZ NOT NULL
+    modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE mission  (
@@ -19,7 +19,7 @@ CREATE TABLE mission  (
     advice TEXT NULL,
     position INT NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    modified_at TIMESTAMPTZ NOT NULL,
+    modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     theme_id INT NOT NULL REFERENCES theme(id) ON DELETE CASCADE
 );
 
@@ -28,13 +28,13 @@ CREATE TABLE "user"  (
     api_user INT NOT NULL,
     admin_status BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    modified_at TIMESTAMPTZ NOT NULL
+    modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE interact(
     is_checked BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    modified_at TIMESTAMPTZ NOT NULL,
+    modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     mission_id INT NOT NULL REFERENCES mission(id) ON DELETE CASCADE,
     "user_id" INT NOT NULL REFERENCES "user"(id),
     PRIMARY KEY (mission_id, "user_id") 

@@ -1,5 +1,7 @@
 const db = require('../database');
 
+class 
+
 /**
  * An entity representing a user
  * @typedef User
