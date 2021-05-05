@@ -48,11 +48,10 @@ class Mission {
       * @returns {Mission|null} Instance of the class Mission or null if no such id in the database.
       */
     static async findOne(id) {
-        // le connecteur retourne un objet dont seule la prop rows nous intéresse
         const { rows } = await db.query('SELECT * FROM mission WHERE id = $1;', [id]);
 
-        if (rows[0]) { // si on donne un id qui n'existe pas, il n'y aura pas de rows[0] ;-)
-            return new Mission(rows[0]); // tout simplement
+        if (rows[0]) {
+            return new Mission(rows[0]);
         } else {
             return null;
         }

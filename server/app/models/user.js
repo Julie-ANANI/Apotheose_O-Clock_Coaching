@@ -46,11 +46,10 @@ class User {
       * @returns {User|null} Instance of the class User or null if no such id in the database.
       */
     static async findOne(id) {
-        // le connecteur retourne un objet dont seule la prop rows nous intéresse
         const { rows } = await db.query('SELECT * FROM user WHERE id = $1;', [id]);
 
-        if (rows[0]) { // si on donne un id qui n'existe pas, il n'y aura pas de rows[0] ;-)
-            return new User(rows[0]); // tout simplement
+        if (rows[0]) {
+            return new User(rows[0]);
         } else {
             return null;
         }
