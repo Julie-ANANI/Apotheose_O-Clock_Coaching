@@ -1,5 +1,7 @@
 const db = require('../database');
 
+class ThemeNotFound extends Error { message = 'No theme found with this id'; };
+
 /**
  * An entity representing a coaching theme
  * @typedef Theme
@@ -26,6 +28,8 @@ class Theme {
             this[prop] = data[prop];
         }
     }
+    static ThemeNotFound = ThemeNotFound;
+
     /**
      * Fetches every theme in the database
      * @returns {Array<Theme>}
@@ -47,22 +51,18 @@ class Theme {
       * @returns {Theme|null} Instance of the class Theme or null if no such id in the database.
       */
     static async findOne(id) {
-        const { rows } = await db.query('SELECT * FROM theme WHERE id = $1;', [id]);
 
-        if (rows[0]) {
-            return new Theme(rows[0]);
-        } else {
-            return null;
+        try {
+            const { rows } = await db.query('SELECT * FROM theme WHERE id = $1;', [id]);
+
+            if (rows[0]) {
+                return new Theme(rows[0]);
+            } else {
+                return null;
+            }
+        } catch (err) {
+            throw new ThemeNotFound(err);
         }
-    }
-
-    static async findAllWithMissions() {
-        const { rows } = await db.query(`
-        SELECT * FROM theme
-        JOIN mission
-        ON theme.id = mission.theme_id;`);
-
-        return rows.map(row => new Theme(row));
     }
 
 }
