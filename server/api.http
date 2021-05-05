@@ -1,2 +1,13 @@
 # Route de test
 GET http://localhost:3000/v1/
+
+###
+
+# Tous les thèmes
+
+GET http://localhost:3000/v1/themes
+
+###
+
+# Un seul thème
+GET http://localhost:3000/v1/themes/1
