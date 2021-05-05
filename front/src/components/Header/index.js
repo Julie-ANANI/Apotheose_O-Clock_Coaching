@@ -1,19 +1,15 @@
-// == Import npm
 import React from 'react';
+import { Image } from 'semantic-ui-react';
+import './style.css';
+import logo from '/var/www/html/spéReact/challenges/Apotheose/my-app/src/assets/logo.png';
+import MenuHeader from 'src/components/MenuHeader';
 
-
-
-import './styles.css';
-
-// == Composant
-const Header = ({title}) => {
-  
-  return(
+const Header = () => (
   <div className="header">
-    
-    <h1>{title}</h1>
+    <Image src={logo} size='medium' centered />
+    <MenuHeader />
   </div>
-)};
+)
 
-// == Export
-export default Header;
+export default Header
+ 
