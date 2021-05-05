@@ -44,7 +44,7 @@ class Theme {
         };
     };
     static NoThemeError = NoThemeError;
-    static UnknowThemeError = UnknowThemeError;
+    static UnknownThemeError = UnknownThemeError;
     static ThemeNotAdded = ThemeNotAdded;
     static ThemeNotUpdated = ThemeNotUpdated;
 
@@ -122,7 +122,7 @@ class Theme {
 
     async delete () {
         // TODO: delete theme method
-    }
+    };
 };
 
 module.exports = Theme;

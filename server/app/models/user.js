@@ -86,7 +86,6 @@ class User {
       * 
       */
      async save(){
-
         if(this.id){
             //TODO: create a function update_user(json) + add trigger for updating timestamp
             const { rows } = await db.query('UPDATE user SET api_user= $1, admin_status = $2 WHERE id=$3 ', [
