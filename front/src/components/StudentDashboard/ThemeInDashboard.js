@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+import './styles.css';
+
 //== Import from Semantic UI
 
 import { Card, Progress } from 'semantic-ui-react'
@@ -9,9 +12,9 @@ import { Card, Progress } from 'semantic-ui-react'
 const ThemeInDashboard = () => {
 
 return(
-      <Card>
-        <Card.Content header='Nom du thème' />
-        <Card.Content description='Une description du thème' />
+      <Card className='theme-card'>
+        <Card.Content className='theme-card-header' header='Nom du thème' />
+        {/* <Card.Content description='Une description du thème' /> */}
         <Card.Content extra>
           <Progress percent={60} indicating />
         </Card.Content>

@@ -13,7 +13,7 @@ import ThemeInDashboard from './ThemeInDashboard';
 
 //== Import from Semantic UI
 
-import { Header, Progress, Divider, Card } from 'semantic-ui-react'
+import { Header, Progress, Divider, Card} from 'semantic-ui-react'
 
 
 // == Composant
@@ -21,9 +21,15 @@ const StudentDashboard = () => {
 
 return(
   <div className="student-dashboard">
-    <Header as='h2'> Bienvenue jeune padawan sur votre plateforme de coaching ! </Header>
     <Divider hidden />
-    <Progress percent={33} indicating progress label="Mettre un message qui évolue selon l'état d'avancement" />
+    <Divider hidden />
+    <Header className='header-dashboard' as='h1' textAlign='center'> Bienvenue jeune padawan sur votre plateforme de coaching ! </Header>
+    <Divider hidden />
+    <Divider hidden />
+      <div className="progress-container">
+        <Progress className='general-progress-bar' percent={33} indicating progress label="Mettre un message qui évolue selon l'état d'avancement" />
+      </div>
+    <Divider hidden />
     <Divider hidden />
     <Card.Group centered>
       <ThemeInDashboard />
