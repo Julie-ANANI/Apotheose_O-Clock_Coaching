@@ -5,18 +5,19 @@ import axios from 'axios';
 
 // == Import
 import './styles.css';
+import 'semantic-ui-css/semantic.min.css';
 
 // Import from Semantic UI
  
 // import Header from 'src/components/Header';
-import ThemeDashboard from 'src/components/ThemeDashboard';
+import StudentDashboard from 'src/components/StudentDashboard';
 
 // == Composant
 const App = () => { 
 
 return(
   <div className="app">
-      <ThemeDashboard></ThemeDashboard>
+      <StudentDashboard></StudentDashboard>
   </div>
 );}
 
