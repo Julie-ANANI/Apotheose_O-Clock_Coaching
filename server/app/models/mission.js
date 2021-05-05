@@ -8,8 +8,8 @@ const db = require('../database');
  * @property {string} advice
  * @property {string} position
  * @property {number} themeId
- * @property {date} createdAt
- * @property {date} modifiedAt
+ * @property {number} createdAt
+ * @property {number} modifiedAt
  * 
  */
 

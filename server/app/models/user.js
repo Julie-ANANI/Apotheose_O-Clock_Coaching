@@ -6,8 +6,8 @@ const db = require('../database');
  * @property {number} id
  * @property {number} apiUserId
  * @property {boolean} isAdmin
- * @property {date} createdAt
- * @property {date} modifiedAt
+ * @property {number} createdAt
+ * @property {number} modifiedAt
  * 
  */
 
