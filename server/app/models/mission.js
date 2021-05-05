@@ -1,24 +1,28 @@
 const db = require('../database');
 
+
+
 class NoMissionError extends Error {
     message = 'No mission found in database';
 };
-
 class UnknowMissionError extends Error {
     message = 'No mission found with this id';
 };
-
 class MissionNotUpdatedError extends Error {
     message = 'Mission not updated';
 };
-
 class NoMissionAddedError extends Error {
+    
     message = 'Mission not added';
 };
-
-class NoMissionFoundInTheme extends Error {
+class NoMissionDeletedError extends Error {
+    message = 'No mission deleted';
+};
+class NoMissionFoundInThemeError extends Error {
     message = 'No mission found for this theme id';
 };
+
+
 
 
 /**
@@ -53,7 +57,8 @@ class Mission {
     static UnknowMissionError = UnknowMissionError;
     static MissionNotUpdatedError = MissionNotUpdatedError;
     static NoAddMissionError = NoMissionError;
-    static NoMissionFoundInTheme = NoMissionFoundInTheme;
+    static NoMissionFoundInTheme = NoMissionFoundInThemeError;
+    static NoMissionDeletedError = NoMissionDeletedError;
 
     /**
      * Fetches every mission in the database
@@ -107,7 +112,7 @@ class Mission {
         if (rows) {
             return rows.map(row => new Mission(row));
         } else {
-            throw new NoMissionFoundInTheme();
+            throw new NoMissionFoundInThemeError();
         };
         
     };
@@ -158,8 +163,16 @@ class Mission {
     }
 
     async delete () {
-        // TODO: delete mission method
-    }
+        
+        const { rows } = await db.query(`DELETE FROM mission WHERE id=$1;`, [this.id]);
+
+        if (rows[0]) {
+            return rows[0];
+        } else {
+            throw new NoMissionDeletedError();
+        };
+
+    };
 };
 
 module.exports = Mission;

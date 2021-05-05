@@ -16,6 +16,10 @@ class ThemeNotUpdated extends Error {
     message = 'Theme was not updated';
 };
 
+class ThemeNotDeleted extends Error { 
+    message = 'Theme was not deleted';
+};
+
 
 /**
  * An entity representing a coaching theme
@@ -47,6 +51,7 @@ class Theme {
     static UnknownThemeError = UnknownThemeError;
     static ThemeNotAdded = ThemeNotAdded;
     static ThemeNotUpdated = ThemeNotUpdated;
+    static ThemeNotDeleted = ThemeNotDeleted;
 
 
     /**
@@ -63,8 +68,6 @@ class Theme {
         } else {
             throw new NoThemeError();
         };
-
-        
     };
     /**
       * Fetches a single category.
@@ -100,7 +103,7 @@ class Theme {
             // TODO: create SQL function update_theme AND trigger for updating timestamp
             const { rows }= await db.query('UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4;', [this.title, this.description, this.position, this.id]);
             if (rows[0]) {
-                return new Theme(rows[0]);
+                return rows[0];
             } else {
                 throw new ThemeNotUpdated();
             };
@@ -122,6 +125,14 @@ class Theme {
 
     async delete () {
         // TODO: delete theme method
+        const { rows } = await db.query(`DELETE FROM theme WHERE id=$1;`, [this.id]);
+
+        if (rows[0]) {
+            return rows[0];
+        } else {
+            throw new ThemeNotDeleted();
+        };
+
     };
 };
 

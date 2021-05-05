@@ -49,7 +49,7 @@ class User {
      * @static
      */
     static async findAll() {
-        const { rows } = await db.query('SELECT * FROM user;');
+        const { rows } = await db.query('SELECT * FROM "user";');
         if (rows) {
             return rows.map(row => new User(row));
         } else {
@@ -67,7 +67,7 @@ class User {
       * @returns {User|null} Instance of the class User or null if no such id in the database.
       */
     static async findOne(id) {
-        const { rows } = await db.query('SELECT * FROM user WHERE id = $1;', [id]);
+        const { rows } = await db.query('SELECT * FROM "user" WHERE id = $1;', [id]);
 
         if (rows[0]) {
             return new User(rows[0]);
@@ -88,7 +88,7 @@ class User {
      async save(){
         if(this.id){
             //TODO: create a function update_user(json) + add trigger for updating timestamp
-            const { rows } = await db.query('UPDATE user SET api_user= $1, admin_status = $2 WHERE id=$3 ', [
+            const { rows } = await db.query('UPDATE "user" SET api_user= $1, admin_status = $2 WHERE id=$3 ;', [
                 this.api_user, 
                 this.admin_status
             ]);
@@ -101,7 +101,7 @@ class User {
 
         }else{
             //TODO: create a function insert_user(json)
-            const{ rows } = await db.query('INSERT INTO user (api_user, admin_status) VALUES ($1,$2)', [
+            const{ rows } = await db.query('INSERT INTO "user"(api_user, admin_status) VALUES ($1,$2);', [
                 this.api_user,
                 this.admin_status
             ]);
@@ -114,9 +114,10 @@ class User {
         };
     }
 
-    async delete () {
-        // TODO: delete user method
-    }
+    // async delete () {
+    //     // TODO: delete user method
+    //     const { rows } = await db.query(`DELETE FROM "user" WHERE id=$1;`, [this.id]);
+    // }
 }
 
 module.exports = User;

@@ -12,6 +12,10 @@ class InteractNotUpdatedError extends Error {
     message = 'Interact not updated';
 };
 
+class InteractNotAddedError extends Error {
+    message = 'Interact not added';
+};
+
 
 
 /**
@@ -29,6 +33,10 @@ class InteractNotUpdatedError extends Error {
  */
 class Interact {
 
+    static NoInteractError = NoInteractError;
+    static InteractNotUpdatedError = InteractNotUpdatedError;
+    static InteractNotAddedError = InteractNotAddedError ;
+
     /**
      * The Theme constructor
      * @param {Object} data - a litteral object with properties that will be copied into the instance
@@ -45,23 +53,52 @@ class Interact {
      * @async
      * @static
      */
-    static async findAll() {
+    static async findAll(userId) {
         const { rows } = await db.query(`
         SELECT * 
         FROM interact
-        JOIN mission
-        ON interact.mission_id = mission.id
-        JOIN theme
-        ON theme.id = mission.theme_id
-        ;`);
+        WHERE interact.user_id = $1
+        ;`,[userId]);
 
         if (rows) {
             return rows.map(row => new Interact(row));
         } else {
-            throw new NoThemeError();
+            throw new NoInteractError();
         };
     };
 
+    async save() {
+        if (this.id) {
+        // UPDATE
+            
+        const { rows } = await db.query(`UPDATE interact SET is_checked=$1 WHERE mission_id=$2 AND user_id=$3;`,[
+            this.is_checked,
+            this.mission_id,
+            this.user_id
+        ]);
+
+        if (rows[0]) {
+            return rows[0];
+        } else {
+            throw new InteractNotUpdatedError();
+        };
+             
+        } else {
+            // INSERT
+            const { rows } = await db.query(`INSERT INTO interact(is_checked,mission_id,user_id) VALUES
+            ($1,$2,$3);`, [
+                this.is_checked,
+                this.mission_id,
+                this.user_id
+            ]);
+            
+            if (rows[0]) {
+                this.id = `${this.mission_id}${this.user_id}`;
+            } else {
+                throw new InteractNotAddedError();
+            };
+        };
+    };
 };
 
 
