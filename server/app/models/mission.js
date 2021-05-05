@@ -1,5 +1,9 @@
 const db = require('../database');
 
+class MissionNotFound extends Error { 
+    message = 'No missions with this id';
+};
+
 /**
  * An entity representing a coaching mission
  * @typedef Mission
@@ -27,6 +31,10 @@ class Mission {
             this[prop] = data[prop];
         }
     }
+
+     static MissionNotFound = MissionNotFound;
+
+
     /**
      * Fetches every mission in the database
      * @returns {Array<Mission>}

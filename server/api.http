@@ -1,13 +1,26 @@
-# Route de test
-GET http://localhost:3000/v1/
-
-###
-
 # Tous les thèmes
 
-GET http://localhost:3000/v1/api/themes
+GET http://localhost:3022/v1/api/themes
 
 ###
 
 # Un seul thème
-GET http://localhost:3000/v1/api/themes/1
+GET http://localhost:3022/v1/api/themes/1
+
+###
+
+# Tous les missions 
+GET http://localhost:3022/v1/api/themes/1/missions/1
+
+###
+
+# Une mission qui n'existe pas 
+GET http://localhost:3022/v1/api/themes/1/missions/
+
+###
+
+# Tous les missions 
+
+GET http://localhost:3022/v1/api/themes/1/missions
+
+###

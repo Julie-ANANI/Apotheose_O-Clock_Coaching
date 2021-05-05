@@ -19,7 +19,7 @@ INSERT INTO "user" (api_user, admin_status, created_At,modified_At)
 VALUES(4627, true, NOW(), NOW() + '1 day');
 
 
-INSERT INTO interact (checked, created_At, modified_At,mission_id, "user_id")
+INSERT INTO interact (is_checked, created_At, modified_At,mission_id, "user_id")
 VALUES 
 (true, NOW (), NOW() + '1 day', 1, 1 ),
 (false, NOW (), NOW() + '1 day', 2, 1 ),
