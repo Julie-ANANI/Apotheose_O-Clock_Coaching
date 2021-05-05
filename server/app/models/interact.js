@@ -1,5 +1,8 @@
 const db = require('../database');
 
+
+
+// ALL classes extends Erro with a personnal message in each context error
 class NoInteractError extends Error {
     message = 'No interact found in database';
 };
@@ -33,6 +36,8 @@ class InteractNotAddedError extends Error {
  */
 class Interact {
 
+
+    // All static properties error of interact'sclass
     static NoInteractError = NoInteractError;
     static InteractNotUpdatedError = InteractNotUpdatedError;
     static InteractNotAddedError = InteractNotAddedError ;

@@ -23,8 +23,8 @@ class UserNotAddedError extends Error {
  * @property {number} id
  * @property {number} apiUser
  * @property {boolean} adminStatus
- * @property {number} createdAt
- * @property {number} modifiedAt
+ * @property {string} createdAt
+ * @property {string} modifiedAt
  * 
  */
 
@@ -33,6 +33,14 @@ class UserNotAddedError extends Error {
  * @class
  */
 class User {
+
+    // All static properties error of user's class
+    static NoUserError = NoUserError;
+    static UnknowUserError = UnknowUserError;
+    static UserNotUpdatedError = UserNotUpdatedError;
+    static UserNotAddedError = UserNotAddedError;
+
+
     /**
      * The User constructor
      * @param {Object} data - a litteral object with properties that will be copied into the instance
@@ -42,6 +50,8 @@ class User {
             this[prop] = data[prop];
         }
     }
+
+
     /**
      * Fetches every user in the database
      * @returns {Array<User>}
@@ -77,13 +87,12 @@ class User {
     }
 
      /**
-      * Insert or update a user.
+      * Inserts a new user in the Database or updates the database if the record alredy exists.
       * 
       * @async
-      * 
       * @function save
-      * @param {number} id - A user ID.
-      * 
+      * @returns [Array] Instances of the class User.
+      * @throws {Error} a potential SQL error.
       */
      async save(){
         if(this.id){

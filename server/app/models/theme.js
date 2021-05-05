@@ -1,5 +1,7 @@
 const db = require('../database');
 
+
+// ALL classes extends Erro with a personnal message in each context error
 class NoThemeError extends Error {
     message = 'No theme found in database';
 };
@@ -28,8 +30,8 @@ class ThemeNotDeleted extends Error {
  * @property {string} title
  * @property {string} description
  * @property {string} position
- * @property {number} createdAt
- * @property {number} modifiedAt
+ * @property {string} createdAt
+ * @property {string} modifiedAt
  * 
  */
 
@@ -123,6 +125,14 @@ class Theme {
         };
     }
 
+    /**
+      * Delete a theme
+      * 
+      * @async
+      * @function delete
+      * @returns [Array] Instances of the class Theme.
+      * @throws {Error} a potential SQL error.
+      */
     async delete () {
         // TODO: delete theme method
         const { rows } = await db.query(`DELETE FROM theme WHERE id=$1;`, [this.id]);

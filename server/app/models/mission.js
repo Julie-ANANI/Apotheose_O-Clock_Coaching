@@ -1,7 +1,7 @@
 const db = require('../database');
 
 
-
+// ALL classes extends Erro with a personnal message in each context error
 class NoMissionError extends Error {
     message = 'No mission found in database';
 };
@@ -33,8 +33,8 @@ class NoMissionFoundInThemeError extends Error {
  * @property {string} advice
  * @property {string} position
  * @property {number} themeId
- * @property {number} createdAt
- * @property {number} modifiedAt
+ * @property {string} createdAt
+ * @property {string} modifiedAt
  * 
  */
 
@@ -53,6 +53,7 @@ class Mission {
         }
     };
 
+    // All static properties error of mission's class
     static NoMissionError = NoMissionError;
     static UnknowMissionError = UnknowMissionError;
     static MissionNotUpdatedError = MissionNotUpdatedError;
@@ -65,6 +66,7 @@ class Mission {
      * @returns {Array<Mission>}
      * @async
      * @static
+     * @throws {Error} a potential SQL error.
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM mission;');
@@ -101,6 +103,7 @@ class Mission {
      * @returns {Array<Mission>}
      * @static
      * @async
+     * @throws {Error} a potential SQL error.
      */
     static async findByTheme(tid) {
         const { rows } = await db.query(`
@@ -119,13 +122,12 @@ class Mission {
     
 
     /**
-      * Insert or update a mission.
+      * Inserts a new mission in the Database or updates the database if the record alredy exists.
       * 
       * @async
-      * 
       * @function save
-      * @param {number} id - A mission ID.
-      * 
+      * @returns [Array] Instances of the class Mission.
+      * @throws {Error} a potential SQL error.
       */
     async save(){
 
@@ -162,6 +164,14 @@ class Mission {
         };
     }
 
+    /**
+      * Delete a mission
+      * 
+      * @async
+      * @function delete
+      * @returns [Array] Instances of the class Mission.
+      * @throws {Error} a potential SQL error.
+      */
     async delete () {
         
         const { rows } = await db.query(`DELETE FROM mission WHERE id=$1;`, [this.id]);
