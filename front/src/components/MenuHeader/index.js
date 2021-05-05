@@ -1,26 +1,28 @@
 
-  import React, { Component } from 'react'
-  import { Input, Menu } from 'semantic-ui-react'
+  import React, { useState } from 'react';
+  import { Input, Menu } from 'semantic-ui-react';
   import { NavLink } from 'react-router-dom';
   
-  export default class MenuHeader extends Component {
-    state = { activeItem: 'home' }
+  const MenuHeader = () => {
+    // state = { activeItem: 'home' }
+    const [activeItem, setActiveItem] = useState('');
   
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    const handleItemClick = (e, {name}) =>  {
+      console.log(e);
+      setActiveItem(name)
+    };
   
-    render() {
-      const { activeItem } = this.state
-  
+    
       return (
         <Menu secondary>
             <NavLink
-              to="/presentation"
+              to="/accueil"
               exact
             >
               <Menu.Item
-                name='presentation'
-                active={activeItem === 'presentation'}
-                onClick={this.handleItemClick}
+                name='Accueil'
+                active={activeItem === 'Accueil'}
+                onClick={handleItemClick}
               />
             </NavLink>
             <NavLink
@@ -30,7 +32,7 @@
               <Menu.Item
                 name='parcours coaching'
                 active={activeItem === 'parcours coaching'}
-                onClick={this.handleItemClick}
+                onClick={handleItemClick}
               />
             </NavLink>
             <NavLink
@@ -40,7 +42,7 @@
               <Menu.Item
                 name='profil'
                 active={activeItem === 'profil'}
-                onClick={this.handleItemClick}
+                onClick={handleItemClick}
               />
             </NavLink>
 
@@ -51,12 +53,14 @@
             <Menu.Item
               name='deconnexion'
               active={activeItem === 'deconnexion'}
-              onClick={this.handleItemClick}
+              onClick={handleItemClick}
             />
           </Menu.Menu>
         </Menu>
       )
 
-    }
-  }
+    
+  };
+
+  export default MenuHeader;
   

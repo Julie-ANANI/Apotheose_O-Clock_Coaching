@@ -7,8 +7,8 @@ import MenuHeader from 'src/components/MenuHeader';
 const Header = () => (
   <div className="header">
     <Image src={logo} size='medium' centered />
-    <MenuHeader />
     <Divider />
+    <MenuHeader />
   </div>
 )
 
