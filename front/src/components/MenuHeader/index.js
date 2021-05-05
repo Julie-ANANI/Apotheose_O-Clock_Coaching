@@ -15,7 +15,7 @@
     
       return (
         <Menu secondary>
-            <NavLink
+            <NavLinkgi
               to="/accueil"
               exact
             >
