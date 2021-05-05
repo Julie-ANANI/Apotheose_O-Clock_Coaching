@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const router = require('./router');
+const router = require('./app/router');
 
 // ***Parsing JSON request bodies***
 // Express doesn't parse HTTP request bodies by default, but it does have a built-in middleware
@@ -23,11 +23,13 @@ app.use(express.json());
 // requests can be made to endpoints without a servername: /api/foo_endpoint.
 app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    response.header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization');
+    response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-};
+    next();
+});
 
-app.use('/v1',router);
+app.use('/v1', router);
 
 app.listen(port, () => {
-    console.log('Server running on : localhost:3000/v1')});
+    console.log('Server running on : localhost:3000/v1')
+});

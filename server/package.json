@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -16,5 +15,6 @@
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "pg": "^8.6.0"
-  }
+  },
+  "description": ""
 }
