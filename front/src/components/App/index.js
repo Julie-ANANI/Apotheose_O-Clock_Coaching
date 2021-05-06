@@ -14,6 +14,17 @@ import 'semantic-ui-css/semantic.min.css';
 import StudentDashboard from 'src/components/StudentDashboard';
 import  Header from 'src/components/Header';
 
+// const getThemes = () => {
+//   axios.get(DATABASE_URL)
+//     .then((response)=> {
+//       console.log(response);
+//     })
+// };
+
+var base_url = 'http://localhost:3000/v1/api'
+
+getThemes();
+
 // == Composant
 const App = () => { 
 
