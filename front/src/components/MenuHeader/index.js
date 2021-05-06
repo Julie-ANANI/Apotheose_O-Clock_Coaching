@@ -15,7 +15,7 @@
     
       return (
         <Menu secondary>
-            <NavLinkgi
+            <NavLink
               to="/accueil"
               exact
             >
@@ -63,4 +63,3 @@
   };
 
   export default MenuHeader;
-  
