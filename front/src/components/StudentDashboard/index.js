@@ -7,7 +7,7 @@ import axios from 'axios';
 
 // == Import
 import './styles.css';
-import logo from 'src/assets/logos/Logo de O_coaching - white and red svg.svg';
+import logo from 'src/assets/logos/Logo de O\'coaching - white and red svg v2.svg';
 import ThemeInDashboard from './ThemeInDashboard';
 
 
@@ -18,6 +18,7 @@ import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
 
 // == Composant
 const StudentDashboard = () => {
+  
 
 return(
   <div className="student-dashboard">
@@ -26,7 +27,7 @@ return(
     <Divider hidden />
     <Divider hidden />
     <Image src={logo} size='medium' centered />
-    <Header className='header-dashboard' as='h1' textAlign='center'> Bienvenue jeune padawan sur votre plateforme de coaching ! </Header>
+    <Header className='header-dashboard' as='h1' textAlign='center'> Clique sur un thème et commence à remplir tes missions jeune padawan ! </Header>
     <Divider hidden />
     <Divider hidden />
       <div className="progress-container">

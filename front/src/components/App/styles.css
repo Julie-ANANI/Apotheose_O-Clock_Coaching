@@ -1,3 +1,62 @@
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_bld.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_bld_it.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_blk.otf') format('opentype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_blk_it.otf') format('opentype');
+  font-weight: bolder;
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_light.otf') format('opentype');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_light_it.otf') format('opentype');
+  font-weight: lighter;
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_reg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: 'Oclock';
+  src: url('src/assets/fonts/Oclock/Brandon_reg_it.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+
+
 .html, body {
   height : 100%;
 }
@@ -5,4 +64,5 @@
 .app {
   margin: 0 auto;
   background-color:#00c4a7;
+  font-family: Oclock;
 }

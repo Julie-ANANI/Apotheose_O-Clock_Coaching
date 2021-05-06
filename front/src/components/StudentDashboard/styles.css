@@ -1,5 +1,6 @@
 .student-dashboard {
   padding: 0 3%;
+  font-family: Oclock;
 }
 
  img {
@@ -18,6 +19,7 @@
 
 .ui.header-dashboard {
   color : #fffdd8;
+  font-family: Oclock;
 }
 
 .ui.card.theme-card {

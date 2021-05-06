@@ -5,10 +5,10 @@
   
   const MenuHeader = () => {
     // state = { activeItem: 'home' }
-    const [activeItem, setActiveItem] = useState('');
+    const [activeItem, setActiveItem] = useState('Accueil');
   
-    const handleItemClick = (e, {name}) =>  {
-      console.log(e);
+    const handleItemClick = (event, {name}) =>  {
+      console.log('On a cliqué',event);
       setActiveItem(name)
     };
   
@@ -56,6 +56,7 @@
               onClick={handleItemClick}
             />
           </Menu.Menu>
+          <div className="logo-menu"></div>
         </Menu>
       )
 
