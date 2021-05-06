@@ -1,7 +1,7 @@
 [core]
 	engine = pg
 	# plan_file = sqitch.plan
-	top_dir = migrations
+	top_dir = server/migrations
  [engine "pg"]
 	target = db:pg:vrai-nom-de-la-db
 	# registry = sqitch
