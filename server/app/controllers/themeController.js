@@ -5,12 +5,20 @@ const themeController = {
         /**
          * It's control the road GET /v1/api/themes
          */
-        const theThemes = await Theme.findAll();
+        // const theThemes = await Theme.findAll();
 
-        if (theThemes) {
+        // if (theThemes) {
+        //     res.status(200).json(theThemes);
+        // } else {
+        //     res.status(404).json(err.message);
+        // }
+
+        try{
+            const theThemes = await Theme.findAll();
             res.status(200).json(theThemes);
-        } else {
-            res.status(404).json(err.message);
+        } catch (err) {
+            const { message, path } = err.details[0];
+            res.status(404).json({message, path});
         }
 
     },
@@ -18,14 +26,24 @@ const themeController = {
     * It's control the road GET /v1/api/themes/:id
     */
     getOneTheme: async (req, res) => {
+        // const { id } = req.params;
+
+        // const onlyOneTheme = await Theme.findOne(id);
+
+        // if (onlyOneTheme) {
+        //     res.status(200).json(onlyOneTheme);
+        // } else {
+        //     res.status(404).json(err.message);
+        // }
+
+
+        try{
         const { id } = req.params;
-
         const onlyOneTheme = await Theme.findOne(id);
-
-        if (onlyOneTheme) {
-            res.status(200).json(onlyOneTheme);
-        } else {
-            res.status(404).json(err.message);
+        res.status(200).json(onlyOneTheme);
+        }catch(err){
+            const { message, path } = err.details[0];
+            res.status(404).json({message, path});
         }
     },
 
