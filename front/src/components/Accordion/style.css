@@ -1,0 +1,25 @@
+.ui.accordion, .ui.accordion .accordion {
+  max-width: 100%;
+  text-align: center;
+}
+.ui.checkbox label:before {
+
+  
+}
+
+.ui.accordion .title:not(.ui) {
+  padding: .5em 0;
+  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 2em;
+  color: rgba(0,0,0,.87);
+}
+.ui.checkbox {
+  margin-right: 1em;
+  transform: scale(2);
+}
+p {
+  font-size: 1.5em;
+}
+/* h2 {
+  margin-left: 2em;
+} */

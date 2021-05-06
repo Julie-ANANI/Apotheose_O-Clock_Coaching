@@ -1,10 +1,5 @@
 .header-website {
   padding :0;
-<<<<<<< HEAD
-  
-}
-
-=======
   position: fixed;
   width: 100%;
   z-index: 5;
@@ -16,7 +11,6 @@
   box-sizing: border-box;
 }
 
->>>>>>> develop
 .header-website img {
   margin-bottom : 1rem;
 }
@@ -25,10 +19,7 @@
   margin : 0;
   /* background-color: #1a4c79; */
   background-color: #0CAD93;
-<<<<<<< HEAD
-=======
   box-sizing: border-box;
->>>>>>> develop
 }
 
 .header-website .ui.divider {
