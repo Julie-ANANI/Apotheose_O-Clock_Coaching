@@ -7,13 +7,13 @@ import axios from 'axios';
 
 // == Import
 import './styles.css';
-
+import logo from 'src/assets/logos/Logo de O_coaching - white and red svg.svg';
 import ThemeInDashboard from './ThemeInDashboard';
 
 
 //== Import from Semantic UI
 
-import { Header, Progress, Divider, Card} from 'semantic-ui-react'
+import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
 
 
 // == Composant
@@ -23,6 +23,9 @@ return(
   <div className="student-dashboard">
     <Divider hidden />
     <Divider hidden />
+    <Divider hidden />
+    <Divider hidden />
+    <Image src={logo} size='medium' centered />
     <Header className='header-dashboard' as='h1' textAlign='center'> Bienvenue jeune padawan sur votre plateforme de coaching ! </Header>
     <Divider hidden />
     <Divider hidden />

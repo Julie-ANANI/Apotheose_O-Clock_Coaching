@@ -1,6 +1,14 @@
 .header-website {
-  background-color: #00c4a7;
-  padding: 1em 0 0;
+  padding :0;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  
+}
+
+*, ::before ::after {
+  box-sizing: border-box;
 }
 
 .header-website img {
@@ -10,7 +18,8 @@
 .header-website .ui.menu {
   margin : 0;
   /* background-color: #1a4c79; */
-  background-color: #fffdd8;
+  background-color: #0CAD93;
+  box-sizing: border-box;
 }
 
 .header-website .ui.divider {
@@ -18,43 +27,64 @@
 }
 
 .header-website .ui.secondary.menu {
-  padding : 0 0.5em;
+  /* padding : 0.5em 0.5em 0.5em; */
+  /* display: flex;
+  align-items: flex-start; */
 }
 
 
-.header-website .ui.secondary.menu .item {
-  
-}
+/* .header-website .ui.secondary.menu a.item {
+  height: inherit;
+} */
 
 .header-website .ui.secondary.menu a {
   margin :0;
+  padding : 0;
   /* color : #021132; */
-  color: #1a4c79;
+  color: #FFFDD8;
   /* color : #00c4a7; */
   font-weight: bold;
-  font-size: 1.05em;
+  font-size: 1em;
   border-radius: 0;
+  text-transform: uppercase;
+  /* vertical-align: middle; */
+  /* align-self: center; */
+  min-height: 100%;
   
 }
 
-.header-website .ui.secondary.menu a.item:hover {
+.header-website .ui.secondary.menu a.item {
   /* color : #00c4a7; */
   /* color: #1a4c79; */
-  color : #021132;
+  padding : 0 0.7em;
+  color :  #FFFDD8;
+  /* font-weight: bold; */
+  /* border-radius: none;
+  border-bottom: 3px solid #00c4a7; */
+  background-color: none;
+  border-radius: 0;
+}
+
+.header-website .ui.secondary.menu a.item:hover {
+  color :  #FFFDD8;
+  /* color : #00c4a7; */
+  /* color: #1a4c79; */
+  /* color : #021132; */
   /* font-weight: bold; */
   border-radius: none;
-  border-bottom: 3px solid #00c4a7;
+  /* border-bottom: 3px solid #00c4a7; */
   background-color: none;
   border-radius: 0;
 }
 
 .header-website .ui.secondary.menu .active.item, .ui.secondary.menu .active.item:hover {
+  color :  #FFFDD8;
   /* color : #00c4a7; */
   /* color: #1a4c79; */
-  color : #021132;
+  /* color : #021132; */
   /* font-weight: bold; */
   border-radius: none;
-  /* border-bottom: 3px solid #00c4a7; */
+  border-bottom: 3px solid #00c4a7;
   /* background-color: #00c4a742; */
   border-radius: 0;
 }

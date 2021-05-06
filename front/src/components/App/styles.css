@@ -1,4 +1,8 @@
+.html, body {
+  height : 100%;
+}
+
 .app {
   margin: 0 auto;
-  background-color: #fffdd8;
+  background-color:#00c4a7;
 }
