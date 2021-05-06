@@ -1,32 +1,41 @@
 # Tous les thèmes
 
-GET http://localhost:3044/v1/api/themes
+GET http://localhost:3000/v1/api/themes
 
 ###
 
 # Un seul thème
-GET http://localhost:3044/v1/api/themes/1
+GET http://localhost:3000/v1/api/themes/1
 
 
 ###
 
-# Un seul thème inexistant
-GET http://localhost:3044/v1/api/themes/5
+# Un seul thème qui n'existe pas 
+GET http://localhost:3000/v1/api/themes/5
 
 ###
 
 # Une mission
-GET http://localhost:3044/v1/api/themes/1/missions/1
+GET http://localhost:3000/v1/api/themes/1/missions/1
 
 ###
 
 # Une mission qui n'existe pas 
-GET http://localhost:3044/v1/api/themes/1/missions/55
+GET http://localhost:3000/v1/api/themes/1/missions/55
 
 ###
 
 # Tous les missions 
 
-GET http://localhost:3044/v1/api/themes/1/missions
+GET http://localhost:3000/v1/api/themes/1/missions
 
 ###
+
+# Un utilisteur interne dans notre api
+GET http://localhost:3000/v1/api/users/1
+
+###
+
+# Tous les utilisteurs
+GET http://localhost:3000/v1/api/users
+
