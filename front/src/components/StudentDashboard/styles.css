@@ -1,6 +1,7 @@
 .student-dashboard {
   padding: 0 3%;
   font-family: Oclock;
+  height: 100% ;
 }
 
  img {
@@ -10,6 +11,7 @@
 
 .ui.progress.general-progress-bar {
   width: 100%;
+  margin-bottom: 1em ;
 
 }
 
@@ -17,9 +19,10 @@
   margin : 1em 0;
 }
 
-.ui.header-dashboard {
+.ui.header.header-dashboard {
   color : #fffdd8;
   font-family: Oclock;
+  font-size: 2.5em;
 }
 
 .ui.card.theme-card {
@@ -35,6 +38,17 @@
   color : white;
 }
 
+.progressbar-message {
+  color : #fffdd8;
+  font-size: 2em;
+  
+}
+
+.ui.cards>.card>.content>.header {
+  color : #fffdd8;
+  font-family: Oclock;
+}
+
 
 .ui.progress:last-child {
   margin : 0;
@@ -43,6 +57,7 @@
 .progress-container {
   display: block;
   padding: 0 10%;
+  text-align: center;
 }
 
 

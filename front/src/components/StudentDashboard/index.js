@@ -17,7 +17,7 @@ import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
 
 
 // == Composant
-const StudentDashboard = () => {
+const StudentDashboard = ({themes}) => {
   
 
 return(
@@ -31,25 +31,20 @@ return(
     <Divider hidden />
     <Divider hidden />
       <div className="progress-container">
-        <Progress className='general-progress-bar' percent={33} indicating progress label="Mettre un message qui évolue selon l'état d'avancement" />
+        <Progress className='general-progress-bar' percent={33} indicating progress />
+        {/* importer composant message pour le message ci-dessous */}
+        <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
       </div>
     <Divider hidden />
     <Divider hidden />
     <Card.Group centered>
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
-      <ThemeInDashboard />
+      {themes.map((theme)=> (
+        <ThemeInDashboard
+        key={theme.id}
+        {...theme}
+        />
+      ))}
+      
     </Card.Group>
   
   </div>

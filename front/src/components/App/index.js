@@ -21,17 +21,34 @@ import  Header from 'src/components/Header';
 //     })
 // };
 
+// A mettre dans le .env et utiliser process.env.base_url
 var base_url = 'http://localhost:3000/v1/api'
 
-getThemes();
+// getThemes();
 
 // == Composant
 const App = () => { 
 
+  const [themes, setThemes] = useState([])
+
+  const loadThemes = () => {
+    console.log('Il faut charger les thèmes');
+
+    axios.get(`${base_url}/themes`)
+      .then((response)=> {
+        console.log(response.data);
+        setThemes(response.data)
+      })
+  }
+
+  useEffect(() => {
+    loadThemes();
+  }, []);
+
   return(
     <div className="app">
       <Header></Header>
-      <StudentDashboard ></StudentDashboard>
+      <StudentDashboard themes={themes}></StudentDashboard>
     </div>
   )
 }

@@ -57,12 +57,14 @@
 
 
 
-.html, body {
+html, body, #root {
   height : 100%;
+  /* min-height: 100vh; */
 }
 
 .app {
   margin: 0 auto;
   background-color:#00c4a7;
   font-family: Oclock;
+  height: 100%;
 }
