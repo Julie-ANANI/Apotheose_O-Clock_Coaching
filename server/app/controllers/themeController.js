@@ -1,64 +1,52 @@
 const Theme = require('../models/theme');
 
 const themeController = {
+    /**
+    * It's control the road GET /v1/api/themes
+    */
     getAllThemes: async (_, res) => {
-        /**
-         * It's control the road GET /v1/api/themes
-         */
-        // const theThemes = await Theme.findAll();
-
-        // if (theThemes) {
-        //     res.status(200).json(theThemes);
-        // } else {
-        //     res.status(404).json(err.message);
-        // }
-
+   
         try{
+            /* *
+             * All the themes are retrieved from the database
+             */
             const theThemes = await Theme.findAll();
             res.status(200).json(theThemes);
+
         } catch (err) {
-            const { message, path } = err.details[0];
-            res.status(404).json({message, path});
+            /**
+            * There are no themes in the database
+            * In the model, there is an error with a custom message
+            */
+            res.status(404).json(err.message);
         }
 
     },
+
+
     /**
     * It's control the road GET /v1/api/themes/:id
     */
     getOneTheme: async (req, res) => {
-        // const { id } = req.params;
 
-        // const onlyOneTheme = await Theme.findOne(id);
+        try {
+            /**
+             * We get the id in the parameters of the request
+             */
+            const { id } = req.params;
 
-        // if (onlyOneTheme) {
-        //     res.status(200).json(onlyOneTheme);
-        // } else {
-        //     res.status(404).json(err.message);
-        // }
+            const onlyOneTheme = await Theme.findOne(id);
+            res.status(200).json(onlyOneTheme);
 
-
-        try{
-        const { id } = req.params;
-        const onlyOneTheme = await Theme.findOne(id);
-        res.status(200).json(onlyOneTheme);
-        }catch(err){
-            const { message, path } = err.details[0];
-            res.status(404).json({message, path});
+        } catch(err) {
+            /**
+            * There is no this theme in the database
+            * In the model, there is an error with a custom message
+            */
+            res.status(404).json(err.message);
         }
     },
 
-    /* addNewTheme: async (req, res) => {
-
-        const thenewTheme = new Theme(req.body);
-
-        try {
-            await thenewTheme.save();
-
-            res.status(201).json(theTheme);
-        } catch (err) {
-            res.status(500).json(err.message);
-        }
-    } */
 };
 
 module.exports = themeController;

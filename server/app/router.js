@@ -8,7 +8,7 @@ const router = Router();
 /**
  * Returns all themes from the database
  * @route GET /themes
- * @group Themes
+ * @group The Themes
  * @returns {Array<Themes>} 200 - An array of themes
  */
 router.get('/themes', themeController.getAllThemes);
@@ -25,11 +25,16 @@ router.get('/themes/:id', themeController.getOneTheme);
  * Returns an mission from the database with id
  * @route GET /themes/{id}/missions/{id}
  * @group An Mission
- * @returns {<Theme>} 200 - An instance of one mission
+ * @returns {<Mission} 200 - An instance of one mission
  */
 router.get('/themes/:id/missions/:id', missionController.getOneMission);
 
-
+/**
+ * Returns all themes from the database
+ * @route GET /themes/{id}/missions
+ * @group The Missions
+ * @returns {Array<Missions} 200 - An array of missions
+ */
 router.get('/themes/:id/missions', missionController.getAllMissions);
 
 module.exports = router;

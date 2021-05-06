@@ -5,6 +5,8 @@ const db = require('../database');
 /**
  * Extends of Error's class with personnal message :'No mission found in database'
  * @class
+ * @Error
+ * @message
  */
 class NoMissionError extends Error {
     message = 'No mission found in database';
@@ -13,6 +15,8 @@ class NoMissionError extends Error {
 /**
  * Extends of Error's class with personnal message :'No mission found with this id'
  * @class
+ * @Error
+ * @message
  */
 class UnknowMissionError extends Error {
     message = 'No mission found with this id';
@@ -21,6 +25,8 @@ class UnknowMissionError extends Error {
 /**
  * Extends of Error's class with personnal message :'Mission not updated'
  * @class
+ * @Error
+ * @message
  */
 class MissionNotUpdatedError extends Error {
     message = 'Mission not updated';
@@ -29,6 +35,8 @@ class MissionNotUpdatedError extends Error {
 /**
  * Extends of Error's class with personnal message :'Mission not added'
  * @class
+ * @Error
+ * @message
  */
 class NoMissionAddedError extends Error {
     message = 'Mission not added';
@@ -37,6 +45,8 @@ class NoMissionAddedError extends Error {
 /**
  * Extends of Error's class with personnal message :'No mission deleted'
  * @class
+ * @Error
+ * @message
  */
 class NoMissionDeletedError extends Error {
     message = 'No mission deleted';
@@ -45,6 +55,8 @@ class NoMissionDeletedError extends Error {
 /**
  * Extends of Error's class with personnal message :'No mission found for this theme id'
  * @class
+ * @Error
+ * @message
  */
 class NoMissionFoundInThemeError extends Error {
     message = 'No mission found for this theme id';
