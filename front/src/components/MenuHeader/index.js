@@ -20,6 +20,7 @@
               exact
             >
               <Menu.Item
+                className='header-menu-item'
                 name='Accueil'
                 active={activeItem === 'Accueil'}
                 onClick={handleItemClick}
@@ -30,6 +31,7 @@
               exact
             >
               <Menu.Item
+                className='header-menu-item'
                 name='parcours coaching'
                 active={activeItem === 'parcours coaching'}
                 onClick={handleItemClick}
@@ -40,6 +42,7 @@
               exact
             >
               <Menu.Item
+                className='header-menu-item'
                 name='profil'
                 active={activeItem === 'profil'}
                 onClick={handleItemClick}
@@ -51,6 +54,7 @@
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
             <Menu.Item
+              className='header-menu-item'
               name='deconnexion'
               active={activeItem === 'deconnexion'}
               onClick={handleItemClick}
