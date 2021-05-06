@@ -1,30 +1,49 @@
 const db = require('../database');
 
-
-// ALL classes extends Erro with a personnal message in each context error
+// ALL classes extends Error with a personnal message in each context error
+/**
+ * Extends of Error's class with personnal message :'No theme found in the database'
+ * @class
+ */
 class NoThemeError extends Error {
     message = 'No theme found in database';
 };
 
+/**
+ * Extends of Error's class with personnal message :'No theme found with this id'
+ * @class
+ */
 class UnknownThemeError extends Error {
     message = 'No theme found with this id';
 };
 
+/**
+ * Extends of Error's class with personnal message :'Theme not added'
+ * @class
+ */
 class ThemeNotAdded extends Error {
     message = 'Theme not added'
 };
 
+/**
+ * Extends of Error's class with personnal message :'Theme was not updated'
+ * @class
+ */
 class ThemeNotUpdated extends Error { 
     message = 'Theme was not updated';
 };
 
+/**
+ * Extends of Error's class with personnal message :'Theme was not deleted'
+ * @class
+ */
 class ThemeNotDeleted extends Error { 
     message = 'Theme was not deleted';
 };
 
 
 /**
- * An entity representing a coaching theme
+ * An entity representing a theme's
  * @typedef Theme
  * @property {number} id
  * @property {string} title
@@ -49,6 +68,8 @@ class Theme {
             this[prop] = data[prop];
         };
     };
+
+    // All static properties error of Theme's class
     static NoThemeError = NoThemeError;
     static UnknownThemeError = UnknownThemeError;
     static ThemeNotAdded = ThemeNotAdded;
@@ -58,9 +79,12 @@ class Theme {
 
     /**
      * Fetches every theme in the database
-     * @returns {Array<Theme>}
-     * @async
+     * 
      * @static
+     * @async
+     * @function findOne
+     * @returns {Array<Theme>} An array of all themes in the database
+     * @throws {Error} a potential SQL error.
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM theme;');
@@ -72,13 +96,14 @@ class Theme {
         };
     };
     /**
-      * Fetches a single category.
+      * Fetches a single theme
       * 
-      * @async
       * @static
+      * @async
       * @function findOne
       * @param {number} id - A theme ID.
-      * @returns {Theme|null} Instance of the class Theme or null if no such id in the database.
+      * @returns {Theme} Instance of the class Theme
+      * @throws {Error} a potential SQL error.
       */
     static async findOne(id) {
 
@@ -96,7 +121,7 @@ class Theme {
       * 
       * @async
       * @function save
-      * @returns [Array] Instances of the class Theme.
+      * @returns {Array} Instances of the class Theme.
       * @throws {Error} a potential SQL error.
       */
      async save() {
@@ -110,18 +135,16 @@ class Theme {
                 throw new ThemeNotUpdated();
             };
         } else {
-                // POST route
-                // TODO: create SQL function to insert a new theme
-                const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
-                    this.title,
-                    this.description,
-                    this.position
-                ]);
+            // POST route
+            // TODO: create SQL function to insert a new theme
+            const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
+                this.title,
+                this.description,
+                this.position
+            ]);
 
-                this.id = rows[0].id;
-                throw new ThemeNotAdded();
-            
-
+            this.id = rows[0].id;
+            throw new ThemeNotAdded();
         };
     }
 
@@ -130,11 +153,10 @@ class Theme {
       * 
       * @async
       * @function delete
-      * @returns [Array] Instances of the class Theme.
+      * @returns {Array} Instances of the class Theme.
       * @throws {Error} a potential SQL error.
       */
     async delete () {
-        // TODO: delete theme method
         const { rows } = await db.query(`DELETE FROM theme WHERE id=$1;`, [this.id]);
 
         if (rows[0]) {

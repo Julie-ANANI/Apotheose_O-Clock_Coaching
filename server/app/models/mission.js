@@ -2,22 +2,50 @@ const db = require('../database');
 
 
 // ALL classes extends Erro with a personnal message in each context error
+/**
+ * Extends of Error's class with personnal message :'No mission found in database'
+ * @class
+ */
 class NoMissionError extends Error {
     message = 'No mission found in database';
 };
+
+/**
+ * Extends of Error's class with personnal message :'No mission found with this id'
+ * @class
+ */
 class UnknowMissionError extends Error {
     message = 'No mission found with this id';
 };
+
+/**
+ * Extends of Error's class with personnal message :'Mission not updated'
+ * @class
+ */
 class MissionNotUpdatedError extends Error {
     message = 'Mission not updated';
 };
+
+/**
+ * Extends of Error's class with personnal message :'Mission not added'
+ * @class
+ */
 class NoMissionAddedError extends Error {
-    
     message = 'Mission not added';
 };
+
+/**
+ * Extends of Error's class with personnal message :'No mission deleted'
+ * @class
+ */
 class NoMissionDeletedError extends Error {
     message = 'No mission deleted';
 };
+
+/**
+ * Extends of Error's class with personnal message :'No mission found for this theme id'
+ * @class
+ */
 class NoMissionFoundInThemeError extends Error {
     message = 'No mission found for this theme id';
 };
@@ -53,7 +81,7 @@ class Mission {
         }
     };
 
-    // All static properties error of mission's class
+    // All static properties error of Mission's class
     static NoMissionError = NoMissionError;
     static UnknowMissionError = UnknowMissionError;
     static MissionNotUpdatedError = MissionNotUpdatedError;
@@ -63,9 +91,11 @@ class Mission {
 
     /**
      * Fetches every mission in the database
-     * @returns {Array<Mission>}
-     * @async
+     * 
      * @static
+     * @async
+     * @function findAll
+     * @returns {Array<Mission>} An array of all missions in the database
      * @throws {Error} a potential SQL error.
      */
     static async findAll() {
@@ -81,12 +111,12 @@ class Mission {
 
     /**
       * Fetches a single mission.
-      * 
       * @async
       * @static
       * @function findOne
       * @param {number} id - A mission ID.
-      * @returns {Mission|null} Instance of the class Mission or null if no such id in the database.
+      * @returns {Mission} Instance of the class Mission.
+      * @throws {Error} a potential SQL error.
       */
     static async findOne(id) {
         const { rows } = await db.query('SELECT * FROM mission WHERE id = $1;', [id]);
@@ -98,11 +128,11 @@ class Mission {
         };
     };
 
-    /* Fetches every mission with the given theme from the database
+    /** Fetches every mission with a given theme from the database
      * @param {Number} tid - the theme id
-     * @returns {Array<Mission>}
      * @static
      * @async
+     * @returns {Array<Mission>}
      * @throws {Error} a potential SQL error.
      */
     static async findByTheme(tid) {
@@ -126,14 +156,14 @@ class Mission {
       * 
       * @async
       * @function save
-      * @returns [Array] Instances of the class Mission.
+      * @returns {Array} Instances of the class Mission.
       * @throws {Error} a potential SQL error.
       */
     async save(){
 
         if(this.id){
             //TODO: do a function update_mission(json)
-            const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5 ', [
+            const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5;', [
                 this.title, 
                 this.advice, 
                 this.position, 
@@ -149,7 +179,7 @@ class Mission {
 
         }else{
             //TODO: do a function new_mission(json)
-            const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1,$2,$3,$4)', [
+            const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1,$2,$3,$4);', [
                 this.title,
                 this.advice,
                 this.position,
@@ -169,7 +199,7 @@ class Mission {
       * 
       * @async
       * @function delete
-      * @returns [Array] Instances of the class Mission.
+      * @returns {Array} Instances of the class Mission.
       * @throws {Error} a potential SQL error.
       */
     async delete () {

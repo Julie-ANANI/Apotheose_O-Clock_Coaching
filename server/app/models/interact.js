@@ -1,20 +1,28 @@
 const db = require('../database');
 
 
+// ALL classes extends Error with a personnal message in each context error
 
-// ALL classes extends Erro with a personnal message in each context error
+/**
+ * Extends of Error's class with personnal message :'No interact found in database'
+ * @class
+ */
 class NoInteractError extends Error {
     message = 'No interact found in database';
 };
 
-class UnknowInteractError extends Error {
-    message = 'No interact found with this id';
-};
-
+/**
+ * Extends of Error's class with personnal message :'Interact not updated'
+ * @class
+ */
 class InteractNotUpdatedError extends Error {
     message = 'Interact not updated';
 };
 
+/**
+ * Extends of Error's class with personnal message :'Interact not added'
+ * @class
+ */
 class InteractNotAddedError extends Error {
     message = 'Interact not added';
 };
@@ -22,7 +30,7 @@ class InteractNotAddedError extends Error {
 
 
 /**
- * An entity representing a coaching mission
+ * An entity representing a coaching Interact
  * @typedef Interact
  * @property {boolean} isChecked
  * @property {string} createdAt
@@ -31,19 +39,19 @@ class InteractNotAddedError extends Error {
  */
 
  /**
- * A model representing a coaching theme
+ * A model representing an interact
  * @class
  */
 class Interact {
 
 
-    // All static properties error of interact'sclass
+    // All static properties error of Interact's class
     static NoInteractError = NoInteractError;
     static InteractNotUpdatedError = InteractNotUpdatedError;
     static InteractNotAddedError = InteractNotAddedError ;
 
     /**
-     * The Theme constructor
+     * The Interact constructor
      * @param {Object} data - a litteral object with properties that will be copied into the instance
      */
     constructor(data = {}) {
@@ -53,10 +61,11 @@ class Interact {
     };
 
     /**
-     * Fetches every interact in the database
-     * @returns {Array<Interact>}
-     * @async
+     * Fetches every interact of a user in the database
      * @static
+     * @async
+     * @param {number} userId - The id of a unique user
+     * @returns {Array<Interact>}
      */
     static async findAll(userId) {
         const { rows } = await db.query(`
@@ -72,11 +81,21 @@ class Interact {
         };
     };
 
+    /**
+      * Inserts a new interaction in the Database or updates the database if the record alredy exists.
+      * 
+      * @async
+      * @function save
+      * @returns {Array} Instances of the class Theme.
+      * @throws {Error} a potential SQL error.
+    */
     async save() {
         if (this.id) {
-        // UPDATE
-            
-        const { rows } = await db.query(`UPDATE interact SET is_checked=$1 WHERE mission_id=$2 AND user_id=$3;`,[
+        // UPDATE 
+        const { rows } = await db.query(`UPDATE interact
+         SET is_checked=$1 
+         WHERE mission_id=$2 
+         AND user_id=$3;`,[
             this.is_checked,
             this.mission_id,
             this.user_id
@@ -90,8 +109,8 @@ class Interact {
              
         } else {
             // INSERT
-            const { rows } = await db.query(`INSERT INTO interact(is_checked,mission_id,user_id) VALUES
-            ($1,$2,$3);`, [
+            const { rows } = await db.query(`INSERT INTO interact(is_checked,mission_id,user_id) 
+            VALUES($1,$2,$3);`, [
                 this.is_checked,
                 this.mission_id,
                 this.user_id
