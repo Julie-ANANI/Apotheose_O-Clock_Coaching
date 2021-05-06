@@ -7,20 +7,24 @@ import axios from 'axios';
 
 // == Import
 import './styles.css';
+import 'semantic-ui-css/semantic.min.css';
 
-import Header from 'src/components/Header';
+// Import from Semantic UI
+ 
+// import Header from 'src/components/Header';
 import StudentDashboard from 'src/components/StudentDashboard';
+import  Header from 'src/components/Header';
 
 // == Composant
 const App = () => { 
 
-
-return(
-  <div className="app">
-    <Header />
-    <StudentDashboard />
-  </div>
-)}
+  return(
+    <div className="app">
+      <Header></Header>
+      <StudentDashboard></StudentDashboard>
+    </div>
+  )
+}
 
 // == Export
 export default App;
