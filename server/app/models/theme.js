@@ -128,7 +128,10 @@ class Theme {
         if (this.id) {
             // PUT route
             // TODO: create SQL function update_theme AND trigger for updating timestamp
-            const { rows }= await db.query('UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4;', [this.title, this.description, this.position, this.id]);
+            const { rows }= await db.query(`
+            UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4 RETURNING id;`,
+            [this.title, this.description, this.position, this.id]);
+
             if (rows[0]) {
                 return rows[0];
             } else {
@@ -143,8 +146,11 @@ class Theme {
                 this.position
             ]);
 
-            this.id = rows[0].id;
-            throw new ThemeNotAdded();
+            if(rows[0]){
+                this.id = rows[0].id;
+            }else{
+                throw new ThemeNotAdded();
+            };
         };
     }
 
@@ -157,8 +163,8 @@ class Theme {
       * @throws {Error} a potential SQL error.
       */
     async delete () {
-        const { rows } = await db.query(`DELETE FROM theme WHERE id=$1;`, [this.id]);
-
+        const { rows } = await db.query(`DELETE FROM theme WHERE id=$1 RETURNING id;`, [this.id]);
+        
         if (rows[0]) {
             return rows[0];
         } else {
