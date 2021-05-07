@@ -10,7 +10,11 @@ GET http://localhost:3000/v1/api/themes/1
 
 ###
 
+<<<<<<< HEAD
 # Un seul thème inexistant
+=======
+# Un seul thème qui n'existe pas 
+>>>>>>> develop
 GET http://localhost:3000/v1/api/themes/5
 
 ###
@@ -30,3 +34,12 @@ GET http://localhost:3000/v1/api/themes/1/missions/55
 GET http://localhost:3000/v1/api/themes/1/missions
 
 ###
+
+# Un utilisteur interne dans notre api
+GET http://localhost:3000/v1/api/users/1
+
+###
+
+# Tous les utilisteurs
+GET http://localhost:3000/v1/api/users
+
