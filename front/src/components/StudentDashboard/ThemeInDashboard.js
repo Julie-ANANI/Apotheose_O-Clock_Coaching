@@ -9,12 +9,15 @@ import { Card, Progress } from 'semantic-ui-react'
 
 
 // == Composant
-const ThemeInDashboard = () => {
+const ThemeInDashboard = ({
+  id,
+  title,
+}) => {
 
 return(
       <Card className='theme-card'>
-        <Card.Content className='theme-card-header' header='Nom du thème' />
-        {/* <Card.Content description='Une description du thème' /> */}
+        <Card.Content className='theme-card-header' header={title} />
+        {/* <Card.Content description={description} /> */}
         <Card.Content extra>
           <Progress percent={60} indicating />
         </Card.Content>

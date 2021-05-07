@@ -9,8 +9,8 @@ GET http://localhost:3000/v1/api/themes/1
 
 
 ###
-
 # Un seul thème qui n'existe pas 
+
 GET http://localhost:3000/v1/api/themes/5
 
 ###
@@ -38,4 +38,5 @@ GET http://localhost:3000/v1/api/users/1
 
 # Tous les utilisteurs
 GET http://localhost:3000/v1/api/users
+
 
