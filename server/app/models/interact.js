@@ -135,6 +135,25 @@ class Interact {
         };
     }
 
+    /**
+      * Delete an interaction
+      * 
+      * @async
+      * @function delete
+      * @returns {Array} Instances of the class Interact.
+      * @throws {Error} a potential SQL error.
+      */
+     async delete () {
+        const { rows } = await db.query(`DELETE FROM interact WHERE user_id=$1 AND mission_id=$2 RETURNING *;`, [this.user_id, this.mission_id]);
+        
+        if (rows[0]) {
+            return rows[0];
+        } else {
+            throw new InteractNotDeletedError();
+        };
+
+    };
+
 };
 
 

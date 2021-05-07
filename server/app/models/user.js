@@ -34,6 +34,10 @@ class UserNotAddedError extends Error {
     message = 'User not added';
 };
 
+class UnknownAPIUserError extends Error {
+    message = 'No user found with this ID';
+}
+
 
 /**
  * An entity representing a user's coaching
@@ -123,7 +127,7 @@ class User {
         if (rows[0]) {
             return new User(rows[0]);
         } else {
-            return null;
+            throw new UnknownAPIUserError();
         }
     }
 
