@@ -4,9 +4,9 @@ import './style.css';
 import logo from 'src/assets/logos/Logo de O_coaching - white and red svg.svg';
 import MenuHeader from 'src/components/MenuHeader';
 
-const Header = () => (
+const Header = ({navlinks}) => (
   <div className="header-website">
-    <MenuHeader />
+    <MenuHeader navlinks={navlinks} />
   </div>
 )
 

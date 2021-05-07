@@ -3,35 +3,39 @@ import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import axios from 'axios';
 
+// - composant Route : permet de faire un affichage conditionnel en fonction de l'URL de
+// la barre d'adresse. Comparaison "qui commence par" => si on veut une comparaison
+// exacte, il faut ajouter la prop "exact" sur la Route
+// - composant Switch : si on englobe nos Route dans un Switch, alors seule la
+// première Route qui correspond à l'URL est utilisée => permet d'avoir une Route
+// par défaut (sans path) pour la page d'erreur 404
+// - composant Redirect : redirige une URL vers une autre (par exemple quand une
+// page a été déplacée)
+import { Route, Switch, Redirect } from 'react-router-dom';
+
 
 // == Import
 import './styles.css';
 import 'semantic-ui-css/semantic.min.css';
 
-import  Header from 'src/components/Header';
+import Header from 'src/components/Header';
 import Accueil from 'src/components/Accueil';
 import StudentDashboard from 'src/components/StudentDashboard';
+import Missions from 'src/components/Missions';
 
-// Import from Semantic UI
- 
-
-
-
+import navlinks from 'src/data/navlinks.js'
 
 
 // A mettre dans le .env et utiliser process.env.base_url
 var base_url = 'http://localhost:3000/v1/api'
 
-// getThemes();
-// import Header from 'src/components/Header';
-import Missions from 'src/components/Missions';
-import  Header from 'src/components/Header';
-
+console.log(navlinks);
 
 // == Composant
 const App = () => { 
 
-  const [themes, setThemes] = useState([])
+  const [themes, setThemes] = useState([]);
+  const [selectedTheme, setSelectedTheme] = useState(0)
 
   const loadThemes = () => {
     console.log('Il faut charger les thèmes');
@@ -49,11 +53,25 @@ const App = () => {
 
   return(
     <div className="app">
-      <Header></Header>
+      <Header navlinks={navlinks}></Header>
+      <Switch>
 
-      {/* <Accueil></Accueil> */}
-      <StudentDashboard themes={themes}></StudentDashboard>
-      <Missions />
+        <Route path='/' exact>
+          <Accueil></Accueil>
+        </Route>
+        <Route path='/accueil'>
+          <Accueil></Accueil>
+        </Route>
+
+        <Route path='/parcours-coaching'>
+          <StudentDashboard themes={themes} setSelectedTheme={setSelectedTheme}></StudentDashboard>  
+        </Route> 
+          
+        <Route path= {`/theme/${selectedTheme}`}>
+          <Missions /> 
+        </Route>
+
+      </Switch>
 
     </div>
   )

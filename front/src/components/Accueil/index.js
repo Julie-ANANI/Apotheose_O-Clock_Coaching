@@ -23,7 +23,7 @@ const Accueil = () => {
       <Divider hidden />
       <Divider hidden />
       <Divider hidden />
-      <Image src={logo} size='medium' centered />
+      <Image src={logo} size='medium' centered className='logo-inpage'/>
       <Header className='header-accueil' as='h1' textAlign='center'> Bienvenue sur ton espace personalisé de coaching </Header>
       <Divider hidden />
       <Divider hidden />
