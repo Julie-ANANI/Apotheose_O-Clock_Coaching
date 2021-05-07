@@ -1,0 +1,44 @@
+.ui.accordion, .ui.accordion .accordion {
+  max-width: 100%;
+  text-align: center;
+}
+.ui.checkbox label:before {
+
+  
+}
+
+.ui.accordion .title:not(.ui) {
+  padding: .5em 0;
+  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 2em;
+  color: rgba(0,0,0,.87);
+}
+.ui.checkbox {
+  margin-right: 1em;
+  transform: scale(2);
+}
+p {
+  font-size: 1.8em;
+}
+/* h2 {
+  margin-left: 2em;
+} */
+.ui.accordion:not(.styled) .title~.content:not(.ui):last-child {
+  padding-bottom: 0;
+  margin: auto;
+  width: 60%;
+
+}
+.ui.accordion .title:not(.ui) {
+  padding: .5em 0;
+  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 2em;
+  color :  #FFFDD8;
+  margin: 1em;
+}
+.ui.segment:last-child {
+  margin-bottom: 0;
+  background-color: #00c4a742;
+  font-size: 1.3em;
+  color :  #FFFDD8;
+}

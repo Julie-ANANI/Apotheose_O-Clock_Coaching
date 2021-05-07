@@ -27,6 +27,14 @@ class InteractNotAddedError extends Error {
     message = 'Interact not added';
 };
 
+/**
+ * Extends from Error class with custom message :'Interact not deleted'
+ * @class
+ */
+class InteractNotDeletedError extends Error {
+    message = 'Interact not deleted';
+};
+
 
 
 /**
@@ -38,17 +46,18 @@ class InteractNotAddedError extends Error {
  * 
  */
 
- /**
- * A model representing an interact
- * @class
- */
+/**
+* A model representing an interact
+* @class
+*/
 class Interact {
 
 
     // All static properties error of Interact's class
     static NoInteractError = NoInteractError;
     static InteractNotUpdatedError = InteractNotUpdatedError;
-    static InteractNotAddedError = InteractNotAddedError ;
+    static InteractNotAddedError = InteractNotAddedError;
+    static InteractNotDeletedError = InteractNotDeletedError;
 
     /**
      * The Interact constructor
@@ -72,7 +81,7 @@ class Interact {
         SELECT * 
         FROM interact
         WHERE interact.user_id = $1
-        ;`,[userId]);
+        ;`, [userId]);
 
         if (rows) {
             return rows.map(row => new Interact(row));
@@ -91,38 +100,60 @@ class Interact {
     */
     async save() {
         if (this.id) {
-        // UPDATE 
-        const { rows } = await db.query(`UPDATE interact
+            // UPDATE 
+            const { rows } = await db.query(`UPDATE interact
          SET is_checked=$1 
          WHERE mission_id=$2 
-         AND user_id=$3;`,[
-            this.is_checked,
-            this.mission_id,
-            this.user_id
-        ]);
+         AND user_id=$3
+         RETURNING *;`, [
+                this.is_checked,
+                this.mission_id,
+                this.user_id
+            ]);
 
-        if (rows[0]) {
-            return rows[0];
-        } else {
-            throw new InteractNotUpdatedError();
-        };
-             
+            if (rows[0]) {
+                return rows[0];
+            } else {
+                throw new InteractNotUpdatedError();
+            };
+
         } else {
             // INSERT
-            const { rows } = await db.query(`INSERT INTO interact(is_checked,mission_id,user_id) 
-            VALUES($1,$2,$3);`, [
+
+            const { rows } = await db.query(`INSERT INTO interact(is_checked, mission_id, user_id) 
+            VALUES($1, $2, $3) RETURNING *;`, [
                 this.is_checked,
                 this.mission_id,
                 this.user_id
             ]);
             
             if (rows[0]) {
-                this.id = `${this.mission_id}${this.user_id}`;
+                this.id = `(${this.mission_id}, ${this.user_id})`;
             } else {
                 throw new InteractNotAddedError();
             };
         };
+    }
+
+    /**
+      * Delete an interaction
+      * 
+      * @async
+      * @function delete
+      * @returns {Array} Instances of the class Interact.
+      * @throws {Error} a potential SQL error.
+      */
+     async delete () {
+        const { rows } = await db.query(`DELETE FROM interact WHERE user_id=$1 AND mission_id=$2 RETURNING *;`, [this.user_id, this.mission_id]);
+        
+        if (rows[0]) {
+            return rows[0];
+        } else {
+            throw new InteractNotDeletedError();
+        };
+
     };
+
 };
 
 

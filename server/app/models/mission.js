@@ -175,7 +175,7 @@ class Mission {
 
         if(this.id){
             //TODO: do a function update_mission(json)
-            const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5;', [
+            const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5 RETURNING id;', [
                 this.title, 
                 this.advice, 
                 this.position, 
@@ -191,7 +191,7 @@ class Mission {
 
         }else{
             //TODO: do a function new_mission(json)
-            const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1,$2,$3,$4);', [
+            const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1, $2, $3, $4) RETURNING id;', [
                 this.title,
                 this.advice,
                 this.position,

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import axios from 'axios';
 
+
 // == Import
 import './styles.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -17,10 +18,15 @@ import StudentDashboard from 'src/components/StudentDashboard';
 
 
 
+
 // A mettre dans le .env et utiliser process.env.base_url
 var base_url = 'http://localhost:3000/v1/api'
 
 // getThemes();
+// import Header from 'src/components/Header';
+import Missions from 'src/components/Missions';
+import  Header from 'src/components/Header';
+
 
 // == Composant
 const App = () => { 
@@ -44,8 +50,11 @@ const App = () => {
   return(
     <div className="app">
       <Header></Header>
+
       {/* <Accueil></Accueil> */}
       <StudentDashboard themes={themes}></StudentDashboard>
+      <Missions />
+
     </div>
   )
 }
