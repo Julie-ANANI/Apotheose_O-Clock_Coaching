@@ -10,11 +10,8 @@ GET http://localhost:3000/v1/api/themes/1
 
 ###
 
-<<<<<<< HEAD
-# Un seul thème inexistant
-=======
 # Un seul thème qui n'existe pas 
->>>>>>> develop
+
 GET http://localhost:3000/v1/api/themes/5
 
 ###
