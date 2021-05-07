@@ -26,6 +26,7 @@ return(
     <Divider hidden />
     <Divider hidden />
     <Divider hidden />
+    <Divider hidden />
     <Image src={logo} size='medium' centered />
     <Header className='header-dashboard' as='h1' textAlign='center'> Clique sur un thème et commence à remplir tes missions jeune padawan ! </Header>
     <Divider hidden />
