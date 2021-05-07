@@ -14,11 +14,15 @@ import ThemeInDashboard from './ThemeInDashboard';
 //== Import from Semantic UI
 
 import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
-
+import { Link} from 'react-router-dom';
 
 // == Composant
-const StudentDashboard = ({themes}) => {
-  
+const StudentDashboard = ({themes, setSelectedTheme}) => {
+ 
+const handleThemeClick = (e, {name}) => {
+  console.log(name);
+  // setSelectedTheme(theme.id);
+};
 
 return(
   <div className="student-dashboard">
@@ -38,10 +42,16 @@ return(
     <Divider hidden />
     <Card.Group centered>
       {themes.map((theme)=> (
-        <ThemeInDashboard
-        key={theme.id}
-        {...theme}
-        />
+        <Link
+          key={theme.id}
+          name={theme.id}
+          to={`/theme/${theme.id}`}
+        >
+          <ThemeInDashboard
+            key={theme.id}
+            {...theme}
+          />
+        </Link>
       ))}
       
     </Card.Group>
