@@ -11,7 +11,7 @@ import axios from 'axios';
 // par défaut (sans path) pour la page d'erreur 404
 // - composant Redirect : redirige une URL vers une autre (par exemple quand une
 // page a été déplacée)
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useParams } from 'react-router-dom';
 
 
 // == Import
@@ -45,7 +45,7 @@ const App = () => {
         console.log(response.data);
         setThemes(response.data)
       })
-  }
+  };
 
   useEffect(() => {
     loadThemes();
@@ -56,19 +56,16 @@ const App = () => {
       <Header navlinks={navlinks}></Header>
       <Switch>
 
-        <Route path='/' exact>
-          <Accueil></Accueil>
-        </Route>
-        <Route path='/accueil'>
-          <Accueil></Accueil>
-        </Route>
+        <Route path='/' exact component={Accueil}/>
+
+        <Route path='/accueil' component={Accueil}/>
 
         <Route path='/parcours-coaching'>
           <StudentDashboard themes={themes} setSelectedTheme={setSelectedTheme}></StudentDashboard>  
         </Route> 
           
-        <Route path= {`/theme/${selectedTheme}`}>
-          <Missions /> 
+        <Route path= {`/theme/:id`}>
+          <Missions selectedTheme={selectedTheme} /> 
         </Route>
 
       </Switch>

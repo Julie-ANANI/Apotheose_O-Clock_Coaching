@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MenuHeader = ({navlinks}) => {
   // state = { activeItem: 'home' }
@@ -16,16 +16,17 @@ const MenuHeader = ({navlinks}) => {
   return (
   <Menu secondary>
     {navlinks.map((navlink) => (
-      <NavLink
-        key={navlink.label}
-        to={navlink.route}
-        exact>
+
         <Menu.Item
+          onClick={handleItemClick}
+          key={navlink.label}
+          as= { Link }
+          to={navlink.route} 
           className='header-menu-item'
           name={navlink.label}
           active={activeItem === navlink.label}
-          onClick={handleItemClick}/>
-      </NavLink>
+          />
+
     ))}
 
 

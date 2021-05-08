@@ -19,9 +19,11 @@ import { Link} from 'react-router-dom';
 // == Composant
 const StudentDashboard = ({themes, setSelectedTheme}) => {
  
-const handleThemeClick = (e, {name}) => {
-  console.log(name);
-  // setSelectedTheme(theme.id);
+const handleThemeClick = (e) => {
+  console.log('on a bien cliqué');
+  console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
+  const name = parseInt(e.target.closest('a').name)
+  setSelectedTheme(name);
 };
 
 return(
@@ -45,10 +47,11 @@ return(
         <Link
           key={theme.id}
           name={theme.id}
+          onClick={handleThemeClick}
           to={`/theme/${theme.id}`}
         >
           <ThemeInDashboard
-            key={theme.id}
+            name={theme.id}
             {...theme}
           />
         </Link>
