@@ -43,7 +43,26 @@ const missionController = {
             */
             res.status(404).json(err.message);
         }     
-    }, 
+    },
+
+    getAllByThemeId: async (req, res) => {
+        try {
+            /**
+            * We get the id in the parameters of the request
+            */
+           const { id } = req.params;
+   
+           const theMissions = await Mission.findByTheme(id);
+           res.status(200).json(theMissions);
+
+       } catch(err){
+           /**
+           * There is no mission in the database for this theme id
+           * In the model, there is an error with a custom message
+           */
+           res.status(404).json(err.message);
+       }     
+    }
 
 };
 
