@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import './styles.css'
+
 const MenuHeader = ({navlinks}) => {
   // state = { activeItem: 'home' }
   const [activeItem, setActiveItem] = useState('Accueil');
@@ -14,7 +16,8 @@ const MenuHeader = ({navlinks}) => {
 
 
   return (
-  <Menu secondary>
+  <div className="navbar">
+    <Menu secondary>
     {navlinks.map((navlink) => (
 
         <Menu.Item
@@ -43,6 +46,7 @@ const MenuHeader = ({navlinks}) => {
     </Menu.Menu>
     <div className="logo-menu"></div>
   </Menu>
+  </div>
   )
 
 

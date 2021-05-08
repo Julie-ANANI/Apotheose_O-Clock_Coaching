@@ -31,7 +31,6 @@ const Missions = ({selectedTheme}) => {
 
   return (
     <div className="missions">
-      <h1>titre du projet</h1>
       <ThemeProgressBar />
       <Divider />
       <AccordionComponent missions={missions}/>

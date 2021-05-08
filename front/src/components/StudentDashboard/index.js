@@ -28,13 +28,6 @@ const handleThemeClick = (e) => {
 
 return(
   <div className="student-dashboard">
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Image src={logo} size='medium' centered className='logo-inpage' />
-    <Header className='header-dashboard' as='h1' textAlign='center'> Clique sur un thème et commence à remplir tes missions jeune padawan ! </Header>
       <div className="progress-container">
         <Progress className='general-progress-bar' percent={33} indicating progress />
         {/* importer composant message pour le message ci-dessous */}

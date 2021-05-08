@@ -18,16 +18,6 @@ const Accueil = () => {
 
   return(
     <div className="accueil">
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Image src={logo} size='medium' centered className='logo-inpage'/>
-      <Header className='header-accueil' as='h1' textAlign='center'> Bienvenue sur ton espace personalisé de coaching </Header>
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
       <div className="img-container">
         <div className="img-accueil">
 

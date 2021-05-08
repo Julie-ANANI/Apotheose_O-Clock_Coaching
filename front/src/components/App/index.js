@@ -18,7 +18,8 @@ import { Route, Switch, Redirect, useParams } from 'react-router-dom';
 import './styles.css';
 import 'semantic-ui-css/semantic.min.css';
 
-import Header from 'src/components/Header';
+import Menu from 'src/components/Menu';
+import Header from 'src/components/Header'
 import Accueil from 'src/components/Accueil';
 import StudentDashboard from 'src/components/StudentDashboard';
 import Missions from 'src/components/Missions';
@@ -53,7 +54,8 @@ const App = () => {
 
   return(
     <div className="app">
-      <Header navlinks={navlinks}></Header>
+      <Menu navlinks={navlinks} />
+      <Header />
       <Switch>
 
         <Route path='/' exact component={Accueil}/>
