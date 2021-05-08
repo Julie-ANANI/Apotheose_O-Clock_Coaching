@@ -112,7 +112,7 @@ class Mission {
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM mission;');
-
+        console.log(rows);
         if (rows) {
             return rows.map(row => new Mission(row));
         }else{
@@ -151,8 +151,7 @@ class Mission {
         const { rows } = await db.query(`
         SELECT *
         FROM mission
-        JOIN theme ON mission.theme_id = theme.id
-        WHERE mission.theme_id = $1;`, [tid]);
+        WHERE theme_id = $1;`, [tid]);
         
         if (rows) {
             return rows.map(row => new Mission(row));
