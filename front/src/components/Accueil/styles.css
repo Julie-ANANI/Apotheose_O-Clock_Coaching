@@ -50,3 +50,7 @@
   outline-style: initial;
   outline-width: 0px;
 }
+
+.accueil p {
+  font-size: 1.2em;
+}
