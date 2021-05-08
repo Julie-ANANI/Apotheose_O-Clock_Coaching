@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {  Divider } from 'semantic-ui-react';
-import './style.css';
+import '../../styleScss/coaching/missions.scss';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
 import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'

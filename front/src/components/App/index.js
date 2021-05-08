@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 // == Import
-import './styles.css';
+import '../../styleScss/coaching/app.scss';
 import 'semantic-ui-css/semantic.min.css';
 
 import  Header from 'src/components/Header';
@@ -24,8 +24,8 @@ var base_url = 'http://localhost:3000/v1/api'
 
 // getThemes();
 // import Header from 'src/components/Header';
-import Missions from 'src/components/Missions';
-import  Header from 'src/components/Header';
+import AccueilAdmin from 'src/components/AccueilAdmin';
+
 
 
 // == Composant
@@ -49,11 +49,10 @@ const App = () => {
 
   return(
     <div className="app">
-      <Header></Header>
+      <Header />
 
-      {/* <Accueil></Accueil> */}
-      <StudentDashboard themes={themes}></StudentDashboard>
-      <Missions />
+      <AccueilAdmin />
+
 
     </div>
   )

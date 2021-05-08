@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
 import axios from 'axios';
-
+import '../../styleScss/coaching/accueil.scss';
 
 
 // == Import
 import './styles.css';
-import logo from 'src/assets/logos/Logo de O\'coaching - white and red svg v2.svg';
+import logo from "src/assets/logos/Logo de O\'coaching - white and red svg v2.svg";
 
 //== Import from Semantic UI
 import { Header, Divider, Image, Segment } from 'semantic-ui-react'

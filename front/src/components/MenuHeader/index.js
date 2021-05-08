@@ -3,6 +3,7 @@
   import { Input, Menu } from 'semantic-ui-react';
   import { NavLink } from 'react-router-dom';
   
+  import '../../styleScss/coaching/menuHeader.scss';
   const MenuHeader = () => {
     // state = { activeItem: 'home' }
     const [activeItem, setActiveItem] = useState('Accueil');

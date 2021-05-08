@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 // == Import
-import './styles.css';
+import '../../styleScss/coaching/studentDashboard.scss';
 import logo from 'src/assets/logos/Logo de O\'coaching - white and red svg v2.svg';
 import ThemeInDashboard from './ThemeInDashboard';
 

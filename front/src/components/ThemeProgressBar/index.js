@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Progress, Divider, Header } from 'semantic-ui-react'
-import './style.css';
+import { Progress,  Header } from 'semantic-ui-react'
+import '../../styleScss/coaching/themeProgressBar.scss';
 const ThemeProgressBar = () => {
 
   const [percent, setPercent] = useState(80);

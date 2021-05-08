@@ -73,4 +73,38 @@
   text-align: center;
 }
 
+/* .student-dashboard {
+  padding: 0 3%;
+} */
+
+.ui.progress.general-progress-bar {
+  width: 100%;
+
+}
+
+.ui.header.header-progress {
+  margin : 1em 0;
+}
+
+.ui.card.theme-card {
+  text-align: center;
+}
+.ui.card.theme-card .theme-card-header {
+  background-color: #00c4a7;
+  color : #fffdd8;
+}
+
+.ui.card.theme-card .theme-card-header .header {
+  color : white;
+}
+
+.ui.progress:last-child {
+  margin : 0;
+}
+
+.progress-container {
+  display: block;
+  padding: 0 10%;
+}
+
 
