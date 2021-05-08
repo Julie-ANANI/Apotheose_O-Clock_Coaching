@@ -56,7 +56,7 @@
 
 
 
-.header-website {
+.navbar {
   padding :0;
   position: fixed;
   width: 100%;
@@ -85,35 +85,38 @@
   box-sizing: border-box;
 }
 
-.header-website img {
+.navbar img {
   margin-bottom : 1rem;
 }
 
-.header-website .ui.menu {
+.navbar .ui.menu {
   margin : 0;
   /* padding: 0 1em; */
   /* background-color: #1a4c79; */
   background-color: #0CAD93;
   box-sizing: content-box;
-  min-height: 4em ;
+  min-height: 3.5em ;
+  height : 100%;
+
 }
 
-.header-website .ui.divider {
+.navbar .ui.divider {
   margin : 0;
 }
 
-.header-website .ui.secondary.menu {
+.navbar .ui.secondary.menu {
   /* padding : 0.5em 0.5em 0.5em; */
   /* display: flex;
   align-items: flex-start; */
+  height :100%
 }
 
 
-/* .header-website .ui.secondary.menu a.item {
+/* .navbar .ui.secondary.menu a.item {
   height: inherit;
 } */
 
-.header-website .ui.secondary.menu a {
+.navbar .ui.secondary.menu a {
   margin :0;
   padding : 0;
   /* color : #021132; */
@@ -128,7 +131,7 @@
   
 }
 
-.header-website .ui.secondary.menu a.item {
+.navbar .ui.secondary.menu a.item {
   /* color : #00c4a7; */
   /* color: #1a4c79; */
   padding : 0 0.7em;
@@ -138,9 +141,10 @@
   border-bottom: 3px solid #00c4a7; */
   background-color: none;
   border-radius: 0;
+  transition : all 150ms ease-out;
 }
 
-.header-website .ui.secondary.menu a.item:hover {
+.navbar .ui.secondary.menu a.item:hover {
   color :  #FFFDD8;
   /* color : #00c4a7; */
   /* color: #1a4c79; */
@@ -150,9 +154,11 @@
   /* border-bottom: 3px solid #00c4a7; */
   background-color: none;
   border-radius: 0;
+  
+  transition : all 30ms ease-in;
 }
 
-.header-website .ui.secondary.menu .active.item, .ui.secondary.menu .active.item {
+.navbar .ui.secondary.menu .active.item, .ui.secondary.menu .active.item {
   color :  #FFFDD8;
   /* color : #00c4a7; */
   /* color: #1a4c79; */
@@ -161,15 +167,20 @@
   border-radius: none;
   /* box-shadow: 0 -12px 0 0 #FFFDD8; */
   /* border-bottom: 3px solid  #FFFDD8; */
-  /* background-color: #00c4a742; */
+  background-color: #0CAD93;
   border-radius: 0;
+ 
 }
 
-.header-website .ui.secondary.menu .active.item, .ui.secondary.menu .active.item:after {
+.navbar .ui.secondary.menu .active.item, .ui.secondary.menu .active.item:after {
   box-shadow: inset 0 -3px 0 0 #FFFDD8;
 }
 
-.header-website .ui.secondary.menu a .header-menu-item, .header-website .ui.secondary.menu a.item {
+
+
+
+.navbar .ui.secondary.menu a.header-menu-item, .navbar .ui.secondary.menu a.item {
   font-family: Oclock_blk;
-  font-weight: 700;
+  font-weight: 400;
+  min-height : 3.5em;
 }

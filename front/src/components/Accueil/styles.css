@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.ui.medium.image.logo-inpage {
+  width : 40%
+}
+
 .ui.header.header-accueil {
   color : #fffdd8;
   font-family: Oclock;
@@ -45,4 +49,8 @@
   outline-color: initial;
   outline-style: initial;
   outline-width: 0px;
+}
+
+.accueil p {
+  font-size: 1.2em;
 }
