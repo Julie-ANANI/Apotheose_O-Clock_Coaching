@@ -15,14 +15,14 @@ import { Route, Switch, Redirect, useParams } from 'react-router-dom';
 
 
 // == Import
-import './styles.css';
+import './styles/App.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import Menu from 'src/components/Menu';
 import Header from 'src/components/Header'
-import Accueil from 'src/components/Accueil';
-import StudentDashboard from 'src/components/StudentDashboard';
-import Missions from 'src/components/Missions';
+import Accueil from 'src/pages/Accueil';
+import ParcoursCoaching from 'src/pages/ParcoursCoaching';
+import ThemePage from 'src/pages/ThemePage';
 
 import navlinks from 'src/data/navlinks.js'
 
@@ -36,8 +36,8 @@ console.log(navlinks);
 const App = () => { 
 
   const [themes, setThemes] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState(0)
-
+  const [selectedTheme, setSelectedTheme] = useState({});
+  
   const loadThemes = () => {
     console.log('Il faut charger les thèmes');
 
@@ -63,11 +63,11 @@ const App = () => {
         <Route path='/accueil' component={Accueil}/>
 
         <Route path='/parcours-coaching'>
-          <StudentDashboard themes={themes} setSelectedTheme={setSelectedTheme}></StudentDashboard>  
+          <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
         </Route> 
           
         <Route path= {`/theme/:id`}>
-          <Missions selectedTheme={selectedTheme} /> 
+          <ThemePage selectedTheme={selectedTheme} /> 
         </Route>
 
       </Switch>

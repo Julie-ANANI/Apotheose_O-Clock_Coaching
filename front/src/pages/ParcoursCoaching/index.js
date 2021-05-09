@@ -6,24 +6,26 @@ import axios from 'axios';
 
 
 // == Import
-import './styles.css';
-import logo from 'src/assets/logos/Logo de O\'coaching - white and red svg v2.svg';
-import ThemeInDashboard from './ThemeInDashboard';
+import '../../styles/StudentDashboard.css';
+import logo from "src/assets/logos/Logo de O'coaching - white and red svg v2.svg";
+import ThemeInDashboard from '../../components/ThemeInDashboard';
 
 
 //== Import from Semantic UI
 
-import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
+import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link} from 'react-router-dom';
 
 // == Composant
-const StudentDashboard = ({themes, setSelectedTheme}) => {
+const ParcoursCoaching = ({themes, setSelectedTheme}) => {
  
 const handleThemeClick = (e) => {
   console.log('on a bien cliqué');
   console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
-  const name = parseInt(e.target.closest('a').name)
-  setSelectedTheme(name);
+  const id = parseInt(e.target.closest('a').name);
+  const theme = themes.find((theme) => theme.id === id);
+  console.log(theme);
+  setSelectedTheme(theme);
 };
 
 return(
@@ -56,4 +58,4 @@ return(
 );}
 
 // == Export
-export default StudentDashboard;
+export default ParcoursCoaching;

@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {  Divider } from 'semantic-ui-react';
-import './style.css';
+import '../../styles/Missions.css';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
 import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
 
-const Missions = ({selectedTheme}) => {
+const ThemePage = ({selectedTheme}) => {
   const [missions, setMissions] = useState([]);
   const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${selectedTheme}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${selectedTheme}/missions`)
+    // console.log(`http://localhost:3000/v1/api/themes/${selectedTheme.id}/missions`)
+    // axios.get(`http://localhost:3000/v1/api/themes/${selectedTheme.id}/missions`)
+    axios.get(`http://localhost:3000/v1/api/themes/1/missions`)
       .then((response) => {
         console.log(response.data);
         setMissions(response.data);
@@ -31,11 +31,11 @@ const Missions = ({selectedTheme}) => {
 
   return (
     <div className="missions">
-      <ThemeProgressBar />
+      <ThemeProgressBar {...selectedTheme} />
       <Divider />
       <AccordionComponent missions={missions}/>
     </div>
   )
 }
 
-export default Missions
+export default ThemePage

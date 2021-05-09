@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.css';
+import '../../styles/Header.css';
 import logo from 'src/assets/logos/Logo de O\'coaching - white and red svg v2.svg';
 
 
