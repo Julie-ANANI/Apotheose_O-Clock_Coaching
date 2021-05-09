@@ -1,0 +1,16 @@
+.ui.cards.mission-card-container {
+  margin : 0 8%;
+  padding:0;
+}
+
+.ui.cards {
+  padding : none;
+}
+
+.ui.accordion .title.button-accordion {
+  margin :  none;
+  color: black;
+  font-size: 1em;
+  padding : none;
+  text-align: left;
+}

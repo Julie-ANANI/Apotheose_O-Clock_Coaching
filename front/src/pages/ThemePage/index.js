@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
-import {  Divider } from 'semantic-ui-react';
+import {  Divider, Card } from 'semantic-ui-react';
 import '../../styles/ThemePage.css';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
 import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'
+import Mission from '../../components/Mission';
 
-const ThemePage = ({ themes, selectedTheme, setSelectedTheme }) => {
+const ThemePage = ({ themes}) => {
   
   const [missions, setMissions] = useState([]);
   
@@ -43,13 +44,23 @@ const ThemePage = ({ themes, selectedTheme, setSelectedTheme }) => {
 
   
 
-
+  console.log(missions);
 
   return (
     <div className="missions">
       <ThemeProgressBar {...theme} />
       <Divider />
-      <AccordionComponent missions={missions}/>
+      
+      <Card.Group 
+        className='mission-card-container'
+      >
+        <Mission />
+        <Mission />
+        <Mission />
+        <Mission />
+      </Card.Group>
+     
+      
     </div>
   )
 }

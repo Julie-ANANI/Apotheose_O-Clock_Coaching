@@ -1,3 +1,18 @@
-.ui.center.aligned.header .theme-title {
-  color : #FFFDD8;
+.theme-presentation h1.theme-title {
+  color : black;
+  background-color: white;
+  width: 30%;
+  margin : 1em auto;
+  padding: 0.5em;
+  font-style: italic;
+  box-shadow: .4em -0.4em #1a4c79;
+}
+
+.description-theme {
+  margin : 2em auto;
+  width: 75%;
+  background-color: #fff;
+  padding: 1.5em 1.7em 1.5em 2.1em;
+  font-size: 1.7em;
+  text-align: left;
 }
