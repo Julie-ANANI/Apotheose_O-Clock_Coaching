@@ -8,7 +8,7 @@ const ThemeProgressBar = ({title }) => {
 
     return (
       <div className='theme-presentation'>
-        <Header className='header-dashboard' as='h1' textAlign='center'>{title}</Header>
+        <Header className='theme-title' as='h1' textAlign='center'>{title}</Header>
       <div className="progress-container">
         <Progress className='general-progress-bar' percent={percent} indicating progress />
       </div>

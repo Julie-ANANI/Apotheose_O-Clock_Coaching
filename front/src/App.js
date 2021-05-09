@@ -38,6 +38,7 @@ const App = () => {
   const [themes, setThemes] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState({});
   
+  
   const loadThemes = () => {
     console.log('Il faut charger les thèmes');
 
@@ -63,11 +64,11 @@ const App = () => {
         <Route path='/accueil' component={Accueil}/>
 
         <Route path='/parcours-coaching'>
-          <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
+          <ParcoursCoaching themes={themes} />  
         </Route> 
           
         <Route path= {`/theme/:id`}>
-          <ThemePage selectedTheme={selectedTheme} /> 
+          <ThemePage themes={themes} selectedTheme={selectedTheme} setSelectedTheme={setSelectedTheme} /> 
         </Route>
 
       </Switch>
