@@ -67,11 +67,23 @@ const User = require('./app/models/user');
 
 // Deleting the theme with id 10
 // Test ok
+// (async () => {
+//     try {
+//         const themeToDelete = await Theme.findOne(10);
+//         console.log(themeToDelete);
+//         themeToDelete.delete();
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// })();
+
+// Getting the missions for theme 2
+// Test ok
 (async () => {
     try {
-        const themeToDelete = await Theme.findOne(10);
-        console.log(themeToDelete);
-        themeToDelete.delete();
+        const theMissions = await Mission.findByTheme(2);
+        console.log(theMissions);
     } catch (error) {
         console.log(error);
     }

@@ -14,23 +14,20 @@ import ThemeInDashboard from './ThemeInDashboard';
 //== Import from Semantic UI
 
 import { Header, Progress, Divider, Card, Image } from 'semantic-ui-react'
-
+import { Link} from 'react-router-dom';
 
 // == Composant
-const StudentDashboard = ({themes}) => {
-  
+const StudentDashboard = ({themes, setSelectedTheme}) => {
+ 
+const handleThemeClick = (e) => {
+  console.log('on a bien cliqué');
+  console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
+  const name = parseInt(e.target.closest('a').name)
+  setSelectedTheme(name);
+};
 
 return(
   <div className="student-dashboard">
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Divider hidden />
-    <Image src={logo} size='medium' centered />
-    <Header className='header-dashboard' as='h1' textAlign='center'> Clique sur un thème et commence à remplir tes missions jeune padawan ! </Header>
-    <Divider hidden />
-    <Divider hidden />
       <div className="progress-container">
         <Progress className='general-progress-bar' percent={33} indicating progress />
         {/* importer composant message pour le message ci-dessous */}
@@ -40,10 +37,17 @@ return(
     <Divider hidden />
     <Card.Group centered>
       {themes.map((theme)=> (
-        <ThemeInDashboard
-        key={theme.id}
-        {...theme}
-        />
+        <Link
+          key={theme.id}
+          name={theme.id}
+          onClick={handleThemeClick}
+          to={`/theme/${theme.id}`}
+        >
+          <ThemeInDashboard
+            name={theme.id}
+            {...theme}
+          />
+        </Link>
       ))}
       
     </Card.Group>

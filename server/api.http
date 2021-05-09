@@ -5,7 +5,7 @@ GET http://localhost:3000/v1/api/themes
 ###
 
 # Un seul thème
-GET http://localhost:3000/v1/api/themes/1
+GET http://localhost:3000/v1/api/themes/3
 
 
 ###
@@ -15,19 +15,27 @@ GET http://localhost:3000/v1/api/themes/5
 
 ###
 
-# Une mission
-GET http://localhost:3000/v1/api/themes/1/missions/1
+# Toutes les missions 
+
+GET http://localhost:3000/v1/api/missions
 
 ###
 
-# Une mission qui n'existe pas 
-GET http://localhost:3000/v1/api/themes/1/missions/55
+# Toutes les missions pour un thème donné 
+
+GET http://localhost:3000/v1/api/themes/3/missions
+
+###
+
+# Toutes les missions pour un thème donné 
+
+GET http://localhost:3000/v1/api/themes/2/missions
 
 ###
 
 # Tous les missions 
 
-GET http://localhost:3000/v1/api/themes/1/missions
+GET http://localhost:3000/v1/api/themes/2/missions
 
 ###
 

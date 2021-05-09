@@ -23,20 +23,28 @@ router.get('/themes', themeController.getAllThemes);
 router.get('/themes/:id', themeController.getOneTheme);
 
 /**
- * Returns an mission from the database with id
- * @route GET /themes/{id}/missions/{id}
- * @group An Mission
- * @returns {<Mission} 200 - An instance of one mission
+ * Returns all missions from the database
+ * @route GET /missions
+ * @group The missions
+ * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/themes/:id/missions/:id', missionController.getOneMission);
+router.get('/missions', missionController.getAllMissions);
 
 /**
- * Returns all missions from the database
+ * Returns an mission from the database with id
+ * @route GET /themes/{id}/missions
+ * @group An Mission
+ * @returns {<Mission>} 200 - An instance of one mission
+ */
+router.get('/missions/:id', missionController.getOneMission);
+
+/**
+ * Returns all missions with a given theme id
  * @route GET /themes/{id}/missions
  * @group The Missions
- * @returns {Array<Missions} 200 - An array of missions
+ * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/themes/:id/missions', missionController.getAllMissions);
+router.get('/themes/:id/missions', missionController.getAllByThemeId);
 
 /**
  * Returns a user from the database with its id
