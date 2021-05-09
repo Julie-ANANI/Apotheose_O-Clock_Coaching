@@ -8,9 +8,9 @@ import axios from 'axios';
 import '../../styleScss/coaching/app.scss';
 import 'semantic-ui-css/semantic.min.css';
 
-import  Header from 'src/components/Header';
-import Accueil from 'src/components/Accueil';
-import StudentDashboard from 'src/components/StudentDashboard';
+import  Header from 'src/components/Pages/Header/header';
+import GestionThemes from 'src/components/GestionThemes';
+
 
 // Import from Semantic UI
  
@@ -46,13 +46,12 @@ const App = () => {
   useEffect(() => {
     loadThemes();
   }, []);
-
+ 
   return(
     <div className="app">
       <Header />
 
-      <AccueilAdmin />
-
+      <GestionThemes />
 
     </div>
   )
