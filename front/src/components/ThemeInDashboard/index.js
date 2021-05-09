@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import './styles.css';
+import '../../styles/StudentDashboard.css';
 
 //== Import from Semantic UI
 
