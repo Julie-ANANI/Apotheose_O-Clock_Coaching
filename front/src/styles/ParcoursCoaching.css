@@ -101,8 +101,15 @@
 
 .progress-container {
   display: block;
-  padding: 0 25%;
+  padding: 1em 25%;
   text-align: center;
+  /* position: -webkit-sticky;
+  position : sticky;
+  top : 3.3em;
+  margin: 0.5em 10%;
+  border-radius: 0.5em 0.5em 0.5em 0.5em ;
+  box-shadow: #1a4c79 0.5em -0.7em ;
+  background-color: #fff; */
 }
 
 
