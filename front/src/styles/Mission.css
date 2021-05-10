@@ -7,10 +7,37 @@
   padding : 0 auto;
 }
 
-/* .ui.card>.content.mission-card-header {
-  font-size: 1.2em;
-  padding : 1em;
-} */
+.ui.cards .card {
+  border: none;
+  box-shadow: none;
+}
+
+
+.ui.card>.content.mission-card-header {
+  /* font-size: 0.5em; */
+  padding : 0;
+  /* display : */
+  background-color:#0CAD93;
+  
+}
+
+.ui.card .checkbox-container {
+  margin : 1em;
+  
+}
+
+.ui.card .ui.checkbox {
+  display : contents;
+  margin : 1em;
+}
+
+.ui.card .ui.checkbox label {
+  font-size: 1.5em;
+  /* color: #fffdd8; */
+  color : white;
+  font-style: italic;
+  font-weight: 500;
+}
 
 .ui.accordion .title:not(.ui) {
   margin :0;
@@ -23,4 +50,18 @@
   font-size: 1em;
   padding : none;
   text-align: left;
+  font-size: 1em;
 }
+
+.ui.cards.mission-card-container .ui.accordion .content.astuce-container {
+  margin: 0 auto ;
+  width: 95%;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+/* .ui.cards.mission-card-container .ui.accordion .content.astuce-container p {
+  width: 100%;
+} */
+
+

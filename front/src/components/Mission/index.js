@@ -12,6 +12,7 @@ import { Card, Accordion, Icon, Checkbox } from 'semantic-ui-react'
 const Mission = ({
   id,
   title,
+  advice
 }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -30,7 +31,7 @@ return(
 
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
-      <Checkbox label={'Ceci est un label'}></Checkbox>
+      <Checkbox label={title} toggle></Checkbox>
     </div>
   </Card.Content>
 
@@ -48,11 +49,10 @@ return(
       </Accordion.Title>
       <Accordion.Content 
         active={activeIndex === 0}
+        className='astuce-container'
       >
-        <p>
-          A dog is a type of domesticated animal. Known for its loyalty and
-          faithfulness, it can be found as a welcome guest in many households
-          across the world.
+        <p className= 'astuce-text'>
+          {advice}
         </p>
       </Accordion.Content>
     </Accordion>

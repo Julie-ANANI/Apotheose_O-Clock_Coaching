@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
 import {  Divider, Card } from 'semantic-ui-react';
-import '../../styles/ThemePage.css';
+import 'src/styles/ThemePage.css';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
 import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'
-import Mission from '../../components/Mission';
+import Mission from 'src/components/Mission';
 
 const ThemePage = ({ themes}) => {
   
@@ -46,10 +46,13 @@ const ThemePage = ({ themes}) => {
       <Card.Group 
         className='mission-card-container'
       >
-        <Mission />
-        <Mission />
-        <Mission />
-        <Mission />
+        {missions.map((mission) => (
+
+          <Mission 
+          key={mission.id}
+          {...mission} 
+          />
+        ))}
       </Card.Group>
      
       

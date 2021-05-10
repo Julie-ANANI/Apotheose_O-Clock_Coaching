@@ -38,7 +38,7 @@ const MenuHeader = ({navlinks}) => {
         <Input icon='search' placeholder='Search...' />
       </Menu.Item>
       <Menu.Item
-        className='header-menu-item'
+        className='header-menu-item deconnexion'
         name='deconnexion'
         active={activeItem === 'deconnexion'}
         onClick={handleItemClick}

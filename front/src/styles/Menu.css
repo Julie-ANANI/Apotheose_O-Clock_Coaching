@@ -184,3 +184,19 @@
   font-weight: 400;
   min-height : 3.5em;
 }
+
+a.header-menu-item.deconnexion {
+
+  height : 70%;
+  border-radius: 4em ;
+  border : solid #FFFDD8  2px;
+}
+
+
+/* .navbar .ui.secondary.menu a.header-menu-item.deconnexion  {
+  margin: auto 1em;
+  max-height: 40px;
+  padding: 0;
+  border-radius: 4em ;
+  border : solid #FFFDD8  2px;
+} */
