@@ -32,7 +32,7 @@ router.get('/themes/:id', themeController.getOneTheme);
 router.get('/missions', missionController.getAllMissions);
 
 /**
- * Returns an mission from the database with id
+ * Returns a mission from the database with id
  * @route GET /themes/{id}/missions
  * @group An Mission
  * @returns {<Mission>} 200 - An instance of one mission
@@ -40,7 +40,7 @@ router.get('/missions', missionController.getAllMissions);
 router.get('/missions/:id', missionController.getOneMission);
 
 /**
- * Returns all missions with a given theme id
+ * Returns all missions for a given theme
  * @route GET /themes/{id}/missions
  * @group The Missions
  * @returns {Array<Mission>} 200 - An array of missions
@@ -59,17 +59,25 @@ router.get('/missions/users/:userId', interactController.getAllByUserId);
  * Returns the checkbox value for a mission id and a user id
  * @route GET /missions/:missionId/users/:userId
  * @group Interactions
- * @returns {<Interact>} 200|null - One instance of the Interact class or null
+ * @returns {<Interact>} 200 - One instance of the Interact class
  */
 router.get('/missions/:missionId/users/:userId', interactController.getOneByMissionAndUser);
 
 /**
- * Adds a checkbox value in database for a mission id and a user id
- * @route POST /missions/:missionId/users/:userId
+ * Adds a record in database for a mission id and a user id
+ * @route POST /user/missions
  * @group Interactions
- * @returns {<Interact>} 200|null - One instance of the Interact class or null
+ * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.post('/missions/:missionId/users/:userId', interactController.postCheckboxValue);
+router.post('/user/missions', interactController.createCheckboxValue);
+
+/**
+ * Deletes a record in database for a mission id and a user id
+ * @route DELETE /missions/:missionId/users/:userId
+ * @group Interactions
+ * @returns {<Interact>} 200 - One instance of the Interact class
+ */
+router.delete('/missions/:missionId/users/:userId', interactController.deleteCheckboxValue);
 
 /**
  * Returns a user from the database with its id

@@ -42,12 +42,10 @@ const interactController = {
         }
     },
     /**
-    * Endpoint POST /api/missions/:missionId/users/:userId
+    * Endpoint POST /api/user/missions/
     */
-    postCheckboxValue: async (req, res) => {
+    createCheckboxValue: async (req, res) => {
         try {
-            // We get the ids in the parameters of the request
-            const { missionId, userId } = req.params;
             // We get the body parameters of the request from req.body
             const { is_checked, mission_id, user_id } = req.body;
 
@@ -78,6 +76,34 @@ const interactController = {
             res.status(500).json(err.message);
         }
     },
+
+    deleteCheckboxValue: async (req, res) => {
+        try {
+            // We get the ids in the parameters of the request
+            const { missionId, userId } = req.params;
+
+            // We check that the record exists before updating it
+            const interact = await Interact.findOne(userId, missionId);
+            console.log(interact);
+            if (!interact) {
+                // if it doesn't exist, we return an error
+                return res.status(404).json(`Cannot find record with user id ${userId} and mission id {$mission_id}`);
+            } else {
+                // We get the body parameter of the request from req.body
+                const { is_checked } = req.body;
+
+                if (is_checked === false) {
+                    // if is_checked value is false, we delete the record in DB
+                    // only checked boxes will have a record in DB
+                    await interact.delete();
+                    res.json('interact record deleted');
+                }
+            }
+
+        } catch (err) {
+            res.status(500).json(err.message);
+        }
+    }
 }
 
 module.exports = interactController;
