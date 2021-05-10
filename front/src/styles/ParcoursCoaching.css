@@ -26,10 +26,30 @@
   margin-bottom: 1em;
 }
 
+
+/* Pour contourner le fait qu'on puisse avoir des titres très longs */
+
+/* .ui.centered.cards a {
+  display: 60%;
+} */
+
+.theme-card-container {
+  margin : 0 1%;
+  
+}
+
+.ui.cards {
+  padding: 0 10%;
+  /* align-items: center; */
+}
+
 .ui.card.theme-card {
+  /* width : 100%; */
   text-align: center;
   box-shadow: none;
-  margin : 0.5em;
+  /* display : flex;
+  align-items: center; */
+  margin : 1em;
   transition: opacity 150ms ease-out;
 }
 
@@ -44,12 +64,23 @@
 
 .ui.card.theme-card .theme-card-header {
   background-color: #0CAD93;
+  /* min-height : 46px;
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 
 
 .ui.card.theme-card .theme-card-header .header {
   color : white;
+  padding : auto 0;
+  /* display :  inline; */
+  /* white-space: nowrap;
+  overflow: unset;
+  text-overflow: ellipsis; */
+  
 }
 
 .progressbar-message {

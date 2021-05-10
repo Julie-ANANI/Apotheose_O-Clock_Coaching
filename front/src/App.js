@@ -88,6 +88,7 @@ const App = () => {
         </Route>
 
         <Route path='/parcours-coaching'>
+<<<<<<< HEAD
           <Header titre={titre.parcoursCoaching.description} />
           <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
         </Route> 
@@ -95,6 +96,13 @@ const App = () => {
         <Route path= {`/theme/:id`}>
           <Header titre={titre.studentMissions.description} />
           <ThemePage selectedTheme={selectedTheme} /> 
+=======
+          <ParcoursCoaching themes={themes} />  
+        </Route> 
+          
+        <Route path= {`/theme/:id`}>
+          <ThemePage themes={themes} selectedTheme={selectedTheme} setSelectedTheme={setSelectedTheme} /> 
+>>>>>>> develop
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>

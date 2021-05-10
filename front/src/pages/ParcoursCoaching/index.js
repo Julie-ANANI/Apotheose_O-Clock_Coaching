@@ -6,9 +6,8 @@ import axios from 'axios';
 
 
 // == Import
-import '../../styles/StudentDashboard.css';
-import logo from "src/assets/logos/Logo de O'coaching - white and red svg v2.svg";
-import ThemeInDashboard from '../../components/ThemeInDashboard';
+import '../../styles/ParcoursCoaching.css';
+import ThemeInParcoursCoachingPage from '../../components/ThemeInParcoursCoachingPage';
 
 
 //== Import from Semantic UI
@@ -19,14 +18,14 @@ import { Link } from 'react-router-dom';
 // == Composant
 const ParcoursCoaching = ({themes, setSelectedTheme}) => {
  
-const handleThemeClick = (e) => {
-  console.log('on a bien cliqué');
-  console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
-  const id = parseInt(e.target.closest('a').name);
-  const theme = themes.find((theme) => theme.id === id);
-  console.log(theme);
-  setSelectedTheme(theme);
-};
+// const handleThemeClick = (e) => {
+//   console.log('on a bien cliqué');
+//   console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
+//   const id = parseInt(e.target.closest('a').name);
+//   const theme = themes.find((theme) => theme.id === id);
+//   console.log(theme);
+//   setSelectedTheme(theme);
+// };
 
 return(
   <div className="student-dashboard">
@@ -39,17 +38,18 @@ return(
     <Divider hidden />
     <Card.Group centered>
       {themes.map((theme)=> (
-        <Link
-          key={theme.id}
+        <div  key={theme.id} className= 'theme-card-container'>
+          <Link
           name={theme.id}
-          onClick={handleThemeClick}
+          // onClick={handleThemeClick}
           to={`/theme/${theme.id}`}
         >
-          <ThemeInDashboard
+          <ThemeInParcoursCoachingPage
             name={theme.id}
             {...theme}
           />
         </Link>
+        </div>
       ))}
       
     </Card.Group>

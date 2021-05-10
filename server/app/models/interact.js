@@ -1,10 +1,10 @@
 const db = require('../database');
 
 
-// ALL classes extends Error with a personnal message in each context error
+// ALL classes extends Error with a custom error message in each context
 
 /**
- * Extends of Error's class with personnal message :'No interact found in database'
+ * Extends from Error class with custom message :'No interact found in database'
  * @class
  */
 class NoInteractError extends Error {
@@ -12,7 +12,16 @@ class NoInteractError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Interact not updated'
+ * Extends from Error class with custom message :'No interact found for this mission and this user in database'
+ * @class
+ */
+class NoInteractforMissionAndUserError extends Error {
+    message = 'No interact found for this mission and this user in database';
+};
+
+
+/**
+ * Extends from Error class with custom message :'Interact not updated'
  * @class
  */
 class InteractNotUpdatedError extends Error {
@@ -20,7 +29,7 @@ class InteractNotUpdatedError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Interact not added'
+ * Extends from Error class with custom message :'Interact not added'
  * @class
  */
 class InteractNotAddedError extends Error {
@@ -58,6 +67,7 @@ class Interact {
     static InteractNotUpdatedError = InteractNotUpdatedError;
     static InteractNotAddedError = InteractNotAddedError;
     static InteractNotDeletedError = InteractNotDeletedError;
+    static NoInteractforMissionAndUserError = NoInteractforMissionAndUserError;
 
     /**
      * The Interact constructor
@@ -70,7 +80,7 @@ class Interact {
     };
 
     /**
-     * Fetches every interact of a user in the database
+     * Gets every interaction of a user in the database
      * @static
      * @async
      * @param {number} userId - The id of a unique user
@@ -89,6 +99,28 @@ class Interact {
             throw new NoInteractError();
         };
     };
+
+    /**
+     * Gets the interaction for a specific user and a specific mission in the database
+     * @static
+     * @async
+     * @param {number} userId - The id of a unique user
+     * @param {number} missionId - The id of a unique mission
+     * @returns {<Interact>}|null - One instance of the Interact class or null 
+     */
+    static async findOne(userId, missionId) {
+        const {rows } = await db.query(`
+        SELECT * 
+        FROM interact
+        WHERE interact.user_id = $1 AND interact.mission_id = $2;
+        `, [userId, missionId]);
+
+        if (rows[0]) {
+            return new Interact(rows[0]);
+        } else {
+            throw new NoInteractforMissionAndUserError();
+        };
+    }
 
     /**
       * Inserts a new interaction in the Database or updates the database if the record alredy exists.
