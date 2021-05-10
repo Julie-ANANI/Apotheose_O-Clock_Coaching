@@ -3,6 +3,7 @@ const { Router } = require('express');
 const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
+const interactController = require('./controllers/interactController');
 
 const router = Router();
 
@@ -45,6 +46,22 @@ router.get('/missions/:id', missionController.getOneMission);
  * @returns {Array<Mission>} 200 - An array of missions
  */
 router.get('/themes/:id/missions', missionController.getAllByThemeId);
+
+/**
+ * Returns all checkbox values for a user id
+ * @route GET /missions/users/{userId}
+ * @group Interactions
+ * @returns {Array<Interact>} 200 - An array of Interact instances
+ */
+router.get('/missions/users/:userId', interactController.getAllByUserId);
+
+/**
+ * Returns the checkbox value for a mission id and a user id
+ * @route GET /missions/:missionId/users/:userId
+ * @group Interactions
+ * @returns {<Interact>} 200|null - One instance of the Interact class or null
+ */
+router.get('/missions/:missionId/users/:userId', interactController.getOneByMissionAndUser);
 
 /**
  * Returns a user from the database with its id

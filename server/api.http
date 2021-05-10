@@ -44,7 +44,20 @@ GET http://localhost:3000/v1/api/users/1
 
 ###
 
-# Tous les utilisteurs
+# Tous les utilisateurs
 GET http://localhost:3000/v1/api/users
 
+###
 
+# Les valeurs de case à cocher pour l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/users/3
+
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/5/users/3
+
+###
+
+# La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 
+GET http://localhost:3000/v1/api/missions/7/users/3
