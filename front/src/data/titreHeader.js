@@ -2,7 +2,7 @@ export default
  
     {
       studentAccueil : {
-      description: 'Salut jeune padawan, bienvenu sur ton espace coaching personnalisé!',
+      description: 'Salut jeune padawan, bienvenue sur ton espace coaching personnalisé!',
       page: 'student-accueil',
     },
 
