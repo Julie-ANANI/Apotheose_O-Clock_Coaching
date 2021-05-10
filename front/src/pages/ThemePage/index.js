@@ -11,19 +11,12 @@ const ThemePage = ({ themes}) => {
   
   const [missions, setMissions] = useState([]);
   
-
-  console.log('la liste des thèmes:', themes);
-  const { id } = useParams();
-  console.log(id);
-  const theme = themes.find((theme) => theme.id == id);
-  console.log(theme);
-
-
-
+  const { idTheme } = useParams();
+  const theme = themes.find((theme) => theme.id == idTheme);
 
   const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${id}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${id}/missions`)
+    console.log(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
+    axios.get(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);
@@ -39,7 +32,6 @@ const ThemePage = ({ themes}) => {
 
   useEffect(() => {
     loadMissions();
-    // setSelectedTheme(result);
   },[]);
 
   

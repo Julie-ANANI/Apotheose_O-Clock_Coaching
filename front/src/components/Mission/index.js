@@ -1,11 +1,11 @@
-import React from 'react';
+import React,  { useState } from 'react';
 
 
 import '../../styles/Mission.css';
 
 //== Import from Semantic UI
 
-import { Card, Accordion, Icon } from 'semantic-ui-react'
+import { Card, Accordion, Icon, Checkbox } from 'semantic-ui-react'
 
 
 // == Composant
@@ -14,11 +14,24 @@ const Mission = ({
   title,
 }) => {
 
+  const [activeIndex, setActiveIndex] = useState(-1);
+  
+  const handleClick = (e, titleProps) => {
+    console.log('on a cliqué', titleProps);
+    const { index } = titleProps;
+    console.log(index);
+    console.log(activeIndex);
+    const newIndex = activeIndex === index ? -1 : index;
+    setActiveIndex(newIndex);
+  }
+
 return(
   <Card fluid className='mission-card'>
 
   <Card.Content className='mission-card-header' >
-    Ma mission
+    <div className="checkbox-container">
+      <Checkbox label={'Ceci est un label'}></Checkbox>
+    </div>
   </Card.Content>
 
   <Card.Content>
@@ -26,15 +39,15 @@ return(
     <Accordion>
       <Accordion.Title
         className='button-accordion'
-        // active={activeIndex === 0}
+        active={activeIndex === 0}
         index={0}
-        // onClick={this.handleClick}
+        onClick={handleClick}
       >
       <Icon name='dropdown' />
        Astuces
       </Accordion.Title>
       <Accordion.Content 
-        // active={activeIndex === 0}
+        active={activeIndex === 0}
       >
         <p>
           A dog is a type of domesticated animal. Known for its loyalty and

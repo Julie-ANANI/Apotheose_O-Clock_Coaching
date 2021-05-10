@@ -36,7 +36,7 @@ console.log(navlinks);
 const App = () => { 
 
   const [themes, setThemes] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState({});
+  // const [selectedTheme, setSelectedTheme] = useState({});
   
   
   const loadThemes = () => {
@@ -67,8 +67,8 @@ const App = () => {
           <ParcoursCoaching themes={themes} />  
         </Route> 
           
-        <Route path= {`/theme/:id`}>
-          <ThemePage themes={themes} selectedTheme={selectedTheme} setSelectedTheme={setSelectedTheme} /> 
+        <Route path= {`/theme/:idTheme`}>
+          <ThemePage themes={themes} /> 
         </Route>
 
       </Switch>
