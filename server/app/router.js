@@ -96,6 +96,14 @@ router.get('/users/:id', userController.getOneUser);
  */
 router.get('/users', userController.getAllusers);
 
+/**
+ * Authenticates the user with the O'Clock API
+ * @route POST /login
+ * @group Login
+ * @returns {<User>} 200 - A user object
+ */
+router.post('/login', userController.login);
+
 
 
 module.exports = router;

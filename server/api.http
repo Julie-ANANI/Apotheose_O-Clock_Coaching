@@ -50,7 +50,7 @@ GET http://localhost:3000/v1/api/users
 ###
 
 # Les valeurs de case à cocher pour l'utilisateur 3
-GET http://localhost:3000/v1/api/missions/users/3
+GET http://localhost:3000/v1/api/missions/users/4
 
 ###
 
