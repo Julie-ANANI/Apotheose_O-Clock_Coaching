@@ -5,7 +5,7 @@ import { Button } from 'semantic-ui-react';
 
 
 // == Import
-import '../../styleScss/admin/accueilAdmin.scss';
+import '../../styles/accueilAdmin.css';
 import logo from "src/assets/logos/Logo de O\'coaching - white and red svg v2.svg";
 
 //== Import from Semantic UI
@@ -17,16 +17,7 @@ const AccueilAdmin = () => {
 
   return(
     <div className="accueilAdmin">
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
-      <Image src={logo} size='medium' centered />
-      <Header className='header-accueil' as='h1' textAlign='center'> Salut!!! Bon Courage pour la journée on Garde la peche! </Header>
-      <Divider hidden />
-      <Divider hidden />
-      <Divider hidden />
+
       <div className="button-container">
       <Button fluid green size='huge' color='teal'>Gestion des thèmes</Button>
       <Button fluid green size='huge' color='teal'>Ajouter un administrateur</Button>
