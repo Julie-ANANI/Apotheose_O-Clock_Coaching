@@ -64,6 +64,14 @@ router.get('/missions/users/:userId', interactController.getAllByUserId);
 router.get('/missions/:missionId/users/:userId', interactController.getOneByMissionAndUser);
 
 /**
+ * Adds a checkbox value in database for a mission id and a user id
+ * @route POST /missions/:missionId/users/:userId
+ * @group Interactions
+ * @returns {<Interact>} 200|null - One instance of the Interact class or null
+ */
+router.post('/missions/:missionId/users/:userId', interactController.postCheckboxValue);
+
+/**
  * Returns a user from the database with its id
  * @route GET /users/{id}
  * @group Users
