@@ -80,10 +80,22 @@ const User = require('./app/models/user');
 
 // Getting the missions for theme 2
 // Test ok
+// (async () => {
+//     try {
+//         const theMissions = await Mission.findByTheme(2);
+//         console.log(theMissions);
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// })();
+
+// Getting the value of checkbox for user_id 3 and mission 5
+// Test ok
 (async () => {
     try {
-        const theMissions = await Mission.findByTheme(2);
-        console.log(theMissions);
+        const theInteract = await Interact.findOne(3, 5);
+        console.log(theInteract);
     } catch (error) {
         console.log(error);
     }
