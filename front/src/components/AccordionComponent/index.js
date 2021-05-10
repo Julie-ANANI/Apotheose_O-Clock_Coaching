@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion } from 'semantic-ui-react'
-import '../../styleScss/coaching/accordion.scss';
+import '../../styles/AccordionComponent.css';
 import Mission from './mission';
 
 const AccordionComponent = ({missions}) => (

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Accordion, Checkbox, Segment } from 'semantic-ui-react';
-import '../../styleScss/coaching/accordion.scss';
+import '../../styles/AccordionComponent.css';
 
 
 const Mission = ({id, title, advice}) => {

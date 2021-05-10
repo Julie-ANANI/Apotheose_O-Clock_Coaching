@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {  Divider } from 'semantic-ui-react';
-import '../../styleScss/coaching/missions.scss';
+import '../../styles/Missions.css';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
 import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
 
 const Missions = ({selectedTheme}) => {
   const [missions, setMissions] = useState([]);

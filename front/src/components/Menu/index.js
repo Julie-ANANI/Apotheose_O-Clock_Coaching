@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import './styles.css'
+import '../../styles/Menu.css'
 
 const MenuHeader = ({navlinks}) => {
   // state = { activeItem: 'home' }
