@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import '../../styles/StudentDashboard.css';
+import '../../styles/ParcoursCoaching.css';
 
 //== Import from Semantic UI
 
@@ -9,20 +9,20 @@ import { Card, Progress } from 'semantic-ui-react'
 
 
 // == Composant
-const ThemeInDashboard = ({
+const ThemeInParcoursCoachingPage = ({
   id,
   title,
 }) => {
 
 return(
-      <Card className='theme-card'>
+      <Card fluid className='theme-card'>
         <Card.Content className='theme-card-header' header={title} />
         {/* <Card.Content description={description} /> */}
         <Card.Content extra>
-          <Progress percent={60} indicating />
+          <Progress percent={60} indicating progress />
         </Card.Content>
       </Card>
 );}
 
 // == Export
-export default ThemeInDashboard;
+export default ThemeInParcoursCoachingPage;
