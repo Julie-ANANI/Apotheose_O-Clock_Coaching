@@ -9,3 +9,6 @@ yarn-error.log
 
 link-back-front.md
 sqitch.conf
+certificate/
+server.cert
+server.key
