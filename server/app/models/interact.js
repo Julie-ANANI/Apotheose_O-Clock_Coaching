@@ -19,15 +19,6 @@ class NoInteractforMissionAndUserError extends Error {
     message = 'No interact found for this mission and this user in database';
 };
 
-
-/**
- * Extends from Error class with custom message :'Interact not updated'
- * @class
- */
-class InteractNotUpdatedError extends Error {
-    message = 'Interact not updated';
-};
-
 /**
  * Extends from Error class with custom message :'Interact not added'
  * @class
@@ -49,7 +40,6 @@ class InteractNotDeletedError extends Error {
 /**
  * An entity representing a coaching Interact
  * @typedef Interact
- * @property {boolean} isChecked
  * @property {string} createdAt
  * @property {string} modifiedAt
  * 
@@ -64,7 +54,6 @@ class Interact {
 
     // All static properties error of Interact's class
     static NoInteractError = NoInteractError;
-    static InteractNotUpdatedError = InteractNotUpdatedError;
     static InteractNotAddedError = InteractNotAddedError;
     static InteractNotDeletedError = InteractNotDeletedError;
     static NoInteractforMissionAndUserError = NoInteractforMissionAndUserError;
@@ -108,12 +97,12 @@ class Interact {
      * @param {number} missionId - The id of a unique mission
      * @returns {<Interact>}|null - One instance of the Interact class or null 
      */
-    static async findOne(userId, missionId) {
-        const {rows } = await db.query(`
+    static async findOne(missionId, userId) {
+        const { rows } = await db.query(`
         SELECT * 
         FROM interact
-        WHERE interact.user_id = $1 AND interact.mission_id = $2;
-        `, [userId, missionId]);
+        WHERE interact.mission_id = $1 AND interact.user_id = $2;
+        `, [missionId, userId]);
 
         if (rows[0]) {
             return new Interact(rows[0]);
@@ -145,61 +134,41 @@ class Interact {
     };
 
     /**
-      * Inserts a new interaction in the Database or updates the database if the record alredy exists.
+      * Associates a user id and mission id to represent a checked box value
       * 
       * @async
       * @function save
-      * @returns {Array} Instances of the class Theme.
+      * @returns {<Interact>} An instance of the class Interact.
       * @throws {Error} a potential SQL error.
     */
     async save() {
-        if (this.id) {
-            // UPDATE 
-            const { rows } = await db.query(`UPDATE interact
-         SET is_checked=$1 
-         WHERE mission_id=$2 
-         AND user_id=$3
-         RETURNING *;`, [
-                this.is_checked,
-                this.mission_id,
-                this.user_id
-            ]);
+        // INSERT
 
-            if (rows[0]) {
-                return rows[0];
-            } else {
-                throw new InteractNotUpdatedError();
-            };
+        const { rows } = await db.query(`INSERT INTO interact(mission_id, user_id) 
+            VALUES($1, $2) RETURNING (mission_id, user_id);`, [
+            this.mission_id,
+            this.user_id
+        ]);
 
+        if (rows[0]) {
+            this.id = `(${this.mission_id}, ${this.user_id})`;
         } else {
-            // INSERT
-
-            const { rows } = await db.query(`INSERT INTO interact(is_checked, mission_id, user_id) 
-            VALUES($1, $2, $3) RETURNING *;`, [
-                this.is_checked,
-                this.mission_id,
-                this.user_id
-            ]);
-            
-            if (rows[0]) {
-                this.id = `(${this.mission_id}, ${this.user_id})`;
-            } else {
-                throw new InteractNotAddedError();
-            };
+            throw new InteractNotAddedError();
         };
     };
 
+
     /**
-      * Delete an interaction
+      * Deletes the association with user id and mission id to represent an unchecked box value 
       * 
       * @async
       * @function delete
-      * @returns {Array} Instances of the class Interact.
+      * @returns {<Interact>} Instance of the class Interact.
       * @throws {Error} a potential SQL error.
       */
-     async delete () {
-        const { rows } = await db.query(`DELETE FROM interact WHERE user_id=$1 AND mission_id=$2 RETURNING *;`, [this.user_id, this.mission_id]);
-        
+    async delete() {
+        const { rows } = await db.query(`DELETE FROM interact WHERE mission_id=$1 AND user_id=$2 RETURNING (mission_id, user_id);`, [this.mission_id, this.user_id]);
+
         if (rows[0]) {
             return rows[0];
         } else {

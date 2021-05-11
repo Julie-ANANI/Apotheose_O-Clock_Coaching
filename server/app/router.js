@@ -69,7 +69,7 @@ router.get('/missions/:missionId/users/:userId', interactController.getOneByMiss
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.post('/user/missions', interactController.createCheckboxValue);
+router.post('/student/interact/', interactController.checkBox);
 
 /**
  * Deletes a record in database for a mission id and a user id
@@ -77,7 +77,7 @@ router.post('/user/missions', interactController.createCheckboxValue);
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.delete('/missions/:missionId/users/:userId', interactController.deleteCheckboxValue);
+router.delete('/student/interact/missions/:missionId/users/:userId', interactController.uncheckBox);
 
 /**
  * Returns a user from the database with its id
