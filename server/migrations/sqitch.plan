@@ -3,3 +3,4 @@
 
 init 2021-05-05T08:16:40Z Etudiant O'clock <julie.anani@outlook.com> # creation table
 
+fix_interact 2021-05-11T13:40:18Z Etudiant O'clock <student@teleporter> # removing boolean column in interact table
