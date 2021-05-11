@@ -88,13 +88,10 @@ class Interact {
      */
     static async findAll(userId) {
         const { rows } = await db.query(`
-        SELECT theme.title AS theme_title, mission.title AS mission_title
+        SELECT * 
         FROM interact
-        JOIN mission
-		ON interact.mission_id = mission.id
-		JOIN theme
-		ON mission.theme_id = theme.id
-        WHERE interact.user_id = $1;`, [userId]);
+        WHERE interact.user_id = $1
+        ;`, [userId]);
 
         if (rows) {
             return rows.map(row => new Interact(row));

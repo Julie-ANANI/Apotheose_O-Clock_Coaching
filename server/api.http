@@ -72,6 +72,7 @@ GET http://localhost:3000/v1/api/students/3/themes/2/score
 # Le score globale d'un user 3
 GET http://localhost:3000/v1/api/students/3/score
 
+
 # Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
 POST http://localhost:3000/v1/api/user/missions
 Content-Type: application/json

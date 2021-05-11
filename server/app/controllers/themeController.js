@@ -48,11 +48,11 @@ const themeController = {
     },
 
     /**
-    * It's control the road GET /v1/api/themes/:id
+    * It's control the road GET v1/api/students/:userId/themes/:themeId/score
     */
     getScoreOfOneThemeOfOneUser: async(req,res) =>{
         try{
-            const { themeId, userId} = req.params;
+            const { themeId, userId } = req.params;
 
             const score = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
             res.status(200).json(score);
