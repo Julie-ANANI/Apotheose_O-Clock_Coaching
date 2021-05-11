@@ -31,7 +31,7 @@ router.get('/themes/:id', themeController.getOneTheme);
  * @returns {<Theme>} 200 - An instance of new theme
  */
 
-router.post('/themes', themeController.addNewTheme);
+router.post('/themes', themeController.addNew);
 //router.post('/theme/:themeId')
 
 /**

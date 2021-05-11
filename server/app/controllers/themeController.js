@@ -48,7 +48,24 @@ const themeController = {
     },
 
 
-    
+    addNew: async (req, res) => {
+        try {  
+            
+                
+                const { title, description, position} = req.body;
+                const bodyJS = (req.body).JSON.parse
+                console.log(JSON.stringify(bodyJS));
+
+                const newTheme = new Theme({ title, description, position });
+                await newTheme.save2();
+
+                res.status(200).json(newTheme);
+                console.log(newTheme);
+            }catch(err) {
+                res.status(404).json(err.message);
+            }    console.log(req.body);
+    },
+
 
     /**
     * It's control the road POST /v1/api/themes
