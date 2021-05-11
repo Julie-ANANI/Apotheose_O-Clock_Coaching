@@ -69,6 +69,15 @@ GET http://localhost:3000/v1/api/missions/7/users/3
 
 ###
 
+# Le score du theme 2 d'un user 3 
+GET http://localhost:3000/v1/api/students/3/themes/2/score
+
+###
+
+# Le score globale d'un user 3
+GET http://localhost:3000/v1/api/students/3/score
+
+
 # Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
 POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
@@ -83,3 +92,4 @@ Content-Type: application/json
 # Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
 DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
 Content-Type: application/json
+

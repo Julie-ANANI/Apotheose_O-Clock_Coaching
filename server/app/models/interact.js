@@ -109,7 +109,29 @@ class Interact {
         } else {
             throw new NoInteractforMissionAndUserError();
         };
-    }
+    };
+
+    /**
+     * Gets the global score of a user
+     * @static
+     * @async
+     * @function findGlobalScoreOfOneUser
+     * @param {number} userId - The id of a unique user
+     * @returns {Object} - An object of the global score
+     */
+    static async findGlobalScoreOfOneUser(userId){
+        const { rows } = await db.query(`SELECT COUNT(mission_id) AS global_score
+        FROM interact
+        WHERE user_id= $1;`, 
+        [userId]);
+
+        if(rows[0]){
+            return rows[0];
+        }else{
+            throw new NoInteractError();
+        };
+
+    };
 
     /**
       * Associates a user id and mission id to represent a checked box value
