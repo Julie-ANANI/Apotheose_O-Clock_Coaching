@@ -16,13 +16,26 @@ const User = require('./app/models/user');
 
 // })();
 
-// Inserting a record in the bridging table (delete record for mission_id 2 in db)
+// Inserting a record in the bridging table
 // Test ok
 // (async () => {
 //     try {
-//         const newRecord = new Interact({is_checked: true, mission_id: 2, user_id: 1});
+//         const newRecord = new Interact({mission_id: 3, user_id: 4});
 //         console.log(newRecord);
 //         newRecord.save();
+//         console.log(newRecord);
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })();
+
+// Deleting a record in the bridging table
+// Test ok
+// (async () => {
+//     try {
+//         const newRecord = await Interact.findOne(3, 4);
+//         newRecord.delete();
+//         console.log(newRecord);
 //     } catch (error) {
 //         console.log(error)
 //     }
@@ -92,12 +105,12 @@ const User = require('./app/models/user');
 
 // Getting the value of checkbox for user_id 3 and mission 5
 // Test ok
-(async () => {
-    try {
-        const theInteract = await Interact.findOne(3, 5);
-        console.log(theInteract);
-    } catch (error) {
-        console.log(error);
-    }
+// (async () => {
+//     try {
+//         const theInteract = await Interact.findOne(3, 5);
+//         console.log(theInteract);
+//     } catch (error) {
+//         console.log(error);
+//     }
 
-})();
+// })();
