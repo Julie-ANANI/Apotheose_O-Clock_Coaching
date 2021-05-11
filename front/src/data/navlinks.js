@@ -1,14 +1,35 @@
-export default [
-  {
-    route: '/',
-    label: 'accueil',
-  },
-  {
-    route: '/parcours-coaching',
-    label: 'parcours coaching',
-  },
-  {
-    route: '/profil',
-    label: 'profil',
-  },
-]
+export default 
+ 
+    [{
+      route: '/accueil',
+      label: 'accueil',
+      role: 'student',
+    },
+    {
+      route: '/parcours-coaching',
+      label: 'parcours coaching',
+      role: 'student',
+    },
+    {
+      route: '/profil',
+      label: 'profil',
+      role: 'student',
+    },
+
+    {
+      route: '/accueiladmin',
+      label: 'accueil',
+      role: 'admin',
+    },
+    {
+      route: '/gestion-themes',
+      label: 'gestion themes',
+      role: 'admin',
+    },
+    {
+      route: '/ajouter-administrateur',
+      label: 'ajout admin',
+      role: 'admin',
+    }]
+  
+

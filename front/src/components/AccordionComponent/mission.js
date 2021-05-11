@@ -9,14 +9,14 @@ const Mission = ({id, title, advice}) => {
   const index = id;
 
   const handleClick = (e, titleProps) => {
+    
     for(const titleProp in titleProps){
       console.log(titleProp)
     }
-    const { index } = titleProps
-    const newIndex = activeIndex === index ? 0 : index
-
+    const { index } = titleProps;
+    const newIndex = activeIndex === index ? -1 : index;
     setActiveIndex(newIndex);
-    console.log(index)
+    console.log(index);
   };
 
 
