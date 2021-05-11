@@ -41,6 +41,14 @@ class ThemeNotDeleted extends Error {
     message = 'Theme was not deleted';
 };
 
+/**
+ * Extends of Error's class with personnal message :'Theme or user are not in the database'
+ * @class
+ */
+class ThemeAndUserNotFound extends Error { 
+    message = 'Theme or user are not in the database';
+};
+
 
 /**
  * An entity representing a theme's
@@ -75,6 +83,7 @@ class Theme {
     static ThemeNotAdded = ThemeNotAdded;
     static ThemeNotUpdated = ThemeNotUpdated;
     static ThemeNotDeleted = ThemeNotDeleted;
+    static ThemeAndUserNotFound = ThemeAndUserNotFound;
 
 
     /**
@@ -116,6 +125,34 @@ class Theme {
         };
         
     };
+
+
+    /**
+      * Fetch the score of a theme.
+      * @static
+      * @async
+      * @function findTheScoreOfOneThemeOfOneUser
+      * @returns {Array} Instances of the class Theme.
+      * @throws {Error} a potential SQL error.
+      */
+    static async findTheScoreOfOneThemeOfOneUser(themeId, userId){
+        const {rows} = await db.query(`SELECT DISTINCT theme.id, theme.title, COUNT(mission.id) AS score
+        FROM theme
+        JOIN mission
+        ON mission.theme_id = theme.id
+        JOIN interact
+        ON interact.mission_id = mission.id
+        WHERE interact.user_id=$1 AND theme_id=$2
+        GROUP BY theme.id;`,
+        [userId,themeId]);
+
+        if (rows[0]) {
+            return rows[0];
+        } else{
+            return new ThemeAndUserNotFound();
+        };
+    };
+
     /**
       * Inserts a new theme in the DB or updates the database if the record alredy exists.
       * 

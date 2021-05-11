@@ -47,6 +47,22 @@ const themeController = {
         }
     },
 
+    /**
+    * It's control the road GET /v1/api/themes/:id
+    */
+    getScoreOfOneThemeOfOneUser: async(req,res) =>{
+        try{
+            const { themeId, userId} = req.params;
+
+            const score = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
+            res.status(200).json(score);
+        }
+        catch(err){
+
+            res.status(400).json(err.message);
+        };
+    }
+
 };
 
 module.exports = themeController;

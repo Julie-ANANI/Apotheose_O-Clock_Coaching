@@ -83,3 +83,9 @@ Content-Type: application/json
 {
     "is_checked": false
 }
+
+###
+
+
+# Le score du theme 2 d'un user 
+GET http://localhost:3000/v1/api/student/3/themes/2/score
