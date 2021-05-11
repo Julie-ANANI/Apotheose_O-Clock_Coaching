@@ -1,6 +1,6 @@
 
 .theme-presentation h1.theme-title {
-  color : black;
+  color : #1a4c79;
   background-color: white;
   width: 30%;
   margin : 1em auto;
@@ -28,5 +28,5 @@
   margin: 3em 10%;
   border-radius: 0.5em 0.5em 0.5em 0.5em ;
   box-shadow: #1a4c79 0.5em -0.7em ;
-  background-color: #fff;
+  background-color: #fffdd8;
 }
