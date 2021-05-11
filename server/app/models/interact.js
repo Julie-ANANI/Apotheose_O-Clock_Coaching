@@ -40,7 +40,6 @@ class InteractNotDeletedError extends Error {
 /**
  * An entity representing a coaching Interact
  * @typedef Interact
- * @property {boolean} isChecked
  * @property {string} createdAt
  * @property {string} modifiedAt
  * 
