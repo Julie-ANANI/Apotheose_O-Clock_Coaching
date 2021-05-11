@@ -23,7 +23,7 @@ GET http://localhost:3000/v1/api/missions
 
 # Toutes les missions pour un thème donné 
 
-GET http://localhost:3000/v1/api/themes/3/missions
+GET http://localhost:3000/v1/api/themes/5/missions
 
 ###
 
@@ -48,6 +48,11 @@ GET http://localhost:3000/v1/api/users/1
 GET http://localhost:3000/v1/api/users
 
 ###
+
+# Toutes les coches d'un utilisateur
+GET http://localhost:3000/v1/api/missions/users/4
+
+
 
 # Les valeurs de case à cocher pour l'utilisateur 3
 GET http://localhost:3000/v1/api/missions/users/3

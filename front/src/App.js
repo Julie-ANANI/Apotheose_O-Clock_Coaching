@@ -92,9 +92,10 @@ const App = () => {
           <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
         </Route> 
           
-        <Route path= {`/theme/:id`}>
+
+        <Route path= {`/theme/:idTheme`}>
           <Header titre={titre.studentMissions.description} />
-          <ThemePage themes={selectedTheme} /> 
+          <ThemePage themes={themes} /> 
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
