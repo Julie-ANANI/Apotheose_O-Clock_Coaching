@@ -44,7 +44,7 @@ GET http://localhost:3000/v1/api/users/1
 
 ###
 
-# Tous les utilisteurs
+# Tous les utilisateurs
 GET http://localhost:3000/v1/api/users
 
 ###
@@ -54,4 +54,37 @@ GET http://localhost:3000/v1/api/missions/users/4
 
 
 
+# Les valeurs de case à cocher pour l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/users/3
 
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/5/users/3
+
+###
+
+# La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 
+GET http://localhost:3000/v1/api/missions/7/users/3
+
+###
+
+# Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
+POST http://localhost:3000/v1/api/user/missions
+Content-Type: application/json
+
+{
+    "is_checked": true,
+    "mission_id": 12,
+    "user_id": 3
+}
+
+###
+
+# Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
+DELETE http://localhost:3000/v1/api/missions/12/users/3
+Content-Type: application/json
+
+{
+    "is_checked": false
+}

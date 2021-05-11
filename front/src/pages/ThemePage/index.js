@@ -7,7 +7,7 @@ import AccordionComponent from 'src/components/AccordionComponent';
 import axios from 'axios'
 import Mission from 'src/components/Mission';
 
-const ThemePage = ({ themes}) => {
+const ThemePage = ({ themes }) => {
   
   const [missions, setMissions] = useState([]);
   

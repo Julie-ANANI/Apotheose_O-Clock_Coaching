@@ -13,7 +13,7 @@ import ThemeInParcoursCoachingPage from '../../components/ThemeInParcoursCoachin
 //== Import from Semantic UI
 
 import { Progress, Divider, Card } from 'semantic-ui-react'
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // == Composant
 const ParcoursCoaching = ({themes, setSelectedTheme}) => {
