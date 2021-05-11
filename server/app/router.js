@@ -97,13 +97,19 @@ router.get('/users/:id', userController.getOneUser);
 router.get('/users', userController.getAllusers);
 
 /**
- * Authenticates the user with the O'Clock API
+ * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
  * @route POST /login
  * @group Login
  * @returns {<User>} 200 - A user object
  */
 router.post('/login', userController.login);
 
-
+/**
+ * Logs out the user with the O'Clock API
+ * @route POST /login
+ * @group Login
+ * @returns 200 - A message confirming the user is logged out in back-end
+ */
+router.post('/login', userController.login);
 
 module.exports = router;
