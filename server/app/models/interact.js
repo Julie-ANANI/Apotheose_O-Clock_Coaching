@@ -120,7 +120,29 @@ class Interact {
         } else {
             throw new NoInteractforMissionAndUserError();
         };
-    }
+    };
+
+    /**
+     * Gets the global score of a user
+     * @static
+     * @async
+     * @function findGlobalScoreOfOneUser
+     * @param {number} userId - The id of a unique user
+     * @returns {Object} - An object of the global score
+     */
+    static async findGlobalScoreOfOneUser(userId){
+        const { rows } = await db.query(`SELECT COUNT(mission_id) AS global_score
+        FROM interact
+        WHERE user_id= $1;`, 
+        [userId]);
+
+        if(rows[0]){
+            return rows[0];
+        }else{
+            throw new NoInteractError();
+        };
+
+    };
 
     /**
       * Inserts a new interaction in the Database or updates the database if the record alredy exists.
@@ -165,7 +187,7 @@ class Interact {
                 throw new InteractNotAddedError();
             };
         };
-    }
+    };
 
     /**
       * Delete an interaction
