@@ -19,7 +19,7 @@ const themeController = {
             * In the model, there is an error with a custom message
             */
             res.status(404).json(err.message);
-        }
+        };
 
     },
 
@@ -44,7 +44,7 @@ const themeController = {
             * In the model, there is an error with a custom message
             */
             res.status(404).json(err.message);
-        }
+        };
     },
 
     /**

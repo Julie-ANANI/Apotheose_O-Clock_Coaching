@@ -132,11 +132,13 @@ class Theme {
       * @static
       * @async
       * @function findTheScoreOfOneThemeOfOneUser
-      * @returns {Array} Instances of the class Theme.
+      * @param {number} themeId - id of a theme
+      * @param {number} userId - id of a user
+      * @returns {Object} An object of a theme's score of a user.
       * @throws {Error} a potential SQL error.
       */
     static async findTheScoreOfOneThemeOfOneUser(themeId, userId){
-        const {rows} = await db.query(`SELECT DISTINCT theme.id, theme.title, COUNT(mission.id) AS score
+        const {rows} = await db.query(`SELECT COUNT(mission.id) AS score
         FROM theme
         JOIN mission
         ON mission.theme_id = theme.id

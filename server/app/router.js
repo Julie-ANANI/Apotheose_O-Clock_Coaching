@@ -100,9 +100,16 @@ router.get('/users', userController.getAllusers);
 /**
  * Returns the score of a theme and a user
  * @route GET /student/:userId/themes/:themeId/score
- * @group The users
  * @returns {Object} 200 - An object of a theme's score of a user
  */
-router.get('/student/:userId/themes/:themeId/score',themeController.getScoreOfOneThemeOfOneUser);
+router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfOneThemeOfOneUser);
+
+
+/**
+ * Returns the global score of a user
+ * @route GET /students/:userId/score
+ * @returns {Object} 200 - An object of a score global of a user
+ */
+router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
 
 module.exports = router;

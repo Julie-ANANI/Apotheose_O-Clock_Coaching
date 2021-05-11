@@ -41,6 +41,28 @@ const interactController = {
             res.status(404).json(err.message);
         }
     },
+
+
+    /**
+    * Endpoint GET api/students/:userId/score
+    */
+    getGlobalScoreOfOneUser: async (req,res)=>{
+        try{
+
+            /**
+             * We get the id in the parameters of the request
+             */
+            const { userId }= req.params;
+
+            const globalScore = await Interact.findGlobalScoreOfOneUser(userId);
+            res.status(200).json(globalScore);
+
+        } catch(err) {
+            res.status(404).json(err.message);
+        };
+    },
+
+    
     /**
     * Endpoint POST /api/user/missions/
     */
