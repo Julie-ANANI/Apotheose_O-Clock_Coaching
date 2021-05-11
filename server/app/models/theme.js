@@ -125,14 +125,20 @@ class Theme {
       * @throws {Error} a potential SQL error.
       */
      async save() {
+         console.log(this.id)
         if (this.id) {
+            
             // PUT route
             // TODO: create SQL function update_theme AND trigger for updating timestamp
             const { rows }= await db.query(`
-            UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4 RETURNING id;`,
-            [this.title, this.description, this.position, this.id]);
-
+           UPDATE theme 
+           SET title = '$1', "description" = '$2', position = $3, modified_at = now()
+           WHERE id = $4 RETURNING id;
+           `,
+            [this.title, this.description,this.position,  this.id]);
+               /// c'est les this du body 
             if (rows[0]) {
+                
                 return rows[0];
             } else {
                 throw new ThemeNotUpdated();
@@ -146,13 +152,50 @@ class Theme {
                 this.position
             ]);
 
+            console.log(rows[0]);
             if(rows[0]){
-                this.id = rows[0].id;
+                 
+               this.id = rows[0].id;
+              
             }else{
                 throw new ThemeNotAdded();
             };
         };
     }
+
+
+     async save2() {
+
+        const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
+            this.title,
+            this.description,
+            this.position
+        ]);
+              /// c'est les this du body 
+           if (rows[0]) {
+               
+              this.id = rows[0].id;
+           } else {
+               throw new ThemeNotAdded();
+           };
+       
+   };
+
+
+    static async update() {
+        if (this.id) {
+            const { rows } = await db.query('SELECT * FROM theme WHERE id = $1;', [id]
+            );
+        }
+
+        if (rows[0]) {
+            return new Theme(rows[0]);
+        } else {
+            throw new UnknownThemeError();
+        };
+        
+    };
+
 
     /**
       * Delete a theme

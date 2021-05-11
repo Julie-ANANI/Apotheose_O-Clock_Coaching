@@ -23,6 +23,17 @@ router.get('/themes', themeController.getAllThemes);
  */
 router.get('/themes/:id', themeController.getOneTheme);
 
+
+/**
+ * add a new theme in the database with new id
+ * @route POST /themes
+ * @group A Theme
+ * @returns {<Theme>} 200 - An instance of new theme
+ */
+
+router.post('/themes', themeController.addNewTheme);
+//router.post('/theme/:themeId')
+
 /**
  * Returns all missions from the database
  * @route GET /missions

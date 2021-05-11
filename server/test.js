@@ -28,17 +28,17 @@ const User = require('./app/models/user');
 //     }
 // })();
 
-// Inserting a theme
-// Test ok 
-// (async () => {
-//     try {
-//         const newTheme = new Theme({ title: 'Hello 2', description: 'Blue <b>ba</b> blue', position: 3 });
-//         console.log(newTheme);
-//         newTheme.save();
-//     } catch (err) {
-//         console.log(error);
-//     }
-// })();
+//Inserting a theme
+//Test ok 
+(async () => {
+    try {
+        const newTheme = new Theme({ title: 'Hello 2', description: 'Blue <b>ba</b> blue', position: 40 });
+        console.log(newTheme);
+        newTheme.save();
+    } catch (err) {
+        console.log(error);
+    }
+})();
 
 // Inserting a mission
 // Test ok
@@ -92,12 +92,12 @@ const User = require('./app/models/user');
 
 // Getting the value of checkbox for user_id 3 and mission 5
 // Test ok
-(async () => {
-    try {
-        const theInteract = await Interact.findOne(3, 5);
-        console.log(theInteract);
-    } catch (error) {
-        console.log(error);
-    }
+// (async () => {
+//     try {
+//         const theInteract = await Interact.findOne(3, 5);
+//         console.log(theInteract);
+//     } catch (error) {
+//         console.log(error);
+//     }
 
-})();
+// })();
