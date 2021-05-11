@@ -44,17 +44,14 @@ const interactController = {
     /**
     * Endpoint POST /api/user/missions/
     */
-    createCheckboxValue: async (req, res) => {
+    checkBox: async (req, res) => {
         try {
             // We get the body parameters of the request from req.body
-            const { is_checked, mission_id, user_id } = req.body;
+            const { mission_id, user_id } = req.body;
 
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
 
-            if (!is_checked) {
-                bodyErrors.push(`is_checked cannot be empty`);
-            }
             if (!mission_id) {
                 bodyErrors.push(`mission_id cannot be empty`);
             }
@@ -67,7 +64,7 @@ const interactController = {
                 res.status(400).json(bodyErrors);
             } else {
                 // if there are no errors, we can save this new record in the database
-                const newInteract = new Interact({ is_checked, mission_id, user_id });
+                const newInteract = new Interact({ mission_id, user_id });
                 await newInteract.save();
                 res.status(200).json(newInteract);
             }
@@ -77,27 +74,21 @@ const interactController = {
         }
     },
 
-    deleteCheckboxValue: async (req, res) => {
+    uncheckBox: async (req, res) => {
         try {
             // We get the ids in the parameters of the request
             const { missionId, userId } = req.params;
 
             // We check that the record exists before updating it
-            const interact = await Interact.findOne(userId, missionId);
+            const interact = await Interact.findOne(missionId, userId);
             console.log(interact);
             if (!interact) {
                 // if it doesn't exist, we return an error
                 return res.status(404).json(`Cannot find record with user id ${userId} and mission id {$mission_id}`);
             } else {
-                // We get the body parameter of the request from req.body
-                const { is_checked } = req.body;
-
-                if (is_checked === false) {
-                    // if is_checked value is false, we delete the record in DB
-                    // only checked boxes will have a record in DB
-                    await interact.delete();
-                    res.json('interact record deleted');
-                }
+                // if it exists, we delete it and send a confirmation message to the client
+                await interact.delete();
+                res.status(200).json('interact record deleted');
             }
 
         } catch (err) {

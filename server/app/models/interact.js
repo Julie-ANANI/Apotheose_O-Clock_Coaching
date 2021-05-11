@@ -124,7 +124,7 @@ class Interact {
         // INSERT
 
         const { rows } = await db.query(`INSERT INTO interact(mission_id, user_id) 
-            VALUES($1, $2) RETURNING *;`, [
+            VALUES($1, $2) RETURNING (mission_id, user_id);`, [
             this.mission_id,
             this.user_id
         ]);
@@ -146,7 +146,7 @@ class Interact {
       * @throws {Error} a potential SQL error.
       */
     async delete() {
-        const { rows } = await db.query(`DELETE FROM interact WHERE user_id=$1 AND mission_id=$2 RETURNING *;`, [this.user_id, this.mission_id]);
+        const { rows } = await db.query(`DELETE FROM interact WHERE mission_id=$1 AND user_id=$2 RETURNING (mission_id, user_id);`, [this.mission_id, this.user_id]);
 
         if (rows[0]) {
             return rows[0];
