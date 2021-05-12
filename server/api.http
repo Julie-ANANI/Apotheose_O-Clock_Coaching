@@ -95,7 +95,7 @@ POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "title": "Hola",
+    "title": "Hodedela",
     "advice": "Hola hola",
     "position":"2"
 }
