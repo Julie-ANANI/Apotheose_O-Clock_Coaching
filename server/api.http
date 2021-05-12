@@ -91,6 +91,13 @@ Content-Type: application/json
 
 ###
 
+
+# Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
+DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
+Content-Type: application/json
+
+###
+
 # Ajouter une mission donnée dans theme 2
 POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
@@ -114,14 +121,10 @@ Content-Type: application/json
 
 
 #Delete mission 6
-
 DELETE http://localhost:3000/v1/api/admin/missions/6
 Content-Type: application/json
 
 ###
 
 
-# Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
-DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
-Content-Type: application/json
 
