@@ -23,7 +23,7 @@ GET http://localhost:3000/v1/api/missions
 
 # Toutes les missions pour un thème donné 
 
-GET http://localhost:3000/v1/api/themes/5/missions
+GET http://localhost:3000/v1/api/themes/1/missions
 
 ###
 
