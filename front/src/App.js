@@ -27,6 +27,7 @@ import AddAdmin from 'src/pages/AddAdmin';
 
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
+import GestionThemes from './pages/GestionThemes';
 
 // import AccueilAdmin from './pages/AccueilAdmin';
 
@@ -103,6 +104,10 @@ const App = () => {
           <AddAdmin />
         </Route>
 
+        <Route path= {`/gestion-themes`}>
+          <Header titre={titre.gestionThemes.description} />
+          <GestionThemes themes={themes} />
+        </Route>
       </Switch>
 
     </div>
