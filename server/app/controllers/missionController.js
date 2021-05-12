@@ -62,6 +62,34 @@ const missionController = {
            */
            res.status(404).json(err.message);
        }     
+    },
+
+    addMission: async (req,res) => {
+        const { title } = req.body;
+
+        const bodyErrors = [];
+
+        if(!title){
+            bodyErrors.push('title cannot be empty');
+        };
+
+        if(body.Errors.length){
+            res.stats(400).json(bodyErrors);
+            return;
+        }; 
+
+        try {
+            const newMission = new Mission(req.body);
+            await newMission.save();
+            res.status(201).json(newMission);
+        }
+        catch(err){
+            res.status(500).json(err.message);
+        };
+    },
+
+    modifyMission: async (req,res) =>{
+        
     }
 
 };
