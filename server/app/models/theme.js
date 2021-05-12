@@ -104,6 +104,7 @@ class Theme {
             throw new NoThemeError();
         };
     };
+
     /**
       * Fetches a single theme
       * 
@@ -164,35 +165,54 @@ class Theme {
       * @throws {Error} a potential SQL error.
       */
      async save() {
-        if (this.id) {
-            // PUT route
-            // TODO: create SQL function update_theme AND trigger for updating timestamp
-            const { rows }= await db.query(`
-            UPDATE "theme" SET title = $1, description = $2, position = $3  WHERE id = $4 RETURNING id;`,
-            [this.title, this.description, this.position, this.id]);
+        console.log(this.title);
+        const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
+            this.title,
+            this.description,
+            this.position
+        ]);
+              /// c'est les this du body 
+           if (rows[0]) {
+               
+              this.id = rows[0].id;
+           } else {
+               throw new ThemeNotAdded();
+           };
+       
+   };
 
+
+     /**
+      * Update theme in the DB 
+      * 
+      * @async
+      * @function save
+      * @returns {Array} Instances of the class Theme.
+      * @throws {Error} a potential SQL error.
+      */
+    async update() {
+        // console.log(this.id)
+        if (this.id) {
+        
+           const { rows }= await db.query(`
+           UPDATE theme 
+           SET title = $1, "description" = $2, position = $3, modified_at = now()
+           WHERE id = $4 RETURNING id;
+           `,
+            [this.title, this.description,this.position,  this.id]);
+               /// c'est les this du body 
             if (rows[0]) {
+                
                 return rows[0];
             } else {
                 throw new ThemeNotUpdated();
             };
-        } else {
-            // POST route
-            // TODO: create SQL function to insert a new theme
-            const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
-                this.title,
-                this.description,
-                this.position
-            ]);
 
-            if(rows[0]){
-                this.id = rows[0].id;
-            }else{
-                throw new ThemeNotAdded();
-            };
         };
-    }
 
+    };
+
+    
     /**
       * Delete a theme
       * 
