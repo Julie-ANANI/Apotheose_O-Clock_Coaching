@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
-import axios from 'axios';
+import axios, { post } from 'axios';
 
 // - composant Route : permet de faire un affichage conditionnel en fonction de l'URL de
 // la barre d'adresse. Comparaison "qui commence par" => si on veut une comparaison
@@ -13,6 +13,7 @@ import axios from 'axios';
 // page a été déplacée)
 import { Route, Switch, useParams } from 'react-router-dom';
 
+// require('dotenv').config();
 
 // == Import
 import './styles/App.css';
@@ -46,7 +47,31 @@ const App = () => {
   const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
   const [allMissions, setAllMissions] = useState([]);
 
-  
+  // TEST REQUETE API COCKPIT
+
+  //   const axiosApiUser = async () => {
+  //     const formData = new FormData();
+  //     formData.append('login_email', 'admin@oclock.io');
+  //     formData.append('login_password', 'rg7rCDeKFM?dXAnh');
+  //     await axios({
+  //         url: 'https://cors-anywhere.herokuapp.com/https://quill-aop-project.eddi.xyz/api/try_login',
+  //         method: 'POST',
+  //         data: formData,
+  //         headers: {
+  //             'Content-Type': 'application/json',
+  //             'X-AUTH-TOKEN': '30e2245386e8e25a6ccbe0ea747d6482665abd2e3dee78aa3df9788053c72a42',
+  //             // 'Origin' : ''
+  //         }
+  //     }).then(response => {
+  //         console.log(response.data);
+  //     }, error => {
+  //         console.log(error);
+  //     });
+  // }
+  // axiosApiUser();
+
+  // FIN DU TEST API COCKPIT
+
   const getMenuRoutes = (role) => {
     const filteredNavlinks = navlinks.filter(navlink => navlink.role === role)
     return filteredNavlinks
@@ -55,7 +80,7 @@ const App = () => {
   // Bien pensé à gérer l'erreur en renvoyant une 404. voir modèle Oclock
 
   const loadThemes = () => {
-    console.log('Il faut charger les thèmes');
+    // console.log('Il faut charger les thèmes');
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
@@ -64,7 +89,7 @@ const App = () => {
   };
 
   const loadUserMissions = () => {
-    console.log('Il faut charger les missions déjà effectuées par le user');
+    // console.log('Il faut charger les missions déjà effectuées par le user');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
       axios.get(`${base_url}/missions/users/${userId}`)
@@ -75,7 +100,7 @@ const App = () => {
   };
 
   const loadAllMissions = () => {
-    console.log('Il faut charger toutes les missions qui existent en BDD');
+    // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
       axios.get(`${base_url}/missions`)

@@ -10,10 +10,8 @@ import Mission from 'src/components/Mission';
 const ThemePage = ({ themes, allMissions, userMissionsCompleted }) => {
   
 
-  
 
-  ;
-  // const [missions, setMissions] = useState([]);
+
   
   const { idTheme } = useParams();
   // console.log(idTheme);
@@ -26,24 +24,9 @@ const ThemePage = ({ themes, allMissions, userMissionsCompleted }) => {
     return result;
   }
 
-  // const checkUserMission = () => {
-  //   for (const mission of userMissionsCompleted) {
-  //     const input = document.getElementById(`mission-${mission.mission_id}`);
-  //     console.log(input);
-  //     if (input) {
-  //       input.closest('.toggle').classList.add('checked');
-  //     } 
-  //   }
-  // }
-
   const missions = filterMissionsByTheme(idTheme);
   console.log('missions complétes', userMissionsCompleted);
   console.log(missions);
-
-
-  // useEffect(()=> {
-  //   checkUserMission()
-  // })
 
   return (
     <div className="missions">

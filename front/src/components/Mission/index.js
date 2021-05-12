@@ -6,6 +6,7 @@ import '../../styles/Mission.css';
 //== Import from Semantic UI
 
 import { Card, Accordion, Icon, Checkbox } from 'semantic-ui-react'
+import axios from 'axios';
 
 
 // == Composant
@@ -19,6 +20,8 @@ const Mission = ({
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isChecked, setIschecked] = useState(false);
   
+
+  // fonction handleClick de la boite à astuces
   const handleClick = (e, titleProps) => {
     console.log('on a cliqué', titleProps);
     const { index } = titleProps;
@@ -26,8 +29,8 @@ const Mission = ({
     setActiveIndex(newIndex);
   }
 
-  console.log(userMissionsCompleted);
-  console.log(id);
+  // const checkIfDone = () => { 
+  //   axios.get('')
 
   const checkIfDone = () => {
     const result = userMissionsCompleted.find(mission => parseInt(mission.mission_id) == parseInt(id));
