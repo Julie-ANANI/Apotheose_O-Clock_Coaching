@@ -112,4 +112,25 @@ router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfO
  */
 router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
 
+/**
+ * Create and return the new mission
+ * @route POST /admin/themes/:theme_id/missions
+ * @returns {Object} 201 - An object of the new mission
+ */
+router.post('/admin/themes/:theme_id/missions', missionController.addMission);
+
+/**
+ * Modify and returns the id of the modify mission
+ * @route POST /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission modified
+ */
+router.post('/admin/missions/:missionId', missionController.modifyMission);
+
+/**
+ * Delete the mission and returns the id of the mission deleted
+ * @route DELETE /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission deleted
+ */
+router.delete('/admin/missions/:missionId', missionController.deleteMission);
+
 module.exports = router;
