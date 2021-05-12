@@ -136,6 +136,6 @@ Content-Type: application/json
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/themes/3
+DELETE http://localhost:3000/v1/api/themes/2
 Content-Type: application/json
 ###
