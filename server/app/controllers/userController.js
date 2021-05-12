@@ -1,6 +1,7 @@
 require('dotenv').config();
 const User = require('../models/user');
 const fetch = require('node-fetch');
+const FormData = require('form-data');
 
 
 const userController = {
@@ -57,24 +58,23 @@ const userController = {
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;
 
-        // TODO: fix fetch call
-        // for now, the fetch doesn't work, it returns "{ success: false, message: 'Identifiants invalides.', data: [] }"
+        const form = new FormData();
+        form.append('login_email', login_email);
+        form.append('login_password', login_password);
+
+        // the fetch returns "{ success: false, message: 'Identifiants invalides.', data: [] }"
         try {
             const response = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
                 method: 'POST',
-                body: JSON.stringify({
-                    login_email: `${login_email}`,
-                    login_password: `${login_password}`
-                }),
+                body: form,
                 headers: {
-                    'Content-Type': 'application/json',
-                    // We need to get an API KEY and to store it in the .env file
+                    'Content-Type': 'form-data',
                     'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
                 }
             });
-
-            const apiUser = await response.json();
-            console.log(apiUser);
+            console.log(response.status);
+        const apiUser = await response.json();
+        console.log(apiUser);
             // .then(res => res.json())
             //     .then(json => console.log(json))
             //     .catch(err => console.log(err.message));
@@ -99,7 +99,7 @@ const userController = {
                     theNewUser.save();
                     // we append its 'internal id' and 'admin status' properties to the external api user object we fetched earlier
                     apiUser.oap_id = theNewUser.id;
-                    apiUser.oap_admin_status = theInternalUser.admin_status;
+                    apiUser.oap_admin_status = theNewUser.admin_status;
                 } else {
                     // if the user is found in our database
                     // we append its 'internal id' and 'admin status' properties to our main api user object
@@ -108,9 +108,11 @@ const userController = {
                 }
 
                 // Now the user is connected, we store their info in the session
+                // TODO: keep only lastname and firstname
                 req.session.user = apiUser;
 
                 // We send this full object containing external and internal API info to the client
+                // TODO: voir avec le front quelles propriétés garder dans l'apiUser
                 res.status(200).json(apiUser);
             }
 
