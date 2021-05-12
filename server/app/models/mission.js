@@ -203,19 +203,20 @@ class Mission {
                 throw new NoMissionAddedError();
             };
         };
-    }
+    };
 
     /**
       * Delete a mission
       * 
       * @async
+      * @static
       * @function delete
       * @returns {Array} Instances of the class Mission.
       * @throws {Error} a potential SQL error.
       */
-    async delete () {
-        
-        const { rows } = await db.query(`DELETE FROM mission WHERE id=$1;`, [this.id]);
+    async delete() {
+    
+        const { rows } = await db.query(`DELETE FROM mission WHERE id=$1 RETURNING id;`, [this.id]);
 
         if (rows[0]) {
             return rows[0];

@@ -2,12 +2,18 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const session = require('express-session');
 
 const router = require('./app/router');
 
+<<<<<<< HEAD
 // Middleware which parses incoming requests with JSON payloads
+=======
+
+
+>>>>>>> develop
 app.use(express.json());
 
 

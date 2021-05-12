@@ -1,0 +1,17 @@
+.ui.form {
+  font-size: 1rem;
+  width: 50%;
+  margin: auto;
+}
+.ui.form .field>label {
+  display: block;
+  margin: 0 0 .28571429rem;
+  color : #fffdd8;
+  font-size: 1.2em;
+  font-weight: 700;
+  text-transform: none;
+}
+.ui.button {
+  width: 35%;
+  margin: auto;
+}
