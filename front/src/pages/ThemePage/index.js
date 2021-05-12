@@ -3,40 +3,47 @@ import { useParams } from 'react-router-dom'
 import {  Divider, Card } from 'semantic-ui-react';
 import 'src/styles/ThemePage.css';
 import ThemeProgressBar from 'src/components/ThemeProgressBar';
-import AccordionComponent from 'src/components/AccordionComponent';
-import axios from 'axios'
+// import AccordionComponent from 'src/components/AccordionComponent';
+// import axios from 'axios'
 import Mission from 'src/components/Mission';
 
-const ThemePage = ({ themes }) => {
+const ThemePage = ({ themes, allMissions, userMissionsCompleted }) => {
   
-  const [missions, setMissions] = useState([]);
+
+  
+
+  ;
+  // const [missions, setMissions] = useState([]);
   
   const { idTheme } = useParams();
+  // console.log(idTheme);
   const theme = themes.find((theme) => theme.id == idTheme);
+  // console.log(theme);
+  // console.log('Toutes les missions', userMissionsCompleted);
 
-  const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
-      .then((response) => {
-        // console.log(response.data);
-        setMissions(response.data);
-      })
-      .catch((error) => {
-        // exécuté quand la réponse arrive, si la réponse est un échec
-        // console.log(error);
+  const filterMissionsByTheme = (themeId) => {
+    const  result = allMissions.filter(mission => mission.theme_id == themeId);
+    return result;
+  }
 
-        // TODO il faudrait afficher l'information à l'utilisateur
-      })
+  // const checkUserMission = () => {
+  //   for (const mission of userMissionsCompleted) {
+  //     const input = document.getElementById(`mission-${mission.mission_id}`);
+  //     console.log(input);
+  //     if (input) {
+  //       input.closest('.toggle').classList.add('checked');
+  //     } 
+  //   }
+  // }
 
-  };
-
-  useEffect(() => {
-    loadMissions();
-  },[]);
-
-  
-
+  const missions = filterMissionsByTheme(idTheme);
+  console.log('missions complétes', userMissionsCompleted);
   console.log(missions);
+
+
+  // useEffect(()=> {
+  //   checkUserMission()
+  // })
 
   return (
     <div className="missions">
@@ -50,7 +57,9 @@ const ThemePage = ({ themes }) => {
 
           <Mission 
           key={mission.id}
-          {...mission} 
+          name={mission.id}
+          {...mission}
+          userMissionsCompleted={userMissionsCompleted} 
           />
         ))}
       </Card.Group>

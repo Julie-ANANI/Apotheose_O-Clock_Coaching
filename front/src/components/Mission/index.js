@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 
 
 import '../../styles/Mission.css';
@@ -12,26 +12,45 @@ import { Card, Accordion, Icon, Checkbox } from 'semantic-ui-react'
 const Mission = ({
   id,
   title,
-  advice
+  advice,
+  userMissionsCompleted,
 }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isChecked, setIschecked] = useState(false);
   
   const handleClick = (e, titleProps) => {
     console.log('on a cliqué', titleProps);
     const { index } = titleProps;
-    console.log(index);
-    console.log(activeIndex);
     const newIndex = activeIndex === index ? -1 : index;
     setActiveIndex(newIndex);
   }
 
+  console.log(userMissionsCompleted);
+  console.log(id);
+
+  const checkIfDone = () => {
+    const result = userMissionsCompleted.find(mission => parseInt(mission.mission_id) == parseInt(id));
+
+    if (result) {
+      setIschecked(true)
+    }
+    
+  }
+
+  useEffect(() => {
+    checkIfDone();
+  }, []);
+  
+
+
 return(
   <Card fluid className='mission-card'>
 
-  <Card.Content className='mission-card-header' >
+  <Card.Content className='mission-card-header'>
     <div className="checkbox-container">
-      <Checkbox label={title} toggle></Checkbox>
+      { isChecked == true && <Checkbox label={title} id={`missions-${parseInt(id)}`}  defaultChecked={true} toggle></Checkbox> }
+      { isChecked != true && <Checkbox label={title} id={`missions-${parseInt(id)}`}  defaultChecked={false} toggle></Checkbox>}
     </div>
   </Card.Content>
 

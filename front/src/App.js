@@ -40,29 +40,58 @@ console.log(navlinks);
 const App = () => { 
 
   const [themes, setThemes] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState({});
-  const [activeRole, setActiveRole] = useState('student')
+  // const [selectedTheme, setSelectedTheme] = useState({});
+  const [activeRole, setActiveRole] = useState('student');
+  const [userId, setUserId] = useState(3);
+  const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
+  const [allMissions, setAllMissions] = useState([]);
 
   
   const getMenuRoutes = (role) => {
     const filteredNavlinks = navlinks.filter(navlink => navlink.role === role)
     return filteredNavlinks
   }
+  // Import des Thèmes, des missions et des missions cochées par l'utilisateur
+  // Bien pensé à gérer l'erreur en renvoyant une 404. voir modèle Oclock
 
   const loadThemes = () => {
     console.log('Il faut charger les thèmes');
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
-        console.log(response.data);
         setThemes(response.data)
       })
   };
+
+  const loadUserMissions = () => {
+    console.log('Il faut charger les missions déjà effectuées par le user');
+    // Dans un premier temps on vérifie que le user loggué est bien un étudiant
+    if (activeRole === 'student') {
+      axios.get(`${base_url}/missions/users/${userId}`)
+      .then((response) => {
+        setUserMissionsCompleted(response.data)
+      })
+    } 
+  };
+
+  const loadAllMissions = () => {
+    console.log('Il faut charger toutes les missions qui existent en BDD');
+    // Dans un premier temps on vérifie que le user loggué est bien un étudiant
+    if (activeRole === 'student') {
+      axios.get(`${base_url}/missions`)
+      .then((response) => {
+        setAllMissions(response.data)
+        console.log(response.data);
+      })
+  }}
+
 
   const filteredNavlinks = getMenuRoutes(activeRole);
 
   useEffect(() => {
     loadThemes();
+    loadUserMissions();
+    loadAllMissions();
   }, []);
  
   return(
@@ -88,14 +117,22 @@ const App = () => {
         </Route>
 
         <Route path='/parcours-coaching'>
-          <Header titre={titre.parcoursCoaching.description} />
-          <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
+          <Header titre={titre.parcoursCoaching.description}  />
+          <ParcoursCoaching 
+            themes={themes} 
+            userMissionsCompleted={userMissionsCompleted.length}
+            allMissions={allMissions.length}
+          />  
         </Route> 
           
 
         <Route path= {`/theme/:idTheme`}>
           <Header titre={titre.studentMissions.description} />
-          <ThemePage themes={themes} /> 
+          <ThemePage 
+            themes={themes} 
+            allMissions={allMissions} 
+            userMissionsCompleted={userMissionsCompleted} 
+            userId={userId} /> 
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
