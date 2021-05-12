@@ -112,4 +112,11 @@ router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfO
  */
 router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
 
+
+router.post('/admin/themes/:theme_id/missions', missionController.addMission);
+
+router.post('/admin/themes/missions/:missionId', missionController.modifyMission);
+
+router.delete('/admin/missions/:missionId', missionController.deleteMission);
+
 module.exports = router;

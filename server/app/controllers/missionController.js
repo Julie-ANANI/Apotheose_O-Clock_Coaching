@@ -1,3 +1,4 @@
+const { json } = require('express');
 const Mission = require('../models/mission');
 
 const missionController = {
@@ -65,32 +66,90 @@ const missionController = {
     },
 
     addMission: async (req,res) => {
-        const { title } = req.body;
 
-        const bodyErrors = [];
+        try{
+            const { theme_id } = req.params;
+            
+            const { title, advice, position} = req.body;
 
-        if(!title){
-            bodyErrors.push('title cannot be empty');
-        };
+            const bodyErrors = [];
 
-        if(body.Errors.length){
-            res.stats(400).json(bodyErrors);
-            return;
-        }; 
+            if(!title){
+                bodyErrors.push('The title\'s mission can\'t be empty');
+            };
 
-        try {
-            const newMission = new Mission(req.body);
-            await newMission.save();
-            res.status(201).json(newMission);
+            if(bodyErrors.length){
+                res.status(400).json(bodyErrors);
+
+            } else{
+
+                const newMission = new Mission({title, advice, position, theme_id});
+                await newMission.save();
+                res.status(201).json(newMission);
+            };
         }
         catch(err){
+            
             res.status(500).json(err.message);
         };
     },
 
     modifyMission: async (req,res) =>{
+
+        try{
+            const { theme_id,missionId } = req.params;
+            const mission = await Mission.findOne(missionId);
+            console.log(mission);
+
+            if(!mission){
+                res.status(404).json(`There is no mission with this id :${missionId}!`);
+            }else{
+                const {title, advice, position}=req.body;
+
+                if(title){
+                    mission.title = title;
+                };
+
+                if(advice){
+                    mission.advice = advice;
+                };
+
+                if(position){
+                    mission.position= position;
+                };
+                
+                if(theme_id){
+                    mission.theme_id= theme_id;
+                };
+
+                const save = await mission.save();
+                res.status(200).json(save);
+            }
+
+        }catch(err){
+            res.status(500).json(err.message)
+        };
+    },
+
+    deleteMission: async (req,res) =>{
+        try{
+            const { missionId }= req.params;
+            const mission = await Mission.findOne(missionId);
+            
+
+            if(!mission){
+                res.status(404).json(`There is no misson with this id : ${missionId} `);
+            }else{
+                const deletedMission = await mission.delete();
+                res.status(200).json(deletedMission);
+            };
         
+        }catch(err){
+            res.status(500).json(err.message);
+        };
     }
+
+    
 
 };
 
