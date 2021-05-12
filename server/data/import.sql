@@ -25,7 +25,7 @@ VALUES
 ('Compléter le profil', E'- Prénom et nom : renseigne-les de manière à ce que l''on puisse te trouver facilement sur Google en tapant "Prénom nom github".\n- Bio : GitHub étant une plateforme internationale et fortement anglophone, il est d''usage d''écrire quelques mots en anglais si tu le peux. Sinon en français ça fera l''affaire aussi. Précise les technos sur lesquelles tu travailles et toute autre information utile, par exemple "Looking for the next challenge".\n- URL : l''adresse de ton site personnel si tu en as un.\\n- Location : ville, pays\n- Photo : une belle photo, bien évidemment !\n- Jobs profile : cocher la case "available for hire". GitHub dispose d''une plateforme intégrée d''offres d''emploi mais qui est surtout active aux USA. Ça ne fait quand même pas de mal de cocher la case.', 1, NOW(), NOW(), 3),
 ('Personnaliser le profil avec un fichier Readme', E'Nous pouvons désormais personnaliser notre page profil grâce à un simple fichier ReadMe. La personnsalisation de celle-ci nous permet d''y ajouter de la couleur et des informations, ainsi rendant notre profil GitHub bien plus attractif !\nN''hésite pas de suivre le super tutorial de Nicolas Brondin-Bernard, ou à t''inspirer du profil (sans faire de copier/coller, bien-sûr) d''un de nos anciens étudiants qui est aujourd''hui en poste.', 2, NOW(), NOW(), 3),
 ('Afficher les statistiques d''activité sur les dépôts privés', E'Par défaut, le graphique de tes contributions de l''année (carrés verts) ne comptabilise que tes commits sur les dépôts publics.\nTu peux toutefois le paramétrer pour qu''il prenne en compte également tes commits sur dépôts privés. Bien entendu, les visiteurs n''auront pas pour autant accès au détail de tes commits sur ces dépôts privés.\nCela se paramètre via le lien "Contribution settings"', 3, NOW(), NOW(), 3),
-('Active les notifications de recherche d’emploi en fonction de tes souhaits', E'C''est ce qui te permettra d’être alerté très rapidement lorsqu''une offre d''emploi ou de stage (qui correspond à tes critères) est publiée sur Linkedin. Tu peux même ajouter jusqu''à 10 alertes avec des critères différentes (très pratique lorsqu''on est mobile dans plusieurs villes).\\n\\nL''activation des alertes emploi est simple : Il suffit de cliquer sur la catégorie "Emplois" en haut d''une page Linkedin et de remplir les différents champs de critères (Intitulé de poste, Ville...). Tu verras ensuite un switch "Alerte emploi désactivée". Tu peux donc cliquer sur ce bouton pour l''activer, en précisant si tu souhaites recevoir les alertes quotidiennement ou hebdomadairement, et si tu préfères être notifé par mail ou simplement par une notification sur Linkedin.\\n\\nSi tu aimerais désactiver certaines alertes, tu n''aurais qu''à cliquer de nouveau sur le switch pour faire le tri entre les alertes que tu souhaites garder et celles que tu souhaites retirer.', 1, NOW(), NOW(), 4),
+('Activer les notifications de recherche d’emploi en fonction de tes souhaits', E'C''est ce qui te permettra d’être alerté très rapidement lorsqu''une offre d''emploi ou de stage (qui correspond à tes critères) est publiée sur Linkedin. Tu peux même ajouter jusqu''à 10 alertes avec des critères différentes (très pratique lorsqu''on est mobile dans plusieurs villes).\\n\\nL''activation des alertes emploi est simple : Il suffit de cliquer sur la catégorie "Emplois" en haut d''une page Linkedin et de remplir les différents champs de critères (Intitulé de poste, Ville...). Tu verras ensuite un switch "Alerte emploi désactivée". Tu peux donc cliquer sur ce bouton pour l''activer, en précisant si tu souhaites recevoir les alertes quotidiennement ou hebdomadairement, et si tu préfères être notifé par mail ou simplement par une notification sur Linkedin.\\n\\nSi tu aimerais désactiver certaines alertes, tu n''aurais qu''à cliquer de nouveau sur le switch pour faire le tri entre les alertes que tu souhaites garder et celles que tu souhaites retirer.', 1, NOW(), NOW(), 4),
 ('Comprendre le fonctionnement de la barre de recherche', E'Le fonctionnement de la barre de recherche est la première chose à comprendre avant de commencer à faire des recherches. Il faut savoir qu''il existe 7 catégories de résultats différentes sur LinkedIn : Emplois, Personnes, Entreprises, Posts, Groupes, Écoles et Événements.\\n\\nPeu importe la catégorie de recherche souhaitée, le fonctionnement reste le même :\\n\\n- Dans la barre de recherche, note les mots clés souhaités (par exemple, "développement web") et clique sur Entrée\\n\\n- Tu verras tous types de résultats, ainsi qu''une nouvelle barre de recherche contenant les différents noms de catégories\\n\\n- Il suffit de cliquer sur la catégorie recherchée pour tomber sur les résultats les mieux ciblés', 2, NOW(), NOW(), 4),
 ('Rejoindre des groupes de discussion', E'Les groupes de discussion sur Linkedin te seront utiles pour faire de la veille technique, pour surveiller ton marché de prédilection, ainsi que pour faire du réseautage. Tu peux créer ton propre groupe, ou alors rejoindre un des milliers déjà existants.\\n\\nComment retrouver ces groupes ? En partant de Produits puis Groupes, tu arriveras sur une page avec l''option Découvrir. Cliques dessus, pour arriver sur une grande liste de tous les groupes existants sur LinkedIn. Note que la barre de recherche sera filtrée pour les groupes lorsque tu as cliqué sur le bouton Découvrir qui liste ceux-ci.\\n\\nTu peux maintenant taper dans la barre de recherche les mots clés qui t''intéressent (Par exemple : WordPress, React, NodeJS, Symfony etc) et cliquer sur entrée pour visualiser les groupes qui traitent précisement ces sujets. Lorsque tu trouveras une groupe que tu aimerais rejoindre, il suffit de cliquer sur l''intitulé de groupe, et ensuite sur Demande d''adhésion.', 3, NOW(), NOW(), 4),
 ('Un logo (ou pas)', E'Si en plus d''être développeur tu es également graphiste ou que tu as une fibre créative, pourquoi pas te lancer dans la conception d''un logo.\\n\\nMais sinon...\\n\\nSi tu n''as jamais réalisé de logos à titre professionnel, il y a peu de chance pour que ta première création soit correcte.\\n\\nMais surtout, qui a dit qu''il fallait absolument avoir un logo ?! Certes, il faut un titre à ton site, ton nom, ta spécialité, etc. Pourquoi pas choisir une police (simple) et une couleur, mais ne te prend pas la tête avec un logo si c''est pas dans ton domaine d''expertise.', 1, NOW(), NOW(), 5),
@@ -49,14 +49,21 @@ VALUES
 (4627, true, NOW(), NOW()),
 (4625, true, NOW(), NOW()),
 (4639, false, NOW(), NOW()),
-(4642, false, NOW(), NOW());
+(4642, false, NOW(), NOW()),
+(4758, false, NOW(), NOW());
 
 
-INSERT INTO interact (is_checked, created_at, modified_at,mission_id, "user_id")
+INSERT INTO interact (created_at, modified_at,mission_id, "user_id")
 VALUES 
-(true, NOW (), NOW() + '1 day', 5, 3),
-(true, NOW (), NOW() + '1 day', 6, 3),
-(true, NOW (), NOW() + '1 day', 9, 3),
-(true, NOW (), NOW() + '1 day', 10, 3),
-(true, NOW (), NOW() + '1 day', 13, 3);
+(NOW (), NOW() + '1 day', 5, 3),
+(NOW (), NOW() + '1 day', 6, 3),
+(NOW (), NOW() + '1 day', 9, 3),
+(NOW (), NOW() + '1 day', 10, 3),
+(NOW (), NOW() + '1 day', 13, 3),
+(NOW (), NOW() + '1 day', 20, 4),
+(NOW (), NOW() + '1 day', 21, 4),
+(NOW (), NOW() + '1 day', 22, 4),
+(NOW (), NOW() + '1 day', 23, 4),
+(NOW (), NOW() + '1 day', 1, 5),
+(NOW (), NOW() + '1 day', 2, 5);
 

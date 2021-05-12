@@ -69,22 +69,62 @@ GET http://localhost:3000/v1/api/missions/7/users/3
 
 ###
 
+# Le score du theme 2 d'un user 3 
+GET http://localhost:3000/v1/api/students/3/themes/2/score
+
+###
+
+# Le score globale d'un user 3
+GET http://localhost:3000/v1/api/students/3/score
+
+###
+
+
 # Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
-POST http://localhost:3000/v1/api/user/missions
+POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "is_checked": true,
     "mission_id": 12,
     "user_id": 3
 }
 
 ###
 
+
 # Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
-DELETE http://localhost:3000/v1/api/missions/12/users/3
+DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
+Content-Type: application/json
+
+###
+
+# Ajouter une mission donnée dans theme 2
+POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "is_checked": false
+    "title": "Hola",
+    "advice": "Hola hola",
+    "position":"2"
 }
+###
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/2
+Content-Type: application/json
+
+{
+    "advice": "aaaaah"
+}
+
+###
+
+
+#Delete mission 6
+DELETE http://localhost:3000/v1/api/admin/missions/6
+Content-Type: application/json
+
+###
+
+
+

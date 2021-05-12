@@ -69,7 +69,7 @@ router.get('/missions/:missionId/users/:userId', interactController.getOneByMiss
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.post('/user/missions', interactController.createCheckboxValue);
+router.post('/student/interact/', interactController.checkBox);
 
 /**
  * Deletes a record in database for a mission id and a user id
@@ -77,7 +77,7 @@ router.post('/user/missions', interactController.createCheckboxValue);
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.delete('/missions/:missionId/users/:userId', interactController.deleteCheckboxValue);
+router.delete('/student/interact/missions/:missionId/users/:userId', interactController.uncheckBox);
 
 /**
  * Returns a user from the database with its id
@@ -97,5 +97,40 @@ router.get('/users/:id', userController.getOneUser);
 router.get('/users', userController.getAllusers);
 
 
+/**
+ * Returns the score of a theme and a user
+ * @route GET /student/:userId/themes/:themeId/score
+ * @returns {Object} 200 - An object of a theme's score of a user
+ */
+router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfOneThemeOfOneUser);
+
+
+/**
+ * Returns the global score of a user
+ * @route GET /students/:userId/score
+ * @returns {Object} 200 - An object of a score global of a user
+ */
+router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
+
+/**
+ * Create and return the new mission
+ * @route POST /admin/themes/:theme_id/missions
+ * @returns {Object} 201 - An object of the new mission
+ */
+router.post('/admin/themes/:theme_id/missions', missionController.addMission);
+
+/**
+ * Modify and returns the id of the modify mission
+ * @route POST /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission modified
+ */
+router.post('/admin/missions/:missionId', missionController.modifyMission);
+
+/**
+ * Delete the mission and returns the id of the mission deleted
+ * @route DELETE /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission deleted
+ */
+router.delete('/admin/missions/:missionId', missionController.deleteMission);
 
 module.exports = router;
