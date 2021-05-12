@@ -112,7 +112,7 @@ Content-Type: application/json
 
 
 # Créer un nouveau thème
-POST http://localhost:3000/v1/api/themes
+POST http://localhost:3000/v1/api/admin/themes
 Content-Type: application/json
 
 {
@@ -125,7 +125,7 @@ Content-Type: application/json
 
 
 # Modifier un thème
-POST http://localhost:3000/v1/api/themes/1
+POST http://localhost:3000/v1/api/admin/themes/1
 Content-Type: application/json
 
 {    
@@ -136,6 +136,6 @@ Content-Type: application/json
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/themes/2
+DELETE http://localhost:3000/v1/api/admin/themes/2
 Content-Type: application/json
 ###

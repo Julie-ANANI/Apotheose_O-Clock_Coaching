@@ -2,12 +2,35 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const expressSwagger = require('express-swagger-generator')(app);
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 
 const router = require('./app/router');
 
+let options = {
+    swaggerDefinition: {
+        info: {
+            description: 'A coaching REST API',
+            title: 'Coaching',
+            version: '1.0.0',
+        },
+        host: `localhost:${PORT}`,
+        basePath: '/v1/api',
+        produces: [
+            "application/json",
+            "application/xml"
+        ],
+        schemes: ['http', 'https']
+    },
+    basedir: __dirname, //app absolute path
+    files: [
+        './app/router.js',
+        './app/models/*.js'
+    ] //Path to the API handle folder
+};
 
+expressSwagger(options);
 
 app.use(express.json());
 
