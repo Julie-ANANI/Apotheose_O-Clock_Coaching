@@ -28,11 +28,25 @@ router.get('/themes/:id', themeController.getOneTheme);
  * add a new theme in the database with new id
  * @route POST /themes
  * @group A Theme
- * @returns {<Theme>} 200 - An instance of new theme
+ * @returns {<New Theme>} 200 - An instance of new theme
  */
+router.post('/themes', themeController.addNewTheme);
 
-router.post('/themes', themeController.addNew);
-//router.post('/theme/:themeId')
+/**
+ * change theme in the database with this id
+ * @route POST /themes/ :themeId
+ * @group A Theme
+ * @returns {<Theme>} 200 - an update in the theme
+ */
+router.post('/themes/:themeId', themeController.changeTheme);
+
+/**
+ * delete a theme in the database with this id
+ * @route POST /themes/ :themeId
+ * @group A Theme
+ * @returns {<Theme>} 200 - Suppression the id theme in the database
+ */
+router.delete('/themes/:themeId', themeController.deleteTheme);
 
 /**
  * Returns all missions from the database

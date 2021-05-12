@@ -48,22 +48,47 @@ const themeController = {
     },
 
 
-    addNew: async (req, res) => {
+    /**
+    * It's control the road POST /v1/api/themes/:themeId
+    */
+    changeTheme: async (req, res) => {
         try {  
             
+            // recuperation of id une request 
+            const {themeId} = req.params; 
+            // verify if theme exists in the database
+            const theme = await Theme.findOne(themeId);
+    
+                if (!theme) {
+                    res.status(404).json(err.message);
+
+                } else {
+                    // recuperation of infos body if id exists
+                    const { title, description, position } = req.body;
                 
-                const { title, description, position} = req.body;
-                const bodyJS = (req.body).JSON.parse
-                console.log(JSON.stringify(bodyJS));
+                    //replace title if new modification
+                    if (title) {
+                        theme.title = title;
+                    }
+                    // replace description if new description 
+                    if (description) {
+                        theme.description = description;
+                    }
+                    // replace position if new position
+                    if(position) {
+                        theme.position = position;
+                    
+                    } 
+                    // execute methode update in the model Theme
+                    await theme.update();
+                    res.status(200).json(theme);
+                  
+                }
+            }
 
-                const newTheme = new Theme({ title, description, position });
-                await newTheme.save2();
-
-                res.status(200).json(newTheme);
-                console.log(newTheme);
-            }catch(err) {
+            catch(err) {
                 res.status(404).json(err.message);
-            }    console.log(req.body);
+            }    
     },
 
 
@@ -71,15 +96,12 @@ const themeController = {
     * It's control the road POST /v1/api/themes
     */
     addNewTheme: async (req, res) => {
-        try {
-            console.log(`je rentre dasn ADDTEHEM`);
-            
+        try {  
             // We get the body parameters of the request from req.body
             const { title, description, position} = req.body;
-            console.log(req.body);
+
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
-
 
             if (!title) {
                bodyErrors.push(`title is cannot be empty`);
@@ -106,6 +128,39 @@ const themeController = {
             res.status(500).json(err.message);
         }
     },
+
+
+
+    /**
+    * It's control the road GET /v1/api/themes/:id
+    */
+   deleteTheme: async (req, res) => {
+
+    try {
+        /**
+         * We get the id in the parameters of the request
+         */
+        const { themeId } = req.params;
+        // verify theme id is exists in the database
+        const theme = await Theme.findOne(themeId);
+
+        if(!theme){
+            res.status(404).send(`id do not exists`);
+        }else {
+        // active methode async delete in the model theme
+        const  deleteTheme = await theme.delete();
+        res.status(200).json(deleteTheme);
+    }
+    } catch(err) {
+        /**
+        * There is no this theme in the database
+        * In the model, there is an error with a custom message
+        */
+        res.status(404).json(err.message);
+    }
+},
+
+
 };
 
 module.exports = themeController;

@@ -1,0 +1,22 @@
+0000000000000000000000000000000000000000 28af1862c653b215197337c5445991898d05f1c6 Julie-ANANI <julie.anani@outlook.com> 1620310867 +0200	branch: Created from HEAD
+28af1862c653b215197337c5445991898d05f1c6 d940ce852bc119bfeaaa9399cd23ccc55ea8f391 Julie-ANANI <julie.anani@outlook.com> 1620327598 +0200	commit: test requete route intermedaire
+d940ce852bc119bfeaaa9399cd23ccc55ea8f391 5c2434b485aaccfaf2da00eab5258d9fbf56d379 Julie-ANANI <julie.anani@outlook.com> 1620338844 +0200	commit: autre test
+5c2434b485aaccfaf2da00eab5258d9fbf56d379 535520a8f60539fe2035743d06285db6188944dd Julie-ANANI <julie.anani@outlook.com> 1620385561 +0200	commit: another test
+535520a8f60539fe2035743d06285db6188944dd 1baefcd2af6547a10c81b4b5c5841b92e7288886 Julie-ANANI <julie.anani@outlook.com> 1620387488 +0200	commit: ajout controllers interact
+1baefcd2af6547a10c81b4b5c5841b92e7288886 ef78f7ec27547be2f336e835ccc3ae363e1255c3 Julie-ANANI <julie.anani@outlook.com> 1620387859 +0200	commit: modification methode changeStateChecked
+ef78f7ec27547be2f336e835ccc3ae363e1255c3 2112248acbe60f376c64be1d6d03b95bae191861 Julie-ANANI <julie.anani@outlook.com> 1620388078 +0200	commit (merge): pull develop + resolution conflit
+2112248acbe60f376c64be1d6d03b95bae191861 7db0186bd6edf965ef2ab4de9dbf90d8c2ac8b94 Julie-ANANI <julie.anani@outlook.com> 1620397056 +0200	commit: route fonctionnal intermediate ok
+7db0186bd6edf965ef2ab4de9dbf90d8c2ac8b94 91e92e5123d6c17bcad438d75da41595045622cd Julie-ANANI <julie.anani@outlook.com> 1620407160 +0200	commit: test in progress
+91e92e5123d6c17bcad438d75da41595045622cd ec3348772cf6db1e1fe69b4ccb69977be6dbd8f6 Julie-ANANI <julie.anani@outlook.com> 1620412318 +0200	commit: add select exists
+ec3348772cf6db1e1fe69b4ccb69977be6dbd8f6 b4c58da2f318a3471cbf0b161bc7992044c879af Julie-ANANI <julie.anani@outlook.com> 1620413347 +0200	commit: route repared get all interact
+b4c58da2f318a3471cbf0b161bc7992044c879af 6271dba3901330de787c111ee7df13d202ea7cd5 Julie-ANANI <julie.anani@outlook.com> 1620417529 +0200	commit: resolution route get one interact in progress
+6271dba3901330de787c111ee7df13d202ea7cd5 51f378630e4719634d3a93507c987fa879e4b999 Julie-ANANI <julie.anani@outlook.com> 1620568548 +0200	commit: rresearch again in progress
+51f378630e4719634d3a93507c987fa879e4b999 8b839e9b66e1d462b5a5c04a1781335d5c32b2e5 Julie-ANANI <julie.anani@outlook.com> 1620575453 +0200	commit: test one parameter ok but 3 parameter not ok
+8b839e9b66e1d462b5a5c04a1781335d5c32b2e5 e5c3bea442f847d31fc8a854cae04a11d370f057 Julie-ANANI <julie.anani@outlook.com> 1620580261 +0200	commit: test post in false information ok, in $ not ok
+e5c3bea442f847d31fc8a854cae04a11d370f057 5dc3f1bf8a06252f91ae7ea7d768d7dc70261a4f Julie-ANANI <julie.anani@outlook.com> 1620584861 +0200	commit: resolution in progress
+5dc3f1bf8a06252f91ae7ea7d768d7dc70261a4f 17cd43422e13d8b5a2885ca31a0265b19de5f63c Julie-ANANI <julie.anani@outlook.com> 1620585408 +0200	commit: loose good config
+17cd43422e13d8b5a2885ca31a0265b19de5f63c 230d70ac634607d4137ba93c3a305db43769af40 Julie-ANANI <julie.anani@outlook.com> 1620590224 +0200	commit: commit for issue
+230d70ac634607d4137ba93c3a305db43769af40 98a7b59f474e83e869267bec78e85f08eb39cd47 Julie-ANANI <julie.anani@outlook.com> 1620592193 +0200	commit: end day'
+98a7b59f474e83e869267bec78e85f08eb39cd47 ec0ea98252d90ddf25eb7b033e74bc17a6727abd Julie-ANANI <julie.anani@outlook.com> 1620631364 +0200	commit: refacto
+ec0ea98252d90ddf25eb7b033e74bc17a6727abd 8960881260c8f2cb68537e7eb286911c40a921dc Julie-ANANI <julie.anani@outlook.com> 1620631882 +0200	commit (merge): resolution conflit
+8960881260c8f2cb68537e7eb286911c40a921dc a9070eeb3e9d13a91b6421d9d0447ee4c8add45d Julie-ANANI <julie.anani@outlook.com> 1620634545 +0200	commit: change file api.http
