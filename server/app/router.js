@@ -5,6 +5,10 @@ const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 
+const { validateBody } = require('./services/validator');
+const missionSchema = require('./schemas/missionSchema');
+const themeSchema = require('./schemas/themeSchema');
+
 const router = Router();
 
 /**
@@ -117,14 +121,14 @@ router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser
  * @route POST /admin/themes/:theme_id/missions
  * @returns {Object} 201 - An object of the new mission
  */
-router.post('/admin/themes/:theme_id/missions', missionController.addMission);
+router.post('/admin/themes/:theme_id/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Modify and returns the id of the modify mission
  * @route POST /admin/missions/:missionId
  * @returns {Object} 200 - An object of the id's mission modified
  */
-router.post('/admin/missions/:missionId', missionController.modifyMission);
+router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMission), missionController.modifyMission);
 
 /**
  * Delete the mission and returns the id of the mission deleted
