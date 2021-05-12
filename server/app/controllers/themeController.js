@@ -19,7 +19,7 @@ const themeController = {
             * In the model, there is an error with a custom message
             */
             res.status(404).json(err.message);
-        }
+        };
 
     },
 
@@ -44,8 +44,24 @@ const themeController = {
             * In the model, there is an error with a custom message
             */
             res.status(404).json(err.message);
-        }
+        };
     },
+
+    /**
+    * It's control the road GET v1/api/students/:userId/themes/:themeId/score
+    */
+    getScoreOfOneThemeOfOneUser: async(req,res) =>{
+        try{
+            const { themeId, userId } = req.params;
+
+            const score = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
+            res.status(200).json(score);
+        }
+        catch(err){
+
+            res.status(400).json(err.message);
+        };
+    }
 
 };
 
