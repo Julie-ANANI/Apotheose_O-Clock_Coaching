@@ -4,6 +4,7 @@ const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
+const adminController = require('./controllers/adminController');
 
 const router = Router();
 
@@ -105,12 +106,20 @@ router.get('/users', userController.getAllusers);
 router.post('/login', userController.login);
 
 /**
- * Logs out the user with the O'Clock API
+ * Logs out the user from the backend
  * @route POST /login
  * @group Login
- * @returns 200 - A message confirming the user is logged out in back-end
+ * @returns 200 - A message confirming the user is logged out in backend
  */
 router.post('/login', userController.login);
+
+/**
+ * Updates a user record with admin status
+ * @route POST /admin/add
+ * @group Admin
+ * @returns {<User>} 200 - An instance of User class
+ */
+router.post('/admin/add', adminController.addAdmin);
 
 
 module.exports = router;

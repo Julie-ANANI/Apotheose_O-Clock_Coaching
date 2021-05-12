@@ -92,10 +92,24 @@ const User = require('./app/models/user');
 
 // Getting the value of checkbox for user_id 3 and mission 5
 // Test ok
+// (async () => {
+//     try {
+//         const theInteract = await Interact.findOne(3, 5);
+//         console.log(theInteract);
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// })();
+
+// Passing user with id 6's admin status to true
+// Test ok
 (async () => {
     try {
-        const theInteract = await Interact.findOne(3, 5);
-        console.log(theInteract);
+        const theUser = await User.findOne(6);
+        console.log(theUser);
+        theUser.admin_status = true;
+        theUser.save();
     } catch (error) {
         console.log(error);
     }

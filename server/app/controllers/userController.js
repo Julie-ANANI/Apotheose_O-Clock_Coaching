@@ -1,7 +1,6 @@
 require('dotenv').config();
 const User = require('../models/user');
 const fetch = require('node-fetch');
-const FormData = require('form-data');
 
 
 const userController = {
@@ -58,13 +57,12 @@ const userController = {
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;
 
-        console.log(obj);
         // TODO: fix fetch call
         // for now, the fetch doesn't work, it returns "{ success: false, message: 'Identifiants invalides.', data: [] }"
         try {
             const response = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
                 method: 'POST',
-                body: JSON.parse({
+                body: JSON.stringify({
                     login_email: `${login_email}`,
                     login_password: `${login_password}`
                 }),
