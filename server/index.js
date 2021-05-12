@@ -7,9 +7,9 @@ const session = require('express-session');
 
 const router = require('./app/router');
 
+// Middleware which parses incoming requests with JSON payloads
 app.use(express.json());
 
-app.use(express.urlencoded({extended: true}));
 
 // Establishing a session system so we can store the info of each user
 app.use(session({
@@ -20,6 +20,7 @@ app.use(session({
     //secret is used to encrypt  the session identifier placed in the cookie sent to the client
     secret: 'fqldkfhzlkkjhqlrhql'
 }));
+
 
 // Allowing cross-origin requests in development
 if (process.env.NODE_ENV === 'development') {

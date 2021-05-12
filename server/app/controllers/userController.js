@@ -1,7 +1,7 @@
 require('dotenv').config();
 const User = require('../models/user');
 const fetch = require('node-fetch');
-const { request } = require('express');
+const FormData = require('form-data');
 
 
 const userController = {
@@ -58,12 +58,13 @@ const userController = {
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;
 
+        console.log(obj);
         // TODO: fix fetch call
         // for now, the fetch doesn't work, it returns "{ success: false, message: 'Identifiants invalides.', data: [] }"
         try {
-            await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
+            const response = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
                 method: 'POST',
-                body: JSON.stringify({
+                body: JSON.parse({
                     login_email: `${login_email}`,
                     login_password: `${login_password}`
                 }),
@@ -72,16 +73,17 @@ const userController = {
                     // We need to get an API KEY and to store it in the .env file
                     'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
                 }
-            }).then(res => res.json())
-                .then(json => console.log(json))
-                .catch(err => console.log(err.message));
+            });
 
-            const apiUser = json;
+            const apiUser = await response.json();
             console.log(apiUser);
+            // .then(res => res.json())
+            //     .then(json => console.log(json))
+            //     .catch(err => console.log(err.message));
 
             // if the API call returns false, we send an authentication error
-            if (!apiUser) {
-                res.status(401).json('Authentication failed');
+            if (!apiUser.success) {
+                res.status(401).json(`Authentication failed : ${apiUser.message}`);
             } else {
                 // If the authentication succeeds, the API sends a user object
                 // based on the user object returned when testing the external API in Insomnia,
@@ -119,9 +121,10 @@ const userController = {
         }
     },
 
+
     logout: (req, res) => {
         req.session.user = false;
-        res.status(200).json('User logged out in back-end');
+        res.status(204).json('User successfully logged out in back-end');
     }
 
 }
