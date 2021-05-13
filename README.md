@@ -1,6 +1,6 @@
 # Projet-03-oap
 
-![o'Coaching](https://raw.githubusercontent.com/O-clock-Quill/projet-03-oap/281e8237ae55701555cfe48286cc3a8f464dbd24/front/src/assets/logos/Logo%20de%20O_coaching%20-%20green%20and%20red%20svg.svg?token=AR3OJNTRODHI4O3ZA4M5M5DATVM7K)
+![o'Coaching](https://raw.githubusercontent.com/O-clock-Quill/projet-03-oap/40d10cada074fbca57b1c8cfaf749b87edcbe84d/front/src/assets/logos/Logo%20de%20O_coaching%20-%20green%20and%20red%20svg.svg?token=AR3OJNROLY23VFE2JWQV43TATVOIE)
  [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 ## Présentation du projet 
