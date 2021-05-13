@@ -127,11 +127,11 @@ router.get('/users', userController.getAllusers);
 
 
 /**
- * Returns the score of a theme and a user
+ * Returns the score of a user for a theme
  * @route GET /student/:userId/themes/:themeId/score
  * @returns {Object} 200 - An object of a theme's score of a user
  */
-router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfOneThemeOfOneUser);
+router.get('/students/:userId/themes/:themeId/score', interactController.getScorebyThemeAndUser);
 
 
 /**
@@ -139,7 +139,7 @@ router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfO
  * @route GET /students/:userId/score
  * @returns {Object} 200 - An object of a score global of a user
  */
-router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
+router.get('/students/:userId/score', interactController.getGlobalScoreByUser);
 
 /**
  * Create and return the new mission

@@ -9,7 +9,7 @@ GET http://localhost:3000/v1/api/themes/3
 
 
 # Un seul thème qui n'existe pas 
-GET http://localhost:3000/v1/api/themes/5
+GET http://localhost:3000/v1/api/themes/35
 ### 
 
 
@@ -27,12 +27,6 @@ GET http://localhost:3000/v1/api/themes/5/missions
 GET http://localhost:3000/v1/api/themes/2/missions
 ###
 
-
-# Tous les missions 
-GET http://localhost:3000/v1/api/themes/2/missions
-###
-
-
 # Un utilisteur interne dans notre api
 GET http://localhost:3000/v1/api/users/1
 ###
@@ -44,12 +38,12 @@ GET http://localhost:3000/v1/api/users
 
 
 # Toutes les coches d'un utilisateur 1
-GET http://localhost:3000/v1/api/missions/users/1
+GET http://localhost:3000/v1/api/missions/users/3
 ###
 
 
 # Les valeurs de case à cocher pour l'utilisateur 1
-GET http://localhost:3000/v1/api/missions/users/1
+GET http://localhost:3000/v1/api/missions/users/3
 ###
 
 
@@ -59,16 +53,26 @@ GET http://localhost:3000/v1/api/missions/5/users/1
 
 
 # La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 
-GET http://localhost:3000/v1/api/missions/7/users/3
+GET http://localhost:3000/v1/api/missions/4/users/7
 ###
 
-# Le score du theme 2 d'un user 3 
-GET http://localhost:3000/v1/api/students/3/themes/2/score
+# Le score du theme 7 d'un user 4
+GET http://localhost:3000/v1/api/students/4/themes/7/score
 
 ###
 
-# Le score globale d'un user 3
-GET http://localhost:3000/v1/api/students/3/score
+# Le score du theme 1 d'un user 5
+GET http://localhost:3000/v1/api/students/5/themes/1/score
+
+###
+
+# Le score global d'un user 4
+GET http://localhost:3000/v1/api/students/4/score
+
+###
+
+# Le score global d'un user 5
+GET http://localhost:3000/v1/api/students/5/score
 
 ###
 
