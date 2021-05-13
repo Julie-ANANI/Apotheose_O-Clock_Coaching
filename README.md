@@ -105,4 +105,14 @@ Il faut se diriger vers le dossier *server* et lancer le script suivant :
 cd server/ && npm start
 ```
 
+## Contributeurs 
 
+Product Owner: [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
+
+Scrum master: [Aurélie Chicart](https://github.com/aureliechicart)
+
+Lead dev Front: [Madine BA](https://github.com/mabakayaro)
+
+Lead dev Back: [Julie Anani](https://github.com/Julie-ANANI)
+
+Git Master: [Mahanore Tetuanui](https://github.com/MahanoraTetuanui)
