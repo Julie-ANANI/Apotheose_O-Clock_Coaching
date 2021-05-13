@@ -112,7 +112,6 @@ class Mission {
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM mission;');
-        console.log(rows);
         if (rows) {
             return rows.map(row => new Mission(row));
         }else{
