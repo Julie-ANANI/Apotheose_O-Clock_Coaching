@@ -13,7 +13,7 @@ const themeSchema = require('./schemas/themeSchema');
 
 const router = Router();
 
-// -------------------------------- THEME ROAD -------------------------------------
+// -------------------------------- THEME ROUTE -------------------------------------
 //
 //
 /**
@@ -40,7 +40,6 @@ router.get('/themes/:id(\\d+)', themeController.getOneTheme);
  * @group Themes
  * @param {string} title.path.required - the title
  * @param {string} description- the description
- * @param {string} position - the position
  * @returns {<New Theme>} 200 - An instance of new theme
  */
 router.post('/admin/themes',validateBody(themeSchema.newTheme), themeController.addNewTheme);
@@ -52,7 +51,6 @@ router.post('/admin/themes',validateBody(themeSchema.newTheme), themeController.
  * @param {number} themeId.path.required - the theme id
  * @param {string} title - the title
  * @param {string} description- the description
- * @param {string} position - the position
  * @returns {<Theme>} 200 - an update in the theme
  */
 router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme), themeController.changeTheme);
@@ -69,7 +67,7 @@ router.delete('/admin/themes/:themeId(\\d+)',  themeController.deleteTheme);
 //
 // --------------------------------------END------------------------------------------
 //
-// -------------------------------- MISSION ROAD -------------------------------------
+// -------------------------------- MISSION ROUTE -------------------------------------
 //
 //
 /**
@@ -105,7 +103,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {number} theme_id.path.required - the theme id
  * @param {string} title.path.required - the title
  * @param {string} advice- the description
- * @param {string} position - the position
+ * @security JWT
  * @returns {Object} 201 - An object of the new mission
  */
 router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
@@ -117,7 +115,6 @@ router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema
  * @param {number} missionId.path.required - the mission id
  * @param {string} title - the title
  * @param {string} advice- the description
- * @param {string} position - the position
  * @returns {Object} 200 - An object of the id's mission modified
  */
 router.post('/admin/missions/:missionId(\\d+)',validateBody(missionSchema.updateMission), missionController.modifyMission);
@@ -134,7 +131,7 @@ router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMissio
 //
 // --------------------------------------END------------------------------------------
 //
-// -------------------------------- INTERACT ROAD -------------------------------------
+// -------------------------------- INTERACT ROUTE -------------------------------------
 //
 //
 /**
@@ -177,7 +174,7 @@ router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)',
 //
 // --------------------------------------END------------------------------------------
 //
-// -------------------------------- USERS ROAD -------------------------------------
+// -------------------------------- USERS ROUTE -------------------------------------
 //
 //
 /**
@@ -201,7 +198,7 @@ router.get('/users', userController.getAllusers);
 //
 // --------------------------------------END------------------------------------------
 //
-// -------------------------------- SCORE ROAD -------------------------------------
+// -------------------------------- SCORE ROUTE -------------------------------------
 //
 //
 /**

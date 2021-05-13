@@ -10,6 +10,7 @@ const router = require('./app/router');
 
 let options = {
     swaggerDefinition: {
+
         info: {
             description: 'A coaching REST API',
             title: 'Coaching',
@@ -21,7 +22,15 @@ let options = {
             "application/json",
             "application/xml"
         ],
-        schemes: ['http', 'https']
+        schemes: ['http', 'https'],
+        securityDefinitions: {
+            JWT: {
+                type: 'apiKey',
+                in: 'header',
+                name: 'Authorization',
+                description: "",
+            }
+        }
     },
     basedir: __dirname, //app absolute path
     files: [
