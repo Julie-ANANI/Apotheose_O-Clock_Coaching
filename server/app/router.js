@@ -1,10 +1,12 @@
 const { Router } = require('express');
 
+//Controllers
 const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 
+//Schema(Missio, Theme) and the ValidateBody
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
@@ -12,7 +14,8 @@ const themeSchema = require('./schemas/themeSchema');
 const router = Router();
 
 // -------------------------------- THEME ROAD -------------------------------------
-
+//
+//
 /**
  * Returns all themes from the database
  * @route GET /themes
@@ -35,6 +38,9 @@ router.get('/themes/:id(\\d+)', themeController.getOneTheme);
  * add a new theme in the database with new id
  * @route POST /admin/themes
  * @group Themes
+ * @param {string} title.path.required - the title
+ * @param {string} description- the description
+ * @param {string} position - the position
  * @returns {<New Theme>} 200 - An instance of new theme
  */
 router.post('/admin/themes',validateBody(themeSchema.newTheme), themeController.addNewTheme);
@@ -59,11 +65,13 @@ router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme
  * @returns {<Theme>} 200 - Suppression the id theme in the database
  */
 router.delete('/admin/themes/:themeId(\\d+)',  themeController.deleteTheme);
-
-// END ---------------------------------------------------------------------
-
+//
+//
+// --------------------------------------END------------------------------------------
+//
 // -------------------------------- MISSION ROAD -------------------------------------
-
+//
+//
 /**
  * Returns all missions from the database
  * @route GET /missions
@@ -95,6 +103,9 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @route POST /admin/themes/{theme_id}/missions
  * @group Missions
  * @param {number} theme_id.path.required - the theme id
+ * @param {string} title.path.required - the title
+ * @param {string} advice- the description
+ * @param {string} position - the position
  * @returns {Object} 201 - An object of the new mission
  */
 router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
@@ -104,6 +115,9 @@ router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema
  * @route POST /admin/missions/{missionId}
  * @group Missions
  * @param {number} missionId.path.required - the mission id
+ * @param {string} title - the title
+ * @param {string} advice- the description
+ * @param {string} position - the position
  * @returns {Object} 200 - An object of the id's mission modified
  */
 router.post('/admin/missions/:missionId(\\d+)',validateBody(missionSchema.updateMission), missionController.modifyMission);
@@ -116,12 +130,13 @@ router.post('/admin/missions/:missionId(\\d+)',validateBody(missionSchema.update
  * @returns {Object} 200 - An object of the id's mission deleted
  */
 router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMission);
-
-
-//-----------------------------------END------------------------------------
-
+//
+//
+// --------------------------------------END------------------------------------------
+//
 // -------------------------------- INTERACT ROAD -------------------------------------
-
+//
+//
 /**
  * Returns all checkbox values for a user id
  * @route GET /missions/users/{userId}
@@ -158,12 +173,13 @@ router.post('/student/interact/', interactController.checkBox);
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
 router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.uncheckBox);
-
-//---------------------------------- END -------------------------------------------------------
-
-
-//------------------------------- USERS ROAD ---------------------------------------------------------
-
+//
+//
+// --------------------------------------END------------------------------------------
+//
+// -------------------------------- USERS ROAD -------------------------------------
+//
+//
 /**
  * Returns a user from the database with its id
  * @route GET /users/{id}
@@ -181,12 +197,13 @@ router.get('/users/:id(\\d+)', userController.getOneUser);
  * @returns {Array<Themes>} 200 - An array of user
  */
 router.get('/users', userController.getAllusers);
-
-//----------------------------------END---------------------
-
-
-// -----------------------------  SCORE ROAD ----------------
-
+//
+//
+// --------------------------------------END------------------------------------------
+//
+// -------------------------------- SCORE ROAD -------------------------------------
+//
+//
 /**
  * Returns the score of a theme and a user
  * @route GET /student/{userId}/themes/{themeId}/score
