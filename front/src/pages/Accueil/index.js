@@ -9,7 +9,7 @@ const Accueil = () => {
   
 
   return(
-    <div className="accueil">
+    <div className="accueil">b
       <div className="img-container">
         <div className="img-accueil">
 

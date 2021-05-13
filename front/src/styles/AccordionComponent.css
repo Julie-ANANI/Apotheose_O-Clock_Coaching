@@ -1,4 +1,4 @@
-.ui.accordion, .ui.accordion .accordion {
+.ui.accordion, .ui.accordion .accordion.mission-accordion {
   max-width: 100%;
   text-align: center;
 }

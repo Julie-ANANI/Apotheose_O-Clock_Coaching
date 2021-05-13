@@ -42,7 +42,7 @@ const App = () => {
 
   const [themes, setThemes] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState({});
-  const [activeRole, setActiveRole] = useState('student')
+  const [activeRole, setActiveRole] = useState('admin')
 
   
   const getMenuRoutes = (role) => {

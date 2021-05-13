@@ -49,7 +49,7 @@ return(
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
       <h2 className="theme-title">{title}</h2>
-      <ModalTheme title={title} description={description} icon={iconEdit} modalTarget={themeGestion}/>
+      <ModalTheme currentTitle={title} currentDescription={description} icon={iconEdit} modalTarget={themeGestion}/>
       <Icon size='big' link name="trash" />
     </div>
   </Card.Content>
@@ -83,7 +83,7 @@ return(
             {mission.title}
           </p>
           <div className="icon-container">
-          <ModalTheme title={mission.title} description={mission.advice} icon={iconEdit} modalTarget={missionGestion}/>
+          <ModalTheme currentTitle={mission.title} currentDescription={mission.advice} icon={iconEdit} modalTarget={missionGestion}/>
             <Icon size='big' link name="trash" />
           </div>
 

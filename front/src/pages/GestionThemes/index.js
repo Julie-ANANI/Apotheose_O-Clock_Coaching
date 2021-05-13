@@ -3,19 +3,28 @@ import React, {useState} from 'react';
 import '../../styles/GestionThemes.css';
 import ThemeCard from 'src/components/ThemeCard/ThemeCard.js';
 import AddTheme from 'src/components/AddTheme/AddTheme.js';
-
+import axios from 'axios';
 //== Import from Semantic UI
 import { Card } from 'semantic-ui-react';
 
 
 
 const GestionThemes = ({themes}) => {
-  const[themeGestion, setThemeGestion]= useState("theme")
-  const[missionGestion, setMissionGestion]= useState("mission")
-  const [iconPlus,setIconPlus] = useState("plus square")
+
+  const[themeGestion, setThemeGestion]= useState("theme");
+  const[missionGestion, setMissionGestion]= useState("mission");
+  const [iconPlus,setIconPlus] = useState("plus square");
+
+ 
+
+
+
   return(
     <div className="themesGestion">
-    <AddTheme iconPlus={iconPlus} themeGestion={themeGestion}/>
+    <AddTheme 
+    iconPlus={iconPlus}
+    themeGestion={themeGestion}
+    />
     <Card.Group centered>
       {themes.map((theme)=> (
         <div  key={theme.id} className= 'theme-card-container'>
