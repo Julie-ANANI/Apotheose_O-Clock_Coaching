@@ -1,8 +1,10 @@
 const Interact = require('../models/interact');
+const Mission = require('../models/mission');
+const Theme = require('../models/theme');
 
 const interactController = {
     /**
-    * Endpoint GET /api/missions/users/{userId}
+    * Controles endpoint GET /api/missions/users/{userId}
     */
     getAllByUserId: async (req, res) => {
         try {
@@ -22,7 +24,7 @@ const interactController = {
         }
     },
     /**
-    * Endpoint GET /api/missions/:missionId/users/:userId
+    * Controls endpoint GET /api/missions/:missionId/users/:userId
     */
     getOneByMissionAndUser: async (req, res) => {
         try {
@@ -42,29 +44,57 @@ const interactController = {
         }
     },
 
+    /**
+    * Controls endpoint GET /api/students/:userId/themes/:themeId/score
+    */
+    getScorebyThemeAndUser: async (req, res) => {
+        try {
+            // we get the theme id and user id from the request body
+            const { themeId, userId } = req.params;
+
+            // we obtain the number of completed missions for this theme and this user
+            const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
+            
+            // we get all the missions in database related to this theme
+            const allMissionsByTheme = await Mission.findByTheme(themeId);
+
+            // we calculate the percentage of completed missions for this theme
+            const scoreRatio = Math.round((parseInt(scoreByTheme.score, 10) / allMissionsByTheme.length) * 100);
+
+            res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
+        } catch (err) {
+
+            res.status(400).json(err.message);
+        };
+
+    },
 
     /**
-    * Endpoint GET api/students/:userId/score
+    * Controls endpoint GET /api/students/:userId/score
     */
-    getGlobalScoreOfOneUser: async (req,res)=>{
-        try{
+    getGlobalScoreByUser: async (req, res) => {
+        try {
+            // We get the id in the parameters of the request
+            const { userId } = req.params;
 
-            /**
-             * We get the id in the parameters of the request
-             */
-            const { userId }= req.params;
-
+            // we get the total number of completed missions for this user 
             const globalScore = await Interact.findGlobalScoreOfOneUser(userId);
-            res.status(200).json(globalScore);
 
-        } catch(err) {
+            // we get all the missions existing in database
+            const allMissions = await Mission.findAll();
+
+            // we calculate the percentage of completed missions for this user
+            const globalScoreRatio = Math.round((parseInt(globalScore.global_score, 10) / allMissions.length) * 100);
+            res.status(200).json({ global_ratio: `${globalScoreRatio}` });
+
+        } catch (err) {
             res.status(404).json(err.message);
         };
     },
 
-    
+
     /**
-    * Endpoint POST /api/user/missions/
+    * Controls endpoint POST /api/user/missions/
     */
     checkBox: async (req, res) => {
         try {
@@ -96,6 +126,9 @@ const interactController = {
         }
     },
 
+    /**
+    * Controls endpoint DELETE /api/student/interact/missions/:missionId/users/:userId
+    */
     uncheckBox: async (req, res) => {
         try {
             // We get the ids in the parameters of the request
