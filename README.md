@@ -1,6 +1,6 @@
 # Projet-03-oap
 
-![o'Coaching](https://raw.githubusercontent.com/O-clock-Quill/projet-03-oap/40d10cada074fbca57b1c8cfaf749b87edcbe84d/front/src/assets/logos/Logo%20de%20O_coaching%20-%20green%20and%20red%20svg.svg?token=AR3OJNROLY23VFE2JWQV43TATVOIE)
+![o'Coaching](/front/src/assets/logos/Logo%20de%20O_coaching%20-%20green%20and%20red%20svg.svg)
  [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 ## Présentation du projet 
@@ -31,10 +31,10 @@ Notre projet utilise une __API externe d'oclock__ qui référencie tous les étu
 ## Statut du projet
  Le projet est en cours de __developpement__.
 
- Néanmoins, les routes du back qui se trouvent [ici](https://github.com/O-clock-Quill/projet-03-oap/blob/develop/server/app/router.js) sont fonctionnels et peuvent déservir des données.
+ Néanmoins, les routes du back qui se trouvent [ici](/server/app/router.js) sont fonctionnels et peuvent déservir des données.
 Une documentation précise de celles-ci sera bientôt disponible avec [swagger](https://swagger.io/) (plus d'information dans les prochains jours).
 
-L'interface [front](https://github.com/O-clock-Quill/projet-03-oap/tree/develop/front) est aussi fonctionnel comme la page d'accueil, l'affichage des thèmes et des missions avec leurs astuces. La bar de progression est fictive pour le moment et n'a pas de lien avec un étudiant donné.
+L'interface [front](/front) est aussi fonctionnel comme la page d'accueil, l'affichage des thèmes et des missions avec leurs astuces. La bar de progression est fictive pour le moment et n'a pas de lien avec un étudiant donné.
 
 Plusieurs feature sont en cours dont une est __importante__: la page login/connexion.
 
