@@ -209,7 +209,7 @@ router.get('/users', userController.getAllusers);
  * @param {number} themeId.path.required - the theme id
  * @returns {Object} 200 - An object of a theme's score of a user
  */
-router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',themeController.getScoreOfOneThemeOfOneUser);
+router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',interactController.getScorebyThemeAndUser);
 
 
 /**
@@ -219,7 +219,7 @@ router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',themeController
  * @param {number} userId.path.required - the user id
  * @returns {Object} 200 - An object of a score global of a user
  */
-router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreOfOneUser);
+router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
 
 
 
