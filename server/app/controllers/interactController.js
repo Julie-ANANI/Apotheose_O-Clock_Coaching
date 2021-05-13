@@ -2,7 +2,7 @@ const Interact = require('../models/interact');
 
 const interactController = {
     /**
-    * Endpoint GET /api/missions/users/{userId}
+    * Controls endpoint GET /api/missions/users/{userId}
     */
     getAllByUserId: async (req, res) => {
         try {

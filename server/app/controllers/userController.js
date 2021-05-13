@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 const userController = {
     /**
-    * It's control the road GET /v1/api/users
+    * Controls endpoint GET /v1/api/users
     */
     getAllusers: async (_, res) => {
    
@@ -25,7 +25,7 @@ const userController = {
 
 
     /**
-    * It's control the road GET /v1/api/users/:id
+    * Controls endpoint GET /v1/api/users/:id
     */
     getOneUser: async (req, res) => {
 
