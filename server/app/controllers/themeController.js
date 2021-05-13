@@ -2,7 +2,7 @@ const Theme = require('../models/theme');
 
 const themeController = {
     /**
-    * It's control the road GET /v1/api/themes
+    * Controls endpoint GET /v1/api/admin/themes
     */
     getAllThemes: async (_, res) => {
    
@@ -98,20 +98,16 @@ const themeController = {
     addNewTheme: async (req, res) => {
         try {  
             // We get the body parameters of the request from req.body
-            const { title, description, position} = req.body;
+            const { title, description} = req.body;
 
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
 
             if (!title) {
-               bodyErrors.push(`title is cannot be empty`);
+               bodyErrors.push(`title cannot be empty`);
             }
             if (!description) {
                bodyErrors.push(`description cannot be empty`);
-            }
-
-            if(!position) {
-                bodyErrors.push(`the position already exists`)
             }
 
             // if there are any errors, we return them
@@ -119,7 +115,8 @@ const themeController = {
                 res.status(400).json(bodyErrors);
             } else {
                 // if there are no errors, we can save this new record in the database
-                const newTheme = new Theme({ title, description, position });
+                // For this v1, we don't handle position, so we hard-code it for now as it should be NOT NULL
+                const newTheme = new Theme({ title, description, 'position': 0 });
                 await newTheme.save();
                 res.status(200).json(newTheme);
             }
