@@ -4,7 +4,7 @@ const Theme = require('../models/theme');
 
 const interactController = {
     /**
-    * Controles endpoint GET /api/missions/users/{userId}
+    * Controls endpoint GET /api/missions/users/{userId}
     */
     getAllByUserId: async (req, res) => {
         try {

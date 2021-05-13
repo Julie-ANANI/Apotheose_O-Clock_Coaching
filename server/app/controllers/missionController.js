@@ -3,7 +3,7 @@ const Mission = require('../models/mission');
 const missionController = {
 
     /**
-    * It's control the road GET /v1/api/themes/:id/missions
+    * Controls endpoint GET /v1/api/themes/:id/missions
     */
     getAllMissions: async (_, res) => {
         try {
@@ -23,7 +23,7 @@ const missionController = {
     },
 
     /**
-    * It's control the road GET /v1/api/themes/:id/missions/:id
+    * Controls endpoint GET /v1/api/themes/:id/missions/:id
     */
     getOneMission: async (req, res) => {
 
@@ -45,6 +45,9 @@ const missionController = {
         }
     },
 
+    /**
+    * Controls endpoint GET /v1/api/themes/:id/missions/
+    */
     getAllByThemeId: async (req, res) => {
         try {
             /**
@@ -65,7 +68,7 @@ const missionController = {
     },
 
     /**
-    * It's control the road POST /v1/api/admin/themes/:theme_id/missions
+    * Controls endpoint POST /v1/api/admin/themes/:theme_id/missions
     */
     addMission: async (req, res) => {
 
@@ -78,7 +81,8 @@ const missionController = {
             /**
             * We get the title, advice, position in the body
             */
-            const { title, advice, position } = req.body;
+
+            const { title, advice } = req.body;
 
             const bodyErrors = [];
 
@@ -99,7 +103,9 @@ const missionController = {
                 /**
                 * Create the new mission and save it int the database
                 */
-                const newMission = new Mission({ title, advice, position, theme_id });
+
+                const newMission = new Mission({title, advice, 'position': 0, theme_id});
+
                 await newMission.save();
                 res.status(201).json(newMission);
             };
@@ -114,7 +120,7 @@ const missionController = {
     },
 
     /**
-    * It's control the road POST /v1/api/admin/missions/:missionId
+    * Controls endpoint POST /v1/api/admin/missions/:missionId
     */
     modifyMission: async (req, res) => {
 
@@ -140,7 +146,9 @@ const missionController = {
                 /**
                 * We get the title, advice, position in the body
                 */
-                const { title, advice, position } = req.body;
+
+                const {title, advice } = req.body;
+
 
 
                 /**
@@ -154,11 +162,6 @@ const missionController = {
                 if (advice) {
                     mission.advice = advice;
                 };
-
-                if (position) {
-                    mission.position = position;
-                };
-
 
                 /**
                 * The mission is update
