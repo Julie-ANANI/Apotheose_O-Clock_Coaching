@@ -59,7 +59,7 @@ const interactController = {
             const allMissionsByTheme = await Mission.findByTheme(themeId);
 
             // we calculate the percentage of completed missions for this theme
-            const scoreRatio = Math.round((scoreByTheme.score / allMissionsByTheme.length) * 100);
+            const scoreRatio = Math.round((parseInt(scoreByTheme.score, 10) / allMissionsByTheme.length) * 100);
 
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
         } catch (err) {
