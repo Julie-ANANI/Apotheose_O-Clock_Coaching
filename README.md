@@ -115,4 +115,4 @@ Lead dev Front: [Madine BA](https://github.com/mabakayaro)
 
 Lead dev Back: [Julie Anani](https://github.com/Julie-ANANI)
 
-Git Master: [Mahanore Tetuanui](https://github.com/MahanoraTetuanui)
+Git Master: [Mahanora Tetuanui](https://github.com/MahanoraTetuanui)
