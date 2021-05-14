@@ -27,8 +27,7 @@ import AddAdmin from 'src/pages/AddAdmin';
 
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
-import GestionThemes from './pages/GestionThemes';
-import SearchProfil from './pages/SearchProfil';
+
 // import AccueilAdmin from './pages/AccueilAdmin';
 
 
@@ -42,8 +41,7 @@ const App = () => {
 
   const [themes, setThemes] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState({});
-  const [activeRole, setActiveRole] = useState('student');
-  const [open, setOpen] = useState(false);
+  const [activeRole, setActiveRole] = useState('student')
 
   
   const getMenuRoutes = (role) => {
@@ -63,14 +61,10 @@ const App = () => {
 
   const filteredNavlinks = getMenuRoutes(activeRole);
 
-  // useEffect(() => {
-  //   loadThemes();
-  // }, []);
-
   useEffect(() => {
     loadThemes();
-  }, [open]);
-
+  }, []);
+ 
   return(
     <div className="app">
       
@@ -109,15 +103,6 @@ const App = () => {
           <AddAdmin />
         </Route>
 
-        <Route path= {`/gestion-themes`}>
-          <Header titre={titre.gestionThemes.description} />
-          <GestionThemes themes={themes} open={open} setOpen={setOpen} />
-        </Route>
-
-        <Route path= {`/search-profil`}>
-          <Header titre={titre.gestionThemes.description} />
-          <SearchProfil />
-        </Route>
       </Switch>
 
     </div>

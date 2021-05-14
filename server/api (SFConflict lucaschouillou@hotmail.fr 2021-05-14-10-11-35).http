@@ -117,9 +117,9 @@ Content-Type: application/json
 
 {
     
-    "title": "coucou nouveau theme 3",
-    "description": "une description simpliste corrigée ou pas "
-
+    "title": "tetyhfhggggtr",
+    "description": "une description simpliste corrigée ou pas ",
+    "position": 15
 }
 ####
 
@@ -129,8 +129,8 @@ POST http://localhost:3000/v1/api/themes/1
 Content-Type: application/json
 
 {    
-    "title": "erngirnzgu",
-    "description": "zrnvgksdfnggslrign"
+ 
+    "description": "une description s TESTST impliste ou pas ou pas"
 
 }
 ###

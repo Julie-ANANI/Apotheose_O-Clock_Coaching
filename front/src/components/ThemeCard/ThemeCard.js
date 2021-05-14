@@ -2,13 +2,22 @@ import React, {useState, useEffect} from 'react';
 import { Card, Icon, Accordion } from 'semantic-ui-react';
 import '../../styles/GestionThemes.css';
 import axios from 'axios';
-import ModalTheme from 'src/components/ModalTheme/ModalTheme.js';
-
+import UpdateModalTheme from 'src/components/UpdateModalTheme/UpdateModalTheme.js';
+import UpdateModalMission from 'src/components/UpdateModalMission/UpdateModalMission.js';
+import NewModalMission from 'src/components/NewModalMission/NewModalMission.js';
 const description = [
 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto autem dolores facere modi distinctio blanditiis quisquam repellendus earum, velit quod qui doloribus ex suscipit consequuntur vero assumenda non dolore molestiae.'
 ].join(' ')
 
-const ThemeCard = ({title, id, description, iconPlus, missionGestion, themeGestion}) => {
+const ThemeCard = ({
+  title,
+  id,
+  description,
+  iconPlus,
+  missionGestion,
+  themeGestion,
+  open,
+  setOpen}) => {
 
   const [missions, setMissions] = useState([]);
   const [iconEdit,setIconEdit] = useState("edit")
@@ -49,7 +58,15 @@ return(
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
       <h2 className="theme-title">{title}</h2>
-      <ModalTheme currentTitle={title} currentDescription={description} icon={iconEdit} modalTarget={themeGestion}/>
+      <UpdateModalTheme
+      currentTitle={title}
+      currentDescription={description}
+      icon={iconEdit}
+      modalTarget={themeGestion}
+      setOpen={setOpen}
+      open={open}
+      id={id}
+      />
       <Icon size='big' link name="trash" />
     </div>
   </Card.Content>
@@ -73,7 +90,13 @@ return(
         <div className="mission-container">
           <div className='addMission-container'>
             <h1>Ajouter un mission</h1>
-              <ModalTheme icon={iconPlus} modalTarget={missionGestion}/>
+              <NewModalMission
+              icon={iconPlus}
+              modalTarget={missionGestion}
+              setOpen={setOpen}
+              open={open}
+              id={id}
+              />
           </div>
 
         </div>
@@ -83,7 +106,7 @@ return(
             {mission.title}
           </p>
           <div className="icon-container">
-          <ModalTheme currentTitle={mission.title} currentDescription={mission.advice} icon={iconEdit} modalTarget={missionGestion}/>
+          <UpdateModalMission currentTitle={mission.title} currentDescription={mission.advice} icon={iconEdit} modalTarget={missionGestion}/>
             <Icon size='big' link name="trash" />
           </div>
 

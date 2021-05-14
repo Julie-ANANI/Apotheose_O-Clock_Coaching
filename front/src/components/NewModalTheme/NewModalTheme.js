@@ -3,13 +3,17 @@ import { Button,Form, Modal, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 
   
-function ModalTheme({currentTitle, currentDescription, icon, modalTarget}) {
+function NewModalTheme({
+  currentTitle,
+  currentDescription,
+  icon,
+  setOpen,
+  open,})  {
   const [title, setTitleTheme] = useState('');
   const [description, setDescriptionTheme] = useState('');
   const [position, setPosition] = useState(38);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
-  const [open, setOpen] = React.useState(false)
 
   const handleSubmitTheme = () => {
 
@@ -43,7 +47,7 @@ function ModalTheme({currentTitle, currentDescription, icon, modalTarget}) {
       open={open}
       trigger={<Icon size='big' link name={icon} />}
     >
-      <Modal.Header>Gestion de {modalTarget}</Modal.Header>
+      <Modal.Header>Gestion de Theme</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
@@ -73,4 +77,4 @@ function ModalTheme({currentTitle, currentDescription, icon, modalTarget}) {
   )
 }
 
-export default ModalTheme
+export default NewModalTheme

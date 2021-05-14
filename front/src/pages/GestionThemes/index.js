@@ -9,11 +9,12 @@ import { Card } from 'semantic-ui-react';
 
 
 
-const GestionThemes = ({themes}) => {
+const GestionThemes = ({themes, setOpen, open}) => {
 
   const[themeGestion, setThemeGestion]= useState("theme");
   const[missionGestion, setMissionGestion]= useState("mission");
   const [iconPlus,setIconPlus] = useState("plus square");
+ 
 
  
 
@@ -23,18 +24,19 @@ const GestionThemes = ({themes}) => {
     <div className="themesGestion">
     <AddTheme 
     iconPlus={iconPlus}
-    themeGestion={themeGestion}
+    setOpen={setOpen}
+    open={open}
     />
     <Card.Group centered>
       {themes.map((theme)=> (
         <div  key={theme.id} className= 'theme-card-container'>
 
           <ThemeCard
-            themeGestion={themeGestion}
-            missionGestion={missionGestion}
             iconPlus={iconPlus}
             name={theme.id}
             {...theme}
+            setOpen={setOpen}
+            open={open}
           />
         </div>
       ))}

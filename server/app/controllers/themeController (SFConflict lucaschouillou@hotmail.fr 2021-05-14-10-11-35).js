@@ -98,7 +98,7 @@ const themeController = {
     addNewTheme: async (req, res) => {
         try {  
             // We get the body parameters of the request from req.body
-            const { title, description } = req.body;
+            const { title, description, position} = req.body;
 
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
@@ -110,13 +110,16 @@ const themeController = {
                bodyErrors.push(`description cannot be empty`);
             }
 
+            if(!position) {
+                bodyErrors.push(`the position already exists`)
+            }
 
             // if there are any errors, we return them
             if (bodyErrors.length) {
                 res.status(400).json(bodyErrors);
             } else {
                 // if there are no errors, we can save this new record in the database
-                const newTheme = new Theme({ title, description, 'position':0 });
+                const newTheme = new Theme({ title, description, position });
                 await newTheme.save();
                 res.status(200).json(newTheme);
             }
