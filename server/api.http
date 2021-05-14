@@ -116,12 +116,12 @@ Content-Type: application/json
 
 
 # Créer un nouveau thème
-POST http://localhost:3000/v1/api/admin/themes
+POST http://localhost:3100/v1/api/admin/themes
 Content-Type: application/json
 
 {
     
-    "title": "Scribe",
+    "title": "Scre5tegtrhgrtteibe",
     "description": "Mais, vous savez, moi je ne crois pas qu’il y ait de bonne ou de mauvaise situation"
 }
 ####
@@ -139,7 +139,7 @@ Content-Type: application/json
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/admin/themes/12
+DELETE http://localhost:3100/v1/api/admin/themes/5
 Content-Type: application/json
 
 ###
@@ -158,21 +158,33 @@ Content-Type: application/json
 
 # Modifier une mission
 
-POST http://localhost:3000/v1/api/admin/missions/29
+POST http://localhost:3100/v1/api/admin/missions/9
 Content-Type: application/json
 
 {    
     "title": "Alors ce n’est pas mon cas"
 }
-
 ###
 
 # Supprimer une mission
+DELETE http://localhost:3100/v1/api/admin/missions/29
+Content-Type: application/json
+###
 
-DELETE http://localhost:3000/v1/api/admin/missions/29
+# Login un étudiant
+POST http://localhost:3200/v1/api/login
 Content-Type: application/json
 
+{    
+    "login_email": "stu@",
+    "login_password": "S"
+}
 ###
 
 
+# Login un étudiant testtt
+POST http://localhost:3200/v1/api/search
+Content-Type: application/json
 
+
+###

@@ -5,6 +5,7 @@ const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
+const testController = require('./controllers/testController');
 
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
@@ -140,7 +141,7 @@ router.post('/login', userController.login);
  * @group Login
  * @returns 200 - A message confirming the user is logged out in backend
  */
-router.post('/login', userController.login);
+router.post('/login', userController.logout);
 
 /**
  * Updates a user record with admin status
@@ -185,5 +186,9 @@ router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMissio
  * @returns {Object} 200 - An object of the id's mission deleted
  */
 router.delete('/admin/missions/:missionId', missionController.deleteMission);
+
+
+
+router.post('/search', testController.searchArray);
 
 module.exports = router;
