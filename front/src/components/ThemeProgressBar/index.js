@@ -17,6 +17,7 @@ const ThemeProgressBar = ({title, description, id, base_url,  themeScore, setThe
   // }
 
   const computeThemeScore = () => {
+    console.log('COMPUTE THEME SCORE');
     axios.get(`${base_url}/students/${userId}/themes/${id}/score`)
       .then((response)=> {
         console.log('SCORE', response.data);
@@ -32,7 +33,7 @@ const ThemeProgressBar = ({title, description, id, base_url,  themeScore, setThe
       <div className='theme-presentation'>
         <Header className='theme-title' as='h1' textAlign='center'>{title}</Header>
         <div className="theme-progress-container">
-          <Progress className='theme-progress-bar' percent={themeScore.score} indicating progress />
+          <Progress className='theme-progress-bar' percent={themeScore.bytheme_ratio} indicating progress />
         </div>
         <div className="description-theme">
           <p>

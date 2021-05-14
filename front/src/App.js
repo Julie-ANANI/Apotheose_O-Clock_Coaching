@@ -91,11 +91,7 @@ const App = ({base_url}) => {
       axios({
         url: url,
         method: 'get',
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache',
-          'Expires': '0',
-      }})
+    })
       .then((response) => {
         setUserMissionsCompleted(response.data)
       })
@@ -104,6 +100,7 @@ const App = ({base_url}) => {
 
       // })
       .then(()=>{
+        console.log('userMissionsCompleted',userMissionsCompleted);
         console.log('userMissionsCompleted.length',userMissionsCompleted.length);
         console.log('allMissions.length',allMissions.length);
         // console.log('generalScore',generalScore);
