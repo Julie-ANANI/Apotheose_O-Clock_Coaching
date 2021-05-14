@@ -165,6 +165,7 @@ class User {
 
             if (rows[0]) {
                 this.id = rows[0].id;
+                return rows[0];
             } else {
                 throw new UserNotAddedError();
             };

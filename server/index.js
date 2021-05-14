@@ -2,18 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const session = require('express-session');
 
 const router = require('./app/router');
 
-<<<<<<< HEAD
 // Middleware which parses incoming requests with JSON payloads
-=======
-
-
->>>>>>> develop
 app.use(express.json());
 
 
@@ -24,7 +18,11 @@ app.use(session({
     //saveUninitialized is used to save the session in the system event if we didn't store any data inside
     saveUninitialized: false,
     //secret is used to encrypt  the session identifier placed in the cookie sent to the client
-    secret: 'fqldkfhzlkkjhqlrhql'
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        secure: false, // false allow us not to be in https
+        maxAge: 7200000 // in milliseconds --> 2h
+    }
 }));
 
 
