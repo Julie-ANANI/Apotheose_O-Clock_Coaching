@@ -24,6 +24,7 @@ const ParcoursCoaching = ({themes, userInteraction, generalScore, setGeneralScor
 const computeGeneralScore = () => {
   console.log('COMPUTE GENERAL SCORE');
   const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
+  console.log('userMissionsCompleted', userMissionsCompleted);
   setGeneralScore(result);
   // return result;
 };

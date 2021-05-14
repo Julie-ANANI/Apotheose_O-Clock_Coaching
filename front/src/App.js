@@ -59,7 +59,7 @@ const App = ({base_url}) => {
   const [allMissions, setAllMissions] = useState([]);
   const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
   const [userInteraction, setUserInteraction] = useState(0);
-  const [selectedTheme, setSelectedTheme] = useState();
+
 
 
 
@@ -177,7 +177,7 @@ const App = ({base_url}) => {
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
             themes={themes}
-            selectedTheme={selectedTheme}
+            base_url={base_url}
 
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
@@ -188,10 +188,11 @@ const App = ({base_url}) => {
 
             userInteraction={userInteraction}
             setUserInteraction={setUserInteraction}
-            setSelectedTheme={setSelectedTheme}
+        
             allMissions={allMissions} 
             userMissionsCompleted={userMissionsCompleted} 
-            userId={userId} /> 
+            userId={userId}
+            activeRole={activeRole} /> 
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
