@@ -44,6 +44,7 @@ const Mission = ({
         }})
         .then(res => {
           console.log(res.data);
+          setUserInteraction(userInteraction+1);
         })
         .catch((err) => {
             console.log(err);
@@ -56,12 +57,14 @@ const Mission = ({
       })
       .then(res => {
         console.log(res.data);
+        setUserInteraction(userInteraction+1);
     })
     .catch((err) => {
         console.log(err);
     })
     }
-    setUserInteraction(userInteraction+1)
+
+    
 
   }
 

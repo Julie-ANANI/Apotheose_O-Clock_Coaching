@@ -16,12 +16,13 @@ import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 // == Composant
-const ParcoursCoaching = ({themes, userMissionsCompleted, allMissions}) => {
+const ParcoursCoaching = ({themes, userInteraction, generalScore, setGeneralScore, userMissionsCompleted, allMissions}) => {
 
-const [generalScore, setGeneralScore] = useState(0);
+// const [generalScore, setGeneralScore] = useState(0);
 
 
 const computeGeneralScore = () => {
+  console.log('COMPUTE GENERAL SCORE');
   const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
   setGeneralScore(result);
   // return result;

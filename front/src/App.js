@@ -48,13 +48,14 @@ const App = ({base_url}) => {
   // PARCOURS COACHING
   
   const [themes, setThemes] = useState([]);
-  
+  const [generalScore, setGeneralScore] = useState(0);
+
 
   // THEME PAGE
   const [missionByTheme, setMissionByTheme] = useState([]);
   const [missionByThemeUser, setMissionByThemeUser] = useState([]);
   const [theme, setTheme] = useState({});
-
+  
   const [allMissions, setAllMissions] = useState([]);
   const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
   const [userInteraction, setUserInteraction] = useState(0);
@@ -72,6 +73,7 @@ const App = ({base_url}) => {
 
   const loadThemes = () => {
     // console.log('Il faut charger les thèmes');
+    
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
@@ -84,7 +86,16 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
-      axios.get(`${base_url}/missions/users/${userId}`)
+      const url = `${base_url}/missions/users/${userId}`
+
+      axios({
+        url: url,
+        method: 'get',
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+      }})
       .then((response) => {
         setUserMissionsCompleted(response.data)
       })
@@ -152,11 +163,12 @@ const App = ({base_url}) => {
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
             themes={themes} 
-            // generalScore={generalScore}
+            generalScore={generalScore}
             userMissionsCompleted={userMissionsCompleted}
             allMissions={allMissions}
             // computeGeneralScore={computeGeneralScore}
-            // setGeneralScore={setGeneralScore}  
+            setGeneralScore={setGeneralScore}  
+            userInteraction={userInteraction}
           />  
         </Route> 
           
