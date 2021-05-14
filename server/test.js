@@ -114,3 +114,17 @@ const User = require('./app/models/user');
 //     }
 
 // })();
+
+// Passing user with id 6's admin status to true
+// Test ok
+(async () => {
+    try {
+        const theUser = await User.findOne(6);
+        console.log(theUser);
+        theUser.admin_status = true;
+        theUser.save();
+    } catch (error) {
+        console.log(error);
+    }
+
+})();

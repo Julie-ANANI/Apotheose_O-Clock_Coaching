@@ -4,6 +4,7 @@ const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
+const adminController = require('./controllers/adminController');
 
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
@@ -125,6 +126,29 @@ router.get('/users/:id', userController.getOneUser);
  */
 router.get('/users', userController.getAllusers);
 
+/**
+ * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
+ * @route POST /login
+ * @group Login
+ * @returns {<User>} 200 - A user object
+ */
+router.post('/login', userController.login);
+
+/**
+ * Logs out the user from the backend
+ * @route POST /login
+ * @group Login
+ * @returns 200 - A message confirming the user is logged out in backend
+ */
+router.post('/login', userController.login);
+
+/**
+ * Updates a user record with admin status
+ * @route POST /admin/add
+ * @group Admin
+ * @returns {<User>} 200 - An instance of User class
+ */
+router.post('/admin/add', adminController.addAdmin);
 
 /**
  * Returns the score of a user for a theme
