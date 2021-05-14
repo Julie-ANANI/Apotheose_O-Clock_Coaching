@@ -191,4 +191,6 @@ router.delete('/admin/missions/:missionId', missionController.deleteMission);
 
 router.post('/search', testController.searchArray);
 
+router.post('/searchByPromo', testController.searchByPromo);
+
 module.exports = router;

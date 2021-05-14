@@ -182,8 +182,14 @@ Content-Type: application/json
 ###
 
 
-# Login un étudiant testtt
+# search un étudiant test
 POST http://localhost:3200/v1/api/search
+Content-Type: application/json
+
+###
+
+# search un étudiant FINAL
+POST http://localhost:3200/v1/api/searchByPromo
 Content-Type: application/json
 
 ###
