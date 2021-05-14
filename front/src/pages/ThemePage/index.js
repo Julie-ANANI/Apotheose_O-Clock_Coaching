@@ -7,42 +7,77 @@ import ThemeProgressBar from 'src/components/ThemeProgressBar';
 // import axios from 'axios'
 import Mission from 'src/components/Mission';
 
-const ThemePage = ({ themes, allMissions, userMissionsCompleted }) => {
+const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUserInteraction, userInteraction, missionByTheme, missionByThemeUser, setMissionByTheme, setMissionByThemeUser, theme, setTheme }) => {
   
+  // const [themeScore, setThemeScore] =useState(0);
+  // const [missionsByTheme, setMissionByTheme] = useState([]);
+  // const [missionByThemeUser, setMissionByThemeUser] = useState([]);
+  // const [theme, setTheme] = useState({});
 
-
-
-  
   const { idTheme } = useParams();
-  // console.log(idTheme);
-  const theme = themes.find((theme) => theme.id == idTheme);
-  // console.log(theme);
-  // console.log('Toutes les missions', userMissionsCompleted);
-
-  const filterMissionsByTheme = (themeId) => {
-    const  result = allMissions.filter(mission => mission.theme_id == themeId);
+  
+    
+  const filterMissionsByTheme = (missions) => {
+    console.log('On est dans la fonction qui filtre les missions selon le thème sélectionné');
+    const  result = missions.filter(mission => mission.theme_id == idTheme);
     return result;
   }
 
-  const missions = filterMissionsByTheme(idTheme);
-  console.log('missions complétes', userMissionsCompleted);
-  console.log(missions);
+  const setMissions = ()  => {
+    console.log('On est dans la fonction setMissions qui va charger les missions dans le state');
+    const missionsCompletedByTheme = filterMissionsByTheme(userMissionsCompleted);
+    setMissionByThemeUser(missionsCompletedByTheme);
+    console.log('missionCompletedByTheme=',missionsCompletedByTheme.length); 
+    const missionsFilteredByTheme = filterMissionsByTheme(allMissions);
+    setMissionByTheme(missionsFilteredByTheme);
+    console.log('missionByTheme=',missionsFilteredByTheme.length);
+
+  }
+
+  
+
+  const getSelectedTheme = () => { 
+    console.log('fonction GetSelectedTheme qui récupère l\'id du theme via les paramètres et charge le thème'); 
+    const theme = themes.find((theme) => theme.id == idTheme);
+    setTheme(theme);
+    console.log('theme=',theme);    
+  }
+
+  // console.log('userMissionsCompleted=',userMissionsCompleted);
+  // const theme = getSelectedTheme();
+  // console.log('le thème sélectionné',theme);
+
+  useEffect(()=> {
+    console.log('On est dans le useEffect de Theme page et on charge le theme sélectionné et les missions attachées au thème ');
+    getSelectedTheme();
+  },[]);
+
+  useEffect(()=> {
+    console.log('On est dans le useEffect de Theme page et on charge le theme sélectionné et les missions attachées au thème ');
+    setMissions();
+  },[]);
+
+  // useEffect(()=> {
+  //   setMissions();
+  // }, [,userInteraction]);
 
   return (
     <div className="missions">
-      <ThemeProgressBar {...theme} />
-      <Divider />
+      <ThemeProgressBar {...theme}  />
+      {/* <Divider /> */}
       
       <Card.Group 
         className='mission-card-container'
       >
-        {missions.map((mission) => (
+        {missionByTheme.map((mission) => (
 
           <Mission 
           key={mission.id}
           name={mission.id}
           {...mission}
-          userMissionsCompleted={userMissionsCompleted} 
+          userId={userId} 
+          userInteraction={userInteraction}
+          setUserInteraction={setUserInteraction}
           />
         ))}
       </Card.Group>

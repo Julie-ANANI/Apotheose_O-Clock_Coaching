@@ -16,23 +16,12 @@ import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 // == Composant
-const ParcoursCoaching = ({themes, setSelectedTheme, userMissionsCompleted, allMissions}) => {
+const ParcoursCoaching = ({themes, generalScore}) => {
  
-// const handleThemeClick = (e) => {
-//   console.log('on a bien cliqué');
-//   console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
-//   const id = parseInt(e.target.closest('a').name);
-//   const theme = themes.find((theme) => theme.id === id);
-//   console.log(theme);
-//   setSelectedTheme(theme);
-// };
-
-const percentProgress = Math.round((userMissionsCompleted/allMissions)*100);
-
 return(
   <div className="student-dashboard">
       <div className="progress-container">
-        <Progress className='general-progress-bar' percent={percentProgress} indicating progress />
+        <Progress className='general-progress-bar' percent={generalScore} indicating progress />
         {/* importer composant message pour le message ci-dessous */}
         <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
       </div>

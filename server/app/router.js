@@ -5,6 +5,10 @@ const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 
+const { validateBody } = require('./services/validator');
+const missionSchema = require('./schemas/missionSchema');
+const themeSchema = require('./schemas/themeSchema');
+
 const router = Router();
 
 /**
@@ -22,6 +26,31 @@ router.get('/themes', themeController.getAllThemes);
  * @returns {<Theme>} 200 - An instance of one theme
  */
 router.get('/themes/:id', themeController.getOneTheme);
+
+
+/**
+ * add a new theme in the database with new id
+ * @route POST /themes
+ * @group A Theme
+ * @returns {<New Theme>} 200 - An instance of new theme
+ */
+router.post('/themes',validateBody(themeSchema.newTheme), themeController.addNewTheme);
+
+/**
+ * change theme in the database with this id
+ * @route POST /themes/ :themeId
+ * @group A Theme
+ * @returns {<Theme>} 200 - an update in the theme
+ */
+router.post('/themes/:themeId', validateBody(themeSchema.updateTheme), themeController.changeTheme);
+
+/**
+ * delete a theme in the database with this id
+ * @route POST /themes/ :themeId
+ * @group A Theme
+ * @returns {<Theme>} 200 - Suppression the id theme in the database
+ */
+router.delete('/themes/:themeId',  themeController.deleteTheme);
 
 /**
  * Returns all missions from the database
@@ -111,5 +140,26 @@ router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfO
  * @returns {Object} 200 - An object of a score global of a user
  */
 router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
+
+/**
+ * Create and return the new mission
+ * @route POST /admin/themes/:theme_id/missions
+ * @returns {Object} 201 - An object of the new mission
+ */
+router.post('/admin/themes/:theme_id/missions', validateBody(missionSchema.newMission), missionController.addMission);
+
+/**
+ * Modify and returns the id of the modify mission
+ * @route POST /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission modified
+ */
+router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMission), missionController.modifyMission);
+
+/**
+ * Delete the mission and returns the id of the mission deleted
+ * @route DELETE /admin/missions/:missionId
+ * @returns {Object} 200 - An object of the id's mission deleted
+ */
+router.delete('/admin/missions/:missionId', missionController.deleteMission);
 
 module.exports = router;

@@ -1,72 +1,81 @@
 # Tous les thèmes
-
 GET http://localhost:3000/v1/api/themes
-
 ###
+
 
 # Un seul thème
 GET http://localhost:3000/v1/api/themes/3
-
-
 ###
+
+
 # Un seul thème qui n'existe pas 
-
 GET http://localhost:3000/v1/api/themes/5
+### 
 
-###
 
 # Toutes les missions 
-
 GET http://localhost:3000/v1/api/missions
-
 ###
 
-# Toutes les missions pour un thème donné 
 
+# Toutes les missions pour un thème donné 
 GET http://localhost:3000/v1/api/themes/5/missions
-
 ###
+
 
 # Toutes les missions pour un thème donné 
-
 GET http://localhost:3000/v1/api/themes/2/missions
-
 ###
+
 
 # Tous les missions 
-
 GET http://localhost:3000/v1/api/themes/2/missions
-
 ###
+
 
 # Un utilisteur interne dans notre api
 GET http://localhost:3000/v1/api/users/1
-
 ###
+
 
 # Tous les utilisateurs
 GET http://localhost:3000/v1/api/users
-
 ###
 
-# Toutes les coches d'un utilisateur
-GET http://localhost:3000/v1/api/missions/users/4
 
-
-
-# Les valeurs de case à cocher pour l'utilisateur 3
-GET http://localhost:3000/v1/api/missions/users/3
-
+# Toutes les coches d'un utilisateur 1
+GET http://localhost:3000/v1/api/missions/users/1
 ###
 
-# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
-GET http://localhost:3000/v1/api/missions/5/users/3
 
+# Les valeurs de case à cocher pour l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/users/1
 ###
+
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/1/users/3
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/2/users/3
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/3/users/3
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/4/users/3
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+GET http://localhost:3000/v1/api/missions/9/users/3
+###
+
 
 # La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 
 GET http://localhost:3000/v1/api/missions/7/users/3
-
 ###
 
 # Le score du theme 2 d'un user 3 
@@ -77,6 +86,8 @@ GET http://localhost:3000/v1/api/students/3/themes/2/score
 # Le score globale d'un user 3
 GET http://localhost:3000/v1/api/students/3/score
 
+###
+
 
 # Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
 POST http://localhost:3000/v1/api/student/interact/
@@ -86,10 +97,61 @@ Content-Type: application/json
     "mission_id": 12,
     "user_id": 3
 }
-
 ###
+
 
 # Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
 DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
 Content-Type: application/json
 
+###
+
+# Ajouter une mission donnée dans theme 2
+POST http://localhost:3000/v1/api/admin/themes/2/missions
+Content-Type: application/json
+
+{
+    "title": "Hodedela",
+    "advice": "Hola hola",
+    "position":"2"
+}
+###
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/2
+Content-Type: application/json
+
+{
+    "advice": "aaaaah"
+}
+####
+
+
+# Créer un nouveau thème
+POST http://localhost:3000/v1/api/themes
+Content-Type: application/json
+
+{
+    
+    "title": "tetyhfhggggtr",
+    "description": "une description simpliste corrigée ou pas ",
+    "position": 15
+}
+####
+
+
+# Modifier un thème
+POST http://localhost:3000/v1/api/themes/1
+Content-Type: application/json
+
+{    
+ 
+    "description": "une description s TESTST impliste ou pas ou pas"
+
+}
+###
+
+# Suppression du theme 3
+DELETE http://localhost:3000/v1/api/themes/2
+Content-Type: application/json
+###

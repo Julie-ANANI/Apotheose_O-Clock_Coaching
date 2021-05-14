@@ -33,49 +33,44 @@ import titre from 'src/data/titreHeader.js'
 
 
 // A mettre dans le .env et utiliser process.env.base_url
-var base_url = 'http://localhost:3000/v1/api'
 
-console.log(navlinks);
+
+// console.log(navlinks);
 
 // == Composant
-const App = () => { 
+const App = ({base_url}) => { 
 
-  const [themes, setThemes] = useState([]);
-  // const [selectedTheme, setSelectedTheme] = useState({});
+  // GENERAL POUR LINSTANT
   const [activeRole, setActiveRole] = useState('student');
   const [userId, setUserId] = useState(3);
-  const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
+
+  
+  // PARCOURS COACHING
+  const [generalScore, setGeneralScore] = useState(0);
+  const [themes, setThemes] = useState([]);
+  
+
+  // THEME PAGE
+  const [missionByTheme, setMissionByTheme] = useState([]);
+  const [missionByThemeUser, setMissionByThemeUser] = useState([]);
+  const [theme, setTheme] = useState({});
+
   const [allMissions, setAllMissions] = useState([]);
+  const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
+  const [userInteraction, setUserInteraction] = useState(0);
+  const [selectedTheme, setSelectedTheme] = useState();
 
-  // TEST REQUETE API COCKPIT
+  const computeGeneralScore = () => {
+    const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
+    setGeneralScore(result);
+    return 
+  };
 
-  //   const axiosApiUser = async () => {
-  //     const formData = new FormData();
-  //     formData.append('login_email', 'admin@oclock.io');
-  //     formData.append('login_password', 'rg7rCDeKFM?dXAnh');
-  //     await axios({
-  //         url: 'https://cors-anywhere.herokuapp.com/https://quill-aop-project.eddi.xyz/api/try_login',
-  //         method: 'POST',
-  //         data: formData,
-  //         headers: {
-  //             'Content-Type': 'application/json',
-  //             'X-AUTH-TOKEN': '30e2245386e8e25a6ccbe0ea747d6482665abd2e3dee78aa3df9788053c72a42',
-  //             // 'Origin' : ''
-  //         }
-  //     }).then(response => {
-  //         console.log(response.data);
-  //     }, error => {
-  //         console.log(error);
-  //     });
-  // }
-  // axiosApiUser();
-
-  // FIN DU TEST API COCKPIT
 
   const getMenuRoutes = (role) => {
     const filteredNavlinks = navlinks.filter(navlink => navlink.role === role)
     return filteredNavlinks
-  }
+  };
   // Import des Thèmes, des missions et des missions cochées par l'utilisateur
   // Bien pensé à gérer l'erreur en renvoyant une 404. voir modèle Oclock
 
@@ -84,7 +79,8 @@ const App = () => {
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
-        setThemes(response.data)
+        console.log('on récupère les thèmes', response.data);
+        setThemes(response.data);
       })
   };
 
@@ -96,6 +92,15 @@ const App = () => {
       .then((response) => {
         setUserMissionsCompleted(response.data)
       })
+      .then(()=> {
+        computeGeneralScore();
+
+      })
+      .then(()=>{
+        console.log('userMissionsCompleted.length',userMissionsCompleted.length);
+        console.log('allMissions.length',allMissions.length);
+        console.log('generalScore',generalScore);
+      })
     } 
   };
 
@@ -106,7 +111,7 @@ const App = () => {
       axios.get(`${base_url}/missions`)
       .then((response) => {
         setAllMissions(response.data)
-        console.log(response.data);
+        console.log('allMissions=',response.data);
       })
   }}
 
@@ -114,10 +119,16 @@ const App = () => {
   const filteredNavlinks = getMenuRoutes(activeRole);
 
   useEffect(() => {
+    console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
-    loadUserMissions();
     loadAllMissions();
+    // loadUserMissions();
   }, []);
+
+  useEffect(()=> {
+    console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
+    loadUserMissions();
+  },[allMissions,userInteraction]);
  
   return(
     <div className="app">
@@ -145,8 +156,7 @@ const App = () => {
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
             themes={themes} 
-            userMissionsCompleted={userMissionsCompleted.length}
-            allMissions={allMissions.length}
+            generalScore={generalScore}  
           />  
         </Route> 
           
@@ -154,7 +164,19 @@ const App = () => {
         <Route path= {`/theme/:idTheme`}>
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
-            themes={themes} 
+            themes={themes}
+            selectedTheme={selectedTheme}
+
+            missionByTheme={missionByTheme}
+            setMissionByTheme={setMissionByTheme}
+            missionByThemeUser={missionByThemeUser}
+            setMissionByThemeUser={setMissionByThemeUser}
+            theme={theme}
+            setTheme={setTheme}
+
+            userInteraction={userInteraction}
+            setUserInteraction={setUserInteraction}
+            setSelectedTheme={setSelectedTheme}
             allMissions={allMissions} 
             userMissionsCompleted={userMissionsCompleted} 
             userId={userId} /> 

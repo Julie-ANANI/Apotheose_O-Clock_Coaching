@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from 'react';
 
-
+import { Redirect } from 'react-router-dom';
 import '../../styles/Mission.css';
 
 //== Import from Semantic UI
@@ -14,11 +14,14 @@ const Mission = ({
   id,
   title,
   advice,
-  userMissionsCompleted,
+  userId,
+  userInteraction,
+  setUserInteraction
 }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isChecked, setIschecked] = useState(false);
+  
   
 
   // fonction handleClick de la boite à astuces
@@ -29,17 +32,49 @@ const Mission = ({
     setActiveIndex(newIndex);
   }
 
-  // const checkIfDone = () => { 
-  //   axios.get('')
-
-  const checkIfDone = () => {
-    const result = userMissionsCompleted.find(mission => parseInt(mission.mission_id) == parseInt(id));
-
-    if (result) {
-      setIschecked(true)
+  const handleClickOnCB = (e, data) => {
+    console.log('on a cliqué sur la checkbox');
+    if (data.checked) {
+      axios({
+        url : 'http://localhost:3000/v1/api/student/interact/',
+        method : 'post',
+        data : {
+          "mission_id": id,
+          "user_id": userId
+        }})
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+      
+    } else {
+      axios({
+        url : `http://localhost:3000/v1/api/student/interact/missions/${id}/users/${userId}`,
+        method : 'delete'
+      })
+      .then(res => {
+        console.log(res.data);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
     }
-    
+    setUserInteraction(userInteraction+1)
+
   }
+
+  const checkIfDone = () => { 
+    axios.get(`http://localhost:3000/v1/api/missions/${id}/users/${userId}`)
+      .then((response)=> {
+        console.log(response.data);
+        setIschecked(true);
+      })
+      .catch((error)=> {
+        console.log(error);
+        setIschecked(false);
+      })}
 
   useEffect(() => {
     checkIfDone();
@@ -52,8 +87,20 @@ return(
 
   <Card.Content className='mission-card-header'>
     <div className="checkbox-container">
-      { isChecked == true && <Checkbox label={title} id={`missions-${parseInt(id)}`}  defaultChecked={true} toggle></Checkbox> }
-      { isChecked != true && <Checkbox label={title} id={`missions-${parseInt(id)}`}  defaultChecked={false} toggle></Checkbox>}
+      { isChecked == true && <Checkbox 
+                                label={title} 
+                                id={`missions-${parseInt(id)}`}  
+                                defaultChecked={true} 
+                                toggle 
+                                onClick={handleClickOnCB} 
+                              /> }
+      { isChecked != true && <Checkbox 
+                                label={title} 
+                                id={`missions-${parseInt(id)}`}  
+                                defaultChecked={false} 
+                                toggle 
+                                onClick={handleClickOnCB} 
+                              /> }
     </div>
   </Card.Content>
 

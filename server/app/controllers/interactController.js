@@ -30,7 +30,7 @@ const interactController = {
                  * We get the id in the parameters of the request
                  */
             const { missionId, userId } = req.params;
-            const theInteract = await Interact.findOne(userId, missionId);
+            const theInteract = await Interact.findOne(missionId, userId);
             res.status(200).json(theInteract);
 
         } catch (err) {

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Progress, Header } from 'semantic-ui-react'
 import '../../styles/ThemeProgressBar.css';
 
-const ThemeProgressBar = ({title, description }) => {
+const ThemeProgressBar = ({title, description, percent }) => {
 
-  const [percent, setPercent] = useState(80);
+  // const [percent, setPercent] = useState(80);
 
     return (
       <div className='theme-presentation'>
