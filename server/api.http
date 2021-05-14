@@ -67,7 +67,7 @@ GET http://localhost:3000/v1/api/students/5/themes/1/score
 ###
 
 # Le score global d'un user 4
-GET http://localhost:3000/v1/api/students/4/score
+GET http://localhost:3000/v1/api/students/3/score
 
 ###
 
@@ -146,7 +146,7 @@ Content-Type: application/json
 
 # Créer une nouvelle mission
 
-POST http://localhost:3000/v1/api/admin/themes/29/missions
+POST http://localhost:3000/v1/api/admin/themes/8/missions
 Content-Type: application/json
 
 {    
