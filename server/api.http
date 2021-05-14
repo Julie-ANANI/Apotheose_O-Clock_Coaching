@@ -186,5 +186,4 @@ Content-Type: application/json
 POST http://localhost:3200/v1/api/search
 Content-Type: application/json
 
-
 ###

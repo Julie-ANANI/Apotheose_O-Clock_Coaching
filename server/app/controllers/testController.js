@@ -44,26 +44,25 @@ const testController = {
 
 
 searchArray: async (req, res)=> {
-       let auth_token = process.env.EXTERNAL_API_KEY
+
+    try {
+
+        let auth_token = process.env.EXTERNAL_API_KEY
         //     console.log(auth_token);
-        const rtest = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/cohorts`, {
+        searchtest = {};
+       await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/${process.env.ENDPOINTS_PROMOS}`, {
         method: 'POST',
         headers: {
-            'authorization': `Bearer ${auth_token}`
-          }} )
+            'X-AUTH-TOKEN': `${auth_token}`
+          }} ).then(res => res.json())
+              .then(json => searchtest = json);
+             res.status(200).json(searchtest);
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+      
         
-          if (!res) {
-              return res.status(400).json({
-                  status: 'error',
-                  error : 'req body cannot be empty',
-              });
-          } else {
-    
-        console.log(rtest);
-        for (const key in rtest) {console.log(key)}
-          res.status(200).json(rtest);
-          console.log(req.body);
-        }
+        
 },
 
 };
