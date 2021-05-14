@@ -46,7 +46,7 @@ const App = ({base_url}) => {
 
   
   // PARCOURS COACHING
-  const [generalScore, setGeneralScore] = useState(0);
+  
   const [themes, setThemes] = useState([]);
   
 
@@ -60,11 +60,7 @@ const App = ({base_url}) => {
   const [userInteraction, setUserInteraction] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState();
 
-  const computeGeneralScore = () => {
-    const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
-    setGeneralScore(result);
-    return 
-  };
+
 
 
   const getMenuRoutes = (role) => {
@@ -92,14 +88,14 @@ const App = ({base_url}) => {
       .then((response) => {
         setUserMissionsCompleted(response.data)
       })
-      .then(()=> {
-        computeGeneralScore();
+      // .then(()=> {
+      //   computeGeneralScore();
 
-      })
+      // })
       .then(()=>{
         console.log('userMissionsCompleted.length',userMissionsCompleted.length);
         console.log('allMissions.length',allMissions.length);
-        console.log('generalScore',generalScore);
+        // console.log('generalScore',generalScore);
       })
     } 
   };
@@ -156,7 +152,11 @@ const App = ({base_url}) => {
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
             themes={themes} 
-            generalScore={generalScore}  
+            // generalScore={generalScore}
+            userMissionsCompleted={userMissionsCompleted}
+            allMissions={allMissions}
+            // computeGeneralScore={computeGeneralScore}
+            // setGeneralScore={setGeneralScore}  
           />  
         </Route> 
           

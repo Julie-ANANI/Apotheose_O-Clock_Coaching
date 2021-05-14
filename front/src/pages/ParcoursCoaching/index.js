@@ -16,8 +16,22 @@ import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 // == Composant
-const ParcoursCoaching = ({themes, generalScore}) => {
- 
+const ParcoursCoaching = ({themes, userMissionsCompleted, allMissions}) => {
+
+const [generalScore, setGeneralScore] = useState(0);
+
+
+const computeGeneralScore = () => {
+  const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
+  setGeneralScore(result);
+  // return result;
+};
+
+useEffect(()=> {
+  computeGeneralScore();
+})
+
+
 return(
   <div className="student-dashboard">
       <div className="progress-container">
