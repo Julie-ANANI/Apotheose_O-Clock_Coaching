@@ -166,6 +166,8 @@ const App = ({base_url}) => {
             // computeGeneralScore={computeGeneralScore}
             setGeneralScore={setGeneralScore}  
             userInteraction={userInteraction}
+            base_url={base_url}
+            userId={userId}
           />  
         </Route> 
           

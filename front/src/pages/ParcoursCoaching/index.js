@@ -16,9 +16,9 @@ import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 // == Composant
-const ParcoursCoaching = ({themes, userInteraction, generalScore, setGeneralScore, userMissionsCompleted, allMissions}) => {
+const ParcoursCoaching = ({themes, userId, userInteraction, generalScore, setGeneralScore, userMissionsCompleted, allMissions, base_url}) => {
 
-// const [generalScore, setGeneralScore] = useState(0);
+  // const[themeScore,setThemeScore] = useState(0);
 
 
 const computeGeneralScore = () => {
@@ -54,6 +54,11 @@ return(
           <ThemeInParcoursCoachingPage
             name={theme.id}
             {...theme}
+            // themeScore={themeScore}
+            // setThemeScore={setThemeScore}
+            base_url={base_url}
+            userInteraction={userInteraction}
+            userId={userId}
           />
         </Link>
         </div>
