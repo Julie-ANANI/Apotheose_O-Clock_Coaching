@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "front": "cd ../front && yarn start",
+    "api": "nodemon index.js",
+    "start": "concurrently \"npm run api\" \"npm run front\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "pg": "^8.6.0"
+  },
+  "description": ""
+}
