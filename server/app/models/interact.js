@@ -42,7 +42,8 @@ class InteractNotDeletedError extends Error {
  * @typedef Interact
  * @property {string} createdAt
  * @property {string} modifiedAt
- * 
+ * @property {number} missionId
+ * @property {number} userID
  */
 
 /**
