@@ -5,7 +5,7 @@ const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
-const testController = require('./controllers/testController');
+
 
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');

@@ -1,7 +1,7 @@
 const { default: fetch } = require('node-fetch');
 const User = require('../models/user');
 
-const { EXTERNAL_API_KEY, EXTERNAL_API_BASE_URL, ENDPOINTS_PROMOS, ENDPOINT_PROMO} = process.env;
+const { EXTERNAL_API_KEY, EXTERNAL_API_BASE_URL, ENDPOINT_PROMOS, ENDPOINT_PROMO, ENDPOINT_MAIL } = process.env;
 
 
 const adminController = {
@@ -12,13 +12,13 @@ const adminController = {
         obj.email = login_email;
         console.log(obj);
         // We look it up in the external api to identify its external api user id
-        const response = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/check_email`, {
+        const response = await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_MAIL}`, {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {
                 'Content-Type': 'application/json',
                 // We need to get an API KEY and to store it in the .env file
-                'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
+                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
             }
         });
 
@@ -47,6 +47,7 @@ const adminController = {
             }
 
         }
+    
     },
 
     /**
@@ -63,7 +64,7 @@ const adminController = {
         * we choose the method and we put the API key in the header
         */
 
-        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINTS_PROMOS}`, {
+        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_PROMOS}`, {
             method: 'GET',
             headers: {
                 'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
