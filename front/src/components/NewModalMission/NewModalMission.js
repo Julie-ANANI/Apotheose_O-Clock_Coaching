@@ -1,26 +1,26 @@
 import React, {useState} from 'react'
 import { Button,Form, Modal, Icon } from 'semantic-ui-react'
 import axios from 'axios'
-
+import AddMission from 'src/components/AddMission/AddMission.js';
   
 function NewModalMission({
-  currentTitle,
-  currentDescription,
-  icon,
-  setOpen,
-  open,
-  id}) {
+  id,
+  setRefresh,
+  refresh}) {
+
   const [title, setTitleTheme] = useState('');
-  const [description, setDescriptionTheme] = useState('');
-  const [position, setPosition] = useState(38);
+  const [advice, setAdviceMission] = useState('');
+  const [position, setPosition] = useState(1);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
-  const postUrl = `http://localhost:3000/v1/api/themes/${id}/missions`;
-  const handleSubmitTheme = () => {
+  const [open, setOpen] = useState(false);
+  const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}/missions`;
+
+  const handleSubmitMission = () => {
 
     const data = {
       title: title,
-      description: description,
+      advice: advice,
       position: position,
     }
     const headers = {
@@ -30,12 +30,18 @@ function NewModalMission({
         console.log(res.data);
         setData(res.data);
         setTitleTheme('');
-        setDescriptionTheme('');
+        setAdviceMission('');
+        setRefresh(true)
       }).catch(err => {
         console.log(err)
+        console.log('ca marche pas!')
       }).finally(
         console.log("je suis dans le finally"),
-        setOpen(false)
+        console.log("post url", postUrl),
+        console.log("setTitleTheme", title),
+        console.log("setDescriptionTheme", advice),
+        setOpen(false),
+        setRefresh(false)
       )
   }
   
@@ -46,21 +52,21 @@ function NewModalMission({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon size='big' link name={icon} />}
+      trigger={<AddMission />}
     >
-      <Modal.Header>Gestion de Missions</Modal.Header>
+      <Modal.Header>Ajouter une nouvelle mission</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
           placeholder="titre"
-          value={currentTitle}
+          value={title}
           onChange={e => setTitleTheme(e.target.value)}
           />
           <Form.Input label="description"
           required type="text"
           placeholder="description"
-          value={currentDescription}
-          onChange={e => setDescriptionTheme(e.target.value)}
+          value={advice}
+          onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
@@ -70,7 +76,7 @@ function NewModalMission({
         <Button
         color='green'
         type="submit"
-        onClick={handleSubmitTheme}>
+        onClick={handleSubmitMission}>
           Valider
         </Button>
       </Modal.Actions>
