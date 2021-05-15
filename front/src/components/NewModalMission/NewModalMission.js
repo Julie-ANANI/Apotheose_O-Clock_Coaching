@@ -11,7 +11,6 @@ function NewModalMission({
   const [title, setTitleTheme] = useState('');
   const [advice, setAdviceMission] = useState('');
   const [position, setPosition] = useState(1);
-  const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}/missions`;
