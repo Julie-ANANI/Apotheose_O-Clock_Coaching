@@ -3,13 +3,14 @@ import React, {useState} from 'react';
 import '../../styles/GestionThemes.css';
 import ThemeCard from 'src/components/ThemeCard/ThemeCard.js';
 import AddTheme from 'src/components/AddTheme/AddTheme.js';
+import NewModalTheme from 'src/components/NewModalTheme/NewModalTheme.js';
 import axios from 'axios';
 //== Import from Semantic UI
 import { Card } from 'semantic-ui-react';
 
 
 
-const GestionThemes = ({themes, setOpen, open}) => {
+const GestionThemes = ({themes, setRefresh, refresh}) => {
 
   const[themeGestion, setThemeGestion]= useState("theme");
   const[missionGestion, setMissionGestion]= useState("mission");
@@ -22,11 +23,7 @@ const GestionThemes = ({themes, setOpen, open}) => {
 
   return(
     <div className="themesGestion">
-    <AddTheme 
-    iconPlus={iconPlus}
-    setOpen={setOpen}
-    open={open}
-    />
+    <NewModalTheme refresh={refresh} setRefresh={setRefresh} />
     <Card.Group centered>
       {themes.map((theme)=> (
         <div  key={theme.id} className= 'theme-card-container'>
@@ -35,8 +32,8 @@ const GestionThemes = ({themes, setOpen, open}) => {
             iconPlus={iconPlus}
             name={theme.id}
             {...theme}
-            setOpen={setOpen}
-            open={open}
+            refresh={refresh}
+            setRefresh={setRefresh}
           />
         </div>
       ))}

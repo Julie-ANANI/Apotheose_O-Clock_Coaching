@@ -1,26 +1,25 @@
 import React, {useState} from 'react'
 import { Button,Form, Modal, Icon } from 'semantic-ui-react'
+import axios from 'axios'
 
 function UpdateModalMission({
   currentTitle,
   currentDescription,
-  icon,
-  modalTarget,
-  setOpen,
-  open,
-  id}) {
-  const [title, setTitleTheme] = useState('');
-  const [description, setDescriptionTheme] = useState('');
+  idMission,
+  setRefresh,
+  refresh}) {
+  const [title, setTitleMission] = useState('');
+  const [advice, setAdviceMission] = useState('');
   const [position, setPosition] = useState(38);
-  const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
-  const postUrl = `http://localhost:3000/v1/api/themes/${id}`;
+  const [open, setOpen] = useState(false);
+  const postUrl = `http://localhost:3000/v1/api/admin/missions/${idMission}`;
 
   const handleSubmitTheme = () => {
 
     const data = {
       title: title,
-      description: description,
+      advice: advice,
     }
     const headers = {
       'Content-Type': 'application/json'
@@ -28,13 +27,16 @@ function UpdateModalMission({
       axios.post(postUrl, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
-        setTitleTheme('');
-        setDescriptionTheme('');
+        setTitleMission('');
+        setAdviceMission('');
+        setRefresh(true);
       }).catch(err => {
         console.log(err)
       }).finally(
+        console.log("post url", postUrl),
         console.log("je suis dans le finally"),
-        setOpen(false)
+        setOpen(false),
+        setRefresh(false)
       )
   }
   
@@ -45,21 +47,21 @@ function UpdateModalMission({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon size='big' link name={icon} />}
+      trigger={<Icon className="edit-mission-modal" size='big' link name='edit' />}
     >
-      <Modal.Header>Gestion de Missions</Modal.Header>
+      <Modal.Header>Modifier une mission</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder={currentTitle}
+          placeholder="titre"
           value={title}
-          onChange={e => setTitleTheme(e.target.value)}
+          onChange={e => setTitleMission(e.target.value)}
           />
           <Form.Input label="description"
           required type="text"
-          placeholder={currentDescription}
-          value={description}
-          onChange={e => setDescriptionTheme(e.target.value)}
+          placeholder="advice"
+          value={advice}
+          onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>

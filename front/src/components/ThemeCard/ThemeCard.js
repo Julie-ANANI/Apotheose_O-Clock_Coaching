@@ -13,14 +13,12 @@ const ThemeCard = ({
   title,
   id,
   description,
-  iconPlus,
-  missionGestion,
-  themeGestion,
-  open,
-  setOpen}) => {
+  setRefresh,
+  refresh,
+  ...rest
+}) => {
 
   const [missions, setMissions] = useState([]);
-  const [iconEdit,setIconEdit] = useState("edit")
   const [activeIndex, setActiveIndex] = useState(-1);
   
   const handleClick = (e, titleProps) => {
@@ -48,9 +46,44 @@ const ThemeCard = ({
 
   };
 
+  const handleDeleteMission = (e, {idmission}) => {
+
+    axios.delete(`http://localhost:3000/v1/api/admin/missions/${idmission}`)
+      .then((response) => {
+        console.log(response.data);
+        setRefresh(true);
+      })
+      .catch((error) => {
+        // exécuté quand la réponse arrive, si la réponse est un échec
+        // console.log(error);
+
+        // TODO il faudrait afficher l'information à l'utilisateur
+      }).finally(
+        setRefresh(false)
+      )
+  };
+
+  const handleDeleteTheme = (e, {id}) => {
+
+    axios.delete(`http://localhost:3000/v1/api/themes/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        setRefresh(true);
+      })
+      .catch((error) => {
+        // exécuté quand la réponse arrive, si la réponse est un échec
+        // console.log(error);
+
+        // TODO il faudrait afficher l'information à l'utilisateur
+      }).finally(
+        setRefresh(false)
+      )
+  }
+
+
   useEffect(() => {
     loadMissions();
-  },[]);
+  },[refresh]);
 
 return(
   <Card fluid className='mission-card'>
@@ -61,13 +94,16 @@ return(
       <UpdateModalTheme
       currentTitle={title}
       currentDescription={description}
-      icon={iconEdit}
-      modalTarget={themeGestion}
-      setOpen={setOpen}
-      open={open}
+      id={id}
+      setRefresh={setRefresh}
+      refresh={refresh}
+      />
+      <Icon
+      onClick={handleDeleteTheme} 
+      size='big'
+      link name="trash"
       id={id}
       />
-      <Icon size='big' link name="trash" />
     </div>
   </Card.Content>
 
@@ -88,16 +124,12 @@ return(
         className='astuce-container'
       >
         <div className="mission-container">
-          <div className='addMission-container'>
-            <h1>Ajouter un mission</h1>
-              <NewModalMission
-              icon={iconPlus}
-              modalTarget={missionGestion}
-              setOpen={setOpen}
-              open={open}
-              id={id}
-              />
-          </div>
+
+          <NewModalMission
+            id={id}
+            setRefresh={setRefresh}
+            refresh={refresh}
+          />
 
         </div>
             {missions.map((mission)=> (
@@ -106,8 +138,16 @@ return(
             {mission.title}
           </p>
           <div className="icon-container">
-          <UpdateModalMission currentTitle={mission.title} currentDescription={mission.advice} icon={iconEdit} modalTarget={missionGestion}/>
-            <Icon size='big' link name="trash" />
+          <UpdateModalMission
+            idMission={mission.id}
+            idTheme={id}
+            setRefresh={setRefresh}
+            refresh={refresh} />
+          <Icon 
+          idmission={mission.id}
+          size='big'
+          link name="trash"
+          onClick={handleDeleteMission} />
           </div>
 
         </div>

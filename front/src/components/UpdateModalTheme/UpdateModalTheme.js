@@ -6,16 +6,14 @@ import axios from 'axios'
 function UpdateModalTheme({
   currentTitle,
   currentDescription,
-  icon,
-  modalTarget,
-  setOpen,
-  open,
-  id}) {
+  id,
+  setRefresh,
+  refresh}) {
   const [title, setTitleTheme] = useState('');
   const [description, setDescriptionTheme] = useState('');
   const [position, setPosition] = useState(38);
-  const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
+  const [open, setOpen] = useState(false);
   const postUrl = `http://localhost:3000/v1/api/themes/${id}`;
 
   const handleSubmitTheme = () => {
@@ -33,11 +31,14 @@ function UpdateModalTheme({
         setData(res.data);
         setTitleTheme('');
         setDescriptionTheme('');
+        setRefresh(true);
       }).catch(err => {
         console.log(err)
       }).finally(
         console.log("je suis dans le finally"),
-        setOpen(false)
+        setOpen(false),
+        setRefresh(false)
+
       )
   }
   
@@ -48,9 +49,9 @@ function UpdateModalTheme({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon size='big' link name={icon} />}
+      trigger={<Icon className="edit-theme-modal" size='big' link name='edit' />}
     >
-      <Modal.Header>Gestion de Theme</Modal.Header>
+      <Modal.Header>Modifier un thème</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
