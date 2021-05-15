@@ -155,7 +155,8 @@ class Theme {
             return new ThemeAndUserNotFound();
         };
     };
-/**
+
+    /**
       * Inserts a new theme in the DB or updates the database if the record alredy exists.
       * 
       * @async
@@ -172,11 +173,15 @@ class Theme {
         ]);
               /// c'est les this du body 
            if (rows[0]) {
+               
               this.id = rows[0].id;
            } else {
                throw new ThemeNotAdded();
            };
+       
    };
+
+
      /**
       * Update theme in the DB 
       * 
@@ -188,6 +193,7 @@ class Theme {
     async update() {
         // console.log(this.id)
         if (this.id) {
+        
            const { rows }= await db.query(`
            UPDATE theme 
            SET title = $1, "description" = $2, position = $3, modified_at = now()
@@ -196,12 +202,16 @@ class Theme {
             [this.title, this.description,this.position,  this.id]);
                /// c'est les this du body 
             if (rows[0]) {
+                
                 return rows[0];
             } else {
                 throw new ThemeNotUpdated();
             };
+
         };
+
     };
+
     
     /**
       * Delete a theme

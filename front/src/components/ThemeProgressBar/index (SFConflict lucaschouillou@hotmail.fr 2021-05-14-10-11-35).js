@@ -13,7 +13,7 @@ const ThemeProgressBar = ({title, description }) => {
         <Progress className='theme-progress-bar' percent={percent} indicating progress />
       </div>
       <div className="description-theme">
-        <p className="theme-progress-description">
+        <p>
           {description}
         </p>
       </div>

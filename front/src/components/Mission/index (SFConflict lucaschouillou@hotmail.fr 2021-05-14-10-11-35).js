@@ -51,7 +51,9 @@ return(
         active={activeIndex === 0}
         className='astuce-container'
       >
-      <p className='astuce-text'>{advice}</p>
+        <p className= 'astuce-text'>
+          {advice}
+        </p>
       </Accordion.Content>
     </Accordion>
 
