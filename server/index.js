@@ -15,29 +15,29 @@ app.use(express.json());
 
 // Establishing a session system so we can store the info of each user
 // Establishing a session system so we can store the info of each user
-app.use(session({
-    //resave is used to reset the lifetime of the session with each new request
-    resave: true,
-    //saveUninitialized is used to save the session in the system event if we didn't store any data inside
-    saveUninitialized: false,
-    //secret is used to encrypt  the session identifier placed in the cookie sent to the client
-    secret: process.env.SESSION_SECRET,
-    cookie: {
-        secure: false, // false allow us not to be in https
-        maxAge: 7200000 // in milliseconds --> 2h
-    }
-}));
+// app.use(session({
+//     //resave is used to reset the lifetime of the session with each new request
+//     resave: true,
+//     //saveUninitialized is used to save the session in the system event if we didn't store any data inside
+//     saveUninitialized: false,
+//     //secret is used to encrypt  the session identifier placed in the cookie sent to the client
+//     secret: process.env.SESSION_SECRET,
+//     cookie: {
+//         secure: false, // false allow us not to be in https
+//         maxAge: 7200000 // in milliseconds --> 2h
+//     }
+// }));
 
 
 // Allowing cross-origin requests in development
-if (process.env.NODE_ENV === 'development') {
+// if (process.env.NODE_ENV === 'development') {
     app.use((request, response, next) => {
         response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
         response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
         response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
         next();
     });
-}
+// }
 
 app.use('/v1/api/', router);
 
