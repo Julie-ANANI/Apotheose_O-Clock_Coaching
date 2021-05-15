@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 // bibliothèque pour faciliter les appels AJAX (en utilisant des Promise)
-import axios from 'axios';
+import axios, { post } from 'axios';
 
 // - composant Route : permet de faire un affichage conditionnel en fonction de l'URL de
 // la barre d'adresse. Comparaison "qui commence par" => si on veut une comparaison
@@ -11,8 +11,9 @@ import axios from 'axios';
 // par défaut (sans path) pour la page d'erreur 404
 // - composant Redirect : redirige une URL vers une autre (par exemple quand une
 // page a été déplacée)
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useHistory } from 'react-router-dom';
 
+// require('dotenv').config();
 
 // == Import
 import './styles/App.css';
@@ -33,48 +34,135 @@ import SearchProfil from './pages/SearchProfil';
 
 
 // A mettre dans le .env et utiliser process.env.base_url
-var base_url = 'http://localhost:3000/v1/api'
 
-console.log(navlinks);
+
+// console.log(navlinks);
 
 // == Composant
-const App = () => { 
+const App = ({base_url}) => { 
 
-  const [themes, setThemes] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState({});
-  const [activeRole, setActiveRole] = useState('admin');
-  const [refresh, setRefresh] = useState(false);
+  const history = useHistory();
+
+  // GENERAL POUR LINSTANT
+  const [activeRole, setActiveRole] = useState('student');
+  const [userId, setUserId] = useState(3);
 
   
+  // PARCOURS COACHING
+  
+  const [themes, setThemes] = useState([]);
+  const [generalScore, setGeneralScore] = useState(0);
+
+  const [refresh, setRefresh] = useState(false);
+  // THEME PAGE
+  const [missionByTheme, setMissionByTheme] = useState([]);
+  const [missionByThemeUser, setMissionByThemeUser] = useState([]);
+  const [theme, setTheme] = useState({});
+  
+  const [allMissions, setAllMissions] = useState([]);
+  const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
+  const [userInteraction, setUserInteraction] = useState(0);
+
+  // SEARCH BAR
+  const [searchedText, setSearchedText] = useState('');
+
+  // MENU
+  const [activeItem, setActiveItem] = useState('Accueil');
+
+
+
+
+
   const getMenuRoutes = (role) => {
     const filteredNavlinks = navlinks.filter(navlink => navlink.role === role)
     return filteredNavlinks
-  }
+  };
+  // Import des Thèmes, des missions et des missions cochées par l'utilisateur
+  // Bien pensé à gérer l'erreur en renvoyant une 404. voir modèle Oclock
 
   const loadThemes = () => {
-    console.log('Il faut charger les thèmes');
+    // console.log('Il faut charger les thèmes');
+    
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
-        console.log(response.data);
-        setThemes(response.data)
+        console.log('on récupère les thèmes', response.data);
+        setThemes(response.data);
       })
   };
 
+  const loadUserMissions = () => {
+    // console.log('Il faut charger les missions déjà effectuées par le user');
+    // Dans un premier temps on vérifie que le user loggué est bien un étudiant
+    if (activeRole === 'student') {
+      const url = `${base_url}/missions/users/${userId}`
+
+      axios({
+        url: url,
+        method: 'get',
+      })
+      .then((response) => {
+        setUserMissionsCompleted(response.data)
+      })
+      .then(()=>{
+        console.log('userMissionsCompleted',userMissionsCompleted);
+        console.log('userMissionsCompleted.length',userMissionsCompleted.length);
+        console.log('allMissions.length',allMissions.length);
+        // console.log('generalScore',generalScore);
+      })
+    } 
+  };
+
+  const loadAllMissions = () => {
+    // console.log('Il faut charger toutes les missions qui existent en BDD');
+    // Dans un premier temps on vérifie que le user loggué est bien un étudiant
+    if (activeRole === 'student') {
+      axios.get(`${base_url}/missions`)
+      .then((response) => {
+        setAllMissions(response.data)
+        console.log('allMissions=',response.data);
+      })
+  }}
+
+
   const filteredNavlinks = getMenuRoutes(activeRole);
 
-  // useEffect(() => {
-  //   loadThemes();
-  // }, []);
-
   useEffect(() => {
+    console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
-  }, [refresh]);
+    loadAllMissions();
+    // loadUserMissions();
+  }, []);
 
+  useEffect(()=> {
+    console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
+    loadUserMissions();
+  },[allMissions,userInteraction]);
+
+  // getSearchedThemes = () => {
+  //   let searchedThemes = themes;
+
+  //   if (searchedText.length > 0) {
+  //     const loweredSearchedText = themes.title.toLowerCase();
+  //     console.log(loweredThemeName);
+
+  //     searchedThemes = themes.filter((currency) => {
+  //       const 
+  //     })
+  //   }
+  // }
+ 
   return(
     <div className="app">
       
-      <Menu navlinks={filteredNavlinks} />
+      <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+      />
       
       <Switch>
 
@@ -94,21 +182,48 @@ const App = () => {
         </Route>
 
         <Route path='/parcours-coaching'>
-          <Header titre={titre.parcoursCoaching.description} />
-          <ParcoursCoaching themes={themes} setSelectedTheme={setSelectedTheme}/>  
+          <Header titre={titre.parcoursCoaching.description}  />
+          <ParcoursCoaching 
+            themes={themes} 
+            generalScore={generalScore}
+            userMissionsCompleted={userMissionsCompleted}
+            allMissions={allMissions}
+            // computeGeneralScore={computeGeneralScore}
+            setGeneralScore={setGeneralScore}  
+            userInteraction={userInteraction}
+            base_url={base_url}
+            userId={userId}
+            searchedText={searchedText}
+          />  
         </Route> 
           
 
         <Route path= {`/theme/:idTheme`}>
           <Header titre={titre.studentMissions.description} />
-          <ThemePage themes={themes} /> 
+          <ThemePage 
+            themes={themes}
+            base_url={base_url}
+
+            missionByTheme={missionByTheme}
+            setMissionByTheme={setMissionByTheme}
+            missionByThemeUser={missionByThemeUser}
+            setMissionByThemeUser={setMissionByThemeUser}
+            theme={theme}
+            setTheme={setTheme}
+
+            userInteraction={userInteraction}
+            setUserInteraction={setUserInteraction}
+        
+            allMissions={allMissions} 
+            userMissionsCompleted={userMissionsCompleted} 
+            userId={userId}
+            activeRole={activeRole} /> 
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
           <Header titre={titre.addAdmin.description} />
           <AddAdmin />
         </Route>
-
         <Route path= {`/gestion-themes`}>
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
