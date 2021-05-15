@@ -1,7 +1,9 @@
 require('dotenv').config();
 const User = require('../models/user');
 const fetch = require('node-fetch');
-const FormData = require('form-data');
+
+
+const { EXTERNAL_API_KEY, EXTERNAL_API_BASE_URL, ENDPOINTS_PROMOS, ENDPOINT_PROMO} = process.env;
 
 const testController = {
     /**
@@ -46,17 +48,14 @@ const testController = {
 searchArray: async (req, res)=> {
 
     try {
-
-        let auth_token = process.env.EXTERNAL_API_KEY
-        //     console.log(auth_token);
-        searchtest = {};
-       await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/${process.env.ENDPOINTS_PROMOS}`, {
+        completelyReceivecompletelyReceiveAllPromos = {};
+       await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINTS_PROMOS}`, {
         method: 'GET',
         headers: {
-            'X-AUTH-TOKEN': `${auth_token}`
+            'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
           }} ).then(res => res.json())
-              .then(json => searchtest = json);
-            res.status(200).json(searchtest);
+              .then(json => completelyReceivecompletelyReceiveAllPromos = json);
+            res.status(200).json(completelyReceivecompletelyReceiveAllPromos);
     } catch (error) {
         res.status(500).json(error.message);
     }
@@ -66,54 +65,58 @@ searchArray: async (req, res)=> {
 },
 
 searchByPromo : async (req,res) => {
-    // appeler la route externe qui récupère toutes les promos
-    let auth_token = process.env.EXTERNAL_API_KEY
+  
     try {
-        const idPromos = [];
-        let allPromos;
-        // récupèrer l'id de chaque promo dans un tableau
-        await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/${process.env.ENDPOINTS_PROMOS}`, {
+        const idForEachPromo = [];
+        let completelyReceiveAllPromos;
+
+        /** 
+        * consumed the cockpit API to retrieve each id 
+        * we choose the method and we put the API key in the header
+        */
+
+        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINTS_PROMOS}`, {
             method: 'GET',
             headers: {
-                'X-AUTH-TOKEN': `${auth_token}`
+                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
               }} ).then(res => res.json())
-        .then(json => allPromos = json);
-        console.log(` toute la route tous les promos ${allPromos}`);
-        getIDofPromo = allPromos.data;
+        .then(json => completelyReceiveAllPromos = json);
+
+        takeDetailsEachPromo = completelyReceiveAllPromos.data;
         
-        for (const properties of getIDofPromo ){
-             console.log(`propriétés ${properties.id}`);   
-             idPromos.push(properties.id)   
+        for (const properties of takeDetailsEachPromo ){
+             idForEachPromo.push(properties.id)   
         }
 
-
-       for (const props of idPromos) {console.log(props)}
-
-   
-    // On boucle ce tableau pour faire l'étape suivante
-    // appeler la route externe qui récupère les étudiant d'une seule promo avec son id
-    for(const idPromo of idPromos){
+    /** 
+    * We loop this table to do the next step
+    * call the external route which collects the students of a single promotion with its id
+    */ 
+    
+    for(const idOnlyOnePromo of idForEachPromo){
         const users = [];
         let onePromo;
-        await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/${process.env.ENDPOINT_PROMO}/${idPromo}`, {
+        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_PROMO}/${idOnlyOnePromo}`, {
             method: 'GET',
             headers: {
-                'X-AUTH-TOKEN': `${auth_token}`
+                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
               }} ).then(res => res.json())
         .then(json => onePromo = json);
-        console.log(onePromo)
+    
         for(const student of onePromo.data.users){
-            console.log(`student ${student}`);
+         
             if(student.type === 'regular'){
                 users.push(student);
             };
-            console.log(users);
+            
         };
-        // On récupère toutes les informations et les "coller" dans un nouveau tableau pour la renvoyer
-        allPromos.data.push(users);
+        
+// We retrieve all the information without type teacher and insert user with type regular in a new array to return it
+        completelyReceiveAllPromos.data[idOnlyOnePromo - 1].users = users; 
         };
-        // console.log(`le nouvel objet ${allPromos}`)
-        res.status(200).json(allPromos);
+        
+        const customPromotionalWithUser = completelyReceiveAllPromos 
+        res.status(200).json(customPromotionalWithUser);
     } catch(err){
         res.status(500).json(err.message);
     };
