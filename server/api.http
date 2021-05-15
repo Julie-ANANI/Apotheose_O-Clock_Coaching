@@ -117,7 +117,7 @@ Content-Type: application/json
 
 
 # Créer un nouveau thème
-POST http://localhost:3100/v1/api/admin/themes
+POST http://localhost:3000/v1/api/admin/themes
 Content-Type: application/json
 
 {
@@ -140,7 +140,7 @@ Content-Type: application/json
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3100/v1/api/admin/themes/5
+DELETE http://localhost:3000/v1/api/admin/themes/5
 Content-Type: application/json
 
 ###
@@ -159,7 +159,7 @@ Content-Type: application/json
 
 # Modifier une mission
 
-POST http://localhost:3100/v1/api/admin/missions/9
+POST http://localhost:3000/v1/api/admin/missions/9
 Content-Type: application/json
 
 {    
@@ -168,29 +168,22 @@ Content-Type: application/json
 ###
 
 # Supprimer une mission
-DELETE http://localhost:3100/v1/api/admin/missions/29
+DELETE http://localhost:3000/v1/api/admin/missions/29
 Content-Type: application/json
 ###
 
 # Login un étudiant
-POST http://localhost:3200/v1/api/login
+POST http://localhost:3000/v1/api/login
 Content-Type: application/json
 
 {    
-    "login_email": "stu@",
-    "login_password": "S"
+    "proprété": "",
+    "propriété": ""
 }
 ###
 
 
-# search un étudiant test
-POST http://localhost:3200/v1/api/search
+# search un étudiant 
+GET http://localhost:3000/v1/api/admin/search/promo_id
 Content-Type: application/json
-
-###
-
-# search un étudiant FINAL
-GET http://localhost:3200/v1/api/admin/search/promo_id
-Content-Type: application/json
-
 ###
