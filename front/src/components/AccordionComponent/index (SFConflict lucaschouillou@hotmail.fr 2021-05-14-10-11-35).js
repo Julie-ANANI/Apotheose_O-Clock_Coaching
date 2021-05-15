@@ -5,7 +5,7 @@ import Mission from './mission';
 
 const AccordionComponent = ({missions}) => (
 
-  <Accordion className="mission-accordion">
+  <Accordion>
     {missions.map((mission) => (
       <Mission
         key={mission.id}
