@@ -3,6 +3,8 @@ const Theme = require('./app/models/theme');
 const Mission = require('./app/models/mission');
 const Interact = require('./app/models/interact');
 const User = require('./app/models/user');
+const fetch = require('node-fetch');
+const FormData = require('form-data');
 
 // Getting all themes
 // Test ok
@@ -43,15 +45,15 @@ const User = require('./app/models/user');
 
 //Inserting a theme
 //Test ok 
-(async () => {
-    try {
-        const newTheme = new Theme({ title: 'Hello 2', description: 'Blue <b>ba</b> blue', position: 40 });
-        console.log(newTheme);
-        newTheme.save();
-    } catch (err) {
-        console.log(error);
-    }
-})();
+// (async () => {
+//     try {
+//         const newTheme = new Theme({ title: 'Hello 2', description: 'Blue <b>ba</b> blue', position: 40 });
+//         console.log(newTheme);
+//         newTheme.save();
+//     } catch (err) {
+//         console.log(error);
+//     }
+// })();
 
 // Inserting a mission
 // Test ok
@@ -117,14 +119,31 @@ const User = require('./app/models/user');
 
 // Passing user with id 6's admin status to true
 // Test ok
+// (async () => {
+//     try {
+//         const theUser = await User.findOne(6);
+//         console.log(theUser);
+//         theUser.admin_status = true;
+//         theUser.save();
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// })();
+
 (async () => {
     try {
-        const theUser = await User.findOne(6);
-        console.log(theUser);
-        theUser.admin_status = true;
-        theUser.save();
-    } catch (error) {
-        console.log(error);
-    }
+        
+        const response = await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/cohorts`, {
+            headers: {
+                'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
+            }
+        });
 
+        const cohort = await response.json();
+        console.log(cohort);
+
+    } catch (err) {
+        console.log(err);
+    }
 })();
