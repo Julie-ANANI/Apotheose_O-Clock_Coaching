@@ -25,10 +25,6 @@ export default
       description: "Tu as ici le pouvoir de faire sieger un nouvel utilisateur au rang de maitre coaching. Un grand pouvoir, pour une grande responsabilité. ",
       page: 'add-admin',
     },
-    gestionThemes : {
-      description: "Ajoutons des pailletes dans la vie de nos chers étudiants! Quoi de mieux qu'une petite mission pour cela?",
-      page: 'gestion-themes',
-    },
   }
   
 
