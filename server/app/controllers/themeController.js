@@ -2,7 +2,7 @@ const Theme = require('../models/theme');
 
 const themeController = {
     /**
-    * It's control the road GET /v1/api/themes
+    * Controls endpoint GET /v1/api/admin/themes
     */
     getAllThemes: async (_, res) => {
    
@@ -25,7 +25,7 @@ const themeController = {
 
 
     /**
-    * It's control the road GET /v1/api/themes/:id
+    * Controls endpoint GET /v1/api/admin/themes/:id
     */
     getOneTheme: async (req, res) => {
 
@@ -49,7 +49,7 @@ const themeController = {
 
 
     /**
-    * It's control the road POST /v1/api/themes/:themeId
+    * Controls endpoint POST /v1/api/admin/themes/:themeId
     */
     changeTheme: async (req, res) => {
         try {  
@@ -64,7 +64,7 @@ const themeController = {
 
                 } else {
                     // recuperation of infos body if id exists
-                    const { title, description, position } = req.body;
+                    const { title, description } = req.body;
                 
                     //replace title if new modification
                     if (title) {
@@ -74,11 +74,7 @@ const themeController = {
                     if (description) {
                         theme.description = description;
                     }
-                    // replace position if new position
-                    if(position) {
-                        theme.position = position;
                     
-                    } 
                     // execute methode update in the model Theme
                     await theme.update();
                     res.status(200).json(theme);
@@ -93,7 +89,7 @@ const themeController = {
 
 
     /**
-    * It's control the road POST /v1/api/themes
+    * Controls endpoint POST /v1/api/admin/themes
     */
     addNewTheme: async (req, res) => {
         try {  
@@ -104,19 +100,19 @@ const themeController = {
             let bodyErrors = [];
 
             if (!title) {
-               bodyErrors.push(`title is cannot be empty`);
+               bodyErrors.push(`title cannot be empty`);
             }
             if (!description) {
                bodyErrors.push(`description cannot be empty`);
             }
-
 
             // if there are any errors, we return them
             if (bodyErrors.length) {
                 res.status(400).json(bodyErrors);
             } else {
                 // if there are no errors, we can save this new record in the database
-                const newTheme = new Theme({ title, description, 'position':0 });
+                // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
+                const newTheme = new Theme({ title, description, 'position': 0 });
                 await newTheme.save();
                 res.status(200).json(newTheme);
             }
@@ -129,7 +125,7 @@ const themeController = {
 
 
     /**
-    * It's control the road GET /v1/api/themes/:id
+    * Controls endpoint GET /v1/api/admin/themes/:id
     */
    deleteTheme: async (req, res) => {
 
@@ -158,7 +154,7 @@ const themeController = {
 },
 
     /**
-    * It's control the road GET v1/api/students/:userId/themes/:themeId/score
+    * Controls endpoint GET v1/api/students/:userId/themes/:themeId/score
     */
     getScoreOfOneThemeOfOneUser: async(req,res) =>{
         try{
