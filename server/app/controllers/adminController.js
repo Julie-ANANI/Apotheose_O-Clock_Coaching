@@ -52,7 +52,7 @@ const adminController = {
     /**
     * Route GET /v1/api/admin/search/Promo_id
     */
-   searchByPromo : async (req,res) => {
+   searchByPromo : async (_,res) => {
     
     try {
         const idForEachPromo = [];
