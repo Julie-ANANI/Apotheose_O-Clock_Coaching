@@ -110,6 +110,7 @@ POST http://localhost:3000/v1/api/admin/missions/2
 Content-Type: application/json
 
 {
+    "title": "nouveau titre",
     "advice": "aaaaah"
 }
 ####
