@@ -1,13 +1,19 @@
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import '../../styles/addTheme.css';
-const AddTheme = ({...rest}) => (
+const AddTheme = ({...props}, {...rest}) => {
 
-  <div className="addtheme-container" {...rest}>
+  console.log({...props},{...rest})
+  return(
+
+  <div className="addtheme-container" 
+  {...props}
+  {...rest}
+  >
   <h1>Ajouter un theme</h1>
 <Icon size='big' name='plus' />
 </div>
-)
+)}
 
   
 
