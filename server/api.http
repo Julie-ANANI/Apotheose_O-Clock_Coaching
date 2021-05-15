@@ -189,7 +189,7 @@ Content-Type: application/json
 ###
 
 # search un étudiant FINAL
-GET http://localhost:3200/v1/api/searchByPromo
+GET http://localhost:3200/v1/api/admin/search/promo_id
 Content-Type: application/json
 
 ###

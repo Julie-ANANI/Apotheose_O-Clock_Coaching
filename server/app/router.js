@@ -188,9 +188,12 @@ router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMissio
 router.delete('/admin/missions/:missionId', missionController.deleteMission);
 
 
-
-router.post('/search', testController.searchArray);
-
-router.get('/searchByPromo', testController.searchByPromo);
+/**
+ * Returns one promo with users by promo 
+ * @route GET /admin/search/promo_id
+ * @group Admin
+ * @returns {<Promo> [users]} 200 - 
+ */
+router.get('/admin/search/promo_id', adminController.searchByPromo);
 
 module.exports = router;
