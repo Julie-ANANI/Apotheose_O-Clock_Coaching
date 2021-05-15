@@ -35,7 +35,7 @@ const MenuHeader = ({navlinks}) => {
 
     <Menu.Menu position='right'>
       <Menu.Item>
-        <Input className='searchbar' icon='search' placeholder='Cherche un thème' />
+        <Input className='searchbar' icon='search' placeholder='Rechercher un thème' />
       </Menu.Item>
       <Menu.Item
         className='header-menu-item deconnexion'
