@@ -122,7 +122,7 @@ Content-Type: application/json
 
 {
     
-    "title": "Scribe",
+    "title": "Scre5tegtrhgrtteibe",
     "description": "Mais, vous savez, moi je ne crois pas qu’il y ait de bonne ou de mauvaise situation"
 }
 ####
@@ -140,12 +140,10 @@ Content-Type: application/json
 ###
 
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/admin/themes/12
+DELETE http://localhost:3000/v1/api/admin/themes/5
 Content-Type: application/json
-
 ###
 
-# Créer une nouvelle mission
 
 POST http://localhost:3000/v1/api/admin/themes/8/missions
 Content-Type: application/json
@@ -154,26 +152,41 @@ Content-Type: application/json
     "title": "Je ne suis qu’amour",
     "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
 }
-
 ###
 
-# Modifier une mission
 
-POST http://localhost:3000/v1/api/admin/missions/29
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/9
 Content-Type: application/json
 
 {    
     "title": "Alors ce n’est pas mon cas"
 }
-
 ###
 
 # Supprimer une mission
-
 DELETE http://localhost:3000/v1/api/admin/missions/29
 Content-Type: application/json
-
 ###
+
+
+# Login un étudiant
+POST http://localhost:3000/v1/api/login
+Content-Type: application/json
+
+{    
+    "proprété": "valeur",
+    "propriété": "valeur"
+}
+###
+
+
+# Search une promo
+GET http://localhost:3000/v1/api/admin/search/promo_id
+Content-Type: application/json
+###
+
+
 
 
 
