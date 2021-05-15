@@ -115,8 +115,6 @@ const userController = {
     },
 
 
-
-
     logout: (req, res) => {
         req.session.user = false;
         res.status(204).json('User successfully logged out in back-end');
