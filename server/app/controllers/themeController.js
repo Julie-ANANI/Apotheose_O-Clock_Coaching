@@ -94,7 +94,7 @@ const themeController = {
     addNewTheme: async (req, res) => {
         try {  
             // We get the body parameters of the request from req.body
-            const { title, description} = req.body;
+            const { title, description } = req.body;
 
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];

@@ -1,5 +1,7 @@
 -- Seeding for tables theme, mission, user and interact
 
+BEGIN;
+
 INSERT INTO theme (title,description, position, created_at, modified_at)
 VALUES
 -- We use the escape string constant E to be able to include newlines using \n
@@ -67,3 +69,4 @@ VALUES
 (NOW (), NOW() + '1 day', 1, 5),
 (NOW (), NOW() + '1 day', 2, 5);
 
+COMMIT;

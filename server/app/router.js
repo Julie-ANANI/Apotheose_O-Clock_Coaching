@@ -144,7 +144,7 @@ router.post('/login', userController.login);
 router.post('/login', userController.logout);
 
 /**
- * Updates a user record with admin status
+ * Creates/updates a user record with admin status
  * @route POST /admin/add
  * @group Admin
  * @returns {<User>} 200 - An instance of User class
