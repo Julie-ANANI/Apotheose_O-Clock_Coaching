@@ -4,6 +4,7 @@ const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
+const adminController = require('./controllers/adminController');
 
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
@@ -30,27 +31,27 @@ router.get('/themes/:id', themeController.getOneTheme);
 
 /**
  * add a new theme in the database with new id
- * @route POST /themes
+ * @route POST /admin/themes
  * @group A Theme
  * @returns {<New Theme>} 200 - An instance of new theme
  */
-router.post('/themes',validateBody(themeSchema.newTheme), themeController.addNewTheme);
+router.post('/admin/themes',validateBody(themeSchema.newTheme), themeController.addNewTheme);
 
 /**
  * change theme in the database with this id
- * @route POST /themes/ :themeId
+ * @route POST /admin/themes/:themeId
  * @group A Theme
  * @returns {<Theme>} 200 - an update in the theme
  */
-router.post('/themes/:themeId', validateBody(themeSchema.updateTheme), themeController.changeTheme);
+router.post('/admin/themes/:themeId', validateBody(themeSchema.updateTheme), themeController.changeTheme);
 
 /**
  * delete a theme in the database with this id
- * @route POST /themes/ :themeId
+ * @route POST /admin/themes/:themeId
  * @group A Theme
  * @returns {<Theme>} 200 - Suppression the id theme in the database
  */
-router.delete('/themes/:themeId',  themeController.deleteTheme);
+router.delete('/admin/themes/:themeId',  themeController.deleteTheme);
 
 /**
  * Returns all missions from the database
@@ -125,13 +126,36 @@ router.get('/users/:id', userController.getOneUser);
  */
 router.get('/users', userController.getAllusers);
 
+/**
+ * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
+ * @route POST /login
+ * @group Login
+ * @returns {<User>} 200 - A user object
+ */
+router.post('/login', userController.login);
 
 /**
- * Returns the score of a theme and a user
+ * Logs out the user from the backend
+ * @route POST /login
+ * @group Login
+ * @returns 200 - A message confirming the user is logged out in backend
+ */
+router.post('/login', userController.login);
+
+/**
+ * Updates a user record with admin status
+ * @route POST /admin/add
+ * @group Admin
+ * @returns {<User>} 200 - An instance of User class
+ */
+router.post('/admin/add', adminController.addAdmin);
+
+/**
+ * Returns the score of a user for a theme
  * @route GET /student/:userId/themes/:themeId/score
  * @returns {Object} 200 - An object of a theme's score of a user
  */
-router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfOneThemeOfOneUser);
+router.get('/students/:userId/themes/:themeId/score', interactController.getScorebyThemeAndUser);
 
 
 /**
@@ -139,7 +163,7 @@ router.get('/students/:userId/themes/:themeId/score',themeController.getScoreOfO
  * @route GET /students/:userId/score
  * @returns {Object} 200 - An object of a score global of a user
  */
-router.get('/students/:userId/score', interactController.getGlobalScoreOfOneUser);
+router.get('/students/:userId/score', interactController.getGlobalScoreByUser);
 
 /**
  * Create and return the new mission
