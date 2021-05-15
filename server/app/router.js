@@ -101,7 +101,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @route POST /admin/themes/{theme_id}/missions
  * @group Missions
  * @param {number} theme_id.path.required - the theme id
- * @param {string} title.path.required - the title
+ * @param {string} title.path.properties- the title
  * @param {string} advice- the description
  * @security JWT
  * @returns {Object} 201 - An object of the new mission
