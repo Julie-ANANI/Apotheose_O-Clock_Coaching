@@ -41,7 +41,6 @@ const ThemeInParcoursCoachingPage = ({
 return(
       <Card fluid className='theme-card'>
         <Card.Content className='theme-card-header' header={title} />
-        {/* <Card.Content description={description} /> */}
         <Card.Content extra>
           <Progress percent={themeScore.bytheme_ratio} indicating progress />
         </Card.Content>

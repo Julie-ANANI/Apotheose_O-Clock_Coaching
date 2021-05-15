@@ -11,7 +11,7 @@ import axios, { post } from 'axios';
 // par défaut (sans path) pour la page d'erreur 404
 // - composant Redirect : redirige une URL vers une autre (par exemple quand une
 // page a été déplacée)
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useHistory } from 'react-router-dom';
 
 // require('dotenv').config();
 
@@ -28,7 +28,8 @@ import AddAdmin from 'src/pages/AddAdmin';
 
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
-
+import GestionThemes from './pages/GestionThemes';
+import SearchProfil from './pages/SearchProfil';
 // import AccueilAdmin from './pages/AccueilAdmin';
 
 
@@ -40,6 +41,8 @@ import titre from 'src/data/titreHeader.js'
 // == Composant
 const App = ({base_url}) => { 
 
+  const history = useHistory();
+
   // GENERAL POUR LINSTANT
   const [activeRole, setActiveRole] = useState('student');
   const [userId, setUserId] = useState(3);
@@ -50,7 +53,7 @@ const App = ({base_url}) => {
   const [themes, setThemes] = useState([]);
   const [generalScore, setGeneralScore] = useState(0);
 
-
+  const [refresh, setRefresh] = useState(false);
   // THEME PAGE
   const [missionByTheme, setMissionByTheme] = useState([]);
   const [missionByThemeUser, setMissionByThemeUser] = useState([]);
@@ -59,6 +62,12 @@ const App = ({base_url}) => {
   const [allMissions, setAllMissions] = useState([]);
   const [userMissionsCompleted, setUserMissionsCompleted] = useState([]);
   const [userInteraction, setUserInteraction] = useState(0);
+
+  // SEARCH BAR
+  const [searchedText, setSearchedText] = useState('');
+
+  // MENU
+  const [activeItem, setActiveItem] = useState('Accueil');
 
 
 
@@ -91,14 +100,10 @@ const App = ({base_url}) => {
       axios({
         url: url,
         method: 'get',
-    })
+      })
       .then((response) => {
         setUserMissionsCompleted(response.data)
       })
-      // .then(()=> {
-      //   computeGeneralScore();
-
-      // })
       .then(()=>{
         console.log('userMissionsCompleted',userMissionsCompleted);
         console.log('userMissionsCompleted.length',userMissionsCompleted.length);
@@ -133,11 +138,31 @@ const App = ({base_url}) => {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
     loadUserMissions();
   },[allMissions,userInteraction]);
+
+  // getSearchedThemes = () => {
+  //   let searchedThemes = themes;
+
+  //   if (searchedText.length > 0) {
+  //     const loweredSearchedText = themes.title.toLowerCase();
+  //     console.log(loweredThemeName);
+
+  //     searchedThemes = themes.filter((currency) => {
+  //       const 
+  //     })
+  //   }
+  // }
  
   return(
     <div className="app">
       
-      <Menu navlinks={filteredNavlinks} />
+      <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+      />
       
       <Switch>
 
@@ -168,6 +193,7 @@ const App = ({base_url}) => {
             userInteraction={userInteraction}
             base_url={base_url}
             userId={userId}
+            searchedText={searchedText}
           />  
         </Route> 
           
@@ -198,7 +224,15 @@ const App = ({base_url}) => {
           <Header titre={titre.addAdmin.description} />
           <AddAdmin />
         </Route>
+        <Route path= {`/gestion-themes`}>
+          <Header titre={titre.gestionThemes.description} />
+          <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
+        </Route>
 
+        <Route path= {`/search-profil`}>
+          <Header titre={titre.gestionThemes.description} />
+          <SearchProfil />
+        </Route>
       </Switch>
 
     </div>

@@ -39,13 +39,13 @@ return(
       <div className="progress-container">
         <Progress className='general-progress-bar' percent={generalScore} indicating progress />
         {/* importer composant message pour le message ci-dessous */}
-        <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
+        <span className='parcourscoaching__progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
       </div>
     <Divider hidden />
     <Divider hidden />
     <Card.Group centered>
       {themes.map((theme)=> (
-        <div  key={theme.id} className= 'theme-card-container'>
+        <div  key={theme.id} className= 'parcourscoaching__theme-card-container'>
           <Link
           name={theme.id}
           // onClick={handleThemeClick}

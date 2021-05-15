@@ -1,0 +1,8 @@
+.addtheme-container {
+  display: flex;
+  margin: 3em;
+}
+i.plus.square {
+  margin-left: 0.5em;
+  padding-top: 0.2em;
+}

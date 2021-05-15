@@ -1,4 +1,4 @@
-.parcourscoaching__student-dashboard {
+.student-dashboard {
   padding: 0 ;
   font-family: Oclock;
   height: 100% ;
@@ -9,7 +9,7 @@
   width : 40%
 }
 
-.ui.progress.parcourscoaching__general-progress-bar {
+.ui.progress.general-progress-bar {
   width: 100%;
   margin-bottom: 1em ;
 
@@ -33,7 +33,7 @@
   display: 60%;
 } */
 
-.parcourscoaching__theme-card-container {
+.theme-card-container {
   margin : 0 1%;
   
 }
@@ -83,13 +83,13 @@
   
 }
 
-.parcourscoaching__progressbar-message {
+.progressbar-message {
   color : #fffdd8;
   font-size: 2em;
   
 }
 
-.ui.cards>.card>.content>.header.theme-card-header {
+.ui.cards>.card>.content>.header {
   color : #fffdd8;
   font-family: Oclock;
 }
@@ -99,7 +99,7 @@
   margin : 0;
 }
 
-.parcourscoaching__progress-container {
+.progress-container {
   display: block;
   padding: 1em 25%;
   text-align: center;

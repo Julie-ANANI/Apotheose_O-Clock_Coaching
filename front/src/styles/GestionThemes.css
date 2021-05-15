@@ -1,0 +1,44 @@
+.theme-card-container {
+  margin: 0 1%;
+  width: 100%;
+}
+h2 {
+  width: 75%;
+  margin-right: 60%;
+}
+.checkbox-container {
+  display: flex;
+}
+
+i.edit {
+  margin-right: 2em;
+
+}
+p.icon-description{
+  font-size: 1.3em;
+  padding-right: .7em;
+}
+p.astuce-text {
+  font-size: 2em;
+  width: 80%;
+}
+.mission-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: .7em;
+}
+.ui.fluid.card.mission-card {
+  margin-bottom: 3em;
+}
+.ui.modal div.header {
+  background-color: #268071;
+}
+.ui.modal div.content {
+  background-color: #0CAD93;
+}
+.ui.modal div.actions {
+  background-color: #268071;
+}
+.addMission-container {
+  display: flex;
+}
