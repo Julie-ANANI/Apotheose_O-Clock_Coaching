@@ -26,7 +26,7 @@ export default
       page: `add-admin`,
     },
     gestionThemes : {
-      description: "Ajoutons des pailletes dans la vie de nos chers étudiants! Quoi de mieux qu'une petite mission pour cela?",
+      description: "Ajoutons des pailletes dans la vie de nos chers étudiants ! Quoi de mieux qu'une petite mission pour cela ?",
       page: 'gestion-themes',
     },
   }

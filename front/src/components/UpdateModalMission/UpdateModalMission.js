@@ -47,7 +47,7 @@ function UpdateModalMission({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon className="edit-mission-modal" size='big' link name='edit' />}
+      trigger={<Icon className="edit-mission-modal" size='large' link name='edit' />}
     >
       <Modal.Header>Modifier une mission</Modal.Header>
         <Modal.Content >

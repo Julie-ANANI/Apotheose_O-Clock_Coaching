@@ -25,7 +25,7 @@ const MenuHeader = ({
     if (searchedText.length > 0) {
       const loweredSearchedText = searchedText.toLowerCase();
       console.log('ON EST DANS LE IF DE GET SEARCHED THEME');
-
+      setActiveItem('parcours coaching')
 
       search = themes.filter((theme) => {
         const loweredTitle = theme.title.toLowerCase();
@@ -40,7 +40,7 @@ const MenuHeader = ({
 
       setSearchedThemes(themes);
     }
-
+    
     console.log(searchedThemes);
     
   }
@@ -94,10 +94,18 @@ const MenuHeader = ({
           type='text' 
           className='searchbar' 
           icon='search' 
-          placeholder='Rechercher un thème' 
+          placeholder='Rechercher un thème...' 
           value={searchedText}
           onChange={handleSearchBar}
+          // onFocus={()=>{this.this.placeholder=''}}
+          // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
         />
+      </Menu.Item>
+      <Menu.Item
+        as ='a'
+        className = 'header-menu-item navbar-name' 
+      >
+        {`Michel M.`}
       </Menu.Item>
       <Menu.Item
         className='header-menu-item deconnexion'

@@ -1,6 +1,6 @@
 .ui.cards.mission-card-container {
-  margin : 0 4% 0 4% ;
-  padding:0 auto;
+  width: 80%;
+  margin : 0 auto;
 }
 
 .ui.cards {
@@ -47,6 +47,7 @@
 .ui.accordion .title:not(.ui) {
   margin :0;
   padding :0;
+  /* font-family: Oclock; */
 }
 
 .ui.cards.mission-card-container .ui.accordion .title.button-accordion {
