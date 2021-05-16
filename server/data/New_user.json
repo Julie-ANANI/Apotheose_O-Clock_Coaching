@@ -1,0 +1,85 @@
+[
+    {
+      "type": "regular",
+      "id": 13,
+      "username": "student1",
+      "github": null,
+      "firstname": "Fanny",
+      "lastname": "Barton",
+      "vpn_name": null,
+      "details": "/api/user/13",
+      "detailedInfo": {
+        "id": 13,
+        "username": "student1",
+        "email": "student1@oclock.io",
+        "date_created": {
+          "date": "2021-05-04 16:31:29.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        },
+        "date_modified": {
+          "date": "2021-05-04 16:31:29.000000",
+          "timezone_type": 3,
+          "timezone": "UTC"
+        },
+        "profile": {
+          "firstname": "Fanny",
+          "lastname": "Barton",
+          "country": "Cape Verde",
+          "birthdate": {
+            "date": "1993-03-27 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+          },
+          "gender": "m",
+          "facebook": null,
+          "twitter": null,
+          "github": null,
+          "vpn_name": null,
+          "vm_name": ".cloud.eddi.xyz",
+          "discord": null,
+          "avatar": "https://quill-aop-project.eddi.xyz/uploads/profiles/pictures/thumb//var/www/html/public/uploads/profiles/pictures/61e73b7cd1891fa42b10fb500a2603b4.png"
+        },
+        "is_student": true,
+        "is_teacher": false,
+        "is_admin": false,
+        "roles": "/api/user/13/roles",
+        "cohorts": "/api/user/13/cohorts",
+        "activity": "/api/user/13/activity/2021-05-04/2021-05-16"
+      },
+      "cohortsInfo": [
+        {
+          "id": 1,
+          "nickname": "Promo",
+          "linkSlack": null,
+          "linkGithub": null,
+          "linkReplays": null,
+          "child_cohort": false,
+          "spe_cohort": false,
+          "start_date": {
+            "date": "2021-04-07 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+          },
+          "end_date": {
+            "date": "2021-08-04 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+          },
+          "date_created": {
+            "date": "2021-05-04 16:31:21.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+          },
+          "date_modified": {
+            "date": "2021-05-04 16:31:21.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+          },
+          "details": "/api/cohort/1"
+        }
+      ]
+    }
+  ]
+
+ 

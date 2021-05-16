@@ -1,15 +1,17 @@
 const Mission = require('../models/mission');
+const Theme = require('../models/theme');
 
 const missionController = {
 
     /**
-    * Controls endpoint GET /v1/api/themes/:id/missions
+    * Controls endpoint GET /missions
     */
     getAllMissions: async (_, res) => {
         try {
             /* *
              * All the missions are retrieved from the database
              */
+            
             const theMissions = await Mission.findAll();
             res.status(200).json(theMissions);
 
@@ -31,16 +33,18 @@ const missionController = {
             /**
             * We get the id in the parameters of the request
             */
-            const { id } = req.params;
+            const { id } = req.params.id
 
             const onlyOneMission = await Mission.findOne(id);
             res.status(200).json(onlyOneMission);
+            }
 
-        } catch (err) {
-            /**
-            * There is no this mission in the database
-            * In the model, there is an error with a custom message
-            */
+        catch (err) {
+              /**
+                * There is no this mission in the database
+                * In the model, there is an error with a custom message
+                */
+
             res.status(404).json(err.message);
         }
     },
@@ -49,15 +53,19 @@ const missionController = {
     * Controls endpoint GET /v1/api/themes/:id/missions/
     */
     getAllByThemeId: async (req, res) => {
+        
         try {
             /**
             * We get the id in the parameters of the request
             */
             const { id } = req.params;
+            const theme = await Theme.findOne(id);
 
-            const theMissions = await Mission.findByTheme(id);
-            res.status(200).json(theMissions);
-
+            if (theme) {
+                const theMissions = await Mission.findByTheme(id);
+                res.status(200).json(theMissions);
+            }
+        
         } catch (err) {
             /**
             * There is no mission in the database for this theme id

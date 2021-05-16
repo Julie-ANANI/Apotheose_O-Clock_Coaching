@@ -130,7 +130,7 @@ class Mission {
       * @throws {Error} a potential SQL error.
       */
     static async findOne(id) {
-        const { rows } = await db.query('SELECT * FROM mission WHERE id = $1;', [id]);
+        const { rows } = await db.query('SELECT * FROM theme WHERE EXISTS(SELECT * FROM theme WHERE id = $1);', [id]);
 
         if (rows[0]) {
             return new Mission(rows[0]);
