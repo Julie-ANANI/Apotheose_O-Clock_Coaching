@@ -91,4 +91,4 @@ const App = ({base_url}) => {
         setThemes(response.data);
         // return(response.data)
       })
-  };
+  }
