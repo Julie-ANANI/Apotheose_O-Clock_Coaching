@@ -51,6 +51,7 @@ const App = ({base_url}) => {
   // PARCOURS COACHING
   
   const [themes, setThemes] = useState([]);
+  const [searchedThemes, setSearchedThemes] = useState(themes);
   const [generalScore, setGeneralScore] = useState(0);
 
   const [refresh, setRefresh] = useState(false);
@@ -70,7 +71,7 @@ const App = ({base_url}) => {
   const [activeItem, setActiveItem] = useState('Accueil');
 
 
-
+   
 
 
   const getMenuRoutes = (role) => {
@@ -88,8 +89,11 @@ const App = ({base_url}) => {
       .then((response)=> {
         console.log('on récupère les thèmes', response.data);
         setThemes(response.data);
+        // return(response.data)
       })
   };
+
+
 
   const loadUserMissions = () => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
@@ -125,6 +129,8 @@ const App = ({base_url}) => {
   }}
 
 
+
+
   const filteredNavlinks = getMenuRoutes(activeRole);
 
   useEffect(() => {
@@ -139,18 +145,7 @@ const App = ({base_url}) => {
     loadUserMissions();
   },[allMissions,userInteraction]);
 
-  // getSearchedThemes = () => {
-  //   let searchedThemes = themes;
-
-  //   if (searchedText.length > 0) {
-  //     const loweredSearchedText = themes.title.toLowerCase();
-  //     console.log(loweredThemeName);
-
-  //     searchedThemes = themes.filter((currency) => {
-  //       const 
-  //     })
-  //   }
-  // }
+ 
  
   return(
     <div className="app">
@@ -162,6 +157,9 @@ const App = ({base_url}) => {
         searchedText={searchedText}
         setSearchedText={setSearchedText}
         history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
       />
       
       <Switch>
@@ -184,7 +182,7 @@ const App = ({base_url}) => {
         <Route path='/parcours-coaching'>
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
-            themes={themes} 
+            themes={searchedThemes} 
             generalScore={generalScore}
             userMissionsCompleted={userMissionsCompleted}
             allMissions={allMissions}

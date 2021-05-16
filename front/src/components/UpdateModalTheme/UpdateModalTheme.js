@@ -49,7 +49,7 @@ function UpdateModalTheme({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon className="edit-theme-modal" size='big' link name='edit' />}
+      trigger={<Icon className="edit-theme-modal" size='large' link name='edit' />}
     >
       <Modal.Header>Modifier un thème</Modal.Header>
         <Modal.Content >

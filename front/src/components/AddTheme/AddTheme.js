@@ -11,7 +11,7 @@ const AddTheme = ({...props}, {...rest}) => {
   {...rest}
   >
   <h1>Ajouter un theme</h1>
-<Icon size='big' name='plus' />
+{/* <Icon size='big' name='plus' /> */}
 </div>
 )}
 
