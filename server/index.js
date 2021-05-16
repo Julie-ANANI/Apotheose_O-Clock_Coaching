@@ -30,14 +30,14 @@ app.use(session({
 
 
 // Allowing cross-origin requests in development
-// if (process.env.NODE_ENV === 'development') {
-//     app.use((request, response, next) => {
-//         response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-//         response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-//         response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-//         next();
-//     });
-// }
+if (process.env.NODE_ENV === 'development') {
+    app.use((request, response, next) => {
+        response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+        response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        next();
+    });
+}
 
 app.use('/v1/api/', router);
 

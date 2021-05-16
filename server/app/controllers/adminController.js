@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-const { EXTERNAL_API_KEY, EXTERNAL_API_BASE_URL, ENDPOINT_PROMOS, ENDPOINT_PROMO, ENDPOINT_MAIL } = process.env;
+const { EXTERNAL_API_KEY, EXTERNAL_API_BASE_URL} = process.env;
 
 const fetch = require('node-fetch');
 const FormData = require('form-data');
@@ -19,11 +19,11 @@ const adminController = {
         // We look it up in the external api to identify its external api user id
         try {
             let emailUser;
-            await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_MAIL}`, {
+            await fetch(`${EXTERNAL_API_BASE_URL}/api/check_email`, {
                 method: 'POST',
                 body: form,
                 headers: {
-                    'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
+                    'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
                 }
             }).then(res => res.json())
                 .then(json => emailUser = json);
@@ -37,7 +37,7 @@ const adminController = {
                 await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${emailUser.data.id}`, {
                     method: 'GET',
                     headers: {
-                        'X-AUTH-TOKEN': process.env.EXTERNAL_API_KEY
+                        'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
                     }
                 }).then(res => res.json())
                     .then(json => apiUser = json);
@@ -85,21 +85,23 @@ const adminController = {
     
     },
 
+
     /**
-    * Route GET /v1/api/admin/search/Promo_id
+    * Controls endpoint GET /v1/api/admin/students
     */
-   searchByPromo : async (_,res) => {
+   getAllStudentsWithPromo : async (_,res) => {
     
+     
     try {
-        const idForEachPromo = [];
+        const promoIds = [];
         let completelyReceiveAllPromos;
 
         /** 
-        * consumed the cockpit API to retrieve each id 
+        * we call the cockpit API to retrieve each promo id 
         * we choose the method and we put the API key in the header
         */
 
-        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_PROMOS}`, {
+        await fetch(`${EXTERNAL_API_BASE_URL}/api/cohorts`, {
             method: 'GET',
             headers: {
                 'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
@@ -109,38 +111,65 @@ const adminController = {
         takeDetailsEachPromo = completelyReceiveAllPromos.data;
         
         for (const properties of takeDetailsEachPromo ){
-            idForEachPromo.push(properties.id)   
+            promoIds.push(properties.id)   
         }
 
-    /** 
-    * We loop this table to do the next step
-    * call the external route which collects the students of a single promotion with its id
-    */ 
-    
-    for (const idOnlyOnePromo of idForEachPromo){
-        const users = [];
-        let onePromo;
-        await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_PROMO}/${idOnlyOnePromo}`, {
-            method: 'GET',
-            headers: {
-                'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
-            }} ).then(res => res.json())
-        .then(json => onePromo = json);
-    
-        for(const student of onePromo.data.users){
+        /** 
+        * We loop on this array to do the next step
+        * we call the external route to get all the students of each promo based on the promo id
+        */ 
         
-            if(student.type === 'regular'){
-                users.push(student);
+        for (const idOnlyOnePromo of promoIds){
+            const users = [];
+            let onePromo;
+            await fetch(`${EXTERNAL_API_BASE_URL}/api/cohort/${idOnlyOnePromo}`, {
+                method: 'GET',
+                headers: {
+                    'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
+                }} ).then(res => res.json())
+            .then(json => onePromo = json);
+        
+            for(const student of onePromo.data.users){
+                
+                // if the user is type 'regular' (if they are a student)
+                if(student.type === 'regular'){
+                
+                let detailedInfo;
+                await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
+                        }
+                }).then(res => res.json())
+                .then(json => detailedInfo = json);
+
+                // we add the detailed info to our student object
+                student.detailedInfo = detailedInfo.data;
+                    
+                // we lookup the cohorts of the student 
+                let cohortsInfo;
+                await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}/cohorts`, {
+                        method: 'GET',
+                        headers: {
+                            'X-AUTH-TOKEN': `${EXTERNAL_API_KEY}`
+                        }
+                }).then(res => res.json())
+                .then(json => cohortsInfo = json);
+
+                // we add the cohorts data to our student object
+                student.cohortsInfo = cohortsInfo.data;
+
+                // we push the enriched student object in the users array
+                    users.push(student);
+                };
+                
             };
-            
-        };
+        // we return the users array as json to the client
+        res.status(200).json(users);
         
-        // We retrieve all the information without type teacher and insert user with type regular in a new array to return it
-        completelyReceiveAllPromos.data[idOnlyOnePromo - 1].users = users; 
         };
+ 
         
-        const customPromotionalWithUser = completelyReceiveAllPromos 
-        res.status(200).json(customPromotionalWithUser);
     } catch(err){
         res.status(500).json(err.message);
     };

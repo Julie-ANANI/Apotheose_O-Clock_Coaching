@@ -172,13 +172,12 @@ router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMissio
 router.delete('/admin/missions/:missionId', missionController.deleteMission);
 
 /**
- * Returns one promo with users by promo 
- * @route GET /admin/search/promo_id
+ * Returns one users details with this all promos 
+ * @route GET /admin/students
  * @group Admin
- * @returns {<Promo> [users]} 200 - 
+ * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 
  */
-router.get('/admin/search/promo_id', adminController.searchByPromo);
-
+router.get('/admin/students', adminController.getAllStudentsWithPromo);
 
 
 // ---------------------------------------- INTERN SPACE ----------------------------------------
