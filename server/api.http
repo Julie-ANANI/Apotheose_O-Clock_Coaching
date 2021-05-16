@@ -27,9 +27,11 @@ GET http://localhost:3000/v1/api/themes/5/missions
 GET http://localhost:3000/v1/api/themes/2/missions
 ###
 
+
 # Toutes les missions pour un thème donné qui n'existe pas
-GET http://localhost:3000/v1/api/themes/200/missions
+GET http://localhost:3000/v1/api/themes/2000/missions
 ###
+
 
 # Un utilisteur interne dans notre api
 GET http://localhost:3000/v1/api/users/1
