@@ -11,30 +11,37 @@ import { Card } from 'semantic-ui-react';
 
 
 const GestionThemes = ({themes, setRefresh, refresh}) => {
-  const [themeGestion, setThemeGestion] = useState('theme');
-  const [missionGestion, setMissionGestion] = useState('mission');
-  const [iconPlus,setIconPlus] = useState('plus square');
 
-  return (
+  const[themeGestion, setThemeGestion]= useState("theme");
+  const[missionGestion, setMissionGestion]= useState("mission");
+  const [iconPlus,setIconPlus] = useState("plus square");
+ 
+
+ 
+
+
+
+  return(
     <div className="themesGestion">
-      <NewModalTheme refresh={refresh} setRefresh={setRefresh} />
-      <Card.Group centered>
-        {themes.map((theme)=> (
-          <div key={theme.id} className="theme-card-container">
+    <NewModalTheme refresh={refresh} setRefresh={setRefresh} />
+    <Card.Group centered>
+      {themes.map((theme)=> (
+        <div  key={theme.id} className= 'theme-card-container'>
 
-            <ThemeCard
-              iconPlus={iconPlus}
-              name={theme.id}
-              {...theme}
-              refresh={refresh}
-              setRefresh={setRefresh}
-            />
-          </div>
-        ))}
-      </Card.Group>
+          <ThemeCard
+            iconPlus={iconPlus}
+            name={theme.id}
+            {...theme}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        </div>
+      ))}
+      
+    </Card.Group>
     </div>
-  );
-};
+  );}
+  
+  // == Export
+  export default GestionThemes;
 
-// == Export
-export default GestionThemes;

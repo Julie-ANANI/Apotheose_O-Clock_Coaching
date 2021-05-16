@@ -49,14 +49,6 @@ if(positive){
 
   return(
   <Form success>
-        <Message
-      hidden={hidden}
-      visible={visible}
-      success={positive}
-      negative={negative}
-    compact
-    content={result}
-  />
     <Form.Input
     label='Email'
     type="text"
@@ -64,11 +56,19 @@ if(positive){
     value={email}
     onChange={e => setEmailAdmin(e.target.value)}
     />
-    <Button className='bouton-addadmin'
-    //color="green"
-    //type='submit'
+    <Button 
+    color="green"
+    type='submit'
     onClick={handleSubmitEmail}
-    >Adouber un Coach</Button>
+    >Ajouter</Button>
+      <Message
+      hidden={hidden}
+      visible={visible}
+      success={positive}
+      negative={negative}
+    compact
+    content={result}
+  />
   </Form>
 
   )
