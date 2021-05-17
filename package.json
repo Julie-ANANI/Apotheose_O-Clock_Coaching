@@ -8,7 +8,7 @@
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run-script build",
-    "build": "cd front && yarn clean && yarn build"
+    "build-front": "cd front && yarn clean && yarn build"
   },
   "keywords": [],
   "author": "",
