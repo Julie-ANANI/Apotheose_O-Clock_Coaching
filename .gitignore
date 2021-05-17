@@ -10,5 +10,9 @@ yarn-error.log
 link-back-front.md
 sqitch.conf
 auth.http
-
+certificate/
 test.js
+server.key
+server.cert
+New_user.json
+search.json
