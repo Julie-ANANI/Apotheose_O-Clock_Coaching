@@ -10,6 +10,8 @@ const adminController = require('./controllers/adminController');
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
+const loginSchema = require('./schemas/loginSchema'); 
+
 
 const router = Router();
 
@@ -22,7 +24,7 @@ const router = Router();
  * @group Login
  * @returns {<User>} 200 - A user object
  */
-router.post('/login', userController.login);
+router.post('/login', validateBody(loginSchema.newLogin), userController.login);
 
 /**
  * Logs out the user from the backend
