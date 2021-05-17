@@ -16,45 +16,67 @@ import { Progress, Divider, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 // == Composant
-const ParcoursCoaching = ({themes, setSelectedTheme}) => {
- 
-// const handleThemeClick = (e) => {
-//   console.log('on a bien cliqué');
-//   console.log('ceci est lid de la carte du thème  cliquée', e.target.closest('a').name);
-//   const id = parseInt(e.target.closest('a').name);
-//   const theme = themes.find((theme) => theme.id === id);
-//   console.log(theme);
-//   setSelectedTheme(theme);
-// };
+const ParcoursCoaching = ({
+  themes, 
+  userId, 
+  userInteraction, 
+  generalScore, 
+  setGeneralScore, 
+  userMissionsCompleted, 
+  allMissions, 
+  base_url,
+  searchedText,
+}) => {
 
-return(
-  <div className="parcourscoaching__student-dashboard">
-      <div className="parcourscoaching__progress-container">
-        <Progress className='parcourscoaching__general-progress-bar' percent={33} indicating progress />
-        {/* importer composant message pour le message ci-dessous */}
-        <span className='parcourscoaching__progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
-      </div>
-    <Divider hidden />
-    <Divider hidden />
-    <Card.Group centered>
-      {themes.map((theme)=> (
-        <div  key={theme.id} className= 'parcourscoaching__theme-card-container'>
-          <Link
-          name={theme.id}
-          // onClick={handleThemeClick}
-          to={`/theme/${theme.id}`}
-        >
-          <ThemeInParcoursCoachingPage
-            name={theme.id}
-            {...theme}
-          />
-        </Link>
+    // const[themeScore,setThemeScore] = useState(0);
+  console.log(searchedText);
+
+  const computeGeneralScore = () => {
+    console.log('COMPUTE GENERAL SCORE');
+    const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
+    console.log('userMissionsCompleted', userMissionsCompleted);
+    setGeneralScore(result);
+    // return result;
+  };
+
+  useEffect(()=> {
+    computeGeneralScore();
+  })
+
+
+  return(
+    <div className="student-dashboard">
+        <div className="progress-container">
+          <Progress className='general-progress-bar' percent={generalScore} indicating progress />
+          {/* importer composant message pour le message ci-dessous */}
+          <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
         </div>
-      ))}
-      
-    </Card.Group>
-  
-  </div>
+      <Divider hidden />
+      <Divider hidden />
+      <Card.Group centered>
+        {themes.map((theme)=> (
+          <div  key={theme.id} className= 'theme-card-container'>
+            <Link
+            name={theme.id}
+            // onClick={handleThemeClick}
+            to={`/theme/${theme.id}`}
+          >
+            <ThemeInParcoursCoachingPage
+              name={theme.id}
+              {...theme}
+              // themeScore={themeScore}
+              // setThemeScore={setThemeScore}
+              base_url={base_url}
+              userInteraction={userInteraction}
+              userId={userId}
+            />
+          </Link>
+          </div>
+        ))}
+        
+      </Card.Group>
+    
+    </div>
 );}
 
 // == Export

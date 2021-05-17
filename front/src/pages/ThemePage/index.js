@@ -1,56 +1,82 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
-import {  Divider, Card } from 'semantic-ui-react';
+import {  Divider, Header, Card, Progress } from 'semantic-ui-react';
 import 'src/styles/ThemePage.css';
-import ThemeProgressBar from 'src/components/ThemeProgressBar';
-import AccordionComponent from 'src/components/AccordionComponent';
-import axios from 'axios'
 import Mission from 'src/components/Mission';
+import ThemeProgressBar from '../../components/ThemeProgressBar';
 
-const ThemePage = ({ themes }) => {
+const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUserInteraction, userInteraction, missionByTheme, missionByThemeUser, setMissionByTheme, setMissionByThemeUser, theme, setTheme, activeRole, base_url }) => {
   
-  const [missions, setMissions] = useState([]);
-  
+  const[themeScore,setThemeScore] = useState(0);
+
   const { idTheme } = useParams();
-  const theme = themes.find((theme) => theme.id == idTheme);
+  
+    
+  const filterMissionsByTheme = (missions) => {
+    console.log('FILTER MISSIONS BY THEME');
+    const  result = missions.filter(mission => mission.theme_id == idTheme);
+    return result;
+  }
 
-  const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${idTheme}/missions`)
-      .then((response) => {
-        // console.log(response.data);
-        setMissions(response.data);
-      })
-      .catch((error) => {
-        // exécuté quand la réponse arrive, si la réponse est un échec
-        // console.log(error);
 
-        // TODO il faudrait afficher l'information à l'utilisateur
-      })
+  const setMissions = ()  => {
+    console.log('SETMISSIONS');
+    const missionsCompletedByTheme = filterMissionsByTheme(userMissionsCompleted);
+    setMissionByThemeUser(missionsCompletedByTheme);
+    console.log('missionCompletedByTheme=',missionsCompletedByTheme.length); 
+    const missionsFilteredByTheme = filterMissionsByTheme(allMissions);
+    setMissionByTheme(missionsFilteredByTheme);
+    console.log('missionByTheme=',missionsFilteredByTheme.length);
 
-  };
-
-  useEffect(() => {
-    loadMissions();
-  },[]);
+  }
 
   
 
-  console.log(missions);
+  const getSelectedTheme = () => { 
+    console.log('GET SELECTED THEME'); 
+    const theme = themes.find((theme) => theme.id == idTheme);
+    setTheme(theme);
+    console.log('theme=',theme);   
+  }
+
+
+
+  useEffect(()=> {
+    console.log('USE EFFECT THEME PAGE');
+    getSelectedTheme();
+    setMissions();
+  },[userMissionsCompleted]);
 
   return (
     <div className="missions">
-      <ThemeProgressBar {...theme} />
-      <Divider />
+
+      <ThemeProgressBar 
+        {...theme}
+        userInteraction={userInteraction}
+        setThemeScore={setThemeScore}
+        themeScore={themeScore}
+        // computeThemeScore={computeThemeScore}
+        missionByThemeUser={missionByThemeUser}
+        missionByTheme={missionByTheme}
+        userId={userId}
+        activeRole={activeRole}
+        base_url={base_url}
+      />
+
+      {/* <Divider /> */}
       
       <Card.Group 
         className='mission-card-container'
       >
-        {missions.map((mission) => (
+        {missionByTheme.map((mission) => (
 
           <Mission 
           key={mission.id}
-          {...mission} 
+          name={mission.id}
+          {...mission}
+          userId={userId} 
+          userInteraction={userInteraction}
+          setUserInteraction={setUserInteraction}
           />
         ))}
       </Card.Group>

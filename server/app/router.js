@@ -6,6 +6,7 @@ const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
 
+
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
@@ -140,10 +141,10 @@ router.post('/login', userController.login);
  * @group Login
  * @returns 200 - A message confirming the user is logged out in backend
  */
-router.post('/login', userController.login);
+router.post('/login', userController.logout);
 
 /**
- * Updates a user record with admin status
+ * Creates/updates a user record with admin status
  * @route POST /admin/add
  * @group Admin
  * @returns {<User>} 200 - An instance of User class
@@ -185,5 +186,14 @@ router.post('/admin/missions/:missionId',validateBody(missionSchema.updateMissio
  * @returns {Object} 200 - An object of the id's mission deleted
  */
 router.delete('/admin/missions/:missionId', missionController.deleteMission);
+
+
+/**
+ * Returns one promo with users by promo 
+ * @route GET /admin/search/promo_id
+ * @group Admin
+ * @returns {<Promo> [users]} 200 - 
+ */
+router.get('/admin/search/promo_id', adminController.searchByPromo);
 
 module.exports = router;

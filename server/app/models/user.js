@@ -119,7 +119,7 @@ class User {
       * @static
       * @function findOneByApiId
       * @param {number} aid - The user ID in the O’Clock API.
-      * @returns {User|null} Instance of the class User or null if no such id in the database.
+      * @returns {User} Instance of the class User
       */
     static async findOneByApiId(aid) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
@@ -128,6 +128,25 @@ class User {
             return new User(rows[0]);
         } else {
             throw new UnknownAPIUserError();
+        }
+    }
+
+    /**
+      * Checks if a O’Clock API user exists in our internal database. If not, it returns null.
+      * 
+      * @async
+      * @static
+      * @function checkByApiId
+      * @param {number} aid - The user ID in the O’Clock API.
+      * @returns {User|null} Instance of the class User or null if no such id in the database.
+      */
+     static async checkByApiId(aid) {
+        const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
+
+        if (rows[0]) {
+            return new User(rows[0]);
+        } else {
+            return null;
         }
     }
 

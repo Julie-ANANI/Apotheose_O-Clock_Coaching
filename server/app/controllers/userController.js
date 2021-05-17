@@ -63,7 +63,6 @@ const userController = {
         form.append('login_password', login_password);
 
 
-        // the fetch returns "{ success: false, message: 'Identifiants invalides.', data: [] }"
         try {
             let apiUser;
             await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {

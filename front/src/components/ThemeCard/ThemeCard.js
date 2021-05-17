@@ -90,19 +90,22 @@ return(
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
       <h2 className="theme-title">{title}</h2>
-      <UpdateModalTheme
-      currentTitle={title}
-      currentDescription={description}
-      id={id}
-      setRefresh={setRefresh}
-      refresh={refresh}
-      />
-      <Icon
-      onClick={handleDeleteTheme} 
-      size='big'
-      link name="trash"
-      id={id}
-      />
+      <div className='theme-icons-container'>
+        <UpdateModalTheme
+          currentTitle={title}
+          currentDescription={description}
+          id={id}
+          setRefresh={setRefresh}
+          refresh={refresh}
+        />
+        <Icon
+          onClick={handleDeleteTheme} 
+          size='large'
+          link
+          name="trash"
+          id={id}
+        />
+      </div>
     </div>
   </Card.Content>
 
@@ -136,7 +139,7 @@ return(
           <p className= 'astuce-text'>
             {mission.title}
           </p>
-          <div className="icon-container">
+          <div className="theme-icons-container">
           <UpdateModalMission
             idMission={mission.id}
             idTheme={id}
@@ -144,7 +147,7 @@ return(
             refresh={refresh} />
           <Icon 
           idmission={mission.id}
-          size='big'
+          size='large'
           link name="trash"
           onClick={handleDeleteMission} />
           </div>
