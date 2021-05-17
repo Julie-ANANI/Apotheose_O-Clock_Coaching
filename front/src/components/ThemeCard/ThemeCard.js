@@ -31,7 +31,7 @@ const ThemeCard = ({
 
   const loadMissions = () => {
     console.log(`http://localhost:3000/v1/api/themes/${id}/missions`)
-    axios.get(`/v1/api/themes/${id}/missions`)
+    axios.get(`http://localhost:3000/v1/api/themes/${id}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);
