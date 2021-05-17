@@ -56,8 +56,12 @@ const missionController = {
             const { id } = req.params;
 
             const theMissions = await Mission.findByTheme(id);
-            res.status(200).json(theMissions);
-
+            
+            if(theMissions){
+            
+                 res.status(200).json(theMissions);  
+            }
+            
         } catch (err) {
             /**
             * There is no mission in the database for this theme id
