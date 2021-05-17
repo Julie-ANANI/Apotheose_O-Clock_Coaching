@@ -27,7 +27,6 @@ const adminController = {
                 }
             }).then(res => res.json())
                 .then(json => emailUser = json);
-            console.log(emailUser);
 
             if (!emailUser.success) {
                 res.status(404).json(emailUser.message);

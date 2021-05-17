@@ -22,6 +22,7 @@ const validor = {
              * A data is not conform  with the schema
              */
             const { message, path }= error.details[0];
+            console.log(error.details[0]);
             res.status(400).json({message, path});
         };
     }

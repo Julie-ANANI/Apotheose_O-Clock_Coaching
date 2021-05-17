@@ -2,8 +2,6 @@ require('dotenv').config();
 const User = require('../models/user');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
-const validator = require('email-validator');
-
 
 const userController = {
     /**
@@ -55,50 +53,34 @@ const userController = {
     * Route POST /v1/api/login
     */
     login: async (req, res) => {
-        console.log(`étape  j'arrive à login`);
+  
         // we try to authenticate the user with external API
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;
         
-        console.log(`étape  j'arrive à login`);
-        // if(!login_email && !login_password){
-        //     res.status(400).json(`Désolé l'adresse mail ou le mot de passe est invalide O'Clockien(ne) !`)
-        //     return
-
-        // } else {
-        //     const form = new FormData();
-        //     form.append('login_email', login_email);
-        //     form.append('login_password', login_password);
-        // }
-        // const isEmailValid = validator.validate(req.body.login_email);
-        // console.log(`is email ${isEmailValid}valide `)
-        // if(isEmailValid === false ){
-        //     res.status(400).json(`Désolé l'adresse mail ou le mot de passe est invalide O'Clockien(ne) !`);
-        //     return;
-        // } 
             const form = new FormData();
                 form.append('login_email', login_email);
                 form.append('login_password', login_password);
-        
-
+ 
         try {
-
-         
-
+          
             let apiUser;
             await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
                 method: 'POST',
                 body: form
             }).then(res => res.json())
               .then(json => apiUser = json);
-
+  
+            if (!apiUser.sucess){
+                res.status(404).json(apiUser.message);
+            }
             // If the authentication succeeds, the API sends a user object
             // based on the user object returned when testing the external API in Insomnia,
             // it seems the api user id is available in the property data.id (to confirm)
-            // console.log(apiUser.data.id);
             let theNewUser;
             // We lookup that api user id in our database
             const theInternalUser = await User.findOneByApiId(apiUser.data.id)
+
             .catch(async (_) => {
                 theNewUser = await new User({ api_user: `${apiUser.data.id}`,
                 admin_status: false });
@@ -109,7 +91,6 @@ const userController = {
                 apiUser.oap_admin_status = theNewUser.admin_status;
             });
             
-
             // If no user is found in our database, it means the user is connecting for the first time to our app
             // we create a new record in our user table
             if (theInternalUser) {
@@ -119,19 +100,18 @@ const userController = {
                 apiUser.oap_admin_status = theInternalUser.admin_status;
             };
             
-            
             // Now the user is connected, we store their info in the session
-            // req.session.user = {
-            //     firstname: apiUser.data.profile.firstname,
-            //     lastname: apiUser.data.profile.lastname
-            // };
+            req.session.user = {
+                firstname: apiUser.data.profile.firstname,
+                lastname: apiUser.data.profile.lastname
+            };
 
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);
         
             
         } catch (err) {
-            console.log(`je suis dans le catch`)
+     
             res.status(500).json(err.message);
         };
     },
