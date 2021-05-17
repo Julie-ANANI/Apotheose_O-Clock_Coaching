@@ -29,8 +29,9 @@ import AddAdmin from 'src/pages/AddAdmin';
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
 import GestionThemes from './pages/GestionThemes';
-import SearchProfil from './pages/SearchProfil';
+import SearchAdmin from './pages/SearchAdmin';
 // import AccueilAdmin from './pages/AccueilAdmin';
+import students from 'src/data/users.js';
 
 
 // A mettre dans le .env et utiliser process.env.base_url
@@ -44,7 +45,7 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('student');
+  const [activeRole, setActiveRole] = useState('admin');
   const [userId, setUserId] = useState(3);
 
   
@@ -52,6 +53,7 @@ const App = ({base_url}) => {
   
   const [themes, setThemes] = useState([]);
   const [searchedThemes, setSearchedThemes] = useState(themes);
+
   const [generalScore, setGeneralScore] = useState(0);
 
   const [refresh, setRefresh] = useState(false);
@@ -69,6 +71,10 @@ const App = ({base_url}) => {
 
   // MENU
   const [activeItem, setActiveItem] = useState('Accueil');
+
+  // RESULTS
+  const [studentsList,setStudentsList] = useState([]);
+  const [searchedStudents, setSearchedStudents] = useState(studentsList);
 
 
    
@@ -128,6 +134,17 @@ const App = ({base_url}) => {
       })
   }}
 
+  const getSpeName =(student) => {
+    const promoName = student.cohortsInfo.find((cohort) => cohort.spe_cohort === true).nickname.split(' ')[1];
+    // .nickname.split('')[1];
+    console.log(`promoName de ${student.username} `, promoName);
+    if (promoName != undefined) {
+      return promoName;
+    } else {
+      return '';
+    }
+  }
+
 
 
 
@@ -137,6 +154,7 @@ const App = ({base_url}) => {
     console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
     loadAllMissions();
+    setStudentsList(students);
     // loadUserMissions();
   }, []);
 
@@ -158,8 +176,13 @@ const App = ({base_url}) => {
         setSearchedText={setSearchedText}
         history={history}
         themes={themes}
+        studentsList={studentsList}
         searchedThemes={searchedThemes}
+        searchedStudents={searchedStudents}
         setSearchedThemes={setSearchedThemes}
+        setSearchedStudents={setSearchedStudents}
+        activeRole={activeRole}
+        getSpeName={getSpeName}
       />
       
       <Switch>
@@ -227,9 +250,13 @@ const App = ({base_url}) => {
           <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
         </Route>
 
-        <Route path= {`/search-profil`}>
-          <Header titre={titre.gestionThemes.description} />
-          <SearchProfil />
+        <Route path= {`/results`}>
+          <Header titre={titre.searchAdmin.description} />
+          <SearchAdmin
+            searchedStudents={searchedStudents}
+            getSpeName={getSpeName}
+            searchedText={searchedText}
+          />
         </Route>
       </Switch>
 
