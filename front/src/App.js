@@ -45,7 +45,7 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('student');
+  const [activeRole, setActiveRole] = useState('admin');
   const [userId, setUserId] = useState(3);
 
   
@@ -215,6 +215,7 @@ const App = ({base_url}) => {
             base_url={base_url}
             userId={userId}
             searchedText={searchedText}
+            base_url={base_url}
           />  
         </Route> 
           
@@ -224,7 +225,6 @@ const App = ({base_url}) => {
           <ThemePage 
             themes={themes}
             base_url={base_url}
-
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
             missionByThemeUser={missionByThemeUser}
@@ -247,7 +247,12 @@ const App = ({base_url}) => {
         </Route>
         <Route path= {`/gestion-themes`}>
           <Header titre={titre.gestionThemes.description} />
-          <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
+          <GestionThemes 
+            themes={themes} 
+            refresh={refresh} 
+            setRefresh={setRefresh}
+            base_url={base_url}
+          />
         </Route>
 
         <Route path= {`/results`}>

@@ -11,12 +11,6 @@ export default
       role: 'student',
     },
     {
-      route: '/profil',
-      label: 'profil',
-      role: 'student',
-    },
-
-    {
       route: '/accueiladmin',
       label: 'accueil',
       role: 'admin',
