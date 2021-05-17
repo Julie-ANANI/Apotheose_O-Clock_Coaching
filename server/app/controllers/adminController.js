@@ -19,7 +19,7 @@ const adminController = {
         // We look it up in the external api to identify its external api user id
         try {
             let emailUser;
-            await fetch(`${EXTERNAL_API_BASE_URL}/api/${ENDPOINT_MAIL}`, {
+            await fetch(`${EXTERNAL_API_BASE_URL}/api/check_email`, {
                 method: 'POST',
                 body: form,
                 headers: {

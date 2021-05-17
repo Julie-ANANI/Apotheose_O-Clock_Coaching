@@ -9,14 +9,12 @@ import '../../styles/AdminForm.css';
 
 
 
-const AddAdmin = () => {
-  
+const AddAdmin = () => (
 
-  return(
-    <div className="addAdmin">
-    <AdminForm />
-    </div>
-  );}
+  <div className="addAdmin">
+  <AdminForm />
+  </div>
+);
   
   // == Export
   export default AddAdmin;
