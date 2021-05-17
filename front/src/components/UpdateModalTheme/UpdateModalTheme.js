@@ -55,25 +55,29 @@ function UpdateModalTheme({
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder={currentTitle}
-          value={title}
+          // placeholder={currentTitle}
+          value={currentTitle}
           onChange={e => setTitleTheme(e.target.value)}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder={currentDescription}
-          value={description}
-          onChange={e => setDescriptionTheme(e.target.value)}
+          <Form.TextArea 
+            label="Description"
+            required
+            // placeholder={currentDescription}
+            value={currentDescription}
+            onChange={e => setDescriptionTheme(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button
+          className='button-cancel' 
+          onClick={() => setOpen(false)}
+        >
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitTheme}>
+          className='button-submit'
+          type="submit"
+          onClick={handleSubmitTheme}>
           Valider
         </Button>
       </Modal.Actions>

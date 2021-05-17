@@ -45,29 +45,32 @@ function NewModalTheme({setRefresh, refresh})  {
       open={open}
       trigger={<AddTheme />}
     >
-      <Modal.Header>Ajouter un nouveau thème</Modal.Header>
+      <Modal.Header>Ajouter un thème</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder="titre"
-          value={title}
+          placeholder="Titre"
+          // value={title}
           onChange={e => setTitleTheme(e.target.value)}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder="description"
-          value={description}
-          onChange={e => setDescriptionTheme(e.target.value)}
+          <Form.TextArea 
+            label="Description"
+            required type="text"
+            placeholder="Description"
+            // value={description}
+            onChange={e => setDescriptionTheme(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button
+          className='button-cancel'
+          onClick={() => setOpen(false)}>
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitTheme}>
+          className = 'button-submit'
+          type="submit"
+          onClick={handleSubmitTheme}>
           Valider
         </Button>
       </Modal.Actions>
