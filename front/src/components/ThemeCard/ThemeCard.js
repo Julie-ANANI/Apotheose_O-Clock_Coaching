@@ -19,6 +19,12 @@ const ThemeCard = ({
 
   const [missions, setMissions] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+
+  const [currentThemeTitle,setCurrentThemeTitle] = useState(title)
+  const [currentThemeDescription, setCurrentThemeDescription] = useState(description);
+
+  // const currentTitle = title;
+  // const currentDescription = description;
   
   const handleClick = (e, titleProps) => {
     console.log('on a cliqué', titleProps);
@@ -64,7 +70,7 @@ const ThemeCard = ({
 
   const handleDeleteTheme = (e, {id}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/themes/${id}`)
+    axios.delete(`http://localhost:3000/v1/api/admin/themes/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -92,8 +98,12 @@ return(
       <h2 className="theme-title">{title}</h2>
       <div className='theme-icons-container'>
         <UpdateModalTheme
-          currentTitle={title}
-          currentDescription={description}
+          currentThemeTitle={currentThemeTitle}
+          currentThemeDescription={currentThemeDescription}
+          setCurrentThemeTitle={setCurrentThemeTitle}
+          setCurrentThemeDescription={setCurrentThemeDescription}
+          // currentTitle={currentTitle}
+          // currentDescription={currentDescription}
           id={id}
           setRefresh={setRefresh}
           refresh={refresh}
