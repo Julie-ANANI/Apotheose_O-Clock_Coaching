@@ -1,4 +1,4 @@
-.ui.accordion, .ui.accordion .accordion {
+.ui.accordion, .ui.accordion .accordion.mission-accordion {
   max-width: 100%;
   text-align: center;
 }
@@ -33,7 +33,6 @@
   padding: .5em 0;
   font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
   font-size: 2em;
-  color :  #FFFDD8;
   margin: 1em;
 }
 .ui.segment:last-child {

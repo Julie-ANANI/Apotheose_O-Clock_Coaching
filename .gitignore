@@ -10,3 +10,5 @@ yarn-error.log
 link-back-front.md
 sqitch.conf
 auth.http
+test.js
+

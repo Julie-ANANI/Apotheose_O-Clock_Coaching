@@ -185,7 +185,7 @@
   min-height : 3.5em;
 }
 
-a.header-menu-item.deconnexion {
+.navbar a.header-menu-item.deconnexion {
 
   height : 70%;
   border-radius: 4em ;
@@ -200,3 +200,40 @@ a.header-menu-item.deconnexion {
   border-radius: 4em ;
   border : solid #FFFDD8  2px;
 } */
+
+.navbar .ui.menu .item>.input input {
+  background-color: #00C4A7ed;
+  color: #FFFDD8;
+  font-weight: bold;
+  font-family: Oclock;
+  border-radius: 1.2em;
+  /* border: 2px solid #FFFDD8 ; */
+}
+  /* font-size: 1.1em; */
+  /* border-radius: 1em;*/
+
+
+.navbar .ui.menu .item>.input input::placeholder {
+  
+  color: #FFFDD8;
+  font-weight: bold;
+  font-family: Oclock;
+  font-size: 1.1em;
+  opacity: 0.7;
+}
+
+.navbar .ui.icon.input>i.icon:not(.link) {
+  color : #FFFDD8;
+  /* opacity: 0.9; */
+}
+
+.navbar .item.navbar-name {
+  color : #FFFDD8;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+.navbar .ui.input.focus>input, .ui.input>input:focus {
+  border-color: none; 
+  background-color: #01a088ed;
+}

@@ -5,6 +5,8 @@ const themeController = require('./controllers/themeController');
 const missionController = require('./controllers/missionController');
 const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
+const adminController = require('./controllers/adminController');
+
 
 //Schema(Missio, Theme) and the ValidateBody
 const { validateBody } = require('./services/validator');
@@ -201,14 +203,38 @@ router.get('/users', userController.getAllusers);
 // -------------------------------- SCORE ROUTE -------------------------------------
 //
 //
+
+/**
+ * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
+ * @route POST /login
+ * @group Login
+ * @returns {<User>} 200 - A user object
+ */
+router.post('/login', userController.login);
+
+/**
+ * Logs out the user from the backend
+ * @route POST /login
+ * @group Login
+ * @returns 200 - A message confirming the user is logged out in backend
+ */
+router.post('/login', userController.logout);
+
+/**
+ * Creates/updates a user record with admin status
+ * @route POST /admin/add
+ * @group Admin
+ * @returns {<User>} 200 - An instance of User class
+ */
+router.post('/admin/add', adminController.addAdmin);
+
 /**
  * Returns the score of a theme and a user
  * @route GET /student/{userId}/themes/{themeId}/score
  * @group Scores
  * @param {number} userId.path.required - the user id
  * @param {number} themeId.path.required - the theme id
- * @returns {Object} 200 - An object of a theme's score of a user
- */
+*/
 router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',interactController.getScorebyThemeAndUser);
 
 
@@ -222,5 +248,14 @@ router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',interactControl
 router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
 
 
+
+
+/**
+ * Returns one promo with users by promo 
+ * @route GET /admin/search/promo_id
+ * @group Admin
+ * @returns {<Promo> [users]} 200 - 
+ */
+router.get('/admin/search/promo_id', adminController.searchByPromo);
 
 module.exports = router;

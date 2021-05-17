@@ -50,7 +50,7 @@ Un __déploiement__ du projet sur [Heroku](https://www.heroku.com/) est prévu l
 * [PostgreSQL 12.5](https://www.postgresql.org/download/)
 * [Sqicth 0.9999](https://sqitch.org/download/)
 
-Ces outils sont nécessaires au bon fonctionnement de l'application. Installez-les avant de continuer.
+Ces outils sont nécessaires au bon fonctionnement de l'app. Installez-les avant de continuer.
 
 ## Installation 
 

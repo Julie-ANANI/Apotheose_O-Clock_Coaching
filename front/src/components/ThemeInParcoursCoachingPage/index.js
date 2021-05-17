@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import '../../styles/ParcoursCoaching.css';
 
@@ -12,14 +12,37 @@ import { Card, Progress } from 'semantic-ui-react'
 const ThemeInParcoursCoachingPage = ({
   id,
   title,
+  base_url,
+  // themeScore, 
+  // setThemeScore, 
+  userInteraction,
+  userId,
 }) => {
+
+  const[themeScore,setThemeScore] = useState(0);
+
+
+
+
+
+  const computeThemeScore = () => {
+    console.log('COMPUTE THEME SCORE');
+    axios.get(`${base_url}/students/${userId}/themes/${id}/score`)
+      .then((response)=> {
+        console.log('SCORE', response.data);
+        setThemeScore(response.data);  
+      })
+  }
+  
+  useEffect(() => {
+    computeThemeScore();
+  },[userInteraction])
 
 return(
       <Card fluid className='theme-card'>
         <Card.Content className='theme-card-header' header={title} />
-        {/* <Card.Content description={description} /> */}
         <Card.Content extra>
-          <Progress percent={60} indicating progress />
+          <Progress percent={themeScore.bytheme_ratio} indicating progress />
         </Card.Content>
       </Card>
 );}

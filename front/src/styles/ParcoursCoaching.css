@@ -38,7 +38,7 @@
   
 }
 
-.ui.cards {
+.student-dashboard .ui.cards {
   padding: 0 10%;
   /* align-items: center; */
 }
@@ -89,7 +89,7 @@
   
 }
 
-.ui.cards>.card>.content>.header {
+.ui.cards>.card>.content>.header.theme-card-header {
   color : #fffdd8;
   font-family: Oclock;
 }

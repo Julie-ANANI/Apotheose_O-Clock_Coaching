@@ -1,0 +1,165 @@
+.themesGestion {
+  width: 80% ;
+  margin : 0 auto;
+  font-family: Oclock;
+}
+
+.themesGestion .addtheme-container {
+
+
+  width: fit-content;
+  margin : 1em auto 2.5em;
+  padding : 0.5em 1em;
+  display: flex;
+  align-items: baseline;
+  background-color: #FFFDD8;
+  border-radius: 2.5em;
+  color: #00c4a7;
+  border: solid 3px #FFFDD8 ;
+  transition: all 150ms ease-in;
+}
+
+
+
+
+.themesGestion .addtheme-container:hover {
+  width: fit-content;
+  margin : 1em auto 2.5em;
+  padding : 0.5em 1em;
+  display: flex;
+  align-items: baseline;
+  background-color: #00c4a7;
+  border-radius: 2.5em;
+  color: #FFFDD8;
+  border: solid 3px #FFFDD8 ;
+  cursor: pointer;
+  transition: all 50ms ease-in;
+}
+
+.themesGestion .addtheme-container h1 {
+
+  font-size: 1.1em;
+  margin : 0 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
+
+}
+
+.themesGestion .addmission-container {
+
+  width: fit-content;
+  margin : 1em auto 2.5em;
+  padding : 0.5em 1em;
+  display: flex;
+  align-items: baseline;
+  background-color: #0CAD93;
+  border-radius: 2.5em;
+  color: #ffffff;
+  border: solid 3px #0CAD93 ;
+  transition: all 150ms ease-out;
+
+}
+
+.themesGestion .addmission-container:hover {
+
+  width: fit-content;
+  margin : 1em auto 2.5em;
+  padding : 0.5em 1em;
+  display: flex;
+  align-items: baseline;
+  background-color: #fff;
+  border-radius: 2.5em;
+  color: #0CAD93;
+  border: solid 3px #0CAD93 ;
+  transition: all 50ms ease-in;
+
+}
+
+.themesGestion .addmission-container h1 {
+
+  font-size: 1.1em;
+  margin : 0 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
+
+}
+
+
+
+.themesGestion .theme-card-container {
+  margin: 0 1%;
+  width: 100%;
+}
+/* h2 {
+  width: 75%;
+  margin-right: 60%;
+} */
+.themesGestion .checkbox-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* i.edit {
+  margin-right: 2em;
+
+} */
+
+.theme-title {
+  margin : 0;
+  font-family: Oclock;
+  font-size: 1.5em;
+  color: #000;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.theme-icons-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+p.icon-description{
+  font-size: 1.3em;
+  padding-right: .7em;
+}
+p.astuce-text {
+  font-size: 1.4em;
+  margin : 0;
+
+  /* width: 80%; */
+}
+.mission-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding : 0.2em 0;
+  /* margin: .7em; */
+}
+
+.themesGestion .ui.card>.content p {
+  margin :0;
+}
+
+
+.ui.fluid.card.mission-card {
+  margin-bottom: 3em;
+}
+.ui.modal div.header {
+  background-color: #268071;
+}
+.ui.modal div.content {
+  background-color: #0CAD93;
+}
+.ui.modal div.actions {
+  background-color: #268071;
+}
+.addMission-container {
+  display: flex;
+}

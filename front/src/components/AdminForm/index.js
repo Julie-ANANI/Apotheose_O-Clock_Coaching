@@ -5,9 +5,9 @@ const FormAdmin = () => (
   <Form success>
     <Form.Input
     label='Email'
-    placeholder='mail du nouvel admin'
+    placeholder='michel@oclock.io'
     />
-    <Button >Ajouter</Button>
+    <Button className='bouton-addadmin' >Adouber un Coach</Button>
   </Form>
 )
 

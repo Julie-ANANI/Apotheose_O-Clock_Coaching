@@ -50,13 +50,13 @@ class UnknownAPIUserError extends Error {
  * 
  */
 
- /**
- * A model representing a user
- * @class
- */
+/**
+* A model representing a user
+* @class
+*/
 class User {
 
-    
+
     /**
      * The User constructor
      * @param {Object} data - a litteral object with properties that will be copied into the instance
@@ -89,7 +89,7 @@ class User {
             return rows.map(row => new User(row));
         } else {
             throw new NoUserError();
-        };  
+        };
     };
 
     /**
@@ -105,7 +105,7 @@ class User {
     static async findOne(id) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE id = $1;', [id]);
 
-        if (rows[0]){
+        if (rows[0]) {
             return new User(rows[0]);
         } else {
             throw new UnknowUserError();
@@ -119,9 +119,9 @@ class User {
       * @static
       * @function findOneByApiId
       * @param {number} aid - The user ID in the O’Clock API.
-      * @returns {User|null} Instance of the class User or null if no such id in the database.
+      * @returns {User} Instance of the class User
       */
-     static async findOneByApiId(aid) {
+    static async findOneByApiId(aid) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
 
         if (rows[0]) {
@@ -131,39 +131,61 @@ class User {
         }
     }
 
-
-     /**
-      * Inserts a new user in the Database or updates the database if the record alredy exists.
+    /**
+      * Checks if a O’Clock API user exists in our internal database. If not, it returns null.
       * 
       * @async
-      * @function save
-      * @returns {Array} Instances of the class User.
-      * @throws {Error} a potential SQL error.
+      * @static
+      * @function checkByApiId
+      * @param {number} aid - The user ID in the O’Clock API.
+      * @returns {User|null} Instance of the class User or null if no such id in the database.
       */
-    async save(){
-        if(this.id){
+     static async checkByApiId(aid) {
+        const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
+
+        if (rows[0]) {
+            return new User(rows[0]);
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * Inserts a new user in the Database or updates the database if the record alredy exists.
+     * 
+     * @async
+     * @function save
+     * @returns {Array} Instances of the class User.
+     * @throws {Error} a potential SQL error.
+     */
+    async save() {
+        if (this.id) {
             //TODO: create a function update_user(json) + add trigger for updating timestamp
+
             const { rows } = await db.query('UPDATE "user" SET api_user= $1, admin_status = $2 WHERE id=$3 RETURNING id;', [
-                this.api_user, 
-                this.admin_status
+                this.api_user,
+                this.admin_status,
+                this.id
             ]);
 
-            if(rows[0]){
+            if (rows[0]) {
                 return rows[0];
-            }else{
+            } else {
                 throw new UserNotUpdatedError();
             };
 
-        }else{
+        } else {
             //TODO: create a function insert_user(json)
-            const{ rows } = await db.query('INSERT INTO "user"(api_user, admin_status) VALUES ($1, $2) RETURNING id;', [
+            const { rows } = await db.query('INSERT INTO "user"(api_user, admin_status) VALUES ($1, $2) RETURNING id;', [
                 this.api_user,
                 this.admin_status
             ]);
 
-            if(rows[0]){
+            if (rows[0]) {
                 this.id = rows[0].id;
-            }else{
+                return rows[0];
+            } else {
                 throw new UserNotAddedError();
             };
         };
