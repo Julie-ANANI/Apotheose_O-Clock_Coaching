@@ -10,7 +10,7 @@
     "api": "nodemon index.js",
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd front && npm run clean && npm i && npm run build"
+    "heroku-postbuild": "cd front && yarn clean && yarn i && yarn build"
   },
   "keywords": [],
   "author": "",
