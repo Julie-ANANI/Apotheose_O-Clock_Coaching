@@ -46,7 +46,6 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '..', 'front', 'dist', 'index.html'));
   });
 
-
 app.use('/v1/api/', router);
 
 app.listen(PORT, () => {
