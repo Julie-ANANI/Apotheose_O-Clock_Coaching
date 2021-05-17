@@ -53,29 +53,32 @@ function NewModalMission({
       open={open}
       trigger={<AddMission />}
     >
-      <Modal.Header>Ajouter une nouvelle mission</Modal.Header>
+      <Modal.Header>Ajouter une mission</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder="titre"
+          placeholder="Titre"
           value={title}
           onChange={e => setTitleTheme(e.target.value)}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder="description"
-          value={advice}
-          onChange={e => setAdviceMission(e.target.value)}
+          <Form.TextArea 
+            label="Astuces"
+            required type="text"
+            placeholder="Astuces"
+            value={advice}
+            onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+      <Button
+          className='button-cancel'
+          onClick={() => setOpen(false)}>
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitMission}>
+          className = 'button-submit'
+          type="submit"
+          onClick={handleSubmitMission}>
           Valider
         </Button>
       </Modal.Actions>

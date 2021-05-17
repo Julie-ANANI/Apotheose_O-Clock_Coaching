@@ -144,7 +144,10 @@ return(
             idMission={mission.id}
             idTheme={id}
             setRefresh={setRefresh}
-            refresh={refresh} />
+            refresh={refresh}
+            currentTitle={mission.title}
+            currentAstuce={mission.advice}
+          />
           <Icon 
           idmission={mission.id}
           size='large'

@@ -23,7 +23,7 @@
 
 
 .themesGestion .addtheme-container:hover {
-  width: fit-content;
+  /* width: fit-content;
   margin : 1em auto 2.5em;
   padding : 0.5em 1em;
   display: flex;
@@ -31,7 +31,8 @@
   background-color: #00c4a7;
   border-radius: 2.5em;
   color: #FFFDD8;
-  border: solid 3px #FFFDD8 ;
+  border: solid 3px #FFFDD8 ; */
+  opacity: 0.8;
   cursor: pointer;
   transition: all 50ms ease-in;
 }
@@ -46,6 +47,56 @@
   font-family: Oclock;
   text-transform: uppercase;
 
+}
+
+.ui.modal .actions>.button.button-cancel {
+
+  max-width: 120px;
+  padding : 0.5em 1em;
+  display: inline-block;
+  align-items: baseline;
+  background-color: #00c4a7;
+  border-radius: 2.5em;
+  color: #FFFDD8;
+  border: solid 3px #FFFDD8 ;
+  transition: all 150ms ease-in;
+  font-size: 1.1em;
+  margin : 0 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
+  cursor: pointer;
+  
+}
+
+
+
+.ui.modal .actions>.button.button-submit {
+
+  max-width: 120px;
+  padding : 0.5em 1em;
+  display: inline-block;
+  align-items: baseline;
+  background-color: #FFFDD8;
+  border-radius: 2.5em;
+  color: #00c4a7;
+  border: solid 3px #FFFDD8 ;
+  transition: all 150ms ease-in;
+  font-size: 1.1em;
+  margin : 0 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
+  cursor: pointer;
+  
+}
+
+.ui.modal .actions>.button:hover {
+  opacity: 0.8;
 }
 
 .themesGestion .addmission-container {
@@ -65,7 +116,7 @@
 
 .themesGestion .addmission-container:hover {
 
-  width: fit-content;
+  /* width: fit-content;
   margin : 1em auto 2.5em;
   padding : 0.5em 1em;
   display: flex;
@@ -73,8 +124,10 @@
   background-color: #fff;
   border-radius: 2.5em;
   color: #0CAD93;
-  border: solid 3px #0CAD93 ;
+  border: solid 3px #0CAD93 ; */
+  opacity: 0.8;
   transition: all 50ms ease-in;
+  cursor: pointer;
 
 }
 
@@ -152,13 +205,21 @@ p.astuce-text {
   margin-bottom: 3em;
 }
 .ui.modal div.header {
-  background-color: #268071;
+  background-color: #FFFDD8;
+  color: #0CAD93;
+  font-size: 1.1em;
+  margin : 0 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
 }
 .ui.modal div.content {
-  background-color: #0CAD93;
+  background-color: #0AC3A7;
 }
 .ui.modal div.actions {
-  background-color: #268071;
+  background-color: #0AC3A7;
 }
 .addMission-container {
   display: flex;
