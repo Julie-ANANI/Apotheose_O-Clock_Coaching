@@ -36,7 +36,7 @@ const Mission = ({
     console.log('on a cliqué sur la checkbox');
     if (data.checked) {
       axios({
-        url : 'http://localhost:3000/v1/api/student/interact/',
+        url : '/v1/api/student/interact/',
         method : 'post',
         data : {
           "mission_id": id,
@@ -52,7 +52,7 @@ const Mission = ({
       
     } else {
       axios({
-        url : `http://localhost:3000/v1/api/student/interact/missions/${id}/users/${userId}`,
+        url : `/v1/api/student/interact/missions/${id}/users/${userId}`,
         method : 'delete'
       })
       .then(res => {
@@ -69,7 +69,7 @@ const Mission = ({
   }
 
   const checkIfDone = () => { 
-    axios.get(`http://localhost:3000/v1/api/missions/${id}/users/${userId}`)
+    axios.get(`/v1/api/missions/${id}/users/${userId}`)
       .then((response)=> {
         console.log(response.data);
         setIschecked(true);

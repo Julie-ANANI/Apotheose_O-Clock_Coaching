@@ -9,7 +9,7 @@ const FormAdmin = () => {
   const [positive, setPositive] = useState(false);
   const [negative, setNegative] = useState(false);
   const [result, setResult] = useState('');
-  const postUrl = `http://localhost:3000/v1/api/admin/add`;
+  const postUrl = `/v1/api/admin/add`;
 
 const showMessage = () => {
 if(positive){

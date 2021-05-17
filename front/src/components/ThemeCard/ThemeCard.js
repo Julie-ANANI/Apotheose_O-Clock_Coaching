@@ -47,7 +47,7 @@ const ThemeCard = ({
 
   const handleDeleteMission = (e, {idmission}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/admin/missions/${idmission}`)
+    axios.delete(`/v1/api/admin/missions/${idmission}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -64,7 +64,7 @@ const ThemeCard = ({
 
   const handleDeleteTheme = (e, {id}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/themes/${id}`)
+    axios.delete(`/v1/api/admin/themes/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);

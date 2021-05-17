@@ -85,7 +85,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les thèmes');
     
 
-    axios.get(`${base_url}/themes`)
+    axios.get(`${base_url}/v1/api/themes`)
       .then((response)=> {
         console.log('on récupère les thèmes', response.data);
         setThemes(response.data);
@@ -99,7 +99,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
-      const url = `${base_url}/missions/users/${userId}`
+      const url = `${base_url}/v1/api/missions/users/${userId}`
 
       axios({
         url: url,
@@ -121,7 +121,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
-      axios.get(`${base_url}/missions`)
+      axios.get(`${base_url}/v1/api/missions`)
       .then((response) => {
         setAllMissions(response.data)
         console.log('allMissions=',response.data);

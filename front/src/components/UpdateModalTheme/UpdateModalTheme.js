@@ -14,7 +14,7 @@ function UpdateModalTheme({
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/themes/${id}`;
+  const postUrl = `/v1/api/admin/themes/${id}`;
 
   const handleSubmitTheme = () => {
 

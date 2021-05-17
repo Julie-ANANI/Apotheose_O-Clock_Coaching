@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 // == Import : local
 // Composants
 import App from 'src/App.js';
-var base_url = 'http://localhost:3000/v1/api'
+var base_url = '';
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
 //    => crée une structure d'objets imbriqués (DOM virtuel)

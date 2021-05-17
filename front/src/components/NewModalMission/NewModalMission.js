@@ -13,7 +13,7 @@ function NewModalMission({
   const [position, setPosition] = useState(1);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}/missions`;
+  const postUrl = `/v1/api/admin/themes/${id}/missions`;
 
   const handleSubmitMission = () => {
 
