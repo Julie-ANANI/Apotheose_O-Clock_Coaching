@@ -45,7 +45,7 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('admin');
+  const [activeRole, setActiveRole] = useState('student');
   const [userId, setUserId] = useState(3);
 
   
