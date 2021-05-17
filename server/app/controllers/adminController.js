@@ -41,14 +41,14 @@ const adminController = {
                     }
                 }).then(res => res.json())
                     .then(json => apiUser = json);
-                console.log(apiUser.data.is_teacher);
+                
 
                 if (!apiUser.success) {
                     res.status(404).json(apiUser.message);
                 } else {
                     // if the user doesn't have the teacher role
                     if (!apiUser.data.is_teacher) {
-                        res.status(401).json(`This user doesnt have a teacher role in the O'Clock API`);
+                        res.status(401).json(`Yo désolé, l'utilisateur que vous proposez n'est pas dans la team des profs ! Il faut porter plainte contre Simon ou contactez simplement l'administration d'Oclock`);
                     } else {
                         // the user has the teacher role: we check if they exist in our database yet
                         const theInternalUser = await User.checkByApiId(apiUser.data.id);
@@ -62,6 +62,7 @@ const adminController = {
                             console.log(theNewUser);
                             apiUser.oap_id = theNewUser.id;
                             apiUser.oap_admin_status = theNewUser.admin_status;
+                            apiUser.message = `Vous avez ajouté un nouvel admin ! Bienvenue au nouveau Jedi !`;
 
                         } else {
                             // if the user is found in our database
@@ -72,6 +73,7 @@ const adminController = {
                             await theInternalUser.save();
                             apiUser.oap_id = theInternalUser.id;
                             apiUser.oap_admin_status = theInternalUser.admin_status;
+                            apiUser.message = `Vous avez ajouté un nouvel admin ! Bienvenue au nouveau Jedi !`;
                         }
                         // Now the user has been created/updated withe admin status, we return the full apiUser object
                         res.status(200).json(apiUser);
@@ -130,10 +132,9 @@ const adminController = {
             .then(json => onePromo = json);
         
             for(const student of onePromo.data.users){
-                
                 // if the user is type 'regular' (if they are a student)
                 if(student.type === 'regular'){
-                
+
                 let detailedInfo;
                 await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}`, {
                     method: 'GET',
@@ -145,7 +146,8 @@ const adminController = {
 
                 // we add the detailed info to our student object
                 student.detailedInfo = detailedInfo.data;
-                    
+                   
+                
                 // we lookup the cohorts of the student 
                 let cohortsInfo;
                 await fetch(`${EXTERNAL_API_BASE_URL}/api/user/${student.id}/cohorts`, {
@@ -159,6 +161,16 @@ const adminController = {
                 // we add the cohorts data to our student object
                 student.cohortsInfo = cohortsInfo.data;
 
+                // we lookup the user in our internal database
+                const theInternalUser = await User.checkByApiId(student.id);
+
+                if(!theInternalUser){
+                    // we add the internal user id to our student object 
+                    student.oap_id = null;
+                } else {
+                    student.oap_id = theInternalUser.id;
+                };
+                
                 // we push the enriched student object in the users array
                     users.push(student);
                 };
