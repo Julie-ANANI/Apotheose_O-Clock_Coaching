@@ -415,7 +415,7 @@ export default
       },
       {
         "id": 4,
-        "nickname": "Dauphin Symphony",
+        "nickname": "Dauphin Symfony",
         "linkSlack": null,
         "linkGithub": null,
         "linkReplays": null,

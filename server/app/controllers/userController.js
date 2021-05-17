@@ -100,10 +100,10 @@ const userController = {
             
             
             // Now the user is connected, we store their info in the session
-            req.session.user = {
-                firstname: apiUser.data.profile.firstname,
-                lastname: apiUser.data.profile.lastname
-            };
+            // req.session.user = {
+            //     firstname: apiUser.data.profile.firstname,
+            //     lastname: apiUser.data.profile.lastname
+            // };
 
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);

@@ -93,9 +93,13 @@ const App = ({base_url}) => {
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
+        console.log('response :',response);
         console.log('on récupère les thèmes', response.data);
         setThemes(response.data);
         // return(response.data)
+      })
+      .catch((error) => {
+        console.log('error : ',error.message);
       })
   };
 
@@ -156,7 +160,7 @@ const App = ({base_url}) => {
     loadAllMissions();
     setStudentsList(students);
     // loadUserMissions();
-  }, []);
+  }, [refresh]);
 
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
