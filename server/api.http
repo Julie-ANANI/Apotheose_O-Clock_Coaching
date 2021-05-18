@@ -187,17 +187,6 @@ Content-Type: application/json
 ###
 
 
-# Login un étudiant
-POST http://localhost:3000/v1/api/login
-Content-Type: application/json
-
-{    
-    "proprété": "valeur",
-    "propriété": "valeur"
-}
-###
-
-
 # Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
 GET http://localhost:3000/v1/api/admin/students
 Content-Type: application/json
