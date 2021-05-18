@@ -73,6 +73,12 @@ GET http://localhost:3000/v1/api/missions/9/users/3
 GET http://localhost:3000/v1/api/missions/4/users/7
 ###
 
+
+
+# La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 test
+GET http://localhost:3000/v1/api/missions/7/users/3
+###
+
 # Le score du theme 7 d'un user 4
 GET http://localhost:3000/v1/api/students/4/themes/7/score
 
@@ -99,14 +105,14 @@ POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 12,
-    "user_id": 3
+    "mission_id": 33,
+    "user_id": 10
 }
 ###
 
 
-# Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
-DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
+# Supprimer la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
+DELETE http://localhost:3000/v1/api/student/interact/missions/33/users/10
 Content-Type: application/json
 
 ###
