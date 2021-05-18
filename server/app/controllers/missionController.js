@@ -86,6 +86,13 @@ const missionController = {
             */
             const { theme_id } = req.params;
 
+            //verify id 
+
+            const checkThemeID = await Theme.findOne(theme_id);
+
+            if(!checkThemeID){
+                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
+            }
             /**
             * We get the title, advice, position in the body
             */
@@ -123,7 +130,7 @@ const missionController = {
            * The mission can't be create
            * In the model, there is an error with a custom message
            */
-            res.status(500).json(err.message);
+            res.status(404).json(err.message);
         };
     },
 

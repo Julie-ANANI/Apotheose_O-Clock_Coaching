@@ -67,8 +67,11 @@ const themeController = {
 
                 } else {
                     // recuperation of infos body if id exists
-                    const { title, description } = req.body;
+                    const { themeId, title, description } = req.body;
                 
+                    if (themeId) {
+                        theme.id = themeId; 
+                    }
                     //replace title if new modification
                     if (title) {
                         theme.title = title;
@@ -103,10 +106,10 @@ const themeController = {
             let bodyErrors = [];
 
             if (!title) {
-               bodyErrors.push(`title cannot be empty`);
+               bodyErrors.push(`le titre ne peut pas être vide`);
             }
             if (!description) {
-               bodyErrors.push(`description cannot be empty`);
+               bodyErrors.push(`La description ne peut pas être vide`);
             }
 
             // if there are any errors, we return them

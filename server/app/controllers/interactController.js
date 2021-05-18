@@ -13,7 +13,8 @@ const interactController = {
                  * We get the id in the parameters of the request
                  */
             const { userId } = req.params;
-            console.log(userId);
+            
+            //verify id of user
             const checkUserID = await User.findOne(userId);
 
             if (!checkUserID) {

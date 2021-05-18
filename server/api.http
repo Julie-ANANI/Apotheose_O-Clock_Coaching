@@ -200,7 +200,7 @@ Content-Type: application/json
 ####
 
 
-# Créer un nouveau thème sans titre
+# 400 - Créer un nouveau thème sans titre
 POST http://localhost:3000/v1/api/admin/themes
 Content-Type: application/json
 
@@ -211,32 +211,60 @@ Content-Type: application/json
 ####
 
 
-# Modifier un thème
-POST http://localhost:3000/v1/api/admin/themes/29
+# Modifier un thème avec un ID connu
+POST http://localhost:3000/v1/api/admin/themes/8
 Content-Type: application/json
 
 {    
  
-    "description": "Moi, si je devais résumer ma vie aujourd’hui avec vous,\\nje dirais que c’est d’abord des rencontres, des gens qui m’ont tendu la main, peut-être à un moment où je ne pouvais pas, où j’étais seul chez moi."
+    "title" : "Javascriptt c'est la vie vida loca !"
 
 }
 ###
 
+
 # Suppression du theme 3
-DELETE http://localhost:3000/v1/api/admin/themes/5
+DELETE http://localhost:3000/v1/api/admin/themes/8
+Content-Type: application/json
+###
+
+# 404 - Suppression du theme 3 qui existe pas
+DELETE http://localhost:3000/v1/api/admin/themes/800
 Content-Type: application/json
 ###
 
 
+# Créer une nouvelle mission pour le theme 8
 POST http://localhost:3000/v1/api/admin/themes/8/missions
 Content-Type: application/json
 
 {    
-    "title": "Je ne suis qu’amour",
+    "title": "Je ne suis qu’amouur",
     "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
 }
 ###
 
+
+# Créer une nouvelle mission pour le theme 8
+POST http://localhost:3000/v1/api/admin/themes/8/missions
+Content-Type: application/json
+
+{    
+    "title": "Je ne suis qu’amouur",
+    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+}
+###
+
+
+# Créer une nouvelle mission pour le theme 800
+POST http://localhost:3000/v1/api/admin/themes/800/missions
+Content-Type: application/json
+
+{    
+    "title": "Je ne suis qu’ammouur",
+    "advice": "Et finalement, quand beaucouup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+}
+###
 
 # Modifier une mission
 POST http://localhost:3000/v1/api/admin/missions/9
@@ -248,19 +276,8 @@ Content-Type: application/json
 ###
 
 # Supprimer une mission
-DELETE http://localhost:3000/v1/api/admin/missions/29
+DELETE http://localhost:3000/v1/api/admin/missions/9
 Content-Type: application/json
-###
-
-
-# Login un étudiant
-POST http://localhost:3000/v1/api/login
-Content-Type: application/json
-
-{    
-    "proprété": "valeur",
-    "propriété": "valeur"
-}
 ###
 
 

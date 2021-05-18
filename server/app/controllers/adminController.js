@@ -58,7 +58,7 @@ const adminController = {
                             // We create a new user with admin status true
                             const theNewUser = await new User({ api_user: apiUser.data.id, admin_status: true });
                             await theNewUser.save();
-                            console.log(theNewUser);
+                           
                             apiUser.oap_id = theNewUser.id;
                             apiUser.oap_admin_status = theNewUser.admin_status;
                             apiUser.message = `Vous avez ajouté un nouvel admin ! Bienvenue au nouveau Jedi !`;
