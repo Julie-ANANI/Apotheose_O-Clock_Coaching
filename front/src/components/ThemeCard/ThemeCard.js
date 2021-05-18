@@ -19,6 +19,12 @@ const ThemeCard = ({
 
   const [missions, setMissions] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+
+  const [currentThemeTitle,setCurrentThemeTitle] = useState(title)
+  const [currentThemeDescription, setCurrentThemeDescription] = useState(description);
+
+  // const currentTitle = title;
+  // const currentDescription = description;
   
   const handleClick = (e, titleProps) => {
     console.log('on a cliqué', titleProps);
@@ -64,7 +70,7 @@ const ThemeCard = ({
 
   const handleDeleteTheme = (e, {id}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/themes/${id}`)
+    axios.delete(`http://localhost:3000/v1/api/admin/themes/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -90,19 +96,26 @@ return(
   <Card.Content className='mission-card-header' >
     <div className="checkbox-container">
       <h2 className="theme-title">{title}</h2>
-      <UpdateModalTheme
-      currentTitle={title}
-      currentDescription={description}
-      id={id}
-      setRefresh={setRefresh}
-      refresh={refresh}
-      />
-      <Icon
-      onClick={handleDeleteTheme} 
-      size='big'
-      link name="trash"
-      id={id}
-      />
+      <div className='theme-icons-container'>
+        <UpdateModalTheme
+          currentThemeTitle={currentThemeTitle}
+          currentThemeDescription={currentThemeDescription}
+          setCurrentThemeTitle={setCurrentThemeTitle}
+          setCurrentThemeDescription={setCurrentThemeDescription}
+          // currentTitle={currentTitle}
+          // currentDescription={currentDescription}
+          id={id}
+          setRefresh={setRefresh}
+          refresh={refresh}
+        />
+        <Icon
+          onClick={handleDeleteTheme} 
+          size='large'
+          link
+          name="trash"
+          id={id}
+        />
+      </div>
     </div>
   </Card.Content>
 
@@ -136,15 +149,18 @@ return(
           <p className= 'astuce-text'>
             {mission.title}
           </p>
-          <div className="icon-container">
+          <div className="theme-icons-container">
           <UpdateModalMission
             idMission={mission.id}
             idTheme={id}
             setRefresh={setRefresh}
-            refresh={refresh} />
+            refresh={refresh}
+            currentTitle={mission.title}
+            currentAstuce={mission.advice}
+          />
           <Icon 
           idmission={mission.id}
-          size='big'
+          size='large'
           link name="trash"
           onClick={handleDeleteMission} />
           </div>

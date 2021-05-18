@@ -4,10 +4,13 @@ import axios from 'axios'
 
 function UpdateModalMission({
   currentTitle,
-  currentDescription,
+  currentAstuce,
   idMission,
   setRefresh,
-  refresh}) {
+  refresh,
+  // title,
+  // advice,
+  }) {
   const [title, setTitleMission] = useState('');
   const [advice, setAdviceMission] = useState('');
   const [position, setPosition] = useState(38);
@@ -47,31 +50,35 @@ function UpdateModalMission({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon className="edit-mission-modal" size='big' link name='edit' />}
+      trigger={<Icon className="edit-mission-modal" size='large' link name='edit' />}
     >
       <Modal.Header>Modifier une mission</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder="titre"
-          value={title}
+          // placeholder="titre"
+          value={currentTitle}
           onChange={e => setTitleMission(e.target.value)}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder="advice"
-          value={advice}
-          onChange={e => setAdviceMission(e.target.value)}
+          <Form.TextArea 
+            label="Astuces"
+            required 
+            // placeholder="advice"
+            value={currentAstuce}
+            onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button 
+          className = 'button-cancel' 
+          onClick={() => setOpen(false)}
+        >
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitTheme}>
+          className= 'button-submit'
+          type="submit"
+          onClick={handleSubmitTheme}>
           Valider
         </Button>
       </Modal.Actions>

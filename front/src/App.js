@@ -29,8 +29,9 @@ import AddAdmin from 'src/pages/AddAdmin';
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
 import GestionThemes from './pages/GestionThemes';
-import SearchProfil from './pages/SearchProfil';
+import SearchAdmin from './pages/SearchAdmin';
 // import AccueilAdmin from './pages/AccueilAdmin';
+import students from 'src/data/users.js';
 
 
 // A mettre dans le .env et utiliser process.env.base_url
@@ -44,13 +45,15 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('student');
+  const [activeRole, setActiveRole] = useState('admin');
   const [userId, setUserId] = useState(3);
 
   
   // PARCOURS COACHING
   
   const [themes, setThemes] = useState([]);
+  const [searchedThemes, setSearchedThemes] = useState(themes);
+
   const [generalScore, setGeneralScore] = useState(0);
 
   const [refresh, setRefresh] = useState(false);
@@ -69,8 +72,12 @@ const App = ({base_url}) => {
   // MENU
   const [activeItem, setActiveItem] = useState('Accueil');
 
+  // RESULTS
+  const [studentsList,setStudentsList] = useState([]);
+  const [searchedStudents, setSearchedStudents] = useState(studentsList);
 
 
+   
 
 
   const getMenuRoutes = (role) => {
@@ -86,10 +93,17 @@ const App = ({base_url}) => {
 
     axios.get(`${base_url}/themes`)
       .then((response)=> {
+        console.log('response :',response);
         console.log('on récupère les thèmes', response.data);
         setThemes(response.data);
+        // return(response.data)
+      })
+      .catch((error) => {
+        console.log('error : ',error.message);
       })
   };
+
+
 
   const loadUserMissions = () => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
@@ -124,6 +138,19 @@ const App = ({base_url}) => {
       })
   }}
 
+  const getSpeName =(student) => {
+    const promoName = student.cohortsInfo.find((cohort) => cohort.spe_cohort === true).nickname.split(' ')[1];
+    // .nickname.split('')[1];
+    console.log(`promoName de ${student.username} `, promoName);
+    if (promoName != undefined) {
+      return promoName;
+    } else {
+      return '';
+    }
+  }
+
+
+
 
   const filteredNavlinks = getMenuRoutes(activeRole);
 
@@ -131,26 +158,16 @@ const App = ({base_url}) => {
     console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
     loadAllMissions();
+    setStudentsList(students);
     // loadUserMissions();
-  }, []);
+  }, [refresh]);
 
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
     loadUserMissions();
   },[allMissions,userInteraction]);
 
-  // getSearchedThemes = () => {
-  //   let searchedThemes = themes;
-
-  //   if (searchedText.length > 0) {
-  //     const loweredSearchedText = themes.title.toLowerCase();
-  //     console.log(loweredThemeName);
-
-  //     searchedThemes = themes.filter((currency) => {
-  //       const 
-  //     })
-  //   }
-  // }
+ 
  
   return(
     <div className="app">
@@ -162,6 +179,14 @@ const App = ({base_url}) => {
         searchedText={searchedText}
         setSearchedText={setSearchedText}
         history={history}
+        themes={themes}
+        studentsList={studentsList}
+        searchedThemes={searchedThemes}
+        searchedStudents={searchedStudents}
+        setSearchedThemes={setSearchedThemes}
+        setSearchedStudents={setSearchedStudents}
+        activeRole={activeRole}
+        getSpeName={getSpeName}
       />
       
       <Switch>
@@ -184,7 +209,7 @@ const App = ({base_url}) => {
         <Route path='/parcours-coaching'>
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
-            themes={themes} 
+            themes={searchedThemes} 
             generalScore={generalScore}
             userMissionsCompleted={userMissionsCompleted}
             allMissions={allMissions}
@@ -194,6 +219,7 @@ const App = ({base_url}) => {
             base_url={base_url}
             userId={userId}
             searchedText={searchedText}
+            base_url={base_url}
           />  
         </Route> 
           
@@ -203,7 +229,6 @@ const App = ({base_url}) => {
           <ThemePage 
             themes={themes}
             base_url={base_url}
-
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
             missionByThemeUser={missionByThemeUser}
@@ -226,12 +251,21 @@ const App = ({base_url}) => {
         </Route>
         <Route path= {`/gestion-themes`}>
           <Header titre={titre.gestionThemes.description} />
-          <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
+          <GestionThemes 
+            themes={themes} 
+            refresh={refresh} 
+            setRefresh={setRefresh}
+            base_url={base_url}
+          />
         </Route>
 
-        <Route path= {`/search-profil`}>
-          <Header titre={titre.gestionThemes.description} />
-          <SearchProfil />
+        <Route path= {`/results`}>
+          <Header titre={titre.searchAdmin.description} />
+          <SearchAdmin
+            searchedStudents={searchedStudents}
+            getSpeName={getSpeName}
+            searchedText={searchedText}
+          />
         </Route>
       </Switch>
 

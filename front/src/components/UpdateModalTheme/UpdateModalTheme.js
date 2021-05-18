@@ -4,17 +4,20 @@ import axios from 'axios'
 
   
 function UpdateModalTheme({
-  currentTitle,
-  currentDescription,
-  id,
-  setRefresh,
-  refresh}) {
+    currentThemeTitle,
+    currentThemeDescription,
+    setCurrentThemeTitle,
+    setCurrentThemeDescription,
+    id,
+    setRefresh,
+    refresh
+  }) {
   const [title, setTitleTheme] = useState('');
   const [description, setDescriptionTheme] = useState('');
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/themes/${id}`;
+  const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}`;
 
   const handleSubmitTheme = () => {
 
@@ -49,31 +52,41 @@ function UpdateModalTheme({
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Icon className="edit-theme-modal" size='big' link name='edit' />}
+      trigger={<Icon className="edit-theme-modal" size='large' link name='edit' />}
     >
       <Modal.Header>Modifier un thème</Modal.Header>
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder={currentTitle}
-          value={title}
-          onChange={e => setTitleTheme(e.target.value)}
+          // placeholder={currentTitle}
+          value={currentThemeTitle}
+          onChange ={e => {
+            setCurrentThemeTitle(e.target.value);
+            setTitleTheme(e.target.value)
+          }}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder={currentDescription}
-          value={description}
-          onChange={e => setDescriptionTheme(e.target.value)}
+          <Form.TextArea 
+            label="Description"
+            required
+            // placeholder={currentDescription}
+            value={currentThemeDescription}
+            onChange ={e => {
+              setDescriptionTheme(e.target.value);
+              setCurrentThemeDescription(e.target.value)
+            }}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button
+          className='button-cancel' 
+          onClick={() => setOpen(false)}
+        >
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitTheme}>
+          className='button-submit'
+          type="submit"
+          onClick={handleSubmitTheme}>
           Valider
         </Button>
       </Modal.Actions>

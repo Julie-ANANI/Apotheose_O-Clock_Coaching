@@ -44,7 +44,7 @@ GET http://localhost:3001/v1/api/users
 ###
 
 
-# Toutes les coches d'un utilisateur 1
+# Toutes les coches d'un utilisateur 3
 GET http://localhost:3000/v1/api/missions/users/3
 ###
 
@@ -202,8 +202,8 @@ Content-Type: application/json
 ###
 
 
-# Search une promo
-GET http://localhost:3000/v1/api/admin/search/promo_id
+# Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
+GET http://localhost:3000/v1/api/admin/students
 Content-Type: application/json
 ###
 
