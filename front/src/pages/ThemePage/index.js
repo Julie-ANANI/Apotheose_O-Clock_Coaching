@@ -37,7 +37,7 @@ const ThemePage = ({
 
   const setMissions = ()  => {
     console.log('SETMISSIONS');
-console.log("userMissionsCompleted : ",userMissionsCompleted)
+    console.log("userMissionsCompleted : ",userMissionsCompleted)
     const missionsCompletedByTheme = filterMissionsByTheme(userMissionsCompleted);
 
     setMissionByThemeUser(missionsCompletedByTheme);

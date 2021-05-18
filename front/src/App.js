@@ -46,7 +46,7 @@ const App = ({base_url}) => {
 
   // GENERAL POUR LINSTANT
   const [activeRole, setActiveRole] = useState('');
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState(3);
   const [user, setUser] = useState(null);
 
   
@@ -101,7 +101,7 @@ const App = ({base_url}) => {
 
 
   const loadUserMissions = () => {
-    // console.log('Il faut charger les missions déjà effectuées par le user');
+    console.log('Il faut charger les missions déjà effectuées par le user');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
       const url = `${base_url}/missions/users/${userId}`
@@ -111,7 +111,7 @@ const App = ({base_url}) => {
         method: 'get',
       })
       .then((response) => {
-        setUserMissionsCompleted("loadUserMissions : ", response.data)
+        setUserMissionsCompleted(response.data)
       // })
       // .then(()=>{
       //   console.log('userMissionsCompleted',userMissionsCompleted);
@@ -156,7 +156,7 @@ const App = ({base_url}) => {
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
     loadUserMissions();
-  },[allMissions,userInteraction]);
+  },[activeRole, userInteraction, userId]);
 
  
  
