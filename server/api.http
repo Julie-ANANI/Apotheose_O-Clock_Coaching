@@ -85,24 +85,26 @@ GET http://localhost:3000/v1/api/students/4/themes/7/score
 GET http://localhost:3000/v1/api/students/5/themes/1/score
 ###
 
-# Le score du theme 700 d'un user 4 - THEME DO NOT EXIST
+# 404 - Le score du theme 700 d'un user 4 - THEME DO NOT EXIST
 GET http://localhost:3000/v1/api/students/4/themes/700/score
 ###
 
 
-# Le score du theme 700 d'un user 4 - USER DO NOT EXIST
+# 404 - Le score du theme 700 d'un user 400 - USER DO NOT EXIST
 GET http://localhost:3000/v1/api/students/400/themes/7/score
 ###
 
 
 # Le score global d'un user 4
 GET http://localhost:3000/v1/api/students/3/score
-
 ###
 
 # Le score global d'un user 5
 GET http://localhost:3000/v1/api/students/5/score
+###
 
+# 404 - Le score global d'un student 300 - STUDENT DO NOT EXISTS
+GET http://localhost:3000/v1/api/students/300/score
 ###
 
 
@@ -117,8 +119,29 @@ Content-Type: application/json
 ###
 
 
+# Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 déjà dans la BDD
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "mission_id": 12,
+    "user_id": 3
+}
+###
+
+
+# 400 - Insérer une case cochée en bdd pour la mission 12 sans User
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "user_id": 3
+}
+###
+
+
 # Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
-DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
+DELETE http://localhost:3000/v1/api/student/interact/missions/1/users/3
 Content-Type: application/json
 
 ###
@@ -134,13 +157,33 @@ Content-Type: application/json
 }
 ###
 
-# Modifier une mission
-POST http://localhost:3000/v1/api/admin/missions/2
+# Ajouter une mission donnée dans theme 2
+POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "title": "nouveau titre",
-    "advice": "aaaaah"
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/27
+Content-Type: application/json
+
+{
+    "title": "Je veux changer ce titre"
+}
+####
+
+
+# 404 - Modifier une mission 270 qui n'existe pas
+POST http://localhost:3000/v1/api/admin/missions/270
+Content-Type: application/json
+
+{
+    "title": "Je veux changer ce titre"
 }
 ####
 
@@ -153,6 +196,17 @@ Content-Type: application/json
     
     "title": "Scre5tegtrhgrtteibe",
     "description": "Mais, vous savez, moi je ne crois pas qu’il y ait de bonne ou de mauvaise situation"
+}
+####
+
+
+# Créer un nouveau thème sans titre
+POST http://localhost:3000/v1/api/admin/themes
+Content-Type: application/json
+
+{
+    
+    "title": "Scre5tegtrhgrte"
 }
 ####
 

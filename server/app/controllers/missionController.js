@@ -133,6 +133,7 @@ const missionController = {
     modifyMission: async (req, res) => {
 
         try {
+            console.log(`je suis das la fonction modifier une mission `)
             /**
             * We get the mission id in the parameters of the request
             */
@@ -143,6 +144,7 @@ const missionController = {
             */
             const mission = await Mission.findOne(missionId);
 
+           
 
             /**
             * Verify if the mission is in the database
@@ -183,7 +185,7 @@ const missionController = {
            * The mission can't be update
            * In the model, there is an error with a custom message
            */
-            res.status(500).json(err.message)
+            res.status(404).json(err.message)
         };
     },
 

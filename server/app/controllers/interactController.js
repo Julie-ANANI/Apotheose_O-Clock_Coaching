@@ -118,6 +118,13 @@ const interactController = {
             // We get the id in the parameters of the request
             const { userId } = req.params;
 
+            //verify id if exist inthe database
+            const checkUserID = await User.findOne(userId)
+            
+            if(!checkUserID) {
+                return res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
+            }
+
             // we get the total number of completed missions for this user 
             const globalScore = await Interact.findGlobalScoreOfOneUser(userId);
 
@@ -159,7 +166,7 @@ const interactController = {
                 // if there are no errors, we can save this new record in the database
                 const newInteract = new Interact({ mission_id, user_id });
                 await newInteract.save();
-                res.status(200).json(newInteract);
+                res.status(201).json(newInteract);
             }
 
         } catch (err) {
@@ -184,7 +191,7 @@ const interactController = {
             } else {
                 // if it exists, we delete it and send a confirmation message to the client
                 await interact.delete();
-                res.status(200).json('interact record deleted');
+                res.status(200).json(`l'enrengistrement a bien été supprimé`);
             }
 
         } catch (err) {
