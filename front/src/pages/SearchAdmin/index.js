@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
-import { Image, Card, Progress } from 'semantic-ui-react';
+import { Image, Card, Progress} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import 'src/styles/SearchAdmin.css';
 import axios from 'axios'
 
@@ -27,7 +28,12 @@ const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
 
 
             return(
-              <Card key= {student.id}>
+              <Link
+                key= {student.id}
+                name={student.id}
+                to={`results/${student.id}/score`}  
+              >
+                <Card >
                 {/* <Image */}
                 <Card.Content >
                   <Card.Header centered="true" className='student-card-header'> {`${student.firstname} ${student.lastname}`} </Card.Header>
@@ -38,7 +44,8 @@ const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
                     <Progress className='student-card-general-progressbar' percent={33} indicating progress />
                   </Card.Content>
                 </Card.Content>
-              </Card>
+                </Card>
+              </Link> 
             )
             
           })}
