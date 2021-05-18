@@ -104,9 +104,6 @@ const themeController = {
             if (!title) {
                bodyErrors.push(`title cannot be empty`);
             }
-            if (!description) {
-               bodyErrors.push(`description cannot be empty`);
-            }
 
             // if there are any errors, we return them
             if (bodyErrors.length) {

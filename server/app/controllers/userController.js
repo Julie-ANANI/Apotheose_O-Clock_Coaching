@@ -70,15 +70,10 @@ const userController = {
                 body: form
             }).then(res => res.json())
               .then(json => apiUser = json);
-<<<<<<< HEAD
-              
-
-=======
   
             if (!apiUser.sucess){
                 res.status(404).json(apiUser.message);
             }
->>>>>>> 6e85529c4413266c94fbe3339a1a1b78186e7234
             // If the authentication succeeds, the API sends a user object
             // based on the user object returned when testing the external API in Insomnia,
             // it seems the api user id is available in the property data.id (to confirm)
