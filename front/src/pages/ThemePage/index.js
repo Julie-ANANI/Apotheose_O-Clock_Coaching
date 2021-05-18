@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
 import {  Divider, Header, Card, Progress } from 'semantic-ui-react';
-import 'src/styles/ThemePage.css';
+// import 'src/styles/ThemePage.css';
 import Mission from 'src/components/Mission';
 import ThemeProgressBar from '../../components/ThemeProgressBar';
 

@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
 const PORT = process.env.PORT || 3000;
-const session = require('express-session');
+//const session = require('express-session');
 
 const router = require('./app/router');
 

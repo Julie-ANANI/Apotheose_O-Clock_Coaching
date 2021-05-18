@@ -4,12 +4,15 @@ import axios from 'axios'
 
 function UpdateModalMission({
   currentTitle,
-  currentDescription,
+  currentAstuce,
   idMission,
   setRefresh,
-  refresh}) {
-  const [title, setTitleMission] = useState('');
-  const [advice, setAdviceMission] = useState('');
+  refresh,
+  // title,
+  // advice,
+  }) {
+  const [title, setTitleMission] = useState(currentTitle);
+  const [advice, setAdviceMission] = useState(currentAstuce);
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
@@ -53,25 +56,29 @@ function UpdateModalMission({
         <Modal.Content >
           <Form.Input label="Titre"
           required type="text"
-          placeholder="titre"
+          // placeholder="titre"
           value={title}
           onChange={e => setTitleMission(e.target.value)}
           />
-          <Form.Input label="description"
-          required type="text"
-          placeholder="advice"
-          value={advice}
-          onChange={e => setAdviceMission(e.target.value)}
+          <Form.TextArea 
+            label="Astuces"
+            required 
+            // placeholder="advice"
+            value={advice}
+            onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button 
+          className = 'button-cancel' 
+          onClick={() => setOpen(false)}
+        >
           Annuler
         </Button>
         <Button
-        color='green'
-        type="submit"
-        onClick={handleSubmitTheme}>
+          className= 'button-submit'
+          type="submit"
+          onClick={handleSubmitTheme}>
           Valider
         </Button>
       </Modal.Actions>

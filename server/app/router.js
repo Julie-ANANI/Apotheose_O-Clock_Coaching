@@ -12,12 +12,33 @@ const adminController = require('./controllers/adminController');
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
+const loginSchema = require('./schemas/loginSchema'); 
+
 
 const router = Router();
 
-// -------------------------------- THEME ROUTE -------------------------------------
-//
-//
+
+// ---------------------------------------- LOGIN SPACE ----------------------------------------
+
+/**
+ * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
+ *  POST /login
+ * @group Login
+ * @returns {<User>} 200 - A user object
+ */
+router.post('/login', validateBody(loginSchema.newLogin), userController.login);
+
+/**
+ * Logs out the user from the backend
+ *  POST /login
+ * @group Login
+ * @returns 200 - A message confirming the user is logged out in backend
+ */
+router.post('/login', userController.logout);
+
+
+
+// ---------------------------------------- THEME ROUTE ----------------------------------------
 /**
  * Returns all themes from the database
  * @route GET /themes
@@ -105,7 +126,6 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {number} theme_id.path.required - the theme id
  * @param {string} title.path.properties- the title
  * @param {string} advice- the description
- * @security JWT
  * @returns {Object} 201 - An object of the new mission
  */
 router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
@@ -120,6 +140,30 @@ router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema
  * @returns {Object} 200 - An object of the id's mission modified
  */
 router.post('/admin/missions/:missionId(\\d+)',validateBody(missionSchema.updateMission), missionController.modifyMission);
+
+// SCORE -----------------------------------------------------------------------------------------------------------
+
+/**
+ * Returns the score of a user for a theme
+ * @route GET /student/:userId/themes/:themeId/score
+ * @group Scores
+ * @param {number} userId.path.required - the user id
+ * @param {number} themeId.path.required - the theme id
+ * @returns {Object} 200 - An object of a theme's score of a user
+ */
+router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', interactController.getScorebyThemeAndUser);
+
+/**
+ * Returns the global score of a user
+ * @route GET /students/:userId/score
+ * @group Scores
+ * @param {number} userId.path.required - the user id
+ * @returns {Object} 200 - An object of a score global of a user
+ */
+router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
+
+//END --------------------------------------------------------------------------------------------------------------------
+
 
 /**
  * Delete the mission and returns the id of the mission deleted
@@ -136,6 +180,8 @@ router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMissio
 // -------------------------------- INTERACT ROUTE -------------------------------------
 //
 //
+
+
 /**
  * Returns all checkbox values for a user id
  * @route GET /missions/users/{userId}
@@ -146,6 +192,15 @@ router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMissio
 router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
 
 /**
+ * Adds a record in database for a mission id and a user id
+ * @route POST /student/interact
+ * @group Interactions
+ * @returns {<Interact>} 200 - One instance of the Interact class
+ */
+router.post('/student/interact/', interactController.checkBox);
+
+
+/**
  * Returns the checkbox value for a mission id and a user id
  * @route GET /missions/{missionId}/users/{userId}
  * @group Interactions
@@ -154,14 +209,6 @@ router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
 router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.getOneByMissionAndUser);
-
-/**
- * Adds a record in database for a mission id and a user id
- * @route POST /user/missions
- * @group Interactions
- * @returns {<Interact>} 200 - One instance of the Interact class
- */
-router.post('/student/interact/', interactController.checkBox);
 
 /**
  * Deletes a record in database for a mission id and a user id
@@ -179,6 +226,19 @@ router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)',
 // -------------------------------- USERS ROUTE -------------------------------------
 //
 //
+
+
+
+// ---------------------------------------- ADMIN SPACE ----------------------------------------
+
+/**
+ * Returns all users from the database
+ * @route GET /users
+ * @group Users
+ * @returns {Array<Themes>} 200 - An array of user
+ */
+router.get('/users', userController.getAllusers);
+
 /**
  * Returns a user from the database with its id
  * @route GET /users/{id}
@@ -188,38 +248,6 @@ router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)',
  */
 router.get('/users/:id(\\d+)', userController.getOneUser);
 
-
-/**
- * Returns all users from the database
- * @route GET /users
- * @group Users
- * @returns {Array<Themes>} 200 - An array of user
- */
-router.get('/users', userController.getAllusers);
-//
-//
-// --------------------------------------END------------------------------------------
-//
-// -------------------------------- SCORE ROUTE -------------------------------------
-//
-//
-
-/**
- * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
- * @route POST /login
- * @group Login
- * @returns {<User>} 200 - A user object
- */
-router.post('/login', userController.login);
-
-/**
- * Logs out the user from the backend
- * @route POST /login
- * @group Login
- * @returns 200 - A message confirming the user is logged out in backend
- */
-router.post('/login', userController.logout);
-
 /**
  * Creates/updates a user record with admin status
  * @route POST /admin/add
@@ -228,34 +256,21 @@ router.post('/login', userController.logout);
  */
 router.post('/admin/add', adminController.addAdmin);
 
-/**
- * Returns the score of a theme and a user
- * @route GET /student/{userId}/themes/{themeId}/score
- * @group Scores
- * @param {number} userId.path.required - the user id
- * @param {number} themeId.path.required - the theme id
-*/
-router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score',interactController.getScorebyThemeAndUser);
-
 
 /**
- * Returns the global score of a user
- * @route GET /students/{userId}/score
- * @group Scores
- * @param {number} userId.path.required - the user id
- * @returns {Object} 200 - An object of a score global of a user
- */
-router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
-
-
-
-
-/**
- * Returns one promo with users by promo 
- * @route GET /admin/search/promo_id
+ * Returns one users details with this all promos 
+ * @route GET /admin/students
  * @group Admin
- * @returns {<Promo> [users]} 200 - 
+ * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 
  */
-router.get('/admin/search/promo_id', adminController.searchByPromo);
+router.get('/admin/students', adminController.getAllStudentsWithPromo);
+//
+//
+// --------------------------------------END------------------------------------------
+
+
+
+
+
 
 module.exports = router;

@@ -36,13 +36,15 @@ const themeController = {
             const { id } = req.params;
 
             const onlyOneTheme = await Theme.findOne(id);
-            res.status(200).json(onlyOneTheme);
+            // res.status(200).json(onlyOneTheme);
+
+            if(onlyOneTheme){
+                res.status(200).json(err.message);
+                
+            } 
 
         } catch(err) {
-            /**
-            * There is no this theme in the database
-            * In the model, there is an error with a custom message
-            */
+          
             res.status(404).json(err.message);
         };
     },
