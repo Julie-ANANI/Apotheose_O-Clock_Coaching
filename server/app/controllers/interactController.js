@@ -4,6 +4,7 @@ const Theme = require('../models/theme');
 const User = require('../models/user')
 
 const interactController = {
+
     /**
     * Controls endpoint GET /api/missions/users/{userId}
     */
@@ -33,33 +34,33 @@ const interactController = {
             res.status(404).json( `${err.message}, Cet utilisateur n'existe pas dans les données de la team Coaching`);
         }
     },
+    
+
     /**
     * Controls endpoint GET /api/missions/:missionId/users/:userId
     */
     getOneByMissionAndUser: async (req, res) => {
         
         try {
-            console.log(`je suis dans la fonction get one mission an user`)
             /**
                  * We get the id in the parameters of the request
                  */
             const { missionId, userId } = req.params;
-            console.log (`J'ai passée le param mission `)
+         
+            // verify id of missionet user id
             const checkMissionID = await Mission.findOne(req.params.missionId);
-            console.log (checkMissionID)
             const checkUserID = await User.findOne(req.params.userId);
-            console.log (`J'ai passée le param user `)
-            // console.log(checkUserID)
+        
 
             if(!checkMissionID) {
-                res.status(404).json(`Cette mission n'existe pas dans les données de la team Coaching`)
+                res.status(404).json(`Cette mission n'existe pas dans les données de la team Coaching`);
             }
          
             if(! checkUserID) {
-                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
+                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
             } 
 
- 
+            //we show informations
             const theInteract = await Interact.findOne(missionId, userId);
             res.status(200).json(theInteract);
         
@@ -73,6 +74,7 @@ const interactController = {
         }
     },
 
+
     /**
     * Controls endpoint GET /api/students/:userId/themes/:themeId/score
     */
@@ -82,16 +84,16 @@ const interactController = {
             // we get the theme id and user id from the request body
             const { themeId, userId } = req.params;
 
+            //verify id  of theme et user id 
             const checkThemeID = await Theme.findOne(themeId)
             const checkUserID = await User.findOne(userId)
             
             if(!checkThemeID){
-                // res.status(404).json(`Ce thème n'existe pas`);
-                return res.status(404).json(`Ce thème n'existe pas`);
+                res.status(404).json(`Sorry, ce thème n'existe pas`);
             }
 
             if(!checkUserID) {
-                return res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
+                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
             }
 
             // we obtain the number of completed missions for this theme and this user
@@ -104,12 +106,17 @@ const interactController = {
             const scoreRatio = Math.round((parseInt(scoreByTheme.score, 10) / allMissionsByTheme.length) * 100);
 
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
-        } catch (err) {
 
+        } catch (err) {
+            /**
+           * There is no id user or theme id value stored in the database for this user id and this theme id
+           * In the model, there is an error with a custom message
+           */
             res.status(404).json(err.message);
         };
 
     },
+
 
     /**
     * Controls endpoint GET /api/students/:userId/score
@@ -119,7 +126,7 @@ const interactController = {
             // We get the id in the parameters of the request
             const { userId } = req.params;
 
-            //verify id if exist inthe database
+            // verify id if exist inthe database
             const checkUserID = await User.findOne(userId)
             
             if(!checkUserID) {
@@ -137,6 +144,10 @@ const interactController = {
             res.status(200).json({ global_ratio: `${globalScoreRatio}` });
 
         } catch (err) {
+              /**
+           * There are not score stored in the database for this user id 
+           * In the model, there is an error with a custom message
+           */
             res.status(404).json(err.message);
         };
     },
@@ -150,6 +161,16 @@ const interactController = {
             // We get the body parameters of the request from req.body
             const { mission_id, user_id } = req.body;
 
+            const checkMissionID = await Mission.findOne(mission_id);
+            const checkUserID = await User.findOne(user_id);
+
+            if(!checkMissionID){
+                res.status(404).json(`Cette mission n'existe pas`);
+            }
+
+            if(!checkUserID){
+                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
+            }
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
 
@@ -171,7 +192,7 @@ const interactController = {
             }
 
         } catch (err) {
-            res.status(500).json(err.message);
+            res.status(404).json(err.message);
         }
     },
 
@@ -185,7 +206,7 @@ const interactController = {
 
             // We check that the record exists before updating it
             const interact = await Interact.findOne(missionId, userId);
-            console.log(interact);
+          
             if (!interact) {
                 // if it doesn't exist, we return an error
                 return res.status(404).json(`Cannot find record with user id ${userId} and mission id {$mission_id}`);

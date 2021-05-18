@@ -124,10 +124,21 @@ POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 12,
+    "mission_id": 14,
     "user_id": 3
 }
 ###
+
+# 404 - Insérer une case cochée en bdd pour la mission 50 qui n'existe pas dans la BDD 
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "mission_id": 50,
+    "user_id": 3
+}
+###
+
 
 
 # 400 - Insérer une case cochée en bdd pour la mission 12 sans User
