@@ -70,6 +70,7 @@ const userController = {
                 body: form
             }).then(res => res.json())
               .then(json => apiUser = json);
+              
 
             // If the authentication succeeds, the API sends a user object
             // based on the user object returned when testing the external API in Insomnia,
@@ -88,7 +89,6 @@ const userController = {
                 apiUser.oap_admin_status = theNewUser.admin_status;
             });
             
-
             // If no user is found in our database, it means the user is connecting for the first time to our app
             // we create a new record in our user table
             if (theInternalUser) {
@@ -98,12 +98,13 @@ const userController = {
                 apiUser.oap_admin_status = theInternalUser.admin_status;
             };
             
-            
+        
             // Now the user is connected, we store their info in the session
-            req.session.user = {
-                firstname: apiUser.data.profile.firstname,
-                lastname: apiUser.data.profile.lastname
-            };
+            // req.session.user = {
+            //     firstname: apiUser.data.profile.firstname,
+            //     lastname: apiUser.data.profile.lastname
+            // };
+            
 
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);

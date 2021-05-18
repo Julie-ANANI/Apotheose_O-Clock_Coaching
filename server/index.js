@@ -10,7 +10,7 @@ const router = require('./app/router');
 
 // Middleware which parses incoming requests with JSON payloads
 app.use(express.json());
-// app.use(cors());
+
 
 
 // Establishing a session system so we can store the info of each user
