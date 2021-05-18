@@ -12,8 +12,8 @@ function UpdateModalTheme({
     setRefresh,
     refresh
   }) {
-  const [title, setTitleTheme] = useState('');
-  const [description, setDescriptionTheme] = useState('');
+  const [title, setTitleTheme] = useState(currentThemeTitle);
+  const [description, setDescriptionTheme] = useState(currentThemeDescription);
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
@@ -59,21 +59,15 @@ function UpdateModalTheme({
           <Form.Input label="Titre"
           required type="text"
           // placeholder={currentTitle}
-          value={currentThemeTitle}
-          onChange ={e => {
-            setCurrentThemeTitle(e.target.value);
-            setTitleTheme(e.target.value)
-          }}
+          value={title}
+          onChange={e => setTitleTheme(e.target.value)}
           />
           <Form.TextArea 
             label="Description"
             required
             // placeholder={currentDescription}
             value={currentThemeDescription}
-            onChange ={e => {
-              setDescriptionTheme(e.target.value);
-              setCurrentThemeDescription(e.target.value)
-            }}
+            onChange ={e => { setDescriptionTheme(e.target.value);}}
           />
         </Modal.Content>
       <Modal.Actions>

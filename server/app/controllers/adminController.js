@@ -29,7 +29,7 @@ const adminController = {
                 .then(json => emailUser = json);
 
             if (!emailUser.success) {
-                res.status(404).json(emailUser.message);
+                res.status(404).json("Mais t'es où, pas là ! Mais t'es pas là, mais t'es... Bref, tu connais la chanson, essaie de verifier l'orthographe du mail peut-être on ne sait jamais !");
             } else {
                 //    we search the user in the O'Clock API to confirm this user has the teacher role
                 let apiUser;
@@ -43,11 +43,11 @@ const adminController = {
                 
 
                 if (!apiUser.success) {
-                    res.status(404).json(apiUser.message);
+                    res.status(404).json("Mais t'es où, pas là ! Mais t'es pas là, mais t'es... Bref, tu connais la chanson, essaie de verifier l'orthographe du mail peut-être on ne sait jamais !");
                 } else {
                     // if the user doesn't have the teacher role
                     if (!apiUser.data.is_teacher) {
-                        res.status(401).json(`Yo désolé, l'utilisateur que vous proposez n'est pas dans la team des profs ! Il faut porter plainte contre Simon ou contactez simplement l'administration d'Oclock`);
+                        res.status(401).json(`Un étudiant Admin ?! Et pourquoi pas une guitariste couturière tant qu'on y est !`);
                     } else {
                         // the user has the teacher role: we check if they exist in our database yet
                         const theInternalUser = await User.checkByApiId(apiUser.data.id);
