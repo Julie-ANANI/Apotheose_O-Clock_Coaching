@@ -10,7 +10,7 @@ const pool = new Pool({
 	}
 });
 
-// // For development
+// For development
 // const pool = new Pool();
 
 module.exports = pool;
