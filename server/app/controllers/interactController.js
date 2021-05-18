@@ -1,6 +1,7 @@
 const Interact = require('../models/interact');
 const Mission = require('../models/mission');
 const Theme = require('../models/theme');
+const User = require('../models/user')
 
 const interactController = {
     /**
@@ -12,28 +13,55 @@ const interactController = {
                  * We get the id in the parameters of the request
                  */
             const { userId } = req.params;
-            const theInteracts = await Interact.findAll(userId);
-            res.status(200).json(theInteracts);
+            console.log(userId);
+            const checkUserID = await User.findOne(userId);
+
+            if (!checkUserID) {
+                res.status(404).json( ` Cet utilisateur n'existe pas dans les données de la team Coaching`);
+            // const theInteracts = await Interact.findAll(userId);
+            // res.status(200).json(theInteracts);
+        }
+        const theInteracts = await Interact.findAll(userId);
+        res.status(200).json(theInteracts);
 
         } catch (err) {
             /**
            * There are no checkbox values stored in the database for this user id
            * In the model, there is an error with a custom message
            */
-            res.status(404).json(err.message);
+            res.status(404).json( `${err.message}, Cet utilisateur n'existe pas dans les données de la team Coaching`);
         }
     },
     /**
     * Controls endpoint GET /api/missions/:missionId/users/:userId
     */
     getOneByMissionAndUser: async (req, res) => {
+        
         try {
+            console.log(`je suis dans la fonction get one mission an user`)
             /**
                  * We get the id in the parameters of the request
                  */
             const { missionId, userId } = req.params;
+            console.log (`J'ai passée le param mission `)
+            const checkMissionID = await Mission.findOne(req.params.missionId);
+            console.log (checkMissionID)
+            const checkUserID = await User.findOne(req.params.userId);
+            console.log (`J'ai passée le param user `)
+            // console.log(checkUserID)
+
+            if(!checkMissionID) {
+                res.status(404).json(`Cette mission n'existe pas dans les données de la team Coaching`)
+            }
+         
+            if(! checkUserID) {
+                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
+            } 
+
+ 
             const theInteract = await Interact.findOne(missionId, userId);
             res.status(200).json(theInteract);
+        
 
         } catch (err) {
             /**
