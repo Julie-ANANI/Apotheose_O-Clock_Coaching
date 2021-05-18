@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "front": "cd ../front && yarn start",
-    "api": "nodemon index.js",
-    "start": "concurrently \"npm run api\" \"npm run front\"",
+    "api": "cd server && nodemon index.js",
+    "dev": "concurrently \"npm run api\" \"npm run front\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
