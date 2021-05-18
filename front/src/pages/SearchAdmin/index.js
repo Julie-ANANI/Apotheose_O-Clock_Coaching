@@ -31,7 +31,7 @@ const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
               <Link
                 key= {student.id}
                 name={student.id}
-                to={`results/${student.id}/score`}  
+                to={`results/${student.oap_id}/score`} 
               >
                 <Card >
                 {/* <Image */}

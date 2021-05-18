@@ -1,0 +1,26 @@
+.score-student .ui.center.aligned.header {
+  color : #1a4c79;
+  background-color: white;
+  width: 30%;
+  margin : 1em auto;
+  padding: 0.5em;
+  font-style: italic;
+  box-shadow: .4em -0.4em #1a4c79;
+}
+
+.score-student .score-general-progress-container {
+  display: block;
+  padding: 1em 20%;
+  text-align: center;
+  /* position: -webkit-sticky; */
+  /* position : sticky; */
+  top : 3.3em;
+  margin: 3em 10%;
+  border-radius: 0.5em 0.5em 0.5em 0.5em ;
+  box-shadow: #1a4c79 0.5em -0.7em ;
+  background-color: #fffdd8;
+}
+
+.score-student .score-general-progress-container .ui.progress {
+
+}

@@ -32,6 +32,7 @@ import GestionThemes from './pages/GestionThemes';
 import SearchAdmin from './pages/SearchAdmin';
 // import AccueilAdmin from './pages/AccueilAdmin';
 import students from 'src/data/users.js';
+import ScorePage from 'src/pages/ScorePage';
 
 
 // A mettre dans le .env et utiliser process.env.base_url
@@ -45,7 +46,7 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('admin');
+  const [activeRole, setActiveRole] = useState('student');
   const [userId, setUserId] = useState(3);
 
   
@@ -76,6 +77,9 @@ const App = ({base_url}) => {
   const [studentsList,setStudentsList] = useState([]);
   const [searchedStudents, setSearchedStudents] = useState(studentsList);
 
+  // PAGE SCORE
+  const [student, setStudent] = useState({})
+  const [studentScore,setStudentScore] = useState(0);
 
    
 
@@ -259,7 +263,7 @@ const App = ({base_url}) => {
           />
         </Route>
 
-        <Route path= {`/results`}>
+        <Route path= {`/results`} exact >
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
             searchedStudents={searchedStudents}
@@ -267,6 +271,21 @@ const App = ({base_url}) => {
             searchedText={searchedText}
           />
         </Route>
+
+        <Route path= {`/results/:studentId/score`}>
+          <Header titre={titre.scorePage.description} />
+          <ScorePage
+            themes={themes}
+            student={student}
+            setStudent={setStudent}
+            studentsList={studentsList}
+            base_url={base_url}
+            studentScore={studentScore}
+            setStudentScore={setStudentScore}
+          />
+        </Route>
+
+
       </Switch>
 
     </div>

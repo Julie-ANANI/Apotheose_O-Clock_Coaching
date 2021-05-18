@@ -53,29 +53,30 @@ const ParcoursCoaching = ({
         </div>
       <Divider hidden />
       <Divider hidden />
-      <Card.Group centered>
-        {themes.map((theme)=> (
-          <div  key={theme.id} className= 'theme-card-container'>
-            <Link
-            name={theme.id}
-            // onClick={handleThemeClick}
-            to={`/theme/${theme.id}`}
-          >
-            <ThemeInParcoursCoachingPage
+      <Card.Group>
+        {themes.map((theme)=> {
+
+          return (
+            <div  key={theme.id} className= 'theme-card-container'>
+              <Link
               name={theme.id}
-              {...theme}
-              // themeScore={themeScore}
-              // setThemeScore={setThemeScore}
-              base_url={base_url}
-              userInteraction={userInteraction}
-              userId={userId}
-            />
-          </Link>
-          </div>
-        ))}
-        
+              // onClick={handleThemeClick}
+              to={`/theme/${theme.id}`}
+              >
+              <ThemeInParcoursCoachingPage
+                name={theme.id}
+                {...theme}
+                // themeScore={themeScore}
+                // setThemeScore={setThemeScore}
+                base_url={base_url}
+                userInteraction={userInteraction}
+                userId={userId}
+              />
+              </Link>
+            </div>
+            )      
+          })}       
       </Card.Group>
-    
     </div>
 );}
 

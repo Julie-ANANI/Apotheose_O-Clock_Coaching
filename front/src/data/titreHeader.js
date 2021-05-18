@@ -33,6 +33,10 @@ export default
       description: "Mais c'est que ça avance !!!",
       page: 'results',
     },
+    scorePage : {
+      description: "Et voilà l'état d'avancement de : ",
+      page: 'score-page',
+    },
   }
   
 
