@@ -53,6 +53,14 @@ GET http://localhost:3000/v1/api/missions/users/3
 GET http://localhost:3000/v1/api/missions/users/1000
 ###
 
+# 404 - La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
+GET http://localhost:3000/v1/api/missions/1/users/300
+###
+
+
+# 404 - La valeur de la case à cocher pour la mission 4 et l'utilisateur 7
+GET http://localhost:3000/v1/api/missions/4/users/7
+###
 
 # La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
 GET http://localhost:3000/v1/api/missions/1/users/5
@@ -60,32 +68,32 @@ GET http://localhost:3000/v1/api/missions/1/users/5
 
 ###
 
-# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
+# La valeur de la case à cocher pour la mission 22 et l'utilisateur 4
 GET http://localhost:3000/v1/api/missions/22/users/4
 ###
 
-# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
 GET http://localhost:3000/v1/api/missions/5/users/3
 ###
 
-# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
-GET http://localhost:3000/v1/api/missions/9/users/3
-###
-
-
-# La valeur de la case à cocher pour la mission 7 et l'utilisateur 3 
-GET http://localhost:3000/v1/api/missions/4/users/7
-###
 
 # Le score du theme 7 d'un user 4
 GET http://localhost:3000/v1/api/students/4/themes/7/score
-
 ###
 
 # Le score du theme 1 d'un user 5
 GET http://localhost:3000/v1/api/students/5/themes/1/score
-
 ###
+
+# Le score du theme 700 d'un user 4 - THEME DO NOT EXIST
+GET http://localhost:3000/v1/api/students/4/themes/700/score
+###
+
+
+# Le score du theme 700 d'un user 4 - USER DO NOT EXIST
+GET http://localhost:3000/v1/api/students/400/themes/7/score
+###
+
 
 # Le score global d'un user 4
 GET http://localhost:3000/v1/api/students/3/score

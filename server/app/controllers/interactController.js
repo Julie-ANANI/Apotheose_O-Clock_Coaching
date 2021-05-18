@@ -76,9 +76,22 @@ const interactController = {
     * Controls endpoint GET /api/students/:userId/themes/:themeId/score
     */
     getScorebyThemeAndUser: async (req, res) => {
+
         try {
             // we get the theme id and user id from the request body
             const { themeId, userId } = req.params;
+
+            const checkThemeID = await Theme.findOne(themeId)
+            const checkUserID = await User.findOne(userId)
+            
+            if(!checkThemeID){
+                // res.status(404).json(`Ce thème n'existe pas`);
+                return res.status(404).json(`Ce thème n'existe pas`);
+            }
+
+            if(!checkUserID) {
+                return res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
+            }
 
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
@@ -92,7 +105,7 @@ const interactController = {
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
         } catch (err) {
 
-            res.status(400).json(err.message);
+            res.status(404).json(err.message);
         };
 
     },
