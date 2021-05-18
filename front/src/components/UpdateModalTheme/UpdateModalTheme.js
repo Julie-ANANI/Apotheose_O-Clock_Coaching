@@ -66,6 +66,7 @@ function UpdateModalTheme({
             // placeholder={currentDescription}
             value={description}
             onChange={e => setDescriptionTheme(e.target.value)}
+
           />
         </Modal.Content>
       <Modal.Actions>
