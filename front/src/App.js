@@ -29,7 +29,8 @@ import AddAdmin from 'src/pages/AddAdmin';
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
 import GestionThemes from './pages/GestionThemes';
-import SearchProfil from './pages/SearchProfil';
+import SearchAdmin from './pages/SearchAdmin';
+import LoginPage from './pages/LoginPage';
 // import AccueilAdmin from './pages/AccueilAdmin';
 
 
@@ -44,12 +45,12 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('admin');
-  const [userId, setUserId] = useState(3);
+  const [activeRole, setActiveRole] = useState('');
+  const [userId, setUserId] = useState(0);
+  const [user, setUser] = useState(null);
 
   
   // PARCOURS COACHING
-  
   const [themes, setThemes] = useState([]);
   const [searchedThemes, setSearchedThemes] = useState(themes);
   const [generalScore, setGeneralScore] = useState(0);
@@ -69,6 +70,7 @@ const App = ({base_url}) => {
 
   // MENU
   const [activeItem, setActiveItem] = useState('Accueil');
+  
 
 
    
@@ -90,8 +92,13 @@ const App = ({base_url}) => {
         console.log('on récupère les thèmes', response.data);
         setThemes(response.data);
         // return(response.data)
-      })
-  }
+      }).catch((err => {
+        console.log(err)
+        console.log("erreur loadthemes dans app")
+      }))
+  };
+
+
 
   const loadUserMissions = () => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
@@ -104,27 +111,36 @@ const App = ({base_url}) => {
         method: 'get',
       })
       .then((response) => {
-        setUserMissionsCompleted(response.data)
-      })
-      .then(()=>{
-        console.log('userMissionsCompleted',userMissionsCompleted);
-        console.log('userMissionsCompleted.length',userMissionsCompleted.length);
-        console.log('allMissions.length',allMissions.length);
-        // console.log('generalScore',generalScore);
-      })
+        setUserMissionsCompleted("loadUserMissions : ", response.data)
+      // })
+      // .then(()=>{
+      //   console.log('userMissionsCompleted',userMissionsCompleted);
+      //   console.log('userMissionsCompleted.length',userMissionsCompleted.length);
+      //   console.log('allMissions.length',allMissions.length);
+      //   // console.log('generalScore',generalScore);
+      }).catch((err => {
+        console.log(err)
+        console.log("erreur loadUserMissions dans App")
+      }))
     } 
   };
 
   const loadAllMissions = () => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
-    if (activeRole === 'student') {
+    //if (activeRole === 'student') {
       axios.get(`${base_url}/missions`)
       .then((response) => {
-        setAllMissions(response.data)
         console.log('allMissions=',response.data);
-      })
-  }}
+        setAllMissions(response.data)
+      }).catch((err => {
+        console.log(err)
+        console.log("erreur loadallMissions dans App")
+      }))
+  //}
+}
+
+
 
 
   const filteredNavlinks = getMenuRoutes(activeRole);
@@ -133,60 +149,114 @@ const App = ({base_url}) => {
     console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
     loadAllMissions();
+
     // loadUserMissions();
-  }, []);
+  }, [refresh]);
 
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
     loadUserMissions();
   },[allMissions,userInteraction]);
 
-  // getSearchedThemes = () => {
-  //   let searchedThemes = themes;
-
-  //   if (searchedText.length > 0) {
-  //     const loweredSearchedText = themes.title.toLowerCase();
-  //     console.log(loweredThemeName);
-
-  //     searchedThemes = themes.filter((currency) => {
-  //       const 
-  //     })
-  //   }
-  // }
+ 
  
   return(
     <div className="app">
       
-      <Menu 
+
+
+
+
+      {/* <Route path='/someprivatepath' render={routeProps => {
+
+if (!this.props.isLoggedIn) {
+   this.props.redirectToLogin()
+   return null
+ }
+ return <MyComponent {...routeProps} anotherProp={somevalue} />
+
+} /> */}
+
+
+
+
+
+
+
+      <Switch>
+
+        <Route path='/' exact >
+        <Menu 
         navlinks={filteredNavlinks}
         activeItem={activeItem}
         setActiveItem={setActiveItem}
         searchedText={searchedText}
         setSearchedText={setSearchedText}
         history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
       />
-      
-      <Switch>
-
-        <Route path='/' exact >
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
         </Route>
 
+        <Route path='/login' >
+        <Header titre={titre.studentAccueil.description} />
+          <LoginPage setActiveRole={setActiveRole} setUserId={setUserId} />
+        </Route>
+
         <Route path='/accueil'>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
         </Route>
 
         <Route path='/accueiladmin'>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.adminAccueil.description} />
           <Accueil />
         </Route>
 
         <Route path='/parcours-coaching'>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
-            themes={themes} 
+            themes={searchedThemes} 
             generalScore={generalScore}
             userMissionsCompleted={userMissionsCompleted}
             allMissions={allMissions}
@@ -196,26 +266,36 @@ const App = ({base_url}) => {
             base_url={base_url}
             userId={userId}
             searchedText={searchedText}
+            base_url={base_url}
           />  
         </Route> 
           
 
         <Route path= {`/theme/:idTheme`}>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
             themes={themes}
             base_url={base_url}
-
             missionByTheme={missionByTheme}
             setMissionByTheme={setMissionByTheme}
             missionByThemeUser={missionByThemeUser}
             setMissionByThemeUser={setMissionByThemeUser}
             theme={theme}
             setTheme={setTheme}
-
             userInteraction={userInteraction}
             setUserInteraction={setUserInteraction}
-        
             allMissions={allMissions} 
             userMissionsCompleted={userMissionsCompleted} 
             userId={userId}
@@ -223,17 +303,59 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin />
         </Route>
+
         <Route path= {`/gestion-themes`}>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.gestionThemes.description} />
-          <GestionThemes themes={themes} refresh={refresh} setRefresh={setRefresh} />
+          <GestionThemes 
+            themes={themes} 
+            refresh={refresh} 
+            setRefresh={setRefresh}
+            base_url={base_url}
+          />
         </Route>
 
         <Route path= {`/search-profil`}>
+        <Menu 
+        navlinks={filteredNavlinks}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        searchedText={searchedText}
+        setSearchedText={setSearchedText}
+        history={history}
+        themes={themes}
+        searchedThemes={searchedThemes}
+        setSearchedThemes={setSearchedThemes}
+        activeRole={activeRole}
+      />
           <Header titre={titre.gestionThemes.description} />
-          <SearchProfil />
+          <SearchAdmin />
         </Route>
       </Switch>
 

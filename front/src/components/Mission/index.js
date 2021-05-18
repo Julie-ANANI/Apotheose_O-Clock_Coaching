@@ -34,6 +34,7 @@ const Mission = ({
 
   const handleClickOnCB = (e, data) => {
     console.log('on a cliqué sur la checkbox');
+    
     if (data.checked) {
       axios({
         url : 'http://localhost:3000/v1/api/student/interact/',

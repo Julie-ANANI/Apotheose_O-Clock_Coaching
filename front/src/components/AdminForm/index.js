@@ -49,19 +49,7 @@ if(positive){
 
   return(
   <Form success>
-    <Form.Input
-    label='Email'
-    type="text"
-    placeholder='mail du nouvel admin'
-    value={email}
-    onChange={e => setEmailAdmin(e.target.value)}
-    />
-    <Button 
-    color="green"
-    type='submit'
-    onClick={handleSubmitEmail}
-    >Ajouter</Button>
-      <Message
+        <Message
       hidden={hidden}
       visible={visible}
       success={positive}
@@ -69,6 +57,18 @@ if(positive){
     compact
     content={result}
   />
+    <Form.Input
+    label='Email'
+    type="text"
+    placeholder='mail du nouvel admin'
+    value={email}
+    onChange={e => setEmailAdmin(e.target.value)}
+    />
+    <Button className='bouton-addadmin'
+    //color="green"
+    //type='submit'
+    onClick={handleSubmitEmail}
+    >Adouber un Coach</Button>
   </Form>
 
   )

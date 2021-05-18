@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import '../../styles/Menu.css'
 
+
 const MenuHeader = ({
   navlinks,
   searchedText,
@@ -15,6 +16,11 @@ const MenuHeader = ({
   themes,
   searchedThemes,
   setSearchedThemes,
+  setSearchedStudents,
+  activeRole,
+  studentsList,
+  searchedStudents,
+  getSpeName,
   }) => {
 
   const getSearchedThemes = () => {
@@ -43,7 +49,37 @@ const MenuHeader = ({
     
     console.log(searchedThemes);
     
-  }
+  };
+
+  const getSearchedStudents = () => {
+    console.log('GET SEARCHED STUDENTS');
+    let search = [];
+    console.log(studentsList);
+
+    if (searchedText.length > 0) {
+      const loweredSearchedText = searchedText.toLowerCase();
+      console.log('ON EST DANS LE IF DE GET SEARCHED STUDENTS');
+      console.log('LOWERED SEARCHEDTEXT : ', loweredSearchedText);
+
+      search = studentsList.filter((student) => {
+        const promoName = student.cohortsInfo[0].nickname ? student.cohortsInfo[0].nickname : '';
+        const speName = getSpeName(student);
+        const loweredText = (student.firstname + student.lastname + promoName + speName).toLowerCase();
+        console.log(loweredText);
+        return loweredText.includes(loweredSearchedText)
+       
+      });
+      console.log('SEARCH: ', search);
+      setSearchedStudents(search);
+
+    } else {
+
+      setSearchedStudents(studentsList);
+    }
+    
+    console.log('searchedStudents : ', searchedStudents);
+    
+  };
   
 
 
@@ -61,12 +97,24 @@ const MenuHeader = ({
     console.log('il y a du changement par ici');
     setSearchedText(e.target.value);
     console.log(searchedText);
-    // render()
-    history.push('/parcours-coaching')
+    if (activeRole == 'student') {
+      history.push('/parcours-coaching')
+    } else  
+    if (activeRole == 'admin') {
+      history.push('/results')
+    }
   };
 
   useEffect(() => {
-    getSearchedThemes();
+    if (activeRole == 'student') {
+      getSearchedThemes(); 
+    } else if (activeRole == 'admin') {
+      console.log('ON RENVOIE UNE LISTE D\'ETUDIANTS');
+      console.log(studentsList);
+      getSearchedStudents();
+    }
+    
+    // FAUT-IL GARDER THEMES DANS LES PARAMETRES DU USEE EFECTS ?
   },[searchedText, themes])
 
 
@@ -94,7 +142,7 @@ const MenuHeader = ({
           type='text' 
           className='searchbar' 
           icon='search' 
-          placeholder='Rechercher un thème...' 
+          placeholder= { (activeRole == 'student') ? 'Rechercher un thème...' : 'Rechercher un étudiant'} 
           value={searchedText}
           onChange={handleSearchBar}
           // onFocus={()=>{this.this.placeholder=''}}

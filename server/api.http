@@ -9,7 +9,7 @@ GET http://localhost:3000/v1/api/themes/3
 
 
 # Un seul thème qui n'existe pas 
-GET http://localhost:3000/v1/api/themes/35
+GET http://localhost:3000/v1/api/themes/350
 ### 
 
 
@@ -27,6 +27,12 @@ GET http://localhost:3000/v1/api/themes/5/missions
 GET http://localhost:3000/v1/api/themes/2/missions
 ###
 
+
+# Toutes les missions pour un thème donné qui n'existe pas
+GET http://localhost:3000/v1/api/themes/2000/missions
+###
+
+
 # Un utilisteur interne dans notre api
 GET http://localhost:3000/v1/api/users/1
 ###
@@ -37,18 +43,13 @@ GET http://localhost:3000/v1/api/users
 ###
 
 
-# Toutes les coches d'un utilisateur 1
+# Toutes les coches d'un utilisateur 3
 GET http://localhost:3000/v1/api/missions/users/3
 ###
 
 
-# Les valeurs de case à cocher pour l'utilisateur 1
-GET http://localhost:3000/v1/api/missions/users/3
-###
-
-
-# La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
-GET http://localhost:3000/v1/api/missions/1/users/3
+# La valeur de la case à cocher pour la mission 32 et l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/32/users/3
 ###
 
 # La valeur de la case à cocher pour la mission 5 et l'utilisateur 1
@@ -191,14 +192,14 @@ POST http://localhost:3000/v1/api/login
 Content-Type: application/json
 
 {    
-    "proprété": "valeur",
-    "propriété": "valeur"
+    "login_email": "sfuvniuf",
+    "login_password": "Stzevt1ev"
 }
 ###
 
 
-# Search une promo
-GET http://localhost:3000/v1/api/admin/search/promo_id
+# Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
+GET http://localhost:3000/v1/api/admin/students
 Content-Type: application/json
 ###
 
