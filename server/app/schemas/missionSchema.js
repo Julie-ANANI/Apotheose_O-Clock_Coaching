@@ -9,7 +9,7 @@ const schema = {
         advice: Joi.string().allow(null, '').messages({
             'string.base': `Attention o'coaching obscure Jedi, une chaîne de caractère pour le conseil tu dois saisir !`}),
         position: Joi.number().allow(null, '').integer().min(0).allow(null, '').messages({
-            'string.base': `Attention o'coaching obscure, un nombre pour la position tu dois saisir !`
+            'number.base': `Attention o'coaching obscure Jedi, un nombre pour la position tu dois saisir !`
         })
     }),
 
@@ -19,7 +19,7 @@ const schema = {
         advice: Joi.string().allow(null, '').messages({
             'string.base': `Attention o'coaching obscure Jedi, une chaîne de caractère pour le conseil tu dois saisir !`}),
         position: Joi.number().integer().min(0).allow(null, '').messages({
-            'string.base': `Attention o'coaching obscure Jedi, nombre pour la position tu dois saisir !`
+            'number.base': `Attention o'coaching obscure Jedi, nombre pour la position tu dois saisir !`
         })
     })
 
