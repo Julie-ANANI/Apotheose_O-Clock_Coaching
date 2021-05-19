@@ -48,6 +48,7 @@ const adminController = {
                     // if the user doesn't have the teacher role
                     if (!apiUser.data.is_teacher) {
                         res.status(401).json(`Un étudiant Admin ? Et pourquoi pas une guitariste couturière tant qu'on y est ?!`);
+
                     } else {
                         // the user has the teacher role: we check if they exist in our database yet
                         const theInternalUser = await User.checkByApiId(apiUser.data.id);
