@@ -26,7 +26,7 @@ const interactController = {
            * There are no checkbox values stored in the database for this user id
            * In the model, there is an error with a custom message
            */
-            res.status(404).json( `${err.message}`);
+            res.status(404).json(err.message);
         }
     },
     
