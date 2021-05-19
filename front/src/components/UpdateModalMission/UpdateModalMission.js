@@ -8,6 +8,7 @@ function UpdateModalMission({
   idMission,
   setRefresh,
   refresh,
+  base_url,
   // title,
   // advice,
   base_url

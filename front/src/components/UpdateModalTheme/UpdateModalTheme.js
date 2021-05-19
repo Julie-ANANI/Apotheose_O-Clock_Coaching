@@ -31,8 +31,6 @@ function UpdateModalTheme({
     };
       axios.post(postUrl, data, {headers}).then(res => {
         console.log(postUrl)
-        console.log(res.data);
-        setData(res.data);
         setTitleTheme('');
         setDescriptionTheme('');
         setRefresh(true);
@@ -67,8 +65,9 @@ function UpdateModalTheme({
             label="Description"
             required
             // placeholder={currentDescription}
-            value={currentThemeDescription}
-            onChange ={e => { setDescriptionTheme(e.target.value);}}
+            value={description}
+            onChange={e => setDescriptionTheme(e.target.value)}
+
           />
         </Modal.Content>
       <Modal.Actions>

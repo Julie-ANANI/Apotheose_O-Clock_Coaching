@@ -17,7 +17,7 @@ const GestionThemes = ({themes, setRefresh, refresh, base_url}) => {
 
   return (
     <div className="themesGestion">
-      <NewModalTheme refresh={refresh} setRefresh={setRefresh} />
+      <NewModalTheme refresh={refresh} setRefresh={setRefresh} base_url={base_url}/>
       <Card.Group centered>
         {themes.map((theme)=> (
           <div key={theme.id} className="theme-card-container">

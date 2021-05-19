@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { Pool } = require('pg');
 
-// For heroku deployment
+//For heroku deployment
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
@@ -11,7 +11,8 @@ const pool = new Pool({
 });
 
 // For development
-// const pool = new Pool();
+//const pool = new Pool();
+
 
 module.exports = pool;
 

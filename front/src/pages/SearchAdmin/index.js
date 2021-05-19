@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import StudentCard from 'src/components/StudentCard';
 import 'src/styles/SearchAdmin.css';
-import axios from 'axios'
+
 
 
 const SearchAdmin = ({ 

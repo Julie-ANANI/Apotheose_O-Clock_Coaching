@@ -5,7 +5,18 @@ import axios, { post } from 'axios';
 
 
 
-const ThemeProgressBar = ({title, description, id, base_url,  themeScore, setThemeScore, userInteraction, missionByTheme, missionByThemeUser, userId, activeRole }) => {
+const ThemeProgressBar = ({
+  title,
+  description,
+  id,
+  base_url, 
+  themeScore,
+  setThemeScore,
+  userInteraction,
+  missionByTheme,
+  missionByThemeUser,
+  userId,
+  activeRole }) => {
   // const [percent, setPercent] = useState(80);
 
   // const computeThemeScore = () => {
@@ -22,7 +33,10 @@ const ThemeProgressBar = ({title, description, id, base_url,  themeScore, setThe
       .then((response)=> {
         console.log('SCORE', response.data);
         setThemeScore(response.data);  
-      })
+      }).catch((err => {
+        console.log(err)
+        console.log("erreur themeProgressBar")
+      }))
   }
   
   useEffect(() => {
