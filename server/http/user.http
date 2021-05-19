@@ -1,0 +1,13 @@
+# Un utilisteur interne dans notre api
+GET http://localhost:3000/v1/api/users/1
+###
+
+
+# 404 - Un utilisteur interne dans notre api qui n'existe pas'
+GET http://localhost:3000/v1/api/users/10000
+###
+
+
+# Tous les utilisateurs
+GET http://localhost:3000/v1/api/users
+###

@@ -1,0 +1,157 @@
+
+# Toutes les missions 
+GET http://localhost:3000/v1/api/missions
+###
+
+
+# Le score du theme 7 d'un user 4
+GET http://localhost:3000/v1/api/students/4/themes/7/score
+###
+
+
+# Le score du theme 1 d'un user 5
+GET http://localhost:3000/v1/api/students/5/themes/1/score
+###
+
+
+# 404 - Le score du theme 700 d'un user 4 - THEME DO NOT EXIST
+GET http://localhost:3000/v1/api/students/4/themes/700/score
+###
+
+
+# 404 - Le score du theme 700 d'un user 400 - USER DO NOT EXIST
+GET http://localhost:3000/v1/api/students/400/themes/7/score
+###
+
+
+# Le score global d'un user 4
+GET http://localhost:3000/v1/api/students/3/score
+###
+
+
+# Le score global d'un user 5
+GET http://localhost:3000/v1/api/students/5/score
+###
+
+
+# 404 - Le score global d'un student 300 - STUDENT DO NOT EXISTS
+GET http://localhost:3000/v1/api/students/300/score
+###
+
+
+# Ajouter une mission donnée dans theme 2
+POST http://localhost:3000/v1/api/admin/themes/2/missions
+Content-Type: application/json
+
+{
+    "title": "Hodedela",
+    "advice": "Hola hola",
+    "position":"2"
+}
+###
+
+# Ajouter une mission donnée dans theme 2
+POST http://localhost:3000/v1/api/admin/themes/2/missions
+Content-Type: application/json
+
+{
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
+# 404 - Ajouter une mission donnée dans theme 200
+POST http://localhost:3000/v1/api/admin/themes/200/missions
+Content-Type: application/json
+
+{
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/27
+Content-Type: application/json
+
+{
+    "title": "Je veux changer ce titre"
+}
+####
+
+
+# 404 - Modifier une mission 270 qui n'existe pas
+POST http://localhost:3000/v1/api/admin/missions/270
+Content-Type: application/json
+
+{
+    "title": "Je veux changer ce titre"
+}
+####
+
+
+
+# Créer une nouvelle mission pour le theme 8
+POST http://localhost:3000/v1/api/admin/themes/8/missions
+Content-Type: application/json
+
+{    
+    "title": "Je ne suis qu’amouur",
+    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+}
+###
+
+
+# Créer une nouvelle mission pour le theme 8
+POST http://localhost:3000/v1/api/admin/themes/8/missions
+Content-Type: application/json
+
+{    
+    "title": "Je ne suis qu’amouur",
+    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+}
+###
+
+
+# Créer une nouvelle mission pour le theme 800
+POST http://localhost:3000/v1/api/admin/themes/800/missions
+Content-Type: application/json
+
+{    
+    "title": "Je ne suis qu’ammouur",
+    "advice": "Et finalement, quand beaucouup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+}
+###
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/9
+Content-Type: application/json
+
+{    
+    "title": "Alors ce n’est pas mon cas"
+}
+###
+
+
+# Supprimer une mission
+DELETE http://localhost:3000/v1/api/admin/missions/9
+Content-Type: application/json
+###
+
+
+
+
+
+
+
+# Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
+GET http://localhost:3000/v1/api/admin/students
+Content-Type: application/json
+###
+
+
+
+
+
