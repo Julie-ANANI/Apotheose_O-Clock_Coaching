@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
 import { Image, Card, Progress } from 'semantic-ui-react';
 import 'src/styles/SearchAdmin.css';
-import axios from 'axios'
+
 
 
 const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {

@@ -1,0 +1,11 @@
+i.huge.icon.iconlogin {
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 4em;
+  margin-bottom: .7em;
+}
+
+.inputicon>.ui.form>.ui.icon.input>i.icon:not(.link) {
+  color: #000000;
+  opacity: .9;
+}

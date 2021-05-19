@@ -3,7 +3,6 @@ import { Icon } from 'semantic-ui-react'
 import '../../styles/addTheme.css';
 const AddTheme = ({...props}, {...rest}) => {
 
-  console.log({...props},{...rest})
   return(
 
   <div className="addtheme-container" 

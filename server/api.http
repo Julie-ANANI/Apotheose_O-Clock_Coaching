@@ -197,8 +197,8 @@ POST http://localhost:3000/v1/api/login
 Content-Type: application/json
 
 {    
-    "proprété": "valeur",
-    "propriété": "valeur"
+    "login_email": "sfuvniuf",
+    "login_password": "Stzevt1ev"
 }
 ###
 
