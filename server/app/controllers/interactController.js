@@ -138,22 +138,15 @@ const interactController = {
 
             const checkMissionID = await Mission.findOne(mission_id);
             const checkUserID = await User.findOne(user_id);
-
-            if(!checkMissionID){
-                res.status(404).json(`Cette mission n'existe pas`);
-            }
-
-            if(!checkUserID){
-                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
-            }
+                       
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
 
             if (!mission_id) {
-                bodyErrors.push(`mission_id cannot be empty`);
+                bodyErrors.push(`Le champ mission_id ne peut pas être vide`);
             }
             if (!user_id) {
-                bodyErrors.push(`user_id cannot be empty`);
+                bodyErrors.push(`Le champ user_id ne peut pas être vide`);
             }
 
             // if there are any errors, we return themq
