@@ -112,7 +112,7 @@ class Mission {
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM mission;');
-        if (rows) {
+        if (rows.length) {
             return rows.map(row => new Mission(row));
         }else{
             throw new NoMissionError();
@@ -169,6 +169,43 @@ class Mission {
       * @returns {Array} Instances of the class Mission.
       * @throws {Error} a potential SQL error.
       */
+    // async save(){
+
+    //     if(this.id){
+    //         //TODO: do a function update_mission(json)
+    //         const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5 RETURNING id;', [
+    //             this.title, 
+    //             this.advice, 
+    //             this.position, 
+    //             this.theme_id, 
+    //             this.id
+    //         ]);
+
+    //         if(rows[0]){
+    //             return rows[0];
+    //         }else{
+    //             throw new MissionNotUpdatedError();
+    //         };
+
+    //     }else{
+    //         //TODO: do a function new_mission(json)
+    //         const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1, $2, $3, $4) RETURNING id;', [
+    //             this.title,
+    //             this.advice,
+    //             this.position,
+    //             this.theme_id
+    //         ]);
+
+    //         if(rows[0]){
+    //             this.id = rows[0].id;
+    //         }else{
+    //             throw new NoMissionAddedError();
+    //         };
+    //     };
+    // };
+
+
+
     async save(){
 
         if(this.id){

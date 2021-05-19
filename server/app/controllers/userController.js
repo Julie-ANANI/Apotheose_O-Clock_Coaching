@@ -49,9 +49,10 @@ const userController = {
             res.status(404).json(err.message);
         }
     },
-    
+
+
     /**
-    * Route POST /v1/api/login
+    * Controls endpoint  POST /v1/api/login
     */
    login: async (req, res) => {
     
@@ -122,7 +123,9 @@ const userController = {
 
 
 
-
+    /**
+    * Controls endpoint  POST /v1/api/login
+    */
     logout: (req, res) => {
         req.session.user = false;
         res.status(204).json('User successfully logged out in back-end');

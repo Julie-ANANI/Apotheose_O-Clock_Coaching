@@ -24,9 +24,8 @@ const missionController = {
         }
     },
 
-
     /**
-    * Controls endpoint GET /v1/api/themes/:id/missions/:id
+    * Controls endpoint GET /v1/api/missions/:id
     */
     getOneMission: async (req, res) => {
 
@@ -50,7 +49,6 @@ const missionController = {
         }
     },
 
-
     /**
     * Controls endpoint GET /v1/api/themes/:id/missions/
     */
@@ -63,10 +61,9 @@ const missionController = {
             const { id } = req.params;
             await Theme.findOne(id);
 
-            // if (theme) {
-             const theMissions = await Mission.findByTheme(id);
-               res.status(200).json(theMissions);
-            // }
+            const theMissions = await Mission.findByTheme(id);
+            res.status(200).json(theMissions);
+    
         
         } catch (err) {
             /**
@@ -77,9 +74,8 @@ const missionController = {
         }
     },
 
-    
     /**
-    * Controls endpoint POST /v1/api/admin/themes/:theme_id/missions
+    * Controls endpoint POST /v1/api/admin/themes/:themeId/missions
     */
     addMission: async (req, res) => {
 
@@ -87,15 +83,11 @@ const missionController = {
             /**
             * We get the theme id in the parameters of the request
             */
-            const { theme_id } = req.params;
+            const { themeId } = req.params;
 
             //verify id 
+            await Theme.findOne(themeId);
 
-            await Theme.findOne(theme_id);
-
-            // if(!checkThemeID){
-            //     res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
-            // }
             /**
             * We get the title, advice, position in the body
             */
@@ -122,7 +114,7 @@ const missionController = {
                 * Create the new mission and save it int the database
                 */
 
-                const newMission = new Mission({title, advice, 'position': 0, theme_id});
+                const newMission = new Mission({title, advice, 'position': 0, themeId});
 
                 await newMission.save();
                 res.status(201).json(newMission);

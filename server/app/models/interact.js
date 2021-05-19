@@ -182,5 +182,3 @@ class Interact {
 
 
 module.exports = Interact;
-
-
