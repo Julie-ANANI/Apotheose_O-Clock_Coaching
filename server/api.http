@@ -4,7 +4,7 @@ GET http://localhost:3000/v1/api/themes
 
 
 # Un seul thème
-GET http://localhost:3000/v1/api/themes/3
+GET http://localhost:3000/v1/api/themes/1
 ###
 
 
@@ -116,8 +116,10 @@ POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "title": "Hodedelila",
-    "advice": "Hola hola",
+
+    "title": "Hodedefrferfela",
+    "advice": "Holafrfr hola",
+
     "position":"2"
 }
 ###
