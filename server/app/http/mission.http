@@ -27,7 +27,7 @@ Content-Type: application/json
 
 
 # Modifier une mission
-POST http://localhost:3000/v1/api/admin/missions/6
+POST http://localhost:3000/v1/api/admin/missions/27
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 
 # Supprimer une mission
-DELETE http://localhost:3000/v1/api/admin/missions/9
+DELETE http://localhost:3000/v1/api/admin/missions/27
 Content-Type: application/json
 ###
 

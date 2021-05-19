@@ -57,7 +57,7 @@ const userController = {
    login: async (req, res) => {
     
     try {
-        console.log(`1`)
+   
         // we try to authenticate the user with external API
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;

@@ -80,30 +80,25 @@ const missionController = {
     addMission: async (req, res) => {
 
         try {
-            console.log(req.params);
             /**
             * We get the theme id in the parameters of the request
             */
             const { themeId } = req.params;
-             console.log(themeId);
-            //verify id 
-            const theme = await Theme.findOne(themeId);
 
-            console.log(theme);
+            //verify id 
+            await Theme.findOne(themeId);
+
             /**
             * We get the title, advice, position in the body
             */
             const { title, advice } = req.body;
 
-            console.log(req.body);
-        
             /**
             * Create the new mission and save it int the database
             */
-            console.log(`on appel la methode newMission`)
+        
             const newMission = new Mission({title, advice, 'position': 0, 'theme_id': themeId });
-            console.log(newMission)
-            console.log(themeId)
+      
             await newMission.save();
             res.status(201).json(newMission);
    
@@ -124,7 +119,6 @@ const missionController = {
     modifyMission: async (req, res) => {
 
         try {
-            console.log(`je suis das la fonction modifier une mission `)
             /**
             * We get the mission id in the parameters of the request
             */

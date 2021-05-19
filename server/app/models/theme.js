@@ -164,7 +164,7 @@ class Theme {
       * @throws {Error} a potential SQL error.
       */
      async save() {
-        console.log(this.title);
+        
         const { rows } = await db.query('INSERT INTO "theme" (title, description, position) VALUES ($1, $2, $3) RETURNING id;', [
             this.title,
             this.description,
@@ -186,7 +186,7 @@ class Theme {
       * @throws {Error} a potential SQL error.
       */
     async update() {
-        // console.log(this.id)
+  
         if (this.id) {
            const { rows }= await db.query(`
            UPDATE theme 
