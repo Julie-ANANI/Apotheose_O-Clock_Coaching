@@ -105,11 +105,8 @@ const interactController = {
             const { userId } = req.params;
 
             // verify id if exist inthe database
-            const checkUserID = await User.findOne(userId)
-            
-            if(!checkUserID) {
-                return res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
-            }
+            const checkUserID = await User.findOne(userId);
+                       
 
             // we get the total number of completed missions for this user 
             const globalScore = await Interact.findGlobalScoreOfOneUser(userId);
