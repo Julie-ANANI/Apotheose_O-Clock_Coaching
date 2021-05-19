@@ -219,7 +219,7 @@ a.header-menu-item.deconnexion {
   font-weight: bold;
   font-family: Oclock;
   font-size: 1.1em;
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 .ui.icon.input>i.icon:not(.link) {

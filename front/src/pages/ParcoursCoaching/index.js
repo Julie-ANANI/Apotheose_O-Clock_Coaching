@@ -46,36 +46,41 @@ const ParcoursCoaching = ({
 
   return(
     <div className="student-dashboard">
-        <div className="progress-container">
+        <div className="parcourscoaching__progress-container">
           <Progress className='general-progress-bar' percent={generalScore} indicating progress />
           {/* importer composant message pour le message ci-dessous */}
           <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
         </div>
       <Divider hidden />
       <Divider hidden />
-      <Card.Group centered>
-        {themes.map((theme)=> (
-          <div  key={theme.id} className= 'theme-card-container'>
-            <Link
-            name={theme.id}
-            // onClick={handleThemeClick}
-            to={`/theme/${theme.id}`}
-          >
-            <ThemeInParcoursCoachingPage
-              name={theme.id}
-              {...theme}
-              // themeScore={themeScore}
-              // setThemeScore={setThemeScore}
-              base_url={base_url}
-              userInteraction={userInteraction}
-              userId={userId}
-            />
-          </Link>
-          </div>
-        ))}
-        
+      <Card.Group 
+        className='cards-container'
+        centered >
+        {themes.map((theme)=> {
+
+          return (
+              <Link
+                key={theme.id}
+                name={theme.id}
+                // onClick={handleThemeClick}
+                to={`/theme/${theme.id}`}
+              >
+              <div   className= 'theme-card-container'>
+                <ThemeInParcoursCoachingPage
+                  name={theme.id}
+                  {...theme}
+                  // themeScore={themeScore}
+                  // setThemeScore={setThemeScore}
+                  base_url={base_url}
+                  userInteraction={userInteraction}
+                  userId={userId}
+                />
+              </div>
+              </Link>
+            
+            )      
+          })}       
       </Card.Group>
-    
     </div>
 );}
 

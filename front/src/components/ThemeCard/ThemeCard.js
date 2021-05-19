@@ -15,7 +15,7 @@ const ThemeCard = ({
   description,
   setRefresh,
   refresh,
-  base_url
+  base_url,
 }) => {
 
   const [missions, setMissions] = useState([]);

@@ -6,8 +6,9 @@ import AddMission from 'src/components/AddMission/AddMission.js';
 function NewModalMission({
   id,
   setRefresh,
-  base_url,
-  refresh}) {
+  refresh,
+  base_url
+}) {
 
   const [title, setTitleTheme] = useState('');
   const [advice, setAdviceMission] = useState('');

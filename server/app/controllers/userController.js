@@ -61,7 +61,7 @@ const userController = {
         // we try to authenticate the user with external API
         // we get the email and password from the request body
         const { login_email, login_password } = req.body;
-
+        
         const form = new FormData();
             form.append('login_email', login_email);
             form.append('login_password', login_password);
@@ -83,7 +83,7 @@ const userController = {
         // We lookup that api user id in our database
         const theInternalUser = await User.checkByApiId(apiUser.data.id)
 
-        if(!theInternalUser){
+        if (!theInternalUser){
             res.status(404).json(`Eh pep pep cet utilisateur n'est pas dans la team Coaching`);
 
         } else {

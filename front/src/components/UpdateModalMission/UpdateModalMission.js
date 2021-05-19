@@ -8,9 +8,7 @@ function UpdateModalMission({
   idMission,
   setRefresh,
   refresh,
-  base_url,
-  // title,
-  // advice,
+  base_url
   }) {
   const [title, setTitleMission] = useState(currentTitle);
   const [advice, setAdviceMission] = useState(currentAstuce);

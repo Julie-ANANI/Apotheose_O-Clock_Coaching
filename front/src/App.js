@@ -34,6 +34,7 @@ import LoginPage from './pages/LoginPage';
 
 // import AccueilAdmin from './pages/AccueilAdmin';
 import students from 'src/data/users.js';
+import ScorePage from 'src/pages/ScorePage';
 
 
 // A mettre dans le .env et utiliser process.env.base_url
@@ -56,7 +57,7 @@ const App = ({base_url}) => {
   const [themes, setThemes] = useState([]);
   const [searchedThemes, setSearchedThemes] = useState(themes);
 
-  const [generalScore, setGeneralScore] = useState(0);
+  const [generalScore, setGeneralScore] = useState(3);
 
   const [refresh, setRefresh] = useState(false);
   // THEME PAGE
@@ -79,6 +80,9 @@ const App = ({base_url}) => {
   const [studentsList,setStudentsList] = useState([]);
   const [searchedStudents, setSearchedStudents] = useState(studentsList);
 
+  // PAGE SCORE
+  const [student, setStudent] = useState({})
+  const [studentScore,setStudentScore] = useState(0);
 
    
 
@@ -106,8 +110,6 @@ const App = ({base_url}) => {
       }))
 
   };
-
-
 
   const loadUserMissions = () => {
     console.log('Il faut charger les missions déjà effectuées par le user');
@@ -137,7 +139,7 @@ const App = ({base_url}) => {
   const loadAllMissions = () => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
-    //if (activeRole === 'student') {
+    if (activeRole === 'student') {
       axios.get(`${base_url}/v1/api/missions`)
       .then((response) => {
         console.log('allMissions=',response.data);
@@ -146,8 +148,8 @@ const App = ({base_url}) => {
         console.log(err)
         console.log("erreur loadallMissions dans App")
       }))
-  //}
-}
+  }
+  }
 
   const getSpeName =(student) => {
     const promoName = student.cohortsInfo.find((cohort) => cohort.spe_cohort === true).nickname.split(' ')[1];
@@ -171,7 +173,7 @@ const App = ({base_url}) => {
     loadAllMissions();
     setStudentsList(students);
     // loadUserMissions();
-  }, [refresh]);
+  }, [refresh,activeRole]);
 
   useEffect(()=> {
     console.log('on est dans le useEffect de app et on charge les missions de l\'utilisateur');
@@ -184,104 +186,82 @@ const App = ({base_url}) => {
     <div className="app">
       
 
-
-
-
-      {/* <Route path='/someprivatepath' render={routeProps => {
-
-if (!this.props.isLoggedIn) {
-   this.props.redirectToLogin()
-   return null
- }
- return <MyComponent {...routeProps} anotherProp={somevalue} />
-
-} /> */}
-
-
-
-
-
-
-
       <Switch>
 
-        <Route path='/' exact >
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        studentsList={studentsList}
-        searchedThemes={searchedThemes}
-        searchedStudents={searchedStudents}
-        setSearchedThemes={setSearchedThemes}
-        setSearchedStudents={setSearchedStudents}
-        activeRole={activeRole}
-        getSpeName={getSpeName}
-      />
+        
+        <Route path='/' exact>
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
         </Route>
 
         <Route path='/login' >
-        <Header titre={titre.studentAccueil.description} />
-          <LoginPage
-          setActiveRole={setActiveRole}
-          setUserId={setUserId}
-          base_url={base_url}
-          />
+          <Header titre={titre.studentAccueil.description} />
+            <LoginPage
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
+            base_url={base_url}
+            />
         </Route>
 
         <Route path='/accueil'>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
         </Route>
 
         <Route path='/accueiladmin'>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.adminAccueil.description} />
           <AccueilAdmin />
         </Route>
 
         <Route path='/parcours-coaching'>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
             themes={searchedThemes} 
@@ -297,21 +277,20 @@ if (!this.props.isLoggedIn) {
             base_url={base_url}
           />  
         </Route> 
-          
 
         <Route path= {`/theme/:idTheme`}>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
             themes={themes}
@@ -331,35 +310,37 @@ if (!this.props.isLoggedIn) {
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.addAdmin.description} />
-          <AddAdmin base_url={base_url}  />
+          <AddAdmin
+            base_url={base_url}
+          />
         </Route>
 
         <Route path= {`/gestion-themes`}>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
             themes={themes} 
@@ -369,22 +350,22 @@ if (!this.props.isLoggedIn) {
           />
         </Route>
 
-
         <Route path= {`/search-profil`}>
-        <Menu 
-        navlinks={filteredNavlinks}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        searchedText={searchedText}
-        setSearchedText={setSearchedText}
-        history={history}
-        themes={themes}
-        searchedThemes={searchedThemes}
-        setSearchedThemes={setSearchedThemes}
-        activeRole={activeRole}
-      />
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
+        </Route>
 
         <Route path= {`/results`}>
           <Header titre={titre.searchAdmin.description} />
@@ -392,14 +373,43 @@ if (!this.props.isLoggedIn) {
             searchedStudents={searchedStudents}
             getSpeName={getSpeName}
             searchedText={searchedText}
+            base_url={base_url}
           />
 
         </Route>
+
+        <Route path= {`/results/:studentId/score`}>
+          <Menu 
+          navlinks={filteredNavlinks}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          searchedText={searchedText}
+          setSearchedText={setSearchedText}
+          history={history}
+          themes={themes}
+          searchedThemes={searchedThemes}
+          setSearchedThemes={setSearchedThemes}
+          activeRole={activeRole}
+          />
+          <Header titre={titre.scorePage.description} />
+          <ScorePage
+            themes={themes}
+            student={student}
+            setStudent={setStudent}
+            studentsList={studentsList}
+            base_url={base_url}
+            studentScore={studentScore}
+            setStudentScore={setStudentScore}
+          />
+        </Route>
+
+
       </Switch>
 
     </div>
   )
 }
+
 
 // == Export
 export default App;
