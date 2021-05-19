@@ -2,7 +2,7 @@ const Theme = require('../models/theme');
 
 const themeController = {
     /**
-    * Controls endpoint GET /v1/api/admin/themes
+    * Controls endpoint GET /v1/api/themes
     */
     getAllThemes: async (_, res) => {
    
@@ -25,7 +25,7 @@ const themeController = {
 
 
     /**
-    * Controls endpoint GET /v1/api/admin/themes/:id
+    * Controls endpoint GET /v1/api/themes/:id
     */
     getOneTheme: async (req, res) => {
 
@@ -131,7 +131,7 @@ const themeController = {
 
 
     /**
-    * Controls endpoint GET /v1/api/admin/themes/:id
+    * Controls endpoint GET /v1/api/admin/themes/:themeId
     */
    deleteTheme: async (req, res) => {
 

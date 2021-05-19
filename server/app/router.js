@@ -109,14 +109,6 @@ router.get('/missions/users/:userId', interactController.getAllByUserId);
  */
 router.get('/missions/:missionId/users/:userId', interactController.getOneByMissionAndUser);
 
-/**
- * Deletes a record in database for a mission id and a user id
- * @route DELETE /missions/:missionId/users/:userId
- * @group Interactions
- * @returns {<Interact>} 200 - One instance of the Interact class
- */
-router.delete('/student/interact/missions/:missionId/users/:userId', interactController.uncheckBox);
-
 
 // ---------------------------------------- ADMIN SPACE ----------------------------------------
 
@@ -157,7 +149,7 @@ router.post('/admin/add', adminController.addAdmin);
  * @route POST /admin/themes/:theme_id/missions
  * @returns {Object} 201 - An object of the new mission
  */
-router.post('/admin/themes/:theme_id/missions', validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:themeId/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Modify and returns the id of the modify mission
@@ -192,6 +184,14 @@ router.get('/admin/students', adminController.getAllStudentsWithPromo);
  */
 router.post('/student/interact/', interactController.checkBox);
 
+
+/**
+ * Deletes a record in database for a mission id and a user id
+ * @route DELETE /missions/:missionId/users/:userId
+ * @group Interactions
+ * @returns {<Interact>} 200 - One instance of the Interact class
+ */
+router.delete('/student/interact/missions/:missionId/users/:userId', interactController.uncheckBox);
 
 /**
  * Returns a user from the database with its id

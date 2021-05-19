@@ -59,11 +59,11 @@ GET http://localhost:3000/v1/api/missions/1/users/300
 
 
 # 404 - La valeur de la case à cocher pour la mission 4 et l'utilisateur 7
-GET http://localhost:3000/v1/api/missions/4/users/7
+GET http://localhost:3000/v1/api/missions/4/users/3
 ###
 
 # La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
-GET http://localhost:3000/v1/api/missions/1/users/5
+GET http://localhost:3000/v1/api/missions/1/users/3
 ###
 
 ###
@@ -170,6 +170,17 @@ Content-Type: application/json
 
 # Ajouter une mission donnée dans theme 2
 POST http://localhost:3000/v1/api/admin/themes/2/missions
+Content-Type: application/json
+
+{
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
+# 404 - Ajouter une mission donnée dans theme 200
+POST http://localhost:3000/v1/api/admin/themes/200/missions
 Content-Type: application/json
 
 {

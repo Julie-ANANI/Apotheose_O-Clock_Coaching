@@ -6,7 +6,7 @@ const User = require('../models/user')
 const interactController = {
 
     /**
-    * Controls endpoint GET /api/missions/users/{userId}
+    * Controls endpoint GET /api/missions/users/:userId
     */
     getAllByUserId: async (req, res) => {
         try {
@@ -16,22 +16,17 @@ const interactController = {
             const { userId } = req.params;
             
             //verify id of user
-            const checkUserID = await User.findOne(userId);
-
-            if (!checkUserID) {
-                res.status(404).json( ` Cet utilisateur n'existe pas dans les données de la team Coaching`);
-            // const theInteracts = await Interact.findAll(userId);
-            // res.status(200).json(theInteracts);
-        }
-        const theInteracts = await Interact.findAll(userId);
-        res.status(200).json(theInteracts);
+            await User.findOne(userId);
+            
+            const theInteracts = await Interact.findAll(userId);
+            res.status(200).json(theInteracts);
 
         } catch (err) {
             /**
            * There are no checkbox values stored in the database for this user id
            * In the model, there is an error with a custom message
            */
-            res.status(404).json( `${err.message}, Cet utilisateur n'existe pas dans les données de la team Coaching`);
+            res.status(404).json( `${err.message}`);
         }
     },
     
@@ -51,15 +46,6 @@ const interactController = {
             const checkMissionID = await Mission.findOne(req.params.missionId);
             const checkUserID = await User.findOne(req.params.userId);
         
-
-            if(!checkMissionID) {
-                res.status(404).json(`Cette mission n'existe pas dans les données de la team Coaching`);
-            }
-         
-            if(! checkUserID) {
-                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
-            } 
-
             //we show informations
             const theInteract = await Interact.findOne(missionId, userId);
             res.status(200).json(theInteract);
@@ -154,7 +140,7 @@ const interactController = {
 
 
     /**
-    * Controls endpoint POST /api/user/missions/
+    * Controls endpoint POST /api/student/interact
     */
     checkBox: async (req, res) => {
         try {
@@ -181,7 +167,7 @@ const interactController = {
                 bodyErrors.push(`user_id cannot be empty`);
             }
 
-            // if there are any errors, we return them
+            // if there are any errors, we return themq
             if (bodyErrors.length) {
                 res.status(400).json(bodyErrors);
             } else {
