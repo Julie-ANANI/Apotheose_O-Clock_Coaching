@@ -39,8 +39,10 @@
 }
 
 .ui.cards {
-  padding: 0 10%;
+  /* padding: 0 10%; */
   /* align-items: center; */
+  width : 80%;
+  margin : 0 12.3% 0 7.7%;
 }
 
 .ui.card.theme-card {
@@ -83,9 +85,10 @@
   
 }
 
-.parcourscoaching__progressbar-message {
+.progressbar-message {
   color : #fffdd8;
   font-size: 2em;
+  padding: 0 auto;
   
 }
 
@@ -146,4 +149,6 @@
   padding: 0 10%;
 }
 
-
+.student-dashboard a {
+  margin-left: 1.2em;
+}
