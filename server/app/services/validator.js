@@ -21,8 +21,8 @@ const validor = {
             /**
              * A data is not conform  with the schema
              */
-            const { message, path }= error.details[0];
-            res.status(400).json({message, path});
+            const {message}= error.details[0];
+            res.status(400).json(message);
         };
     }
 };

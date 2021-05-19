@@ -4,7 +4,7 @@ GET http://localhost:3000/v1/api/themes
 
 
 # Un seul thème
-GET http://localhost:3000/v1/api/themes/3
+GET http://localhost:3000/v1/api/themes/1
 ###
 
 
@@ -19,7 +19,7 @@ GET http://localhost:3000/v1/api/missions
 
 
 # Toutes les missions pour un thème donné 
-GET http://localhost:3000/v1/api/themes/5/missions
+GET http://localhost:3000/v1/api/themes/8/missions
 ###
 
 
@@ -99,8 +99,8 @@ POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 12,
-    "user_id": 3
+    "mission_id": 24,
+    "user_id": 4
 }
 ###
 
@@ -116,8 +116,10 @@ POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "title": "Hodedela",
-    "advice": "Hola hola",
+
+    "title": "Hodedefrferfela",
+    "advice": "Holafrfr hola",
+
     "position":"2"
 }
 ###
@@ -127,8 +129,10 @@ POST http://localhost:3000/v1/api/admin/missions/2
 Content-Type: application/json
 
 {
-    "title": "nouveau titre",
+
+    "title": "nouveau titre2",
     "advice": "aaaaah"
+
 }
 ####
 
@@ -139,18 +143,18 @@ Content-Type: application/json
 
 {
     
-    "title": "Scre5tegtrhgrtteibe",
-    "description": "Mais, vous savez, moi je ne crois pas qu’il y ait de bonne ou de mauvaise situation"
+    "title": "helloe",
+    "description": ""
 }
 ####
 
 
 # Modifier un thème
-POST http://localhost:3000/v1/api/admin/themes/29
+POST http://localhost:3000/v1/api/admin/themes/30
 Content-Type: application/json
 
 {    
- 
+    "title": "",
     "description": "Moi, si je devais résumer ma vie aujourd’hui avec vous,\\nje dirais que c’est d’abord des rencontres, des gens qui m’ont tendu la main, peut-être à un moment où je ne pouvais pas, où j’étais seul chez moi."
 
 }
@@ -166,18 +170,19 @@ POST http://localhost:3000/v1/api/admin/themes/8/missions
 Content-Type: application/json
 
 {    
-    "title": "Je ne suis qu’amour",
-    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
+    "title": "",
+    "advice": " day"
 }
 ###
 
 
 # Modifier une mission
-POST http://localhost:3000/v1/api/admin/missions/9
+POST http://localhost:3000/v1/api/admin/missions/68
 Content-Type: application/json
 
 {    
-    "title": "Alors ce n’est pas mon cas"
+    "title": "",
+    "advice": ""
 }
 ###
 
@@ -201,8 +206,11 @@ Content-Type: application/json
 # Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
 GET http://localhost:3000/v1/api/admin/students
 Content-Type: application/json
+
 ###
 
+# Logout
+GET http://localhost:3000/v1/api/logout
 
 
 

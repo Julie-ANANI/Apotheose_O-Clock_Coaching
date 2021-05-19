@@ -9,9 +9,10 @@ const pool = new Pool({
 		rejectUnauthorized: false
 	}
 });
- //je suis dans le conflit
+
 // For development
 //const pool = new Pool();
+
 
 module.exports = pool;
 
