@@ -99,8 +99,8 @@ POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 12,
-    "user_id": 3
+    "mission_id": 24,
+    "user_id": 4
 }
 ###
 
@@ -116,7 +116,7 @@ POST http://localhost:3000/v1/api/admin/themes/2/missions
 Content-Type: application/json
 
 {
-    "title": "Hodedela",
+    "title": "Hodedelila",
     "advice": "Hola hola",
     "position":"2"
 }
@@ -127,8 +127,10 @@ POST http://localhost:3000/v1/api/admin/missions/2
 Content-Type: application/json
 
 {
-    "title": "",
-    "advice": ""
+
+    "title": "nouveau titre2",
+    "advice": "aaaaah"
+
 }
 ####
 
@@ -202,8 +204,11 @@ Content-Type: application/json
 # Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
 GET http://localhost:3000/v1/api/admin/students
 Content-Type: application/json
+
 ###
 
+# Logout
+GET http://localhost:3000/v1/api/logout
 
 
 

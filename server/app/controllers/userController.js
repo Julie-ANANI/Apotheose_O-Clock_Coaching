@@ -71,7 +71,7 @@ const userController = {
             }).then(res => res.json())
               .then(json => apiUser = json);
   
-            if (!apiUser.sucess){
+            if (!apiUser.success){
                 res.status(404).json(apiUser.message);
             }
             // If the authentication succeeds, the API sends a user object
@@ -85,9 +85,9 @@ const userController = {
                 theNewUser = await new User({ api_user: `${apiUser.data.id}`,
                 admin_status: false });
                 const saved = await theNewUser.save();
+
                 // we append its 'internal id' and 'admin status' properties to the external api user object we fetched earlier
-                apiUser.oap_id = saved.id;
-                
+                apiUser.oap_id = saved.id;  
                 apiUser.oap_admin_status = theNewUser.admin_status;
             });
             
@@ -103,10 +103,13 @@ const userController = {
             // Now the user is connected, we store their info in the session
             // req.session.user = {
             //     firstname: apiUser.data.profile.firstname,
-            //     lastname: apiUser.data.profile.lastname
+            //     lastname: apiUser.data.profile.lastname,
+            //     oap_admin_status: apiUser.oap_admin_status,
+            //     is_student: apiUser.data.is_student
             // };
 
-            // We send this full object containing external and internal API info to the client
+
+            // We send the final apiUser object containing external and internal API info to the client
             res.status(200).json(apiUser);
         
             
@@ -119,7 +122,7 @@ const userController = {
 
     logout: (req, res) => {
         req.session.user = false;
-        res.status(204).json('User successfully logged out in back-end');
+        res.status(200).json(`Vous êtes bien déconnecté`);
     }
 
 };

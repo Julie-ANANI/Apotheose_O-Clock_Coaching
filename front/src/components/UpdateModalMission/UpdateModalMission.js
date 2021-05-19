@@ -11,8 +11,8 @@ function UpdateModalMission({
   // title,
   // advice,
   }) {
-  const [title, setTitleMission] = useState('');
-  const [advice, setAdviceMission] = useState('');
+  const [title, setTitleMission] = useState(currentTitle);
+  const [advice, setAdviceMission] = useState(currentAstuce);
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
@@ -57,14 +57,14 @@ function UpdateModalMission({
           <Form.Input label="Titre"
           required type="text"
           // placeholder="titre"
-          value={currentTitle}
+          value={title}
           onChange={e => setTitleMission(e.target.value)}
           />
           <Form.TextArea 
             label="Astuces"
             required 
             // placeholder="advice"
-            value={currentAstuce}
+            value={advice}
             onChange={e => setAdviceMission(e.target.value)}
           />
         </Modal.Content>
