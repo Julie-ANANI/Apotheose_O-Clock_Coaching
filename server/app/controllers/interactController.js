@@ -71,17 +71,9 @@ const interactController = {
             const { themeId, userId } = req.params;
 
             //verify id  of theme et user id 
-            const checkThemeID = await Theme.findOne(themeId)
-            const checkUserID = await User.findOne(userId)
+            const checkThemeID = await Theme.findOne(themeId);
+            const checkUserID = await User.findOne(userId);
             
-            if(!checkThemeID){
-                res.status(404).json(`Sorry, ce thème n'existe pas`);
-            }
-
-            if(!checkUserID) {
-                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`)
-            }
-
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
             
