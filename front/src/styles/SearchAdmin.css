@@ -19,6 +19,15 @@
   margin: 0 auto;
 }
 
+.search-page .ui.cards .card {
+  padding : 0.2em;
+  margin : 0.5em;
+}
+
+.search-page .ui.cards .card:hover {
+  opacity : 0.8;
+}
+
 .search-title{
   text-align: center;
   margin-bottom: 2em;

@@ -102,12 +102,12 @@ const userController = {
             };
             
             // Now the user is connected, we store their info in the session
-            // req.session.user = {
-            //     firstname: apiUser.data.profile.firstname,
-            //     lastname: apiUser.data.profile.lastname,
-            //     oap_admin_status: apiUser.oap_admin_status,
-            //     is_student: apiUser.data.is_student
-            // };
+            req.session.user = {
+                firstname: apiUser.data.profile.firstname,
+                lastname: apiUser.data.profile.lastname,
+                oap_admin_status: apiUser.oap_admin_status,
+                is_student: apiUser.data.is_student
+            };
 
 
             // We send the final apiUser object containing external and internal API info to the client

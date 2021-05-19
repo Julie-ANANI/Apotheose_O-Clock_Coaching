@@ -34,16 +34,18 @@
 } */
 
 .parcourscoaching__theme-card-container {
-  margin : 0 1%;
+  margin : 1em 1em;
   
 }
 
-.ui.cards {
-  padding: 0 10%;
+.parcourscoaching__student-dashboard .ui.cards {
+  /* padding: 0 10%; */
   /* align-items: center; */
+  width : 80%;
+  margin : 0 12.3% 0 7.7%;
 }
 
-.ui.card.theme-card {
+.parcourscoaching__student-dashboard .ui.card.theme-card {
   /* width : 100%; */
   text-align: center;
   box-shadow: none;
@@ -53,7 +55,7 @@
   transition: opacity 150ms ease-out;
 }
 
-.ui.card.theme-card:hover {
+.parcourscoaching__student-dashboard .ui.card.theme-card:hover {
   opacity: 0.8;
   transition: opacity 60ms ease-in;
   cursor: pointer;
@@ -83,9 +85,10 @@
   
 }
 
-.parcourscoaching__progressbar-message {
+.progressbar-message {
   color : #fffdd8;
   font-size: 2em;
+  padding: 0 auto;
   
 }
 
@@ -146,4 +149,13 @@
   padding: 0 10%;
 }
 
+.student-dashboard a {
+  margin-left: 1.2em;
+  margin-bottom: 1em;
+}
 
+.student-dashboard .cards-container {
+
+  width : 85%;
+  margin : 0 auto;
+}

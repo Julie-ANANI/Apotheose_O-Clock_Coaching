@@ -20,6 +20,7 @@ const ThemeInParcoursCoachingPage = ({
 }) => {
 
   const[themeScore,setThemeScore] = useState(0);
+  
 
 
   const computeThemeScore = () => {
