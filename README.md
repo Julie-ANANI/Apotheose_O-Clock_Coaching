@@ -107,12 +107,12 @@ cd server/ && npm start
 
 ## Contributeurs 
 
-Product Owner: [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
+Product Owner et dev front : [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
 
-Scrum master: [Aurélie Chicart](https://github.com/aureliechicart)
+Scrum master et dev back : [Aurélie Chicart](https://github.com/aureliechicart)
 
-Lead dev Front: [Madine BA](https://github.com/mabakayaro)
+Lead dev Front : [Madine BA](https://github.com/mabakayaro)
 
-Lead dev Back: [Julie Anani](https://github.com/Julie-ANANI)
+Lead dev Back : [Julie Anani](https://github.com/Julie-ANANI)
 
-Git Master: [Mahanora Tetuanui](https://github.com/MahanoraTetuanui)
+Git Master, Gif Master et dev back : [Mahanora Tetuanui](https://github.com/MahanoraTetuanui)
