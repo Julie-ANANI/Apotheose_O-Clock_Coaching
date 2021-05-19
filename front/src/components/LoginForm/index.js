@@ -9,7 +9,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
   const [hidden, setHidden] = useState(true);
   const [negative, setNegative] = useState(false);
   const [result, setResult] = useState('');
-  const postUrl = `${base_url}/login`;
+  const postUrl = `${base_url}/v1/api/login`;
   let history = useHistory();
 
 const showMessage = () => {

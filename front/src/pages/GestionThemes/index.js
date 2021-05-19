@@ -10,14 +10,14 @@ import { Card } from 'semantic-ui-react';
 
 
 
-const GestionThemes = ({themes, setRefresh, refresh}) => {
+const GestionThemes = ({themes, setRefresh, refresh, base_url}) => {
   const [themeGestion, setThemeGestion] = useState('theme');
   const [missionGestion, setMissionGestion] = useState('mission');
   const [iconPlus,setIconPlus] = useState('plus square');
 
   return (
     <div className="themesGestion">
-      <NewModalTheme refresh={refresh} setRefresh={setRefresh} />
+      <NewModalTheme refresh={refresh} setRefresh={setRefresh} base_url={base_url}/>
       <Card.Group centered>
         {themes.map((theme)=> (
           <div key={theme.id} className="theme-card-container">
@@ -28,6 +28,7 @@ const GestionThemes = ({themes, setRefresh, refresh}) => {
               {...theme}
               refresh={refresh}
               setRefresh={setRefresh}
+              base_url={base_url}
             />
           </div>
         ))}

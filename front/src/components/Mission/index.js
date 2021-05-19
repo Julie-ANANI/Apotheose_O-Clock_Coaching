@@ -16,7 +16,8 @@ const Mission = ({
   advice,
   userId,
   userInteraction,
-  setUserInteraction
+  setUserInteraction,
+  base_url
 }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -37,7 +38,7 @@ const Mission = ({
     
     if (data.checked) {
       axios({
-        url : 'http://localhost:3000/v1/api/student/interact/',
+        url : `${base_url}/v1/api/student/interact/`,
         method : 'post',
         data : {
           "mission_id": id,
@@ -53,7 +54,7 @@ const Mission = ({
       
     } else {
       axios({
-        url : `http://localhost:3000/v1/api/student/interact/missions/${id}/users/${userId}`,
+        url : `${base_url}/v1/api/student/interact/missions/${id}/users/${userId}`,
         method : 'delete'
       })
       .then(res => {
@@ -70,7 +71,7 @@ const Mission = ({
   }
 
   const checkIfDone = () => { 
-    axios.get(`http://localhost:3000/v1/api/missions/${id}/users/${userId}`)
+    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`)
       .then((response)=> {
         console.log(response.data);
         setIschecked(true);

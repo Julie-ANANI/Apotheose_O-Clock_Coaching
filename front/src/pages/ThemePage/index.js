@@ -101,6 +101,7 @@ const ThemePage = ({
           userId={userId} 
           userInteraction={userInteraction}
           setUserInteraction={setUserInteraction}
+          base_url={base_url}
           />
         ))}
       </Card.Group>
