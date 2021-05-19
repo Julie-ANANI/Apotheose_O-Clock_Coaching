@@ -13,6 +13,7 @@ const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
 const loginSchema = require('./schemas/loginSchema'); 
+const interactSchema = require('./schemas/interactSchema');
 
 
 const router = Router();
@@ -193,6 +194,16 @@ router.get('/admin/students', adminMW, adminController.getAllStudentsWithPromo);
 
 
 // ---------------------------------------- INTERN SPACE ----------------------------------------
+
+/**
+
+ * Adds a record in database for a mission id and a user id
+ * @route POST /student/interact
+ * @group Interactions
+ * @returns {<Interact>} 200 - One instance of the Interact class
+ */
+router.post('/student/interact/',validateBody(interactSchema.newInteract), interactController.checkBox);
+
 
 /**
  * Returns a user from the database with its id

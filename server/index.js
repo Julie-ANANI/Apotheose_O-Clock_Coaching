@@ -13,6 +13,7 @@ const router = require('./app/router');
 app.use(express.json());
 
 
+
 // Establishing a session system
 // All our requests will now have a new 'session' parameter which automatically matches the session of the client making the request
 app.use(session({
