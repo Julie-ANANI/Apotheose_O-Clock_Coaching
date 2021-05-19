@@ -25,7 +25,7 @@ import Accueil from 'src/pages/Accueil';
 import ParcoursCoaching from 'src/pages/ParcoursCoaching';
 import ThemePage from 'src/pages/ThemePage';
 import AddAdmin from 'src/pages/AddAdmin';
-
+import AccueilAdmin from 'src/pages/AccueilAdmin';
 import navlinks from 'src/data/navlinks.js'
 import titre from 'src/data/titreHeader.js'
 import GestionThemes from './pages/GestionThemes';
