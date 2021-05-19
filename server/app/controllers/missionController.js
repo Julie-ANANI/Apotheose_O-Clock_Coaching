@@ -24,6 +24,7 @@ const missionController = {
         }
     },
 
+
     /**
     * Controls endpoint GET /v1/api/themes/:id/missions/:id
     */
@@ -49,6 +50,7 @@ const missionController = {
         }
     },
 
+
     /**
     * Controls endpoint GET /v1/api/themes/:id/missions/
     */
@@ -59,11 +61,15 @@ const missionController = {
             * We get the id in the parameters of the request
             */
             const { id } = req.params;
+
+            // if(id === null || 0 || undefined){
+            //     res.status(404).json(`l'id de ce theme n'existe pas`);
+            // }
             const theme = await Theme.findOne(id);
 
             if (theme) {
-                const theMissions = await Mission.findByTheme(id);
-                res.status(200).json(theMissions);
+             const theMissions = await Mission.findByTheme(id);
+               res.status(200).json(theMissions);
             }
         
         } catch (err) {
@@ -75,6 +81,7 @@ const missionController = {
         }
     },
 
+    
     /**
     * Controls endpoint POST /v1/api/admin/themes/:theme_id/missions
     */
