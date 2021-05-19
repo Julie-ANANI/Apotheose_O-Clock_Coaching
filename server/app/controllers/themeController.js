@@ -60,17 +60,10 @@ const themeController = {
             const {themeId} = req.params; 
             // verify if theme exists in the database
             const theme = await Theme.findOne(themeId);
-    
-                if (!theme) {
-                    res.status(404).json(err.message);
-
-                } else {
+   
                     // recuperation of infos body if id exists
-                    const { themeId, title, description } = req.body;
+                    const { title, description } = req.body;
                 
-                    if (themeId) {
-                        theme.id = themeId; 
-                    }
                     //replace title if new modification
                     if (title) {
                         theme.title = title;
@@ -100,27 +93,12 @@ const themeController = {
             // We get the body parameters of the request from req.body
             const { title, description } = req.body;
 
-            // we check that all parameters have been passed on and add any errors to an array
-            let bodyErrors = [];
-
-            if (!title) {
-               bodyErrors.push(`le titre ne peut pas être vide`);
-            }
-            if (!description) {
-               bodyErrors.push(`La description ne peut pas être vide`);
-            }
-
-            // if there are any errors, we return them
-            if (bodyErrors.length) {
-                res.status(400).json(bodyErrors);
-            } else {
-                // if there are no errors, we can save this new record in the database
-                // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
-                const newTheme = new Theme({ title, description, 'position': 0 });
-                await newTheme.save();
-                res.status(201).json(newTheme);
-            }
-
+             // we can save this new record in the database
+             // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
+             const newTheme = new Theme({ title, description, 'position': 0 });
+             await newTheme.save();
+             res.status(201).json(newTheme);
+            
         } catch (err) {
             res.status(500).json(err.message);
         };
@@ -142,7 +120,7 @@ const themeController = {
             const theme = await Theme.findOne(themeId);
 
             if(!theme){
-                res.status(404).send(`id do not exists`);
+                res.status(404).send(`id does not exist`);
             }else {
             // active methode async delete in the model theme
             const  deleteTheme = await theme.delete();
