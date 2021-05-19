@@ -4,7 +4,7 @@ import axios from 'axios'
 import AddTheme from 'src/components/AddTheme/AddTheme.js';
 
   
-function NewModalTheme({setRefresh, refresh})  {
+function NewModalTheme({setRefresh, refresh, base_url})  {
   const [title, setTitleTheme] = useState('');
   const [description, setDescriptionTheme] = useState('');
   const [position, setPosition] = useState(38);
@@ -21,7 +21,7 @@ function NewModalTheme({setRefresh, refresh})  {
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post('http://localhost:3000/v1/api/admin/themes', data, {headers}).then(res => {
+      axios.post(`${base_url}/v1/api/admin/themes`, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
         setTitleTheme('');

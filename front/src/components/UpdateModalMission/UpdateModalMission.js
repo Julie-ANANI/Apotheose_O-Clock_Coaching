@@ -8,6 +8,7 @@ function UpdateModalMission({
   idMission,
   setRefresh,
   refresh,
+  base_url,
   // title,
   // advice,
   }) {
@@ -16,7 +17,7 @@ function UpdateModalMission({
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/admin/missions/${idMission}`;
+  const postUrl = `${base_url}/v1/api/admin/missions/${idMission}`;
 
   const handleSubmitTheme = () => {
 

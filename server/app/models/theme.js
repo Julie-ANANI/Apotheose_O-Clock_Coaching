@@ -56,7 +56,7 @@ class ThemeAndUserNotFound extends Error {
  * @property {number} id
  * @property {string} title
  * @property {string} description
- * @property {string} position
+ * @property {number} position
  * @property {string} createdAt
  * @property {string} modifiedAt
  * 

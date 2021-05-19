@@ -22,7 +22,7 @@ export default
     },
 
     addAdmin : {
-      description: `Tu as ici le pouvoir de coopter un nouvel utilisateur parmis les rangs des maîtres coaching. Un grand pouvoir, pour une grande responsabilité.`,
+      description: `Tu as ici le pouvoir d'élever un nouvel utilisateur au rang de maître coaching. Un grand pouvoir, pour une grande responsabilité.`,
       page: `add-admin`,
     },
     gestionThemes : {

@@ -71,7 +71,7 @@ class NoMissionFoundInThemeError extends Error {
  * @property {number} id
  * @property {string} title
  * @property {string} advice
- * @property {string} position
+ * @property {number} position
  * @property {number} themeId
  * @property {string} createdAt
  * @property {string} modifiedAt

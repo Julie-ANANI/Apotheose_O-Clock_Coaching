@@ -5,7 +5,22 @@ import {  Divider, Header, Card, Progress } from 'semantic-ui-react';
 import Mission from 'src/components/Mission';
 import ThemeProgressBar from '../../components/ThemeProgressBar';
 
-const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUserInteraction, userInteraction, missionByTheme, missionByThemeUser, setMissionByTheme, setMissionByThemeUser, theme, setTheme, activeRole, base_url }) => {
+const ThemePage = ({
+  themes,
+  base_url,
+  missionByTheme,
+  setMissionByTheme,
+  missionByThemeUser,
+  setMissionByThemeUser,
+  theme,
+  setTheme,
+  userInteraction,
+  setUserInteraction,
+  allMissions,
+  userMissionsCompleted,
+  userId,
+  activeRole,
+}) => {
   
   const[themeScore,setThemeScore] = useState(0);
 
@@ -14,6 +29,7 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
     
   const filterMissionsByTheme = (missions) => {
     console.log('FILTER MISSIONS BY THEME');
+    console.log("filtermissionbytheme MISSION :", missions);
     const  result = missions.filter(mission => mission.theme_id == idTheme);
     return result;
   }
@@ -21,11 +37,17 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
 
   const setMissions = ()  => {
     console.log('SETMISSIONS');
+    console.log("userMissionsCompleted : ",userMissionsCompleted)
     const missionsCompletedByTheme = filterMissionsByTheme(userMissionsCompleted);
+
     setMissionByThemeUser(missionsCompletedByTheme);
+
     console.log('missionCompletedByTheme=',missionsCompletedByTheme.length); 
+
     const missionsFilteredByTheme = filterMissionsByTheme(allMissions);
+
     setMissionByTheme(missionsFilteredByTheme);
+
     console.log('missionByTheme=',missionsFilteredByTheme.length);
 
   }
@@ -34,9 +56,11 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
 
   const getSelectedTheme = () => { 
     console.log('GET SELECTED THEME'); 
+    console.log(themes);
+    console.log(idTheme);
     const theme = themes.find((theme) => theme.id == idTheme);
     setTheme(theme);
-    console.log('theme=',theme);   
+    console.log('theme =',theme.id);   
   }
 
 
@@ -45,7 +69,7 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
     console.log('USE EFFECT THEME PAGE');
     getSelectedTheme();
     setMissions();
-  },[userMissionsCompleted]);
+  },[userInteraction]);
 
   return (
     <div className="missions">
@@ -77,6 +101,7 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
           userId={userId} 
           userInteraction={userInteraction}
           setUserInteraction={setUserInteraction}
+          base_url={base_url}
           />
         ))}
       </Card.Group>

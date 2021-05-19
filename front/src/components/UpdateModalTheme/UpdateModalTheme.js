@@ -10,14 +10,15 @@ function UpdateModalTheme({
     setCurrentThemeDescription,
     id,
     setRefresh,
-    refresh
+    refresh,
+    base_url
   }) {
   const [title, setTitleTheme] = useState(currentThemeTitle);
   const [description, setDescriptionTheme] = useState(currentThemeDescription);
   const [position, setPosition] = useState(38);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}`;
+  const postUrl = `${base_url}/v1/api/admin/themes/${id}`;
 
   const handleSubmitTheme = () => {
 
@@ -30,8 +31,6 @@ function UpdateModalTheme({
     };
       axios.post(postUrl, data, {headers}).then(res => {
         console.log(postUrl)
-        console.log(res.data);
-        setData(res.data);
         setTitleTheme('');
         setDescriptionTheme('');
         setRefresh(true);
@@ -66,8 +65,9 @@ function UpdateModalTheme({
             label="Description"
             required
             // placeholder={currentDescription}
-            value={currentThemeDescription}
-            onChange ={e => { setDescriptionTheme(e.target.value);}}
+            value={description}
+            onChange={e => setDescriptionTheme(e.target.value)}
+
           />
         </Modal.Content>
       <Modal.Actions>

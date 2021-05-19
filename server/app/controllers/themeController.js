@@ -84,12 +84,11 @@ const themeController = {
                     await theme.update();
                     res.status(200).json(theme);
                   
-                }
-            }
-
-            catch(err) {
+                };
+                
+            } catch(err) {
                 res.status(404).json(err.message);
-            }    
+            };  
     },
 
 
@@ -124,7 +123,7 @@ const themeController = {
 
         } catch (err) {
             res.status(500).json(err.message);
-        }
+        };
     },
 
 
@@ -134,43 +133,28 @@ const themeController = {
     */
    deleteTheme: async (req, res) => {
 
-    try {
-        /**
-         * We get the id in the parameters of the request
-         */
-        const { themeId } = req.params;
-        // verify theme id is exists in the database
-        const theme = await Theme.findOne(themeId);
+        try {
+            /**
+             * We get the id in the parameters of the request
+             */
+            const { themeId } = req.params;
+            // verify theme id is exists in the database
+            const theme = await Theme.findOne(themeId);
 
-        if(!theme){
-            res.status(404).send(`id do not exists`);
-        }else {
-        // active methode async delete in the model theme
-        const  deleteTheme = await theme.delete();
-        res.status(200).json(deleteTheme);
-    }
-    } catch(err) {
-        /**
-        * There is no this theme in the database
-        * In the model, there is an error with a custom message
-        */
-        res.status(404).json(err.message);
-    }
-},
+            if(!theme){
+                res.status(404).send(`id do not exists`);
+            }else {
+            // active methode async delete in the model theme
+            const  deleteTheme = await theme.delete();
+            res.status(200).json(deleteTheme);
+            };
 
-    /**
-    * Controls endpoint GET v1/api/students/:userId/themes/:themeId/score
-    */
-    getScoreOfOneThemeOfOneUser: async(req,res) =>{
-        try{
-            const { themeId, userId } = req.params;
-
-            const score = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
-            res.status(200).json(score);
-        }
-        catch(err){
-
-            res.status(400).json(err.message);
+        } catch(err) {
+            /**
+            * There is no this theme in the database
+            * In the model, there is an error with a custom message
+            */
+            res.status(404).json(err.message);
         };
     }
 
