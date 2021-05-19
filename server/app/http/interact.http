@@ -1,0 +1,81 @@
+# Toutes les coches d'un utilisateur 3
+GET http://localhost:3000/v1/api/missions/users/3
+###
+
+
+# 404 - Toutes les coches d'un utilisateur 1000 qui n'existe pas
+GET http://localhost:3000/v1/api/missions/users/1000
+###
+
+
+# 404 - La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
+GET http://localhost:3000/v1/api/missions/1/users/300
+###
+
+
+# 404 - La valeur de la case à cocher pour la mission 4 et l'utilisateur 7
+GET http://localhost:3000/v1/api/missions/4/users/3
+###
+
+
+# La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
+GET http://localhost:3000/v1/api/missions/1/users/3
+###
+
+
+# La valeur de la case à cocher pour la mission 22 et l'utilisateur 4
+GET http://localhost:3000/v1/api/missions/22/users/4
+###
+
+# La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
+GET http://localhost:3000/v1/api/missions/5/users/3
+###
+
+
+# Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "mission_id": 12,
+    "user_id": 3
+}
+###
+
+
+# Insérer une case cochée en bdd pour la mission 12 et l'utilisateur 3 déjà dans la BDD
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "mission_id": 14,
+    "user_id": 3
+}
+###
+
+
+# 404 - Insérer une case cochée en bdd pour la mission 50 qui n'existe pas dans la BDD 
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "mission_id": 50,
+    "user_id": 3
+}
+###
+
+
+# 400 - Insérer une case cochée en bdd pour la mission 12 sans User
+POST http://localhost:3000/v1/api/student/interact/
+Content-Type: application/json
+
+{
+    "user_id": 3
+}
+###
+
+
+# Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
+DELETE http://localhost:3000/v1/api/student/interact/missions/12/users/3
+Content-Type: application/json
+###

@@ -1,0 +1,74 @@
+# Tous les thèmes
+GET http://localhost:3000/v1/api/themes
+###
+
+
+# Un seul thème
+GET http://localhost:3000/v1/api/themes/1
+###
+
+
+# 404 - Un seul thème qui n'existe pas 
+GET http://localhost:3000/v1/api/themes/350
+### 
+
+
+# Toutes les missions pour un thème donné 
+GET http://localhost:3000/v1/api/themes/5/missions
+###
+
+
+# Toutes les missions pour un thème donné 
+GET http://localhost:3000/v1/api/themes/2/missions
+###
+
+
+# 404 - Toutes les missions pour un thème donné qui n'existe pas
+GET http://localhost:3000/v1/api/themes/2000/missions
+###
+
+
+# Créer un nouveau thème
+POST http://localhost:3000/v1/api/admin/themes
+Content-Type: application/json
+
+{
+    
+    "title": "Scre5tegtrhgrtteibe",
+    "description": "Mais, vous savez, moi je ne crois pas qu’il y ait de bonne ou de mauvaise situation"
+}
+####
+
+
+# 400 - Créer un nouveau thème sans titre
+POST http://localhost:3000/v1/api/admin/themes
+Content-Type: application/json
+
+{
+    
+    "title": "Scre5tegtrhgrte"
+}
+####
+
+
+# Modifier un thème avec un ID connu
+POST http://localhost:3000/v1/api/admin/themes/8
+Content-Type: application/json
+
+{    
+ 
+    "title" : "Javascriptt c'est la vie vida loca !"
+
+}
+###
+
+# Suppression du theme 3
+DELETE http://localhost:3000/v1/api/admin/themes/8
+Content-Type: application/json
+###
+
+
+# 404 - Suppression du theme 3 qui existe pas
+DELETE http://localhost:3000/v1/api/admin/themes/800
+Content-Type: application/json
+###

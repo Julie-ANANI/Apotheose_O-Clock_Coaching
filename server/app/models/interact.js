@@ -83,7 +83,7 @@ class Interact {
         WHERE interact.user_id = $1
         ;`, [userId]);
 
-        if (rows) {
+        if (rows.length) {
             return rows.map(row => new Interact(row));
         } else {
             throw new NoInteractError();
@@ -182,5 +182,3 @@ class Interact {
 
 
 module.exports = Interact;
-
-

@@ -2,7 +2,7 @@ const Theme = require('../models/theme');
 
 const themeController = {
     /**
-    * Controls endpoint GET /v1/api/admin/themes
+    * Controls endpoint GET /v1/api/themes
     */
     getAllThemes: async (_, res) => {
    
@@ -25,7 +25,7 @@ const themeController = {
 
 
     /**
-    * Controls endpoint GET /v1/api/admin/themes/:id
+    * Controls endpoint GET /v1/api/themes/:id
     */
     getOneTheme: async (req, res) => {
 
@@ -36,15 +36,15 @@ const themeController = {
             const { id } = req.params;
 
             const onlyOneTheme = await Theme.findOne(id);
-            // res.status(200).json(onlyOneTheme);
 
-            if(onlyOneTheme){
-                res.status(200).json(err.message);
-                
-            } 
+            res.status(200).json(onlyOneTheme);   
+        
 
-        } catch(err) {
-          
+        } catch( err) {
+            /**
+            * There is no this theme in the database
+            * In the model, there is an error with a custom message
+            */
             res.status(404).json(err.message);
         };
     },
@@ -60,11 +60,7 @@ const themeController = {
             const {themeId} = req.params; 
             // verify if theme exists in the database
             const theme = await Theme.findOne(themeId);
-    
-                if (!theme) {
-                    res.status(404).json(err.message);
-
-                } else {
+   
                     // recuperation of infos body if id exists
                     const { title, description } = req.body;
                 
@@ -97,24 +93,12 @@ const themeController = {
             // We get the body parameters of the request from req.body
             const { title, description } = req.body;
 
-            // we check that all parameters have been passed on and add any errors to an array
-            let bodyErrors = [];
-
-            if (!title) {
-               bodyErrors.push(`title cannot be empty`);
-            }
-
-            // if there are any errors, we return them
-            if (bodyErrors.length) {
-                res.status(400).json(bodyErrors);
-            } else {
-                // if there are no errors, we can save this new record in the database
-                // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
-                const newTheme = new Theme({ title, description, 'position': 0 });
-                await newTheme.save();
-                res.status(200).json(newTheme);
-            };
-
+             // we can save this new record in the database
+             // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
+             const newTheme = new Theme({ title, description, 'position': 0 });
+             await newTheme.save();
+             res.status(201).json(newTheme);
+            
         } catch (err) {
             res.status(500).json(err.message);
         };
@@ -123,7 +107,7 @@ const themeController = {
 
 
     /**
-    * Controls endpoint GET /v1/api/admin/themes/:id
+    * Controls endpoint GET /v1/api/admin/themes/:themeId
     */
    deleteTheme: async (req, res) => {
 
@@ -136,7 +120,7 @@ const themeController = {
             const theme = await Theme.findOne(themeId);
 
             if(!theme){
-                res.status(404).send(`id do not exists`);
+                res.status(404).send(`id does not exist`);
             }else {
             // active methode async delete in the model theme
             const  deleteTheme = await theme.delete();

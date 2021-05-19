@@ -1,0 +1,54 @@
+# Toutes les missions 
+GET http://localhost:3000/v1/api/missions
+###
+
+
+# Créer et ajouter une mission donnée dans un theme 2
+POST http://localhost:3000/v1/api/admin/themes/8/missions
+Content-Type: application/json
+
+{
+
+    "title": "un joli joli conseil conseil un autre jolie title",
+    "advice":"test"
+}
+###
+
+
+# 404 - Créer et ajouter une mission donnée dans theme 200
+POST http://localhost:3000/v1/api/admin/themes/200/missions
+Content-Type: application/json
+
+{
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
+# Modifier une mission
+POST http://localhost:3000/v1/api/admin/missions/27
+Content-Type: application/json
+
+{
+    "title": "Je veux channger ce titre"
+}
+####
+
+
+# 404 - Modifier une mission 270 qui n'existe pas
+POST http://localhost:3000/v1/api/admin/missions/270
+Content-Type: application/json
+
+{
+    "title": "Je veux changer ce titre"
+}
+####
+
+
+# Supprimer une mission
+DELETE http://localhost:3000/v1/api/admin/missions/27
+Content-Type: application/json
+###
+
+
