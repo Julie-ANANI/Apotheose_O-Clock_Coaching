@@ -46,8 +46,8 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('student');
-  const [userId, setUserId] = useState(3);
+  const [activeRole, setActiveRole] = useState('admin');
+  const [userId, setUserId] = useState(7);
 
   
   // PARCOURS COACHING
@@ -55,7 +55,7 @@ const App = ({base_url}) => {
   const [themes, setThemes] = useState([]);
   const [searchedThemes, setSearchedThemes] = useState(themes);
 
-  const [generalScore, setGeneralScore] = useState(0);
+  const [generalScore, setGeneralScore] = useState(3);
 
   const [refresh, setRefresh] = useState(false);
   // THEME PAGE
@@ -95,7 +95,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les thèmes');
     
 
-    axios.get(`${base_url}/themes`)
+    axios.get(`${base_url}/v1/api/themes`)
       .then((response)=> {
         console.log('response :',response);
         console.log('on récupère les thèmes', response.data);
@@ -113,7 +113,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les missions déjà effectuées par le user');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
-      const url = `${base_url}/missions/users/${userId}`
+      const url = `${base_url}/v1/api/missions/users/${userId}`
 
       axios({
         url: url,
@@ -135,7 +135,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     if (activeRole === 'student') {
-      axios.get(`${base_url}/missions`)
+      axios.get(`${base_url}/v1/api/missions`)
       .then((response) => {
         setAllMissions(response.data)
         console.log('allMissions=',response.data);
@@ -191,6 +191,7 @@ const App = ({base_url}) => {
         setSearchedStudents={setSearchedStudents}
         activeRole={activeRole}
         getSpeName={getSpeName}
+        base_url={base_url}
       />
       
       <Switch>
@@ -239,7 +240,7 @@ const App = ({base_url}) => {
             setMissionByThemeUser={setMissionByThemeUser}
             theme={theme}
             setTheme={setTheme}
-
+            
             userInteraction={userInteraction}
             setUserInteraction={setUserInteraction}
         
@@ -251,7 +252,9 @@ const App = ({base_url}) => {
 
         <Route path= {`/ajouter-administrateur`}>
           <Header titre={titre.addAdmin.description} />
-          <AddAdmin />
+          <AddAdmin
+            base_url={base_url}
+          />
         </Route>
         <Route path= {`/gestion-themes`}>
           <Header titre={titre.gestionThemes.description} />
@@ -269,6 +272,7 @@ const App = ({base_url}) => {
             searchedStudents={searchedStudents}
             getSpeName={getSpeName}
             searchedText={searchedText}
+            base_url={base_url}
           />
         </Route>
 

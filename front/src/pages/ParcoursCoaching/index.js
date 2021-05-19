@@ -53,7 +53,9 @@ const ParcoursCoaching = ({
         </div>
       <Divider hidden />
       <Divider hidden />
-      <Card.Group centered >
+      <Card.Group 
+        className='cards-container'
+        centered >
         {themes.map((theme)=> {
 
           return (

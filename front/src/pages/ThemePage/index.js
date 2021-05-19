@@ -77,6 +77,7 @@ const ThemePage = ({ themes, allMissions, userId, userMissionsCompleted, setUser
           userId={userId} 
           userInteraction={userInteraction}
           setUserInteraction={setUserInteraction}
+          base_url={base_url}
           />
         ))}
       </Card.Group>

@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import { Button, Form, Message } from 'semantic-ui-react'
 import axios from 'axios'
 
-const FormAdmin = () => {
+const FormAdmin = ({base_url}) => {
   const [email, setEmailAdmin] = useState('');
   const [hidden, setHidden] = useState(true);
   const [visible, setVisible] = useState(false);
   const [positive, setPositive] = useState(false);
   const [negative, setNegative] = useState(false);
   const [result, setResult] = useState('');
-  const postUrl = `http://localhost:3000/v1/api/admin/add`;
+  const postUrl = `${base_url}/v1/api/admin/add`;
 
 const showMessage = () => {
 if(positive){

@@ -15,6 +15,7 @@ const ThemeCard = ({
   description,
   setRefresh,
   refresh,
+  base_url,
 }) => {
 
   const [missions, setMissions] = useState([]);
@@ -36,8 +37,8 @@ const ThemeCard = ({
   }
 
   const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${id}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${id}/missions`)
+    console.log(`${base_url}/v1/api/themes/${id}/missions`)
+    axios.get(`${base_url}/v1/api/themes/${id}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);
@@ -53,7 +54,7 @@ const ThemeCard = ({
 
   const handleDeleteMission = (e, {idmission}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/admin/missions/${idmission}`)
+    axios.delete(`${base_url}/v1/api/admin/missions/${idmission}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -70,7 +71,7 @@ const ThemeCard = ({
 
   const handleDeleteTheme = (e, {id}) => {
 
-    axios.delete(`http://localhost:3000/v1/api/admin/themes/${id}`)
+    axios.delete(`${base_url}/v1/api/admin/themes/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -107,6 +108,7 @@ return(
           id={id}
           setRefresh={setRefresh}
           refresh={refresh}
+          base_url={base_url}
         />
         <Icon
           onClick={handleDeleteTheme} 
@@ -141,6 +143,7 @@ return(
             id={id}
             setRefresh={setRefresh}
             refresh={refresh}
+            base_url={base_url}
           />
 
         </div>
@@ -157,6 +160,7 @@ return(
             refresh={refresh}
             currentTitle={mission.title}
             currentAstuce={mission.advice}
+            base_url={base_url}
           />
           <Icon 
           idmission={mission.id}

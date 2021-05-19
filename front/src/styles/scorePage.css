@@ -24,3 +24,21 @@
 .score-student .score-general-progress-container .ui.progress {
 
 }
+
+.score-student .ui.centered.cards {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.score-student .mission-container, .score-student .mission-container-overlined  {
+  font-size: 1.4em;
+}
+.score-student .mission-container {
+  color : #D83A37;
+}
+
+.score-student .mission-container-overlined  {
+  text-decoration: line-through;
+  color : #0CAD93;
+}

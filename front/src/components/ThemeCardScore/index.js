@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Card, Icon, Accordion, Progress } from 'semantic-ui-react';
 import 'src/styles/GestionThemes.css';
 import axios from 'axios';
+import MissionScore from 'src/components/MissionScore';
 
 
 const ThemeCardScore = ({
@@ -17,11 +18,13 @@ const ThemeCardScore = ({
   const [missions, setMissions] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [themeScore,setThemeScore] = useState(0);
+  // const [generalScore, setGeneralScore] = useState(0);
+
 
 
   const loadThemeScore = () => {
     console.log('COMPUTE THEME SCORE');
-    axios.get(`${base_url}/students/${student.oap_id}/themes/${id}/score`)
+    axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`)
       .then((response)=> {
         console.log('SCORE', response.data);
         setThemeScore(response.data);  
@@ -38,8 +41,8 @@ const ThemeCardScore = ({
   }
 
   const loadMissions = () => {
-    console.log(`http://localhost:3000/v1/api/themes/${id}/missions`)
-    axios.get(`http://localhost:3000/v1/api/themes/${id}/missions`)
+    console.log(`${base_url}/v1/api/themes/${id}/missions`)
+    axios.get(`${base_url}/v1/api/themes/${id}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);
@@ -63,6 +66,7 @@ const ThemeCardScore = ({
   useEffect(() => {
     loadMissions();
   },[student])
+
 
 return(
   <Card fluid className='score-theme-card'>
@@ -91,15 +95,18 @@ return(
         active={activeIndex === 0}
         className='astuce-container'
       >
-        <div className="mission-container">
-        </div>
-            {missions.map((mission)=> (
-        <div  key={mission.id} className= 'mission-container'>
-          <p className= 'astuce-text'>
-            {mission.title}
-          </p>
-        </div>
-      ))}
+        <div>
+        {missions.map((mission)=> (
+          <MissionScore
+            key={mission.id}  
+            base_url={base_url}
+            {...mission}
+            idTheme={id}
+            userId={student.oap_id}
+          />
+        ))}
+      </div>
+
       </Accordion.Content>
 
     </Accordion>

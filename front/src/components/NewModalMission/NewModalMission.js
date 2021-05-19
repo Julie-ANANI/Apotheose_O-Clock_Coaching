@@ -6,14 +6,16 @@ import AddMission from 'src/components/AddMission/AddMission.js';
 function NewModalMission({
   id,
   setRefresh,
-  refresh}) {
+  refresh,
+  base_url
+}) {
 
   const [title, setTitleTheme] = useState('');
   const [advice, setAdviceMission] = useState('');
   const [position, setPosition] = useState(1);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const postUrl = `http://localhost:3000/v1/api/admin/themes/${id}/missions`;
+  const postUrl = `${base_url}/v1/api/admin/themes/${id}/missions`;
 
   const handleSubmitMission = () => {
 

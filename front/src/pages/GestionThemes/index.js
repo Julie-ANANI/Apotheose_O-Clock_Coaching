@@ -10,7 +10,7 @@ import { Card } from 'semantic-ui-react';
 
 
 
-const GestionThemes = ({themes, setRefresh, refresh}) => {
+const GestionThemes = ({themes, setRefresh, refresh, base_url}) => {
   const [themeGestion, setThemeGestion] = useState('theme');
   const [missionGestion, setMissionGestion] = useState('mission');
   const [iconPlus,setIconPlus] = useState('plus square');
@@ -28,6 +28,7 @@ const GestionThemes = ({themes, setRefresh, refresh}) => {
               {...theme}
               refresh={refresh}
               setRefresh={setRefresh}
+              base_url={base_url}
             />
           </div>
         ))}

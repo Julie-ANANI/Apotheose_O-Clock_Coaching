@@ -9,10 +9,10 @@ import '../../styles/AdminForm.css';
 
 
 
-const AddAdmin = () => (
+const AddAdmin = ({base_url}) => (
 
   <div className="addAdmin">
-  <AdminForm />
+  <AdminForm base_url={base_url} />
   </div>
 );
   

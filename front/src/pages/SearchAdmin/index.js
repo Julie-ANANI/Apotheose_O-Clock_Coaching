@@ -2,16 +2,20 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
 import { Image, Card, Progress} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+
+import StudentCard from 'src/components/StudentCard';
 import 'src/styles/SearchAdmin.css';
 import axios from 'axios'
 
 
-const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
+const SearchAdmin = ({ 
+        searchedStudents, 
+        getSpeName, 
+        searchedText, 
+        base_url, 
+      }) => {
   
-
-
-
-
+ 
   return(
     <div className="search-page">
         <div className="search-title">
@@ -21,10 +25,7 @@ const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
 
           {searchedStudents.map((student)=> {
 
-            // if (searchedStudents.length > 0) {
-            //   console.log('ON EST DANS LE IF DU MAP SUR LES SEARCHED STUDENTS')
-            //   console.log(getSpeName(student));
-            // }
+            // const score = loadGeneralScore(studentScore.general_ratio) || { general_ratio : 0}; 
 
 
             return(
@@ -33,18 +34,12 @@ const SearchAdmin = ({ searchedStudents, getSpeName, searchedText }) => {
                 name={student.id}
                 to={`results/${student.oap_id}/score`} 
               >
-                <Card >
-                {/* <Image */}
-                <Card.Content >
-                  <Card.Header centered="true" className='student-card-header'> {`${student.firstname} ${student.lastname}`} </Card.Header>
-                  <Card.Meta>
-                    {`${student.cohortsInfo[0].nickname} ${getSpeName(student)} `}
-                  </Card.Meta>
-                  <Card.Content>
-                    <Progress className='student-card-general-progressbar' percent={33} indicating progress />
-                  </Card.Content>
-                </Card.Content>
-                </Card>
+                <StudentCard 
+                  student= {student} 
+                  base_url= {base_url}
+                  getSpeName={getSpeName}
+                />
+
               </Link> 
             )
             
