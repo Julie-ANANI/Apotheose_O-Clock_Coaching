@@ -146,7 +146,7 @@ router.post('/admin/add', adminController.addAdmin);
 
 /**
  * Create and return the new mission
- * @route POST /admin/themes/:theme_id/missions
+ * @route POST /admin/themes/:themeId/missions
  * @returns {Object} 201 - An object of the new mission
  */
 router.post('/admin/themes/:themeId/missions', validateBody(missionSchema.newMission), missionController.addMission);

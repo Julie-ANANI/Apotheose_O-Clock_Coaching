@@ -80,45 +80,33 @@ const missionController = {
     addMission: async (req, res) => {
 
         try {
+            console.log(req.params);
             /**
             * We get the theme id in the parameters of the request
             */
             const { themeId } = req.params;
-
+             console.log(themeId);
             //verify id 
-            await Theme.findOne(themeId);
+            const theme = await Theme.findOne(themeId);
 
+            console.log(theme);
             /**
             * We get the title, advice, position in the body
             */
-
             const { title, advice } = req.body;
 
-            const bodyErrors = [];
-
+            console.log(req.body);
+        
             /**
-            * Verify if the title is empty
+            * Create the new mission and save it int the database
             */
-            if (!title) {
-                bodyErrors.push('The title\'s mission can\'t be empty');
-            };
-
-            /**
-            * Sending error if the title is empty
-            */
-            if (bodyErrors.length) {
-                res.status(400).json(bodyErrors);
-
-            } else {
-                /**
-                * Create the new mission and save it int the database
-                */
-
-                const newMission = new Mission({title, advice, 'position': 0, themeId});
-
-                await newMission.save();
-                res.status(201).json(newMission);
-            };
+            console.log(`on appel la methode newMission`)
+            const newMission = new Mission({title, advice, 'position': 0, 'theme_id': themeId });
+            console.log(newMission)
+            console.log(themeId)
+            await newMission.save();
+            res.status(201).json(newMission);
+   
         }
         catch (err) {
             /**
@@ -128,6 +116,7 @@ const missionController = {
             res.status(404).json(err.message);
         };
     },
+
 
     /**
     * Controls endpoint POST /v1/api/admin/missions/:missionId
@@ -147,7 +136,6 @@ const missionController = {
             const mission = await Mission.findOne(missionId);
 
            
-
             /**
             * Verify if the mission is in the database
             */
@@ -158,10 +146,7 @@ const missionController = {
                 /**
                 * We get the title, advice, position in the body
                 */
-
                 const {title, advice } = req.body;
-
-
 
                 /**
                 * Verify : 
@@ -190,6 +175,7 @@ const missionController = {
             res.status(404).json(err.message)
         };
     },
+
 
     /**
     * It's control the road DELETE /v1/api/admin/missions/:missionId

@@ -3,29 +3,19 @@ GET http://localhost:3000/v1/api/missions
 ###
 
 
-# Ajouter une mission donnée dans theme 2
-POST http://localhost:3000/v1/api/admin/themes/2/missions
+# Créer et ajouter une mission donnée dans un theme 2
+POST http://localhost:3000/v1/api/admin/themes/8/missions
 Content-Type: application/json
 
 {
-    "title": "Hodedela",
-    "advice": "Hola hola",
-    "position":"2"
-}
-###
 
-# Ajouter une mission donnée dans theme 2
-POST http://localhost:3000/v1/api/admin/themes/2/missions
-Content-Type: application/json
-
-{
-    "title": "Hodetttdetrtthfghhgfla",
-    "position":"2"
+    "title": "un joli joli conseil conseil un autre jolie title",
+    "advice":"test"
 }
 ###
 
 
-# 404 - Ajouter une mission donnée dans theme 200
+# 404 - Créer et ajouter une mission donnée dans theme 200
 POST http://localhost:3000/v1/api/admin/themes/200/missions
 Content-Type: application/json
 
@@ -37,11 +27,11 @@ Content-Type: application/json
 
 
 # Modifier une mission
-POST http://localhost:3000/v1/api/admin/missions/27
+POST http://localhost:3000/v1/api/admin/missions/6
 Content-Type: application/json
 
 {
-    "title": "Je veux changer ce titre"
+    "title": "Je veux channger ce titre"
 }
 ####
 
@@ -54,49 +44,6 @@ Content-Type: application/json
     "title": "Je veux changer ce titre"
 }
 ####
-
-
-
-# Créer une nouvelle mission pour le theme 8
-POST http://localhost:3000/v1/api/admin/themes/8/missions
-Content-Type: application/json
-
-{    
-    "title": "Je ne suis qu’amouur",
-    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
-}
-###
-
-
-# Créer une nouvelle mission pour le theme 8
-POST http://localhost:3000/v1/api/admin/themes/8/missions
-Content-Type: application/json
-
-{    
-    "title": "Je ne suis qu’amouur",
-    "advice": "Et finalement, quand beaucoup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
-}
-###
-
-
-# Créer une nouvelle mission pour le theme 800
-POST http://localhost:3000/v1/api/admin/themes/800/missions
-Content-Type: application/json
-
-{    
-    "title": "Je ne suis qu’ammouur",
-    "advice": "Et finalement, quand beaucouup de gens aujourd’hui me disent : « Mais comment fais-tu pour avoir cette humanité ? »"
-}
-###
-
-# Modifier une mission
-POST http://localhost:3000/v1/api/admin/missions/9
-Content-Type: application/json
-
-{    
-    "title": "Alors ce n’est pas mon cas"
-}
-###
 
 
 # Supprimer une mission

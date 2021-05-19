@@ -119,7 +119,7 @@ const themeController = {
                 // For this v1, we don't handle the position, so we hard-code it for now as it should be NOT NULL
                 const newTheme = new Theme({ title, description, 'position': 0 });
                 await newTheme.save();
-                res.status(200).json(newTheme);
+                res.status(201).json(newTheme);
             }
 
         } catch (err) {
