@@ -37,9 +37,9 @@ const themeController = {
 
             const onlyOneTheme = await Theme.findOne(id);
 
-            if(onlyOneTheme){
-                res.status(200).json(onlyOneTheme);   
-            } 
+            
+            res.status(200).json(onlyOneTheme);   
+            
 
         } catch( err) {
             /**

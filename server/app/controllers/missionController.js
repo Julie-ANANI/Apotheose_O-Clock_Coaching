@@ -61,16 +61,12 @@ const missionController = {
             * We get the id in the parameters of the request
             */
             const { id } = req.params;
+            await Theme.findOne(id);
 
-            // if(id === null || 0 || undefined){
-            //     res.status(404).json(`l'id de ce theme n'existe pas`);
-            // }
-            const theme = await Theme.findOne(id);
-
-            if (theme) {
+            // if (theme) {
              const theMissions = await Mission.findByTheme(id);
                res.status(200).json(theMissions);
-            }
+            // }
         
         } catch (err) {
             /**
@@ -95,11 +91,11 @@ const missionController = {
 
             //verify id 
 
-            const checkThemeID = await Theme.findOne(theme_id);
+            await Theme.findOne(theme_id);
 
-            if(!checkThemeID){
-                res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
-            }
+            // if(!checkThemeID){
+            //     res.status(404).json(`Cet utilisateur n'existe pas dans les données de la team Coaching`);
+            // }
             /**
             * We get the title, advice, position in the body
             */

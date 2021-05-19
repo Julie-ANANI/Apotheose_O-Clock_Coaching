@@ -4,7 +4,7 @@ GET http://localhost:3000/v1/api/themes
 
 
 # Un seul thème
-GET http://localhost:3000/v1/api/themes/1
+GET http://localhost:3000/v1/api/themes/2
 ###
 
 
@@ -179,6 +179,18 @@ Content-Type: application/json
 ###
 
 
+
+# Ajouter une mission donnée dans theme 200
+POST http://localhost:3000/v1/api/admin/themes/200/missions
+Content-Type: application/json
+
+{
+    "title": "Hodetttdetrtthfghhgfla",
+    "position":"2"
+}
+###
+
+
 # Modifier une mission
 POST http://localhost:3000/v1/api/admin/missions/27
 Content-Type: application/json
@@ -287,7 +299,7 @@ Content-Type: application/json
 ###
 
 # Supprimer une mission
-DELETE http://localhost:3000/v1/api/admin/missions/9
+DELETE http://localhost:3000/v1/api/admin/missions/5
 Content-Type: application/json
 ###
 
