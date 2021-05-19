@@ -11,11 +11,11 @@ import logo from "src/assets/logos/Logo de O\'coaching - white and red svg v2.sv
 import { Button, Form, Grid, Header, Segment, Icon } from 'semantic-ui-react'
 
 
-const LoginPage = ({setActiveRole, setUserId}) => (
+const LoginPage = ({setActiveRole, setUserId, base_url}) => (
 
   <Grid textAlign='center'>
     <Grid.Column>
-      <LoginForm setActiveRole={setActiveRole} setUserId={setUserId}/>
+      <LoginForm setActiveRole={setActiveRole} setUserId={setUserId} base_url={base_url}/>
     </Grid.Column>
   </Grid>
 )

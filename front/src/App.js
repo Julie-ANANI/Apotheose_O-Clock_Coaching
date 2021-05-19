@@ -204,7 +204,7 @@ if (!this.props.isLoggedIn) {
 
         <Route path='/login' >
         <Header titre={titre.studentAccueil.description} />
-          <LoginPage setActiveRole={setActiveRole} setUserId={setUserId} />
+          <LoginPage setActiveRole={setActiveRole} setUserId={setUserId} base_url={base_url} />
         </Route>
 
         <Route path='/accueil'>
@@ -316,7 +316,7 @@ if (!this.props.isLoggedIn) {
         activeRole={activeRole}
       />
           <Header titre={titre.addAdmin.description} />
-          <AddAdmin />
+          <AddAdmin base_url={base_url}  />
         </Route>
 
         <Route path= {`/gestion-themes`}>

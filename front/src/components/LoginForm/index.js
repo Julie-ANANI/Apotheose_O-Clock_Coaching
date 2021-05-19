@@ -3,13 +3,13 @@ import { Button, Form, Message, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 
-const LoginForm = ({setActiveRole, setUserId}) => {
+const LoginForm = ({setActiveRole, setUserId, base_url}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidden, setHidden] = useState(true);
   const [negative, setNegative] = useState(false);
   const [result, setResult] = useState('');
-  const postUrl = `http://localhost:3000/v1/api/login`;
+  const postUrl = `${base_url}/login`;
   let history = useHistory();
 
 const showMessage = () => {
