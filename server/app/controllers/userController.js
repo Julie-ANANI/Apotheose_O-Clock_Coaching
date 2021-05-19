@@ -108,7 +108,9 @@ const userController = {
         // Now the user is connected, we store their info in the session
         req.session.user = {
             firstname: apiUser.data.profile.firstname,
-            lastname: apiUser.data.profile.lastname
+            lastname: apiUser.data.profile.lastname,
+            oap_admin_status: apiUser.oap_admin_status,
+            is_student: apiUser.data.is_student
         };
 
         // We send this full object containing external and internal API info to the client
@@ -124,7 +126,7 @@ const userController = {
 
 
     /**
-    * Controls endpoint  POST /v1/api/login
+    * Controls endpoint GET /v1/api/logout
     */
     logout: (req, res) => {
         req.session.user = false;
