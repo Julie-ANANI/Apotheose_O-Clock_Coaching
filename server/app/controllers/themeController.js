@@ -77,7 +77,7 @@ const themeController = {
                     await theme.update();
                     res.status(200).json(theme);
                   
-                };
+                
                 
             } catch(err) {
                 res.status(404).json(err.message);
