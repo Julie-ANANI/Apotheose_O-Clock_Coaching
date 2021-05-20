@@ -7,7 +7,7 @@ const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
 
-const adminMW = require('./middleware/adminMW');
+// const adminMW = require('./middleware/adminMW');
 const studentMW = require('./middleware/studentMW');
 
 //Schema(Missio, Theme) and the ValidateBody
@@ -25,15 +25,14 @@ const router = Router();
 
 /**
  * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
- *  POST /login
+ * @route POST /login
  * @group Login
  * @returns {<User>} 200 - A user object
  */
 router.post('/login', validateBody(loginSchema.newLogin), userController.login);
 
-/**
- * Logs out the user from the backend
- *  POST /login
+
+/** Logs out the user from the backend
  * @route GET /logout
  * @group Login
  * @returns 200 - A message confirming the user is logged out in backend
@@ -69,7 +68,7 @@ router.get('/themes/:id(\\d+)', themeController.getOneTheme);
  * @param {string} description- the description
  * @returns {<New Theme>} 200 - An instance of new theme
  */
-router.post('/admin/themes', adminMW, validateBody(themeSchema.newTheme), themeController.addNewTheme);
+router.post('/admin/themes', validateBody(themeSchema.newTheme), themeController.addNewTheme);
 
 /**
  * change theme in the database with this id
@@ -80,7 +79,7 @@ router.post('/admin/themes', adminMW, validateBody(themeSchema.newTheme), themeC
  * @param {string} description- the description
  * @returns {<Theme>} 200 - an update in the theme
  */
-router.post('/admin/themes/:themeId(\\d+)', adminMW, validateBody(themeSchema.updateTheme), themeController.changeTheme);
+router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme), themeController.changeTheme);
 
 /**
  * delete a theme in the database with this id
@@ -89,7 +88,7 @@ router.post('/admin/themes/:themeId(\\d+)', adminMW, validateBody(themeSchema.up
  * @param {number} themeId.path.required - the theme id
  * @returns {<Theme>} 200 - Suppression the id theme in the database
  */
-router.delete('/admin/themes/:themeId(\\d+)',adminMW,  themeController.deleteTheme);
+router.delete('/admin/themes/:themeId(\\d+)', themeController.deleteTheme);
 //
 //
 // --------------------------------------END THEME ROUTE------------------------------------------
@@ -132,7 +131,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {string} advice- the description
  * @returns {Object} 201 - An object of the new mission
  */
-router.post('/admin/themes/:theme_id(\\d+)/missions',adminMW,  validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Modify and returns the id of the modify mission
@@ -143,7 +142,7 @@ router.post('/admin/themes/:theme_id(\\d+)/missions',adminMW,  validateBody(miss
  * @param {string} advice- the description
  * @returns {Object} 200 - An object of the id's mission modified
  */
-router.post('/admin/missions/:missionId(\\d+)',adminMW,validateBody(missionSchema.updateMission), missionController.modifyMission);
+router.post('/admin/missions/:missionId(\\d+)', validateBody(missionSchema.updateMission), missionController.modifyMission);
 
 
 /**
@@ -153,13 +152,14 @@ router.post('/admin/missions/:missionId(\\d+)',adminMW,validateBody(missionSchem
  * @param {number} missionId.path.required - the mission id
  * @returns {Object} 200 - An object of the id's mission deleted
  */
-router.delete('/admin/missions/:missionId(\\d+)',adminMW, missionController.deleteMission);
+router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMission);
 
 //
 //
 // --------------------------------------END MISSION ROUTE------------------------------------------
 
 //  ----------------------------------------- SCORE ------------------------------------------------
+
 
 /**
  * Returns the score of a user for a theme
@@ -222,7 +222,7 @@ router.post('/student/interact/', studentMW, interactController.checkBox);
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
 
-router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)',studentMW, interactController.uncheckBox);
+router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.uncheckBox);
 //
 //
 // --------------------------------------END INTERACT ROUTE------------------------------------------
@@ -252,7 +252,7 @@ router.get('/users/:id(\\d+)', userController.getOneUser);
  * @group Admin
  * @returns {<User>} 200 - An instance of User class
  */
-router.post('/admin/add', adminMW, adminController.addAdmin);
+router.post('/admin/add', adminController.addAdmin);
 
 
 /**
@@ -261,7 +261,7 @@ router.post('/admin/add', adminMW, adminController.addAdmin);
  * @group Admin
  * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 
  */
-router.get('/admin/students', adminMW, adminController.getAllStudentsWithPromo);
+router.get('/admin/students', adminController.getAllStudentsWithPromo);
 //
 //
 // --------------------------------------END------------------------------------------

@@ -132,6 +132,8 @@ const interactController = {
     * Controls endpoint POST /api/student/interact
     */
     checkBox: async (req, res) => {
+
+        console.log(req.session.user);
         try {
             // We get the body parameters of the request from req.body
             const { mission_id, user_id } = req.body;
