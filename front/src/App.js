@@ -202,6 +202,8 @@ const App = ({base_url}) => {
             searchedStudents={searchedStudents}
             setSearchedThemes={setSearchedThemes}
             setSearchedStudents={setSearchedStudents}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
             activeRole={activeRole}
             getSpeName={getSpeName}
           />
@@ -234,6 +236,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
@@ -255,6 +259,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.adminAccueil.description} />
           <Accueil />
@@ -276,6 +282,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
@@ -309,6 +317,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
@@ -344,6 +354,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
@@ -367,6 +379,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
@@ -393,6 +407,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
@@ -414,6 +430,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
@@ -441,6 +459,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.scorePage.description} />
           <ScorePage
