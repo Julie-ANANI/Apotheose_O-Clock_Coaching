@@ -48,8 +48,8 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('');
-  const [userId, setUserId] = useState(3);
+  const [activeRole, setActiveRole] = useState('student');
+  const [userId, setUserId] = useState(5);
   const [user, setUser] = useState(null);
 
   
@@ -57,7 +57,7 @@ const App = ({base_url}) => {
   const [themes, setThemes] = useState([]);
   const [searchedThemes, setSearchedThemes] = useState(themes);
 
-  const [generalScore, setGeneralScore] = useState(3);
+  const [generalScore, setGeneralScore] = useState(0);
 
   const [refresh, setRefresh] = useState(false);
   // THEME PAGE
@@ -77,7 +77,7 @@ const App = ({base_url}) => {
   
 
   // RESULTS
-  const [studentsList,setStudentsList] = useState([]);
+  const [studentsList,setStudentsList] = useState(students);
   const [searchedStudents, setSearchedStudents] = useState(studentsList);
 
   // PAGE SCORE
@@ -171,7 +171,7 @@ const App = ({base_url}) => {
     console.log('on est dans le useEffect de app et on charge les thèmes et les missions');
     loadThemes();
     loadAllMissions();
-    setStudentsList(students);
+    // setStudentsList(students);
     // loadUserMissions();
   }, [refresh,activeRole]);
 
@@ -190,17 +190,21 @@ const App = ({base_url}) => {
 
         
         <Route path='/' exact>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
@@ -216,51 +220,63 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path='/accueil'>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
         </Route>
 
         <Route path='/accueiladmin'>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.adminAccueil.description} />
-          <AccueilAdmin />
+          <Accueil />
         </Route>
 
         <Route path='/parcours-coaching'>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
@@ -279,17 +295,21 @@ const App = ({base_url}) => {
         </Route> 
 
         <Route path= {`/theme/:idTheme`}>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
@@ -310,17 +330,21 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path= {`/ajouter-administrateur`}>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
@@ -329,17 +353,21 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path= {`/gestion-themes`}>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
@@ -351,23 +379,43 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path= {`/search-profil`}>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
         </Route>
 
-        <Route path= {`/results`}>
+        <Route path= {`/results`} exact>
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
+          />
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
             searchedStudents={searchedStudents}
@@ -379,17 +427,21 @@ const App = ({base_url}) => {
         </Route>
 
         <Route path= {`/results/:studentId/score`}>
-          <Menu 
-          navlinks={filteredNavlinks}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          searchedText={searchedText}
-          setSearchedText={setSearchedText}
-          history={history}
-          themes={themes}
-          searchedThemes={searchedThemes}
-          setSearchedThemes={setSearchedThemes}
-          activeRole={activeRole}
+        <Menu 
+            navlinks={filteredNavlinks}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            searchedText={searchedText}
+            setSearchedText={setSearchedText}
+            history={history}
+            themes={themes}
+            studentsList={studentsList}
+            searchedThemes={searchedThemes}
+            searchedStudents={searchedStudents}
+            setSearchedThemes={setSearchedThemes}
+            setSearchedStudents={setSearchedStudents}
+            activeRole={activeRole}
+            getSpeName={getSpeName}
           />
           <Header titre={titre.scorePage.description} />
           <ScorePage
