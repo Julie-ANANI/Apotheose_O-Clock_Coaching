@@ -48,8 +48,8 @@ const App = ({base_url}) => {
   const history = useHistory();
 
   // GENERAL POUR LINSTANT
-  const [activeRole, setActiveRole] = useState('student');
-  const [userId, setUserId] = useState(5);
+  const [activeRole, setActiveRole] = useState('');
+  const [userId, setUserId] = useState(0);
   const [user, setUser] = useState(null);
 
   
@@ -96,7 +96,7 @@ const App = ({base_url}) => {
 
   const loadThemes = () => {
     // console.log('Il faut charger les thèmes');
-    
+    console.log('LOAD ALL THEMES');
 
     axios.get(`${base_url}/v1/api/themes`)
       .then((response)=> {
@@ -139,7 +139,7 @@ const App = ({base_url}) => {
   const loadAllMissions = () => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
-    if (activeRole === 'student') {
+    console.log('LOAD ALL MISSIONS');
       axios.get(`${base_url}/v1/api/missions`)
       .then((response) => {
         console.log('allMissions=',response.data);
@@ -148,7 +148,6 @@ const App = ({base_url}) => {
         console.log(err)
         console.log("erreur loadallMissions dans App")
       }))
-  }
   }
 
   const getSpeName =(student) => {
