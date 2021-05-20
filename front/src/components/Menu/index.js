@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../../styles/Menu.css'
 
@@ -18,6 +18,8 @@ const MenuHeader = ({
   setSearchedThemes,
   setSearchedStudents,
   activeRole,
+  setActiveRole,
+  setUserId,
   studentsList,
   searchedStudents,
   getSpeName,
@@ -88,6 +90,16 @@ const MenuHeader = ({
     // e.preventDefault();
     console.log('On a cliqué',event);
     setActiveItem(name)
+
+  };
+  const handleItemClickLogout = (event, {name}) =>  {
+    // e.preventDefault();
+    console.log('On a cliqué',event);
+    setActiveItem(name)
+    setActiveRole('')
+    setUserId(0)
+    history.push('/login')
+    
   };
 
 
@@ -159,7 +171,7 @@ const MenuHeader = ({
         className='header-menu-item deconnexion'
         name='deconnexion'
         active={activeItem === 'deconnexion'}
-        onClick={handleItemClick}
+        onClick={handleItemClickLogout}
       />
     </Menu.Menu>
     <div className="logo-menu"></div>
