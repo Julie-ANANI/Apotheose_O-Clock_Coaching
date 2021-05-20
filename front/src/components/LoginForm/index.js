@@ -12,16 +12,16 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
   const postUrl = `${base_url}/v1/api/login`;
   let history = useHistory();
 
-const showMessage = () => {
+  const showMessage = () => {
 
-  setHidden(false)
-  console.log("j'affiche un message pas cools!")
+    setHidden(false)
+    console.log("j'affiche un message pas cools!")
 
-}
+  }
 
 
   const handleSubmitLogin = () => {
-
+    console.log('HANDLE SUBMIT LOGIN WITH URL', postUrl);
     const data = {
       login_email: email,
       login_password: password
@@ -47,13 +47,11 @@ const showMessage = () => {
         }
 
       }).catch(err => {
+        console.log(' ERREUR DANS HANDLESUBMITLOGIN = ', err);
+        setResult('IMPOSSIBLE DE SE CONNECTER');
         setNegative(true);
-        showMessage()
-        console.log(err)
-      }).finally(
-        console.log("post url", postUrl),
-        console.log("je suis dans le finally"),
-      )
+        showMessage();
+      })
   }
 
   return(

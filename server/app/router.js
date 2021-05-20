@@ -211,7 +211,7 @@ router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.post('/student/interact/', interactController.checkBox);
+router.post('/student/interact/', validateBody(interactSchema.newInteract), interactController.checkBox);
 
 /**
  * Deletes a record in database for a mission id and a user id
@@ -221,7 +221,6 @@ router.post('/student/interact/', interactController.checkBox);
  * @param {number} userId.path.required - the user id
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-
 router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.uncheckBox);
 //
 //

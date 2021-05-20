@@ -100,12 +100,12 @@ const userController = {
                 apiUser.oap_id = theInternalUser.id;
                 apiUser.oap_admin_status = theInternalUser.admin_status;
             };
-
+/*
             // Now the user is connected, we store their info in the session
             req.session.user = {
                 oap_admin_status: apiUser.oap_admin_status,
                 is_student: apiUser.data.is_student
-            };
+            };*/
 
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);
