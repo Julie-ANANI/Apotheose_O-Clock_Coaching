@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 const session = require('express-session');
 const userMW = require('./app/middleware/userMW');
 
+const path = require('path');
+
 const router = require('./app/router');
 
 let options = {
@@ -46,7 +48,8 @@ expressSwagger(options);
 // Middleware which parses incoming requests with JSON payloads
 app.use(express.json());
 
-
+//2 mode deploiement
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // // Establishing a session system
 // // All our requests will now have a new 'session' parameter which automatically matches the session of the client making the request
@@ -67,15 +70,21 @@ app.use(express.json());
 // app.use(userMW);
 
 
+
 // Allowing cross-origin requests in development
 // if (process.env.NODE_ENV === 'development') {
-    app.use((request, response, next) => {
-        response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-        response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-        response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-        next();
-    });
+    // app.use((request, response, next) => {
+    //     response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    //     response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    //     response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    //     next();
+    // });
 // }
+
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, dist, 'index.html'));
+  });
 
 app.use('/v1/api/', router);
 
