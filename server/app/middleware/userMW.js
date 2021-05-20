@@ -8,12 +8,12 @@ const userMW = (req, res, next) => {
         req.session.user = false;
 
         // Simulating a connected student for testing routes with studentMW
-        req.session.user = {
-            firstname: 'Michel',
-            lastname: 'Michel',
-            oap_admin_status: false,
-            is_student: true
-        };
+        // req.session.user = {
+        //     firstname: 'Michel',
+        //     lastname: 'Michel',
+        //     oap_admin_status: false,
+        //     is_student: true
+        // };
 
         // Simulating a connected oap admin for testing routes with adminMW
         req.session.user = {
