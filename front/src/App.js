@@ -246,7 +246,7 @@ const App = ({base_url}) => {
           activeRole={activeRole}
           />
           <Header titre={titre.adminAccueil.description} />
-          <AccueilAdmin />
+          <Accueil />
         </Route>
 
         <Route path='/parcours-coaching'>
