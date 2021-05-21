@@ -1,7 +1,7 @@
 .ui.form {
   font-size: 1rem;
   width: 50%;
-  margin: auto;
+  margin: 0 auto 4em;
 }
 .ui.form .field>label {
   display: block;

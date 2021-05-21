@@ -48,7 +48,7 @@ if(positive){
   }
 
   return(
-  <Form success>
+  <Form success className="addadminform">
         <Message
       hidden={hidden}
       visible={visible}
