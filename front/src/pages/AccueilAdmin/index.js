@@ -18,11 +18,6 @@ const AccueilAdmin = () => {
   return(
     <div className="accueilAdmin">
 
-      <div className="button-container">
-      <Button fluid green size='huge' color='teal'>Gestion des thèmes</Button>
-      <Button fluid green size='huge' color='teal'>Ajouter un administrateur</Button>
-      </div>
-
 
     </div>
   );}
