@@ -4,6 +4,8 @@ const connectedUserMW = (req, res, next) => {
     // if the user is not connected, we send an error
     console.log('******req.session dans connecteduserMW');
     console.log(req.session);
+    console.log('******req.cookies dans connecteduserMW');
+    console.log(req.cookies);
     if (!req.session.user) {
         res.status(401).json(`L'utilisateur doit être connecté pour faire cette requête`);
         return;

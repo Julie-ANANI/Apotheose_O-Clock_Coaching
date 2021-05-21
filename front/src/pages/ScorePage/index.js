@@ -24,7 +24,7 @@ const ScorePage = ({
   
   const loadScore = () => {
     console.log('COMPUTE  SCORE');
-    axios.get(`${base_url}/v1/api/students/${student.oap_id}/score`)
+    axios.get(`${base_url}/v1/api/students/${student.oap_id}/score`, { withCredentials: true })
       .then((response)=> {
         console.log('SCORE', response.data);
         setStudentScore(response.data);  
