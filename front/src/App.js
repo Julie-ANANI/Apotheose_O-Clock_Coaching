@@ -189,28 +189,16 @@ const App = ({base_url}) => {
 
         
         <Route path='/' exact>
-        <Menu 
-            navlinks={filteredNavlinks}
-            activeItem={activeItem}
-            setActiveItem={setActiveItem}
-            searchedText={searchedText}
-            setSearchedText={setSearchedText}
-            history={history}
-            themes={themes}
-            studentsList={studentsList}
-            searchedThemes={searchedThemes}
-            searchedStudents={searchedStudents}
-            setSearchedThemes={setSearchedThemes}
-            setSearchedStudents={setSearchedStudents}
-            activeRole={activeRole}
-            getSpeName={getSpeName}
-          />
-          <Header titre={titre.studentAccueil.description} />
-          <Accueil />
+        <Header titre={titre.loginPage.description} />
+          <LoginPage
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
+            base_url={base_url}
+            />
         </Route>
 
         <Route path='/login' >
-          <Header titre={titre.studentAccueil.description} />
+        <Header titre={titre.loginPage.description} />
             <LoginPage
             setActiveRole={setActiveRole}
             setUserId={setUserId}
