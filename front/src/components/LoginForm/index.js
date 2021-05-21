@@ -3,7 +3,7 @@ import { Button, Form, Message, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 
-const LoginForm = ({setActiveRole, setUserId, base_url}) => {
+const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidden, setHidden] = useState(true);
@@ -36,6 +36,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
         setEmail('')
         setPassword('')
         setUserId(res.data.oap_id)
+        setActiveItem('accueil')
         
         if(res.data.oap_admin_status){
           setActiveRole('admin')
@@ -48,7 +49,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
 
       }).catch(err => {
         console.log(' ERREUR DANS HANDLESUBMITLOGIN = ', err);
-        setResult('IMPOSSIBLE DE SE CONNECTER');
+        setResult(err.response.data);
         setNegative(true);
         showMessage();
       })
@@ -62,7 +63,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
     className="inputicon"
     fluid icon='user'
     iconPosition='left'
-    placeholder='E-mail address'
+    placeholder='Ton e-mail'
     value={email}
     onChange={e => setEmail(e.target.value)}
     />
@@ -72,7 +73,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
         fluid
         icon='lock'
         iconPosition='left'
-        placeholder='Password'
+        placeholder='Mot de passe (caput draconis)'
         type='password'
         value={password}
         onChange={e => setPassword(e.target.value)}

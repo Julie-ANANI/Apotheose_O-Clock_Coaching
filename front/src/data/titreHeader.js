@@ -37,6 +37,10 @@ export default
       description: "Et voilà l'état d'avancement de : ",
       page: 'score-page',
     },
+    loginPage : {
+      description: "Entre tes identifiants Cockpit et poursuis ton destin . Telle est la voie .",
+      page: 'loginPage',
+    },
   }
   
 

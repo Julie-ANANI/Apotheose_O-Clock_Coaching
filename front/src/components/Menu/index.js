@@ -92,12 +92,12 @@ const MenuHeader = ({
     setActiveItem(name)
 
   };
-  const handleItemClickLogout = (event, {name}) =>  {
+  const handleItemClickLogout = (event) =>  {
     // e.preventDefault();
+    setActiveItem('accueil');
     console.log('On a cliqué',event);
-    setActiveItem(name)
-    setActiveRole('')
-    setUserId(0)
+    setActiveRole('');
+    setUserId(0);
     history.push('/login')
     
   };

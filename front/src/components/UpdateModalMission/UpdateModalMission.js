@@ -29,8 +29,8 @@ function UpdateModalMission({
       axios.post(postUrl, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
-        setTitleMission('');
-        setAdviceMission('');
+        setTitleMission(currentTitle);
+        setAdviceMission(currentAstuce);
         setRefresh(true);
       }).catch(err => {
         console.log(err)
