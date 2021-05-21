@@ -5,8 +5,8 @@ const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
 const PORT = process.env.PORT || 3000;
 const session = require('express-session');
-const redis = require('redis');
 const connectRedis = require('connect-redis');
+const redisClient = require('./app/session_store');
 
 const userMW = require('./app/middleware/userMW');
 
@@ -53,21 +53,6 @@ app.use(express.json());
 // This initializes the session
 const RedisStore = connectRedis(session);
 
-//Configure redis client
-const redisClient = redis.createClient({
-    host: 'localhost',
-    port: 6379
-});
-
-redisClient.on('error', function (err) {
-    console.log('Could not establish a connection with redis. ' + err);
-    console.trace(err);
-});
-
-redisClient.on('connect', function (err) {
-    console.log('Connected to redis successfully');
-});
-
 // Establishing a session system
 // All our requests will now have a new 'session' parameter which automatically matches the session of the client making the request
 app.use(session({
@@ -82,7 +67,7 @@ app.use(session({
     cookie: {
         secure: false, // false allow us not to be in https
         httpOnly: true,
-        maxAge: 1000 * 60 * 30 // in milliseconds
+        maxAge: 1000 * 60 * 120 // in milliseconds
     }
 }));
 
