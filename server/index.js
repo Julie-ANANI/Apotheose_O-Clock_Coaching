@@ -83,19 +83,26 @@ app.use(session({
     }
 }));
 
+app.use(function (req, res, next) {
+    if (!req.session) {
+        return next(new Error('oh no')) // handle error
+    }
+    next() // otherwise continue
+});
+
 // Middleware which creates a user property in req.session
-app.use(userMW);
+// app.use(userMW);
 
 
 // Allowing cross-origin requests in development
 // if (process.env.NODE_ENV === 'development') {
-    app.use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-        res.header("Access-Control-Allow-Credentials", "true");
-        next();
-    });
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
 // }
 
 
