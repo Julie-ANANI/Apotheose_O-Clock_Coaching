@@ -38,6 +38,7 @@ if(positive){
         showMessage()
         setEmailAdmin('')
       }).catch(err => {
+        setPositive(false);
         setNegative(true);
         setResult(err.response.data)
         showMessage()
@@ -50,6 +51,7 @@ if(positive){
   return(
   <Form success className="addadminform">
         <Message
+      className="messageaddadmin"
       hidden={hidden}
       visible={visible}
       success={positive}
