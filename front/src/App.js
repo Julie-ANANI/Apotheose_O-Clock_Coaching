@@ -98,7 +98,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger les thèmes');
     console.log('LOAD ALL THEMES');
 
-    axios.get(`${base_url}/v1/api/themes`)
+    axios.get(`${base_url}/v1/api/themes`, { withCredentials: true })
       .then((response)=> {
         console.log('response :',response);
         console.log('on récupère les thèmes', response.data);
@@ -119,6 +119,7 @@ const App = ({base_url}) => {
 
       axios({
         url: url,
+        withCredentials: true,
         method: 'get',
       })
       .then((response) => {
@@ -140,7 +141,7 @@ const App = ({base_url}) => {
     // console.log('Il faut charger toutes les missions qui existent en BDD');
     // Dans un premier temps on vérifie que le user loggué est bien un étudiant
     console.log('LOAD ALL MISSIONS');
-      axios.get(`${base_url}/v1/api/missions`)
+      axios.get(`${base_url}/v1/api/missions`, { withCredentials: true })
       .then((response) => {
         console.log('allMissions=',response.data);
         setAllMissions(response.data)
@@ -224,6 +225,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
@@ -247,6 +249,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.adminAccueil.description} />
           <Accueil />
@@ -270,6 +273,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
@@ -305,6 +309,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
@@ -342,6 +347,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
@@ -367,6 +373,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
@@ -395,6 +402,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
@@ -418,6 +426,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
@@ -447,6 +456,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.scorePage.description} />
           <ScorePage

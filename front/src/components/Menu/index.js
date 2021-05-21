@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import '../../styles/Menu.css'
 
@@ -23,7 +24,10 @@ const MenuHeader = ({
   studentsList,
   searchedStudents,
   getSpeName,
-  }) => {
+  base_url
+}) => {
+
+  const postUrl = `${base_url}/v1/api/logout`;
 
   const getSearchedThemes = () => {
     console.log('GET SEARCHED THEME');
@@ -39,7 +43,7 @@ const MenuHeader = ({
         const loweredTitle = theme.title.toLowerCase();
         console.log(loweredTitle);
         return loweredTitle.includes(loweredSearchedText)
-       
+
       });
 
       setSearchedThemes(search);
@@ -48,9 +52,9 @@ const MenuHeader = ({
 
       setSearchedThemes(themes);
     }
-    
+
     console.log(searchedThemes);
-    
+
   };
 
   const getSearchedStudents = () => {
@@ -69,7 +73,7 @@ const MenuHeader = ({
         const loweredText = (student.firstname + student.lastname + promoName + speName).toLowerCase();
         console.log(loweredText);
         return loweredText.includes(loweredSearchedText)
-       
+
       });
       console.log('SEARCH: ', search);
       setSearchedStudents(search);
@@ -78,105 +82,110 @@ const MenuHeader = ({
 
       setSearchedStudents(studentsList);
     }
-    
+
     console.log('searchedStudents : ', searchedStudents);
-    
+
   };
-  
 
 
 
-  const handleItemClick = (event, {name}) =>  {
+
+  const handleItemClick = (event, { name }) => {
     // e.preventDefault();
-    console.log('On a cliqué',event);
+    console.log('On a cliqué', event);
     setActiveItem(name)
 
   };
-  const handleItemClickLogout = (event) =>  {
-    // e.preventDefault();
-    setActiveItem('accueil');
-    console.log('On a cliqué',event);
-    setActiveRole('');
-    setUserId(0);
-    history.push('/login')
-    
+  const handleItemClickLogout = (event) => {
+    axios.get(postUrl)
+      .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      }).finally(
+        setActiveItem('accueil'),
+        console.log('On a cliqué', event),
+        setActiveRole(''),
+        setUserId(0),
+        history.push('/login')
+      )
   };
 
 
-  
+
   const handleSearchBar = (e) => {
-    
+
     console.log('il y a du changement par ici');
     setSearchedText(e.target.value);
     console.log(searchedText);
     if (activeRole == 'student') {
       history.push('/parcours-coaching')
-    } else  
-    if (activeRole == 'admin') {
-      history.push('/results')
-    }
+    } else
+      if (activeRole == 'admin') {
+        history.push('/results')
+      }
   };
 
   useEffect(() => {
     if (activeRole == 'student') {
-      getSearchedThemes(); 
+      getSearchedThemes();
     } else if (activeRole == 'admin') {
       console.log('ON RENVOIE UNE LISTE D\'ETUDIANTS');
       console.log(studentsList);
       getSearchedStudents();
     }
-    
+
     // FAUT-IL GARDER THEMES DANS LES PARAMETRES DU USEE EFECTS ?
-  },[searchedText, themes])
+  }, [searchedText, themes])
 
 
   return (
-  <div className="navbar">
-    <Menu secondary>
-    {navlinks.map((navlink) => (
+    <div className="navbar">
+      <Menu secondary>
+        {navlinks.map((navlink) => (
 
-        <Menu.Item
-          onClick={handleItemClick}
-          key={navlink.label}
-          as= { Link }
-          to={navlink.route} 
-          className='header-menu-item'
-          name={navlink.label}
-          active={activeItem === navlink.label}
+          <Menu.Item
+            onClick={handleItemClick}
+            key={navlink.label}
+            as={Link}
+            to={navlink.route}
+            className='header-menu-item'
+            name={navlink.label}
+            active={activeItem === navlink.label}
           />
 
-    ))}
+        ))}
 
 
-    <Menu.Menu position='right'>
-      <Menu.Item>
-        <Input 
-          type='text' 
-          className='searchbar' 
-          icon='search' 
-          placeholder= { (activeRole == 'student') ? 'Rechercher un thème...' : 'Rechercher un étudiant'} 
-          value={searchedText}
-          onChange={handleSearchBar}
-          // onFocus={()=>{this.this.placeholder=''}}
-          // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
-        />
-      </Menu.Item>
-      <Menu.Item
-        as ='a'
-        className = 'header-menu-item navbar-name' 
-      >
-        {`Michel M.`}
-      </Menu.Item>
-      <Menu.Item
-        className='header-menu-item deconnexion'
-        name='deconnexion'
-        active={activeItem === 'deconnexion'}
-        onClick={handleItemClickLogout}
-      />
-    </Menu.Menu>
-    <div className="logo-menu"></div>
-  </Menu>
-  </div>
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Input
+              type='text'
+              className='searchbar'
+              icon='search'
+              placeholder={(activeRole == 'student') ? 'Rechercher un thème...' : 'Rechercher un étudiant'}
+              value={searchedText}
+              onChange={handleSearchBar}
+            // onFocus={()=>{this.this.placeholder=''}}
+            // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
+            />
+          </Menu.Item>
+          <Menu.Item
+            as='a'
+            className='header-menu-item navbar-name'
+          >
+            {`Michel M.`}
+          </Menu.Item>
+          <Menu.Item
+            className='header-menu-item deconnexion'
+            name='deconnexion'
+            active={activeItem === 'deconnexion'}
+            onClick={handleItemClickLogout}
+          />
+        </Menu.Menu>
+        <div className="logo-menu"></div>
+      </Menu>
+    </div>
   )
 
 

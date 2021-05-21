@@ -121,6 +121,8 @@ const userController = {
             if (err) {
                 return console.log(err);
             }
+            console.log('***** req.session logout');
+            console.log(req.session);
             res.status(200).json(`Vous êtes bien déconnecté`);
         });
 
