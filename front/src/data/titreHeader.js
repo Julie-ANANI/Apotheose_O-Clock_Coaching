@@ -38,7 +38,7 @@ export default
       page: 'score-page',
     },
     loginPage : {
-      description: "Entre tes identifiants Cockpit et poursuis ton destin . Telle est la voix .",
+      description: "Entre tes identifiants Cockpit et poursuis ton destin . Telle est la voie .",
       page: 'loginPage',
     },
   }

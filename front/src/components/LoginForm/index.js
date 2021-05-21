@@ -49,7 +49,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
 
       }).catch(err => {
         console.log(' ERREUR DANS HANDLESUBMITLOGIN = ', err);
-        setResult('IMPOSSIBLE DE SE CONNECTER');
+        setResult(err.response.data);
         setNegative(true);
         showMessage();
       })
