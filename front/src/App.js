@@ -184,16 +184,15 @@ const App = ({base_url}) => {
   return(
     <div className="app">
       
-
       <Switch>
 
-        
         <Route path='/' exact>
         <Header titre={titre.loginPage.description} />
           <LoginPage
             setActiveRole={setActiveRole}
             setUserId={setUserId}
             base_url={base_url}
+            setActiveItem={setActiveItem}
             />
         </Route>
 
@@ -203,6 +202,7 @@ const App = ({base_url}) => {
             setActiveRole={setActiveRole}
             setUserId={setUserId}
             base_url={base_url}
+            setActiveItem={setActiveItem}
             />
         </Route>
 
@@ -222,6 +222,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
@@ -243,6 +245,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.adminAccueil.description} />
           <Accueil />
@@ -264,6 +268,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
@@ -297,6 +303,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
@@ -332,6 +340,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
@@ -355,6 +365,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
@@ -381,6 +393,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
@@ -402,6 +416,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
@@ -429,6 +445,8 @@ const App = ({base_url}) => {
             setSearchedStudents={setSearchedStudents}
             activeRole={activeRole}
             getSpeName={getSpeName}
+            setActiveRole={setActiveRole}
+            setUserId={setUserId}
           />
           <Header titre={titre.scorePage.description} />
           <ScorePage
