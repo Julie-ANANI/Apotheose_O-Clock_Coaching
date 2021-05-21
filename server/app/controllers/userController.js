@@ -55,15 +55,16 @@ const userController = {
     * Route POST /v1/api/login
     */
     login: async (req, res) => {
-        // we try to authenticate the user with external API
-        // we get the email and password from the request body
-        const { login_email, login_password } = req.body;
-
-        const form = new FormData();
-        form.append('login_email', login_email);
-        form.append('login_password', login_password);
 
         try {
+
+            // we try to authenticate the user with external API
+            // we get the email and password from the request body
+            const { login_email, login_password } = req.body;
+
+            const form = new FormData();
+            form.append('login_email', login_email);
+            form.append('login_password', login_password);
 
             let apiUser;
             await fetch(`${process.env.EXTERNAL_API_BASE_URL}/api/try_login`, {
@@ -71,7 +72,6 @@ const userController = {
                 body: form
             }).then(res => res.json())
                 .then(json => apiUser = json);
-
 
             if (!apiUser.success) {
                 res.status(404).json(apiUser.message);
@@ -91,7 +91,6 @@ const userController = {
                     admin_status: false
                 });
                 const saved = await theNewUser.save();
-
                 // we append its 'internal id' and 'admin status' properties to the external api user object we fetched earlier
                 apiUser.oap_id = saved.id;
                 apiUser.oap_admin_status = theNewUser.admin_status;
@@ -107,17 +106,15 @@ const userController = {
                 oap_admin_status: apiUser.oap_admin_status,
                 is_student: apiUser.data.is_student
             };
-            console.log('*****Req.session when logging in*****');
-            console.log(req.session);
 
-            // We send the final apiUser object containing external and internal API info to the client
+            // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);
 
+
         } catch (err) {
-            res.status(500).json(err.message);
+            res.status(500).json(`L'email doit être celui utilisé dans le cockpit`);
         };
     },
-
 
     logout: (req, res) => {
         req.session.destroy(err => {

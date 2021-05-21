@@ -31,8 +31,8 @@ function UpdateModalTheme({
     };
       axios.post(postUrl, { withCredentials: true }, data, {headers}).then(res => {
         console.log(postUrl)
-        setTitleTheme('');
-        setDescriptionTheme('');
+        setTitleTheme(currentThemeTitle);
+        setDescriptionTheme(currentThemeDescription);
         setRefresh(true);
       }).catch(err => {
         console.log(err)

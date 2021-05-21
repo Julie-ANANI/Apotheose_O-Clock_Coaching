@@ -3,7 +3,7 @@ import { Button, Form, Message, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 
-const LoginForm = ({setActiveRole, setUserId, base_url}) => {
+const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidden, setHidden] = useState(true);
@@ -12,16 +12,16 @@ const LoginForm = ({setActiveRole, setUserId, base_url}) => {
   const postUrl = `${base_url}/v1/api/login`;
   let history = useHistory();
 
-const showMessage = () => {
+  const showMessage = () => {
 
-  setHidden(false)
-  console.log("j'affiche un message pas cools!")
+    setHidden(false)
+    console.log("j'affiche un message pas cools!")
 
-}
+  }
 
 
   const handleSubmitLogin = () => {
-
+    console.log('HANDLE SUBMIT LOGIN WITH URL', postUrl);
     const data = {
       login_email: email,
       login_password: password
@@ -36,6 +36,7 @@ const showMessage = () => {
         setEmail('')
         setPassword('')
         setUserId(res.data.oap_id)
+        setActiveItem('accueil')
         
         if(res.data.oap_admin_status){
           setActiveRole('admin')
@@ -47,13 +48,11 @@ const showMessage = () => {
         }
 
       }).catch(err => {
+        console.log(' ERREUR DANS HANDLESUBMITLOGIN = ', err);
+        setResult(err.response.data);
         setNegative(true);
-        showMessage()
-        console.log(err)
-      }).finally(
-        console.log("post url", postUrl),
-        console.log("je suis dans le finally"),
-      )
+        showMessage();
+      })
   }
 
   return(
@@ -64,7 +63,7 @@ const showMessage = () => {
     className="inputicon"
     fluid icon='user'
     iconPosition='left'
-    placeholder='E-mail address'
+    placeholder='Ton e-mail'
     value={email}
     onChange={e => setEmail(e.target.value)}
     />
@@ -74,7 +73,7 @@ const showMessage = () => {
         fluid
         icon='lock'
         iconPosition='left'
-        placeholder='Password'
+        placeholder='Mot de passe (caput draconis)'
         type='password'
         value={password}
         onChange={e => setPassword(e.target.value)}

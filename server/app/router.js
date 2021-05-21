@@ -69,7 +69,7 @@ router.get('/themes/:id(\\d+)', connectedUserMW, themeController.getOneTheme);
  * @param {string} description- the description
  * @returns {<New Theme>} 200 - An instance of new theme
  */
-router.post('/admin/themes', adminMW, validateBody(themeSchema.newTheme), themeController.addNewTheme);
+router.post('/admin/themes', validateBody(themeSchema.newTheme), themeController.addNewTheme);
 
 /**
  * change theme in the database with this id
@@ -80,7 +80,7 @@ router.post('/admin/themes', adminMW, validateBody(themeSchema.newTheme), themeC
  * @param {string} description- the description
  * @returns {<Theme>} 200 - an update in the theme
  */
-router.post('/admin/themes/:themeId(\\d+)', adminMW, validateBody(themeSchema.updateTheme), themeController.changeTheme);
+router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme), themeController.changeTheme);
 
 /**
  * delete a theme in the database with this id
@@ -212,7 +212,7 @@ router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', connectedUserMW, in
  * @group Interactions
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.post('/student/interact/', studentMW, interactController.checkBox);
+router.post('/student/interact/', validateBody(interactSchema.newInteract), interactController.checkBox);
 
 /**
  * Deletes a record in database for a mission id and a user id
@@ -253,7 +253,7 @@ router.get('/users/:id(\\d+)', adminMW, userController.getOneUser);
  * @group Admin
  * @returns {<User>} 200 - An instance of User class
  */
-router.post('/admin/add', adminMW, adminController.addAdmin);
+router.post('/admin/add', adminController.addAdmin);
 
 
 /**
@@ -262,7 +262,7 @@ router.post('/admin/add', adminMW, adminController.addAdmin);
  * @group Admin
  * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 
  */
-router.get('/admin/students', adminMW, adminController.getAllStudentsWithPromo);
+router.get('/admin/students', adminController.getAllStudentsWithPromo);
 //
 //
 // --------------------------------------END------------------------------------------
