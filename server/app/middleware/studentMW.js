@@ -1,8 +1,8 @@
 // This middleware is used to limit access to routes which require the student status
 
 const studentMW = (req, res, next) => {
-    console.log('******Req.session.user in studentMW*****');
-    console.log(req.session.user);
+    console.log('******Req.session in studentMW*****');
+    console.log(req.session);
     // if (!req.session.user) {
     //     res.status(401).json(`L'utilisateur doit être connecté pour faire cette requête`);
     //     return;

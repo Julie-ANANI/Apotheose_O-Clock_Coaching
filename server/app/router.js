@@ -48,7 +48,7 @@ router.get('/logout', userController.logout);
  * @group Themes
  * @returns {Array<Themes>} 200 - An array of themes
  */
-router.get('/themes', themeController.getAllThemes);
+router.get('/themes', studentMW, themeController.getAllThemes);
 
 /**
  * Returns a theme from the database with its id

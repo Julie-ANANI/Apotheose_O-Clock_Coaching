@@ -8,7 +8,7 @@ const session = require('express-session');
 const redis = require('redis');
 const connectRedis = require('connect-redis');
 
-// const userMW = require('./app/middleware/userMW');
+const userMW = require('./app/middleware/userMW');
 
 
 const router = require('./app/router');
@@ -75,7 +75,7 @@ app.use(session({
     //saveUninitialized is used to save the session in the system event if we didn't store any data inside
     saveUninitialized: true,
     //secret is used to encrypt  the session identifier placed in the cookie sent to the client
-    secret: 'fqldkfhzlkkjhqlrhql',
+    secret: process.env.SESSION_SECRET,
     cookie: {
         secure: false, // false allow us not to be in https
         httpOnly: true,
@@ -84,22 +84,23 @@ app.use(session({
 }));
 
 // Middleware which creates a user property in req.session
-// app.use(userMW);
+app.use(userMW);
 
 
 // Allowing cross-origin requests in development
 // if (process.env.NODE_ENV === 'development') {
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header("Access-Control-Allow-Credentials", "true");
-    next();
-});
+    app.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        res.header("Access-Control-Allow-Credentials", "true");
+        next();
+    });
 // }
 
 
 app.use('/v1/api/', router);
+
 
 app.listen(PORT, () => {
     console.log(`Server running on : localhost:${PORT}/v1`)
