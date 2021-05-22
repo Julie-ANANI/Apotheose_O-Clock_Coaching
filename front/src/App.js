@@ -249,7 +249,7 @@ const App = ({base_url}) => {
             setUserId={setUserId}
           />
           <Header titre={titre.adminAccueil.description} />
-          <Accueil />
+          <AccueilAdmin />
         </Route>
 
         <Route path='/parcours-coaching'>
