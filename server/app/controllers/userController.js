@@ -102,11 +102,12 @@ const userController = {
             };
 
             // Now the user is connected, we store their info in the session
+            console.log(req.session)
             req.session.user = {
                 oap_admin_status: apiUser.oap_admin_status,
                 is_student: apiUser.data.is_student
             };
-
+            console.log(req.session.id)
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);
 
@@ -117,14 +118,30 @@ const userController = {
     },
 
     logout: (req, res) => {
+      
+        console.log(document.cookie);
+        console.log(req.connect);
+        // console.log(req.rawheaders.cookie);
+        res.status(200).clearCookie("connect.sid", {
+        path: "/"
+        });
+        // setcookie("connect.sid", "", time() -1 )
+
+
+        res.clearCookie("key");
+        console.log(req.session.id);
+        console.log(req.session.cookie);
         req.session.destroy(err => {
             if (err) {
                 return console.log(err);
             }
             console.log('***** req.session logout');
+            // console.log(req.session.id);
             console.log(req.session);
             res.status(200).json(`Vous êtes bien déconnecté`);
         });
+
+        console.log(res);
 
     }
 
