@@ -37,6 +37,8 @@ const ThemeCard = ({
   }
 
   const loadMissions = () => {
+    console.log(`L'ID  D'UN SEUL THEME`)
+    console.table(id)
     console.log(`${base_url}/v1/api/themes/${id}/missions`)
     axios.get(`${base_url}/v1/api/themes/${id}/missions`, { withCredentials: true })
       .then((response) => {

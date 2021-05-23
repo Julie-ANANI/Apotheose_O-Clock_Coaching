@@ -25,9 +25,10 @@ const ThemeInParcoursCoachingPage = ({
 
   const computeThemeScore = () => {
     console.log('COMPUTE THEME SCORE');
+    console.table(id);
     axios.get(`${base_url}/v1/api/students/${userId}/themes/${id}/score`, { withCredentials: true })
       .then((response)=> {
-        console.log('SCORE', response.data);
+        // console.log('SCORE', response.data);
         setThemeScore(response.data);  
       })
   }

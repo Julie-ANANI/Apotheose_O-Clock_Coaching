@@ -24,9 +24,11 @@ const ThemeCardScore = ({
 
   const loadThemeScore = () => {
     console.log('COMPUTE THEME SCORE');
+    console.log(`LE ID DE THEME ${id}`)
     axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`, { withCredentials: true })
       .then((response)=> {
-        console.log('SCORE', response.data);
+        
+        // console.log('SCORE', response.data);
         setThemeScore(response.data);  
       })
   }
