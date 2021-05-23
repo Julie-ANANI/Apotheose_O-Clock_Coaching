@@ -1,9 +1,9 @@
-# Le score du theme 1 d'un user 4
-GET http://localhost:3000/v1/api/students/1/themes/1/score
+# Le score du theme 51 d'un user 1
+GET http://localhost:3000/v1/api/students/1/themes/5/score
 ###
 
 
-# Le score du theme 1 d'un user 5
+# Le score du theme 1 d'un user 6 - score 0
 GET http://localhost:3000/v1/api/students/6/themes/1/score
 ###
 

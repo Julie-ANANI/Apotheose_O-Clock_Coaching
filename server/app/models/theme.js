@@ -145,8 +145,7 @@ class Theme {
         ON mission.theme_id = theme.id
         JOIN interact
         ON interact.mission_id = mission.id
-        WHERE interact.user_id=$1 AND theme_id=$2
-        GROUP BY theme.id;`,
+        WHERE interact.user_id=$1 AND theme_id=$2;  `,
         [userId,themeId]);
 
         if (rows[0]) {

@@ -39,8 +39,8 @@ const Mission = ({
     if (data.checked) {
       axios({
         url : `${base_url}/v1/api/student/interact/`,
-        withCredentials: true,
         method : 'post',
+        withCredentials: true,
         data : {
           "mission_id": id,
           "user_id": userId

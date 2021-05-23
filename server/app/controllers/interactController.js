@@ -70,24 +70,21 @@ const interactController = {
             // we get the theme id and user id from the request body
             const { userId, themeId } = req.params;
 
-            console.log(req.params)
             //verify id  of theme et user id 
-            // await User.findOne(userId);
-            // await Theme.findOne(themeId);
+            await User.findOne(userId);
+            await Theme.findOne(themeId);
            
             
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(userId, themeId);
-         
-            console.log(scoreByTheme)
+           
+            // console.log(scoreByTheme)
             // we get all the missions in database related to this theme
             const allMissionsByTheme = await Mission.findByTheme(themeId);
 
             // we calculate the percentage of completed missions for this theme
             const scoreRatio = Math.round((parseInt(scoreByTheme.score, 10) / allMissionsByTheme.length) * 100);
-
-            console.log(scoreByTheme);
-            
+         
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
 
         } catch (err) {
