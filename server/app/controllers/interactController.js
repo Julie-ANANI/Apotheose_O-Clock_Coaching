@@ -71,8 +71,9 @@ const interactController = {
             const { themeId, userId } = req.params;
 
             //verify id  of theme et user id 
-            const checkThemeID = await Theme.findOne(themeId);
-            const checkUserID = await User.findOne(userId);
+             await User.findOne(userId);
+            await Theme.findOne(themeId);
+           
             
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);

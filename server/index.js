@@ -89,7 +89,7 @@ app.use(function (req, res, next) {
 });
 
 // Middleware which creates a user property in req.session
-// app.use(userMW);
+app.use(userMW);
 
 
 // Allowing cross-origin requests in development
