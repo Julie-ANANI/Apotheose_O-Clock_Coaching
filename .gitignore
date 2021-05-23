@@ -16,3 +16,4 @@ server.key
 server.cert
 New_user.json
 search.json
+dump.rdb
