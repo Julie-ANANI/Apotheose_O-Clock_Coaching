@@ -118,13 +118,14 @@ const userController = {
     },
 
     logout: (req, res) => {
-      
-        console.log(document.cookie);
-        console.log(req.connect);
+
+        console.log(req.sessionID)
+        console.log(req.header.cookie);
         // console.log(req.rawheaders.cookie);
         res.status(200).clearCookie("connect.sid", {
         path: "/"
         });
+        
         // setcookie("connect.sid", "", time() -1 )
 
 
@@ -136,12 +137,23 @@ const userController = {
                 return console.log(err);
             }
             console.log('***** req.session logout');
-            // console.log(req.session.id);
-            console.log(req.session);
+         
+            //l'id est bien supprimé
+            // console.log(req.session);
+            // const http = require('http');
+            // const options = {method: 'GET', host: 'stackoverflow.com', port: 80, path: '/'};
+            // const req = http.request(options, function(res) {
+            //     console.log(JSON.stringify(res.headers));
+            // }
+            // );
+            // req.end();
+            
             res.status(200).json(`Vous êtes bien déconnecté`);
         });
-
-        console.log(res);
+        // console.log(res.header())
+        // console.log(res.sessionStore)
+        // console.log(res.rawheaders)
+        // console.log(res);
 
     }
 
