@@ -29,6 +29,7 @@ const ThemePage = ({
     
   const filterMissionsByTheme = (missions) => {
     console.log('FILTER MISSIONS BY THEME');
+    console.table(`idTheme: ${idTheme}`);
     console.log("filtermissionbytheme MISSION :", missions);
     const  result = missions.filter(mission => mission.theme_id == idTheme);
     return result;

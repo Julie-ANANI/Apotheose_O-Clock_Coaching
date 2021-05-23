@@ -24,13 +24,17 @@ const ThemeInParcoursCoachingPage = ({
 
 
   const computeThemeScore = () => {
-    console.log('COMPUTE THEME SCORE');
-    console.table(id);
+    console.log('COMPUTE THEME SCORE - ParcoursCoachingPage');
+    console.table(`themeId: ${id}`);
+    console.table(`userId: ${userId}`);
     axios.get(`${base_url}/v1/api/students/${userId}/themes/${id}/score`, { withCredentials: true })
       .then((response)=> {
         // console.log('SCORE', response.data);
         setThemeScore(response.data);  
-      })
+      }).catch((err =>{
+        console.log(err.details[0])
+        console.log("erreur parcours coaching page")
+      }))
   }
   
   useEffect(() => {

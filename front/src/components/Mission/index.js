@@ -73,7 +73,15 @@ const Mission = ({
   }
 
   const checkIfDone = () => { 
-    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`, { withCredentials: true })
+    // axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`, { withCredentials: true })
+    axios({
+      url : `${base_url}/v1/api/missions/${id}/users/${userId}`,
+      method : 'get',
+      withCredentials: true,
+      data : {
+        "mission_id": id,
+        "user_id": userId
+      }})
       .then((response)=> {
         console.log(response.data);
         setIschecked(true);

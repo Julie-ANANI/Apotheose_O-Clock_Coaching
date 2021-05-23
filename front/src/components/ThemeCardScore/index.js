@@ -23,11 +23,12 @@ const ThemeCardScore = ({
 
 
   const loadThemeScore = () => {
-    console.log('COMPUTE THEME SCORE');
+    console.log('COMPUTE THEME SCORE - ThemeCardScore');
     console.log(`LE ID DE THEME ${id}`)
     axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`, { withCredentials: true })
+    // axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`)
       .then((response)=> {
-        
+        console.log(response.data);
         // console.log('SCORE', response.data);
         setThemeScore(response.data);  
       })
@@ -45,6 +46,7 @@ const ThemeCardScore = ({
   const loadMissions = () => {
     console.log(`${base_url}/v1/api/themes/${id}/missions`)
     axios.get(`${base_url}/v1/api/themes/${id}/missions`, { withCredentials: true })
+    // axios.get(`${base_url}/v1/api/themes/${id}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);

@@ -11,7 +11,7 @@ const redis = require('./app/session_store');
 
 const userMW = require('./app/middleware/userMW');
 
-
+// const router_noauthentification = require('./app/router_noauthentification');
 const router = require('./app/router');
 
 
@@ -42,6 +42,7 @@ let options = {
     basedir: __dirname, //app absolute path
     files: [
         './app/router.js',
+        // './app/router_noauthentification.js',
         './app/models/*.js'
     ] //Path to the API handle folder
 };
@@ -105,6 +106,7 @@ app.use((req, res, next) => {
 
 
 app.use('/v1/api/', router);
+// app.use('/v1/api/', router_noauthentification);
 
 
 app.listen(PORT, () => {
