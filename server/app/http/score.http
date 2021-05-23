@@ -1,5 +1,5 @@
-# Le score du theme 7 d'un user 4
-GET http://localhost:3000/v1/api/students/4/themes/7/score
+# Le score du theme 1 d'un user 4
+GET http://localhost:3000/v1/api/students/1/themes/1/score
 ###
 
 
@@ -30,6 +30,12 @@ GET http://localhost:3000/v1/api/students/13/score
 # Le score global d'un user 5
 GET http://localhost:3000/v1/api/students/5/score
 ###
+
+
+# Le score global d'un user 6
+GET http://localhost:3000/v1/api/students/6/score
+###
+
 
 
 # 404 - Le score global d'un student 300 - STUDENT DO NOT EXISTS
