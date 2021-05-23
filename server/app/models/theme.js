@@ -150,9 +150,9 @@ class Theme {
 
         if (rows[0]) {
             return rows[0];
-        } if (rows[0] === 0){
-            console.log(`if === 0`)
-        }
+        // } if (rows[0] === 0){
+        //     console.log(`if === 0`)
+         }
         else{
             return new ThemeAndUserNotFound();
         };

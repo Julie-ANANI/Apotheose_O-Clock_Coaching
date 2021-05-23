@@ -35,7 +35,8 @@ const Mission = ({
 
   const handleClickOnCB = (e, data) => {
     console.log('on a cliqué sur la checkbox');
-    
+    console.log(`id (mission): ${id}`);
+    console.log(`user_id : ${userId}`);
     if (data.checked) {
       axios({
         url : `${base_url}/v1/api/student/interact/`,
@@ -57,8 +58,11 @@ const Mission = ({
       axios({
         url : `${base_url}/v1/api/student/interact/missions/${id}/users/${userId}`,
         withCredentials: true,
-        method : 'delete'
-      })
+        method : 'delete',
+        data : {
+          "mission_id": id,
+          "user_id": userId
+        }})
       .then(res => {
         console.log(res.data);
         setUserInteraction(userInteraction+1);

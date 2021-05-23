@@ -140,8 +140,8 @@ const interactController = {
             // We get the body parameters of the request from req.body
             const { mission_id, user_id } = req.body;
 
-            const checkMissionID = await Mission.findOne(mission_id);
-            const checkUserID = await User.findOne(user_id);
+            await Mission.findOne(mission_id);
+            await User.findOne(user_id);
                        
             // we check that all parameters have been passed on and add any errors to an array
             let bodyErrors = [];
@@ -153,7 +153,7 @@ const interactController = {
                 bodyErrors.push(`Le champ user_id ne peut pas être vide`);
             }
 
-            // if there are any errors, we return themq
+            // if there are any errors, we return theme
             if (bodyErrors.length) {
                 res.status(400).json(bodyErrors);
             } else {

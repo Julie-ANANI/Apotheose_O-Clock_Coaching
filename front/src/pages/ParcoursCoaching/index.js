@@ -32,7 +32,8 @@ const ParcoursCoaching = ({
   console.log(searchedText);
 
   const computeGeneralScore = () => {
-    console.log('COMPUTE GENERAL SCORE');
+    console.log('COMPUTE GENERAL SCORE - Parcours Coaching');
+    console.log(`userId : ${userId}`);
     const result = Math.round((userMissionsCompleted.length/allMissions.length)*100);
     console.log('userMissionsCompleted', userMissionsCompleted);
     setGeneralScore(result);
@@ -57,7 +58,7 @@ const ParcoursCoaching = ({
         className='cards-container'
         centered >
         {themes.map((theme)=> {
-
+          console.log(`theme.id : ${theme.id}`);
           return (
               <Link
                 key={theme.id}
@@ -82,6 +83,7 @@ const ParcoursCoaching = ({
           })}       
       </Card.Group>
     </div>
+    
 );}
 
 // == Export

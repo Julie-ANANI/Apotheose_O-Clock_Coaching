@@ -14,6 +14,9 @@ const MissionScore = ({
   
 
   const checkIfDone = () => { 
+    console.log(`MISSION STORE`);
+    console.table(`id (mission): ${id}`);
+    console.table(`userId: ${userId}`);
     axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`, { withCredentials: true })
       .then((response)=> {
         // console.log(response.data);

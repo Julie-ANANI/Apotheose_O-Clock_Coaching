@@ -75,7 +75,7 @@ app.use(session({
         secure: false, // false allow us not to be in https
         httpOnly: true,
         key: "sessionID",
-        maxAge: 1000 * 60 // in milliseconds
+        maxAge: 1000 * 60 * 120// in milliseconds
         //10 minutes
     }
 }));
