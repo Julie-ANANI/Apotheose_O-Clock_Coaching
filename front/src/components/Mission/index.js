@@ -39,7 +39,6 @@ const Mission = ({
     if (data.checked) {
       axios({
         url : `${base_url}/v1/api/student/interact/`,
-        withCredentials: true,
         method : 'post',
         data : {
           "mission_id": id,
@@ -56,7 +55,6 @@ const Mission = ({
     } else {
       axios({
         url : `${base_url}/v1/api/student/interact/missions/${id}/users/${userId}`,
-        withCredentials: true,
         method : 'delete'
       })
       .then(res => {
@@ -73,7 +71,7 @@ const Mission = ({
   }
 
   const checkIfDone = () => { 
-    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`, { withCredentials: true })
+    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`)
       .then((response)=> {
         console.log(response.data);
         setIschecked(true);

@@ -7,11 +7,7 @@ const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
 
-const adminMW = require('./middleware/adminMW');
-const studentMW = require('./middleware/studentMW');
-const connectedUserMW = require('./middleware/connectedUserMW');
-
-//Schema(Missio, Theme) and the ValidateBody
+//Schemas (Mission, Theme, Login and Interact) and ValidateBody service
 const { validateBody } = require('./services/validator');
 const missionSchema = require('./schemas/missionSchema');
 const themeSchema = require('./schemas/themeSchema');
@@ -25,10 +21,10 @@ const router = Router();
 // ---------------------------------------- LOGIN SPACE ----------------------------------------
 
 /**
- * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
+ * Authenticates the user with the O'Clock API and adds the user in the OAP database if new 
  * @route POST /login
  * @group Login
- * @returns {<User>} 200 - A user object
+ * @returns {<User>} 200 - A custom user object
  */
 router.post('/login', validateBody(loginSchema.newLogin), userController.login);
 
@@ -42,59 +38,59 @@ router.get('/logout', userController.logout);
 
 
 
-// ---------------------------------------- THEME ROUTE ----------------------------------------
+// ---------------------------------------- THEME ROUTES ----------------------------------------
 /**
  * Returns all themes from the database
  * @route GET /themes
  * @group Themes
- * @returns {Array<Themes>} 200 - An array of themes
+ * @returns {Array<Theme>} 200 - An array of themes
  */
 router.get('/themes', themeController.getAllThemes);
 
 /**
- * Returns a theme from the database with its id
+ * Returns a theme from the database based on its id
  * @route GET /themes/{id}
  * @group Themes
  * @param {number} id.path.required - the theme id
  * @returns {<Theme>} 200 - An instance of one theme
  */
-router.get('/themes/:id(\\d+)', connectedUserMW, themeController.getOneTheme);
+router.get('/themes/:id(\\d+)', themeController.getOneTheme);
 
 
 /**
- * add a new theme in the database with new id
+ * Adds a new theme in the database
  * @route POST /admin/themes
  * @group Themes
  * @param {string} title.path.required - the title
- * @param {string} description- the description
+ * @param {string} description - the description
  * @returns {<New Theme>} 200 - An instance of new theme
  */
 router.post('/admin/themes', validateBody(themeSchema.newTheme), themeController.addNewTheme);
 
 /**
- * change theme in the database with this id
+ * Edits a specific theme in the database
  * @route POST /admin/themes/{themeId}
  * @group Themes
  * @param {number} themeId.path.required - the theme id
  * @param {string} title - the title
  * @param {string} description- the description
- * @returns {<Theme>} 200 - an update in the theme
+ * @returns {<Theme>} 200 - thee updated instance of the theme
  */
 router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme), themeController.changeTheme);
 
 /**
- * delete a theme in the database with this id
+ * Deletes a specific theme in the database
  * @route DELETE /admin/themes/{themeId}
  * @group Themes
  * @param {number} themeId.path.required - the theme id
- * @returns {<Theme>} 200 - Suppression the id theme in the database
+ * @returns {<Theme>} 200 - Removal confirmation message
  */
-router.delete('/admin/themes/:themeId(\\d+)', adminMW, themeController.deleteTheme);
+router.delete('/admin/themes/:themeId(\\d+)', themeController.deleteTheme);
 //
 //
-// --------------------------------------END THEME ROUTE------------------------------------------
+// -------------------------------- END OF THEME ROUTES --------------------------------
 //
-// -------------------------------- MISSION ROUTE -------------------------------------
+// -------------------------------- MISSION ROUTES -------------------------------------
 //
 //
 /**
@@ -103,16 +99,16 @@ router.delete('/admin/themes/:themeId(\\d+)', adminMW, themeController.deleteThe
  * @group Missions
  * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/missions', connectedUserMW, missionController.getAllMissions);
+router.get('/missions', missionController.getAllMissions);
 
 /**
- * Returns a mission from the database with id
+ * Returns a specific mission from the database
  * @route GET /missions/{id}
  * @group Missions
  * @param {number} missionId.path.required - the mission id
- * @returns {<Mission>} 200 - An instance of one mission
+ * @returns {<Mission>} 200 - An instance of the Mission class
  */
-router.get('/missions/:id(\\d+)', connectedUserMW, missionController.getOneMission);
+router.get('/missions/:id(\\d+)', missionController.getOneMission);
 
 /**
  * Returns all missions for a given theme
@@ -121,70 +117,70 @@ router.get('/missions/:id(\\d+)', connectedUserMW, missionController.getOneMissi
  * @param {number} id.path.required - the theme id
  * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/themes/:id(\\d+)/missions', connectedUserMW, missionController.getAllByThemeId);
+router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
 
 /**
- * Create and return the new mission
+ * Creates and returns a new mission
  * @route POST /admin/themes/{theme_id}/missions
  * @group Missions
  * @param {number} theme_id.path.required - the theme id
  * @param {string} title.path.properties- the title
  * @param {string} advice- the description
- * @returns {Object} 201 - An object of the new mission
+ * @returns {Object} 201 - Instance of the Mission class
  */
-router.post('/admin/themes/:theme_id(\\d+)/missions', adminMW, validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:theme_id(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
- * Modify and returns the id of the modify mission
+ * Edits a specific mission
  * @route POST /admin/missions/{missionId}
  * @group Missions
  * @param {number} missionId.path.required - the mission id
  * @param {string} title - the title
  * @param {string} advice- the description
- * @returns {Object} 200 - An object of the id's mission modified
+ * @returns {Object} 200 - An instance of a mission
  */
-router.post('/admin/missions/:missionId(\\d+)', adminMW, validateBody(missionSchema.updateMission), missionController.modifyMission);
+router.post('/admin/missions/:missionId(\\d+)', validateBody(missionSchema.updateMission), missionController.modifyMission);
 
 
 /**
- * Delete the mission and returns the id of the mission deleted
+ * Deletes a specific mission
  * @route DELETE /admin/missions/{missionId}
  * @group Missions
  * @param {number} missionId.path.required - the mission id
- * @returns {Object} 200 - An object of the id's mission deleted
+ * @returns {Object} 200 - An instance of a mission
  */
-router.delete('/admin/missions/:missionId(\\d+)', adminMW, missionController.deleteMission);
+router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMission);
 
 //
 //
-// --------------------------------------END MISSION ROUTE------------------------------------------
+// -------------------------------------- END OF MISSION ROUTES -----------------------------------------
 
-//  ----------------------------------------- SCORE ------------------------------------------------
+//  ------------------------------------- SCORE COMPUTING ROUTES ----------------------------------------
 
 
 /**
- * Returns the score of a user for a theme
+ * Returns the score of a given user for a given theme
  * @route GET /student/:userId/themes/:themeId/score
  * @group Scores
  * @param {number} userId.path.required - the user id
  * @param {number} themeId.path.required - the theme id
- * @returns {Object} 200 - An object of a theme's score of a user
+ * @returns {Number} 200 - Number between 0 and 100
  */
-router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', connectedUserMW, interactController.getScorebyThemeAndUser);
+router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', interactController.getScorebyThemeAndUser);
 
 /**
- * Returns the global score of a user
+ * Returns the global score of a given user
  * @route GET /students/:userId/score
  * @group Scores
  * @param {number} userId.path.required - the user id
- * @returns {Object} 200 - An object of a score global of a user
+ * @returns {Number} 200 - Number between 0 and 100
  */
-router.get('/students/:userId(\\d+)/score', connectedUserMW, interactController.getGlobalScoreByUser);
+router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
 
-//--------------------------------------END SCORE-----------------------------------------------------------------------------
+//--------------------------------- END OF SCORE COMUTING ROUTES -----------------------------------
 
 //
-// -------------------------------- INTERACT ROUTE -------------------------------------
+// -------------------------------- INTERACT ROUTES ------------------------------------------------
 //
 //
 /**
@@ -194,7 +190,7 @@ router.get('/students/:userId(\\d+)/score', connectedUserMW, interactController.
  * @param {number} userId.path.required - the user id
  * @returns {Array<Interact>} 200 - An array of Interact instances
  */
-router.get('/missions/users/:userId(\\d+)', connectedUserMW, interactController.getAllByUserId);
+router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
 
 /**
  * Returns the checkbox value for a mission id and a user id
@@ -204,7 +200,7 @@ router.get('/missions/users/:userId(\\d+)', connectedUserMW, interactController.
  * @param {number} userId.path.required - the user id
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', connectedUserMW, interactController.getOneByMissionAndUser);
+router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.getOneByMissionAndUser);
 
 /**
  * Adds a record in database for a mission id and a user id
@@ -222,42 +218,41 @@ router.post('/student/interact/', validateBody(interactSchema.newInteract), inte
  * @param {number} userId.path.required - the user id
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-
-router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', studentMW, interactController.uncheckBox);
+router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.uncheckBox);
 //
 //
-// --------------------------------------END INTERACT ROUTE------------------------------------------
+// ------------------------------------- END OF INTERACT ROUTES ------------------------------------------
 
-//----------------------------------------OTHER ROUTE---------------------------------------------
+//--------------------------------------- OTHER ROUTES ---------------------------------------------------
 /**
  * Returns all users from the database
  * @route GET /users
  * @group Users
- * @returns {Array<Themes>} 200 - An array of user
+ * @returns {Array<User>} 200 - An array of user instances
  */
-router.get('/users', adminMW, userController.getAllusers);
+router.get('/users', userController.getAllusers);
 
 
 /**
- * Returns a user from the database with its id
+ * Returns a specific user from the database
  * @route GET /users/{id}
  * @group Users
  * @param {number} userId.path.required - the user id
  * @returns {<User>} 200 - An instance of one user
  */
-router.get('/users/:id(\\d+)', adminMW, userController.getOneUser);
+router.get('/users/:id(\\d+)', userController.getOneUser);
 
 /**
  * Creates/updates a user record with admin status
  * @route POST /admin/add
  * @group Admin
- * @returns {<User>} 200 - An instance of User class
+ * @returns {<User>} 200 - A custom user JSON string
  */
 router.post('/admin/add', adminController.addAdmin);
 
 
 /**
- * Returns one users details with this all promos 
+ * Returns all the students with their detailed info and cohorts 
  * @route GET /admin/students
  * @group Admin
  * @returns {Array<Student>} 200 - An array of students with detailed info on each student and their cohorts 

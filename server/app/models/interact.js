@@ -1,7 +1,7 @@
 const db = require('../database');
 
 
-// ALL classes extends Error with a custom error message in each context
+// ALL error classes extends from JS Error class with a custom error message in each context
 
 /**
  * Extends from Error class with custom message :'No interact found in database'
@@ -38,7 +38,7 @@ class InteractNotDeletedError extends Error {
 
 
 /**
- * An entity representing a coaching Interact
+ * An entity representing a completed mission for a specific user
  * @typedef Interact
  * @property {string} createdAt
  * @property {string} modifiedAt
@@ -47,13 +47,13 @@ class InteractNotDeletedError extends Error {
  */
 
 /**
-* A model representing an interact
+* A model representing a completed mission for a specific user
 * @class
 */
 class Interact {
 
 
-    // All static properties error of Interact's class
+    // All static error properties of the Interact class
     static NoInteractError = NoInteractError;
     static InteractNotAddedError = InteractNotAddedError;
     static InteractNotDeletedError = InteractNotDeletedError;
@@ -70,11 +70,11 @@ class Interact {
     };
 
     /**
-     * Gets every interaction of a user in the database
+     * Returns all checked boxes for a given user
      * @static
      * @async
      * @param {number} userId - The id of a unique user
-     * @returns {Array<Interact>}
+     * @returns {Array<Interact>} - An array of Interact instances
      */
     static async findAll(userId) {
         const { rows } = await db.query(`
@@ -91,12 +91,12 @@ class Interact {
     };
 
     /**
-     * Gets the interaction for a specific user and a specific mission in the database
+     * Returns the interaction for a specific user and a specific mission in the database
      * @static
      * @async
      * @param {number} userId - The id of a unique user
      * @param {number} missionId - The id of a unique mission
-     * @returns {<Interact>}|null - One instance of the Interact class or null 
+     * @returns {<Interact>} - One instance of the Interact class
      */
     static async findOne(missionId, userId) {
         const { rows } = await db.query(`
@@ -113,12 +113,12 @@ class Interact {
     };
 
     /**
-     * Gets the global score of a user
+     * Returns the global score of a user
      * @static
      * @async
      * @function findGlobalScoreOfOneUser
      * @param {number} userId - The id of a unique user
-     * @returns {Object} - An object of the global score
+     * @returns {number} - A number between zero and 100
      */
     static async findGlobalScoreOfOneUser(userId){
         const { rows } = await db.query(`SELECT COUNT(mission_id) AS global_score
@@ -139,12 +139,10 @@ class Interact {
       * 
       * @async
       * @function save
-      * @returns {<Interact>} An instance of the class Interact.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Interact>} - An instance of the Interact class.
+      * @throws {Error} - a potential SQL error.
     */
     async save() {
-        // INSERT
-
         const { rows } = await db.query(`INSERT INTO interact(mission_id, user_id) 
             VALUES($1, $2) RETURNING (mission_id, user_id);`, [
             this.mission_id,
@@ -164,8 +162,8 @@ class Interact {
       * 
       * @async
       * @function delete
-      * @returns {<Interact>} Instance of the class Interact.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Interact>} - Instance of the Interact class.
+      * @throws {Error} - a potential SQL error.
       */
     async delete() {
         const { rows } = await db.query(`DELETE FROM interact WHERE mission_id=$1 AND user_id=$2 RETURNING (mission_id, user_id);`, [this.mission_id, this.user_id]);

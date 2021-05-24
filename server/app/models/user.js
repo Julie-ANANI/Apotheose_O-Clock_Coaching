@@ -1,9 +1,9 @@
 const db = require('../database');
 
 
-// ALL classes extends Error with a personnal message in each context error
+// ALL error classes extends from the JS Error class with a custom message in each context
 /**
- * Extends of Error's class with personnal message :'No user found in database'
+ * Extends from Error class with custom message: 'No user found in database'
  * @class
  */
 class NoUserError extends Error {
@@ -11,7 +11,7 @@ class NoUserError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'No user found with this id'
+ * Extends from Error class with custom message: 'No user found with this id'
  * @class
  */
 class UnknowUserError extends Error {
@@ -19,7 +19,7 @@ class UnknowUserError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'User not updated'
+ * Extends from Error class with custom message: 'User not updated'
  * @class
  */
 class UserNotUpdatedError extends Error {
@@ -27,7 +27,7 @@ class UserNotUpdatedError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'User not added'
+ * Extends from Error class with custom message: 'User not added'
  * @class
  */
 class UserNotAddedError extends Error {
@@ -40,7 +40,7 @@ class UnknownAPIUserError extends Error {
 
 
 /**
- * An entity representing a user's coaching
+ * An entity representing a user
  * @typedef User
  * @property {number} id
  * @property {number} apiUser
@@ -68,7 +68,7 @@ class User {
     };
 
 
-    // All static properties error of User's class
+    // All static error properties of the User class
     static NoUserError = NoUserError;
     static UnknowUserError = UnknowUserError;
     static UserNotUpdatedError = UserNotUpdatedError;
@@ -76,12 +76,12 @@ class User {
 
 
     /**
-     * Fetches every user in the database
+     * Returns all users in the database
      * @async
      * @static
      * @function findAll
-     * @returns {Array<User>} An array of all users in the database
-     * @throws {Error} a potential SQL error.
+     * @returns {Array<User>} - An array of User instances
+     * @throws {Error} - a potential SQL error.
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM "user";');
@@ -93,14 +93,14 @@ class User {
     };
 
     /**
-      * Fetches a single user.
+      * Returns a specific user.
       * 
       * @async
       * @static
       * @function findOne
       * @param {number} id - A user ID.
-      * @returns {User} Instance of the class User.
-      * @throws {Error} a potential SQL error.
+      * @returns {<User>} - Instance of the User class.
+      * @throws {Error} - a potential SQL error.
       */
     static async findOne(id) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE id = $1;', [id]);
@@ -113,13 +113,13 @@ class User {
     };
 
     /**
-      * Fetches a single user based on the O’Clock API user’s ID.
+      * Returns a specific user based on the O’Clock API user’s ID.
       * 
       * @async
       * @static
       * @function findOneByApiId
       * @param {number} aid - The user ID in the O’Clock API.
-      * @returns {User} Instance of the class User
+      * @returns {<User>} - Instance of the User class
       */
     static async findOneByApiId(aid) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
@@ -132,13 +132,13 @@ class User {
     }
 
     /**
-      * Checks if a O’Clock API user exists in our internal database. If not, it returns null.
+      * Checks if an O’Clock API user exists in our internal database. If not, it returns null.
       * 
       * @async
       * @static
       * @function checkByApiId
       * @param {number} aid - The user ID in the O’Clock API.
-      * @returns {User|null} Instance of the class User or null if no such id in the database.
+      * @returns {<User>|null} - Instance of the User class or null if no such id in the database.
       */
      static async checkByApiId(aid) {
         const { rows } = await db.query('SELECT * FROM "user" WHERE api_user = $1;', [aid]);
@@ -152,17 +152,15 @@ class User {
 
 
     /**
-     * Inserts a new user in the Database or updates the database if the record alredy exists.
+     * Creates a new user or updates the database if the record already exists.
      * 
      * @async
      * @function save
-     * @returns {Array} Instances of the class User.
-     * @throws {Error} a potential SQL error.
+     * @returns {<User>} - Instance of the User class.
+     * @throws {Error} - a potential SQL error.
      */
     async save() {
         if (this.id) {
-            //TODO: create a function update_user(json) + add trigger for updating timestamp
-
             const { rows } = await db.query('UPDATE "user" SET api_user= $1, admin_status = $2 WHERE id=$3 RETURNING id;', [
                 this.api_user,
                 this.admin_status,
@@ -176,7 +174,6 @@ class User {
             };
 
         } else {
-            //TODO: create a function insert_user(json)
             const { rows } = await db.query('INSERT INTO "user"(api_user, admin_status) VALUES ($1, $2) RETURNING id;', [
                 this.api_user,
                 this.admin_status

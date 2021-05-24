@@ -119,7 +119,6 @@ const App = ({base_url}) => {
 
       axios({
         url: url,
-        withCredentials: true,
         method: 'get',
       })
       .then((response) => {

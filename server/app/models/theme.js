@@ -1,8 +1,8 @@
 const db = require('../database');
 
-// ALL classes extends Error with a personnal message in each context error
+// ALL error classes extends from the JS Error class with a custom message in each context
 /**
- * Extends of Error's class with personnal message :'No theme found in the database'
+ * Extends from Error class with custom message :'No theme found in the database'
  * @class
  */
 class NoThemeError extends Error {
@@ -10,7 +10,7 @@ class NoThemeError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'No theme found with this id'
+ * Extends from Error class with custom message: 'No theme found with this id'
  * @class
  */
 class UnknownThemeError extends Error {
@@ -18,7 +18,7 @@ class UnknownThemeError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Theme not added'
+ * Extends from Error class with custom message: 'Theme not added'
  * @class
  */
 class ThemeNotAdded extends Error {
@@ -26,7 +26,7 @@ class ThemeNotAdded extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Theme was not updated'
+ * Extends from Error class with custom message: 'Theme was not updated'
  * @class
  */
 class ThemeNotUpdated extends Error { 
@@ -34,7 +34,7 @@ class ThemeNotUpdated extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Theme was not deleted'
+ * Extends from Error class with custom message: 'Theme was not deleted'
  * @class
  */
 class ThemeNotDeleted extends Error { 
@@ -42,7 +42,7 @@ class ThemeNotDeleted extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Theme or user are not in the database'
+ * Extends from Error class with custom message: 'Theme or user are not in the database'
  * @class
  */
 class ThemeAndUserNotFound extends Error { 
@@ -51,7 +51,7 @@ class ThemeAndUserNotFound extends Error {
 
 
 /**
- * An entity representing a theme's
+ * An entity representing a theme in the coaching plan
  * @typedef Theme
  * @property {number} id
  * @property {string} title
@@ -63,7 +63,7 @@ class ThemeAndUserNotFound extends Error {
  */
 
 /**
- * A model representing a coaching theme
+ * A model representing a theme in the coaching plan
  * @class
  */
 class Theme {
@@ -77,7 +77,7 @@ class Theme {
         };
     };
 
-    // All static properties error of Theme's class
+    // All static error properties of the Theme class
     static NoThemeError = NoThemeError;
     static UnknownThemeError = UnknownThemeError;
     static ThemeNotAdded = ThemeNotAdded;
@@ -87,13 +87,13 @@ class Theme {
 
 
     /**
-     * Fetches every theme in the database
+     * Returns all themes in the database
      * 
      * @static
      * @async
      * @function findOne
-     * @returns {Array<Theme>} An array of all themes in the database
-     * @throws {Error} a potential SQL error.
+     * @returns {Array<Theme>} - An array of Theme instances
+     * @throws {Error} - a potential SQL error.
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM theme;');
@@ -106,14 +106,14 @@ class Theme {
     };
 
     /**
-      * Fetches a single theme
+      * Returns a specific theme
       * 
       * @static
       * @async
       * @function findOne
       * @param {number} id - A theme ID.
-      * @returns {Theme} Instance of the class Theme
-      * @throws {Error} a potential SQL error.
+      * @returns {<Theme>} - Instance of the Theme class
+      * @throws {Error} - a potential SQL error.
       */
     static async findOne(id) {
 
@@ -129,14 +129,14 @@ class Theme {
 
 
     /**
-      * Fetch the score of a theme.
+      * Returns the score for a given user and a given theme
       * @static
       * @async
       * @function findTheScoreOfOneThemeOfOneUser
       * @param {number} themeId - id of a theme
       * @param {number} userId - id of a user
-      * @returns {Object} An object of a theme's score of a user.
-      * @throws {Error} a potential SQL error.
+      * @returns {number} - Number between zero and 100.
+      * @throws {Error} - a potential SQL error.
       */
     static async findTheScoreOfOneThemeOfOneUser(themeId, userId){
         const {rows} = await db.query(`SELECT COUNT(mission.id) AS score
@@ -156,12 +156,12 @@ class Theme {
         };
     };
 /**
-      * Inserts a new theme in the DB or updates the database if the record alredy exists.
+      * Creates a new theme or updates the database if the record already exists
       * 
       * @async
       * @function save
-      * @returns {Array} Instances of the class Theme.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Theme>} - Instance of the Theme class.
+      * @throws {Error} - a potential SQL error.
       */
      async save() {
         
@@ -170,7 +170,6 @@ class Theme {
             this.description,
             this.position
         ]);
-              /// c'est les this du body 
            if (rows[0]) {
               this.id = rows[0].id;
            } else {
@@ -178,12 +177,12 @@ class Theme {
            };
    };
      /**
-      * Update theme in the DB 
+      * Updates a specific theme in the DB 
       * 
       * @async
       * @function save
-      * @returns {Array} Instances of the class Theme.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Theme>} - Instance of the Theme class.
+      * @throws {Error} - a potential SQL error.
       */
     async update() {
   
@@ -194,7 +193,6 @@ class Theme {
            WHERE id = $4 RETURNING id;
            `,
             [this.title, this.description,this.position,  this.id]);
-               /// c'est les this du body 
             if (rows[0]) {
                 return rows[0];
             } else {
@@ -204,12 +202,12 @@ class Theme {
     };
     
     /**
-      * Delete a theme
+      * Deletes a theme
       * 
       * @async
       * @function delete
-      * @returns {Array} Instances of the class Theme.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Theme>} - Instance of the Theme class.
+      * @throws {Error} - a potential SQL error.
       */
     async delete () {
         const { rows } = await db.query(`DELETE FROM theme WHERE id=$1 RETURNING id;`, [this.id]);

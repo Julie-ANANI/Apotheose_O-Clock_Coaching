@@ -21,7 +21,7 @@ function NewModalTheme({setRefresh, refresh, base_url})  {
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(`${base_url}/v1/api/admin/themes`, { withCredentials: true }, data, {headers}).then(res => {
+      axios.post(`${base_url}/v1/api/admin/themes`, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
         setTitleTheme('');

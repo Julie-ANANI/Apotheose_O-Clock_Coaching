@@ -29,7 +29,7 @@ const LoginForm = ({setActiveRole, setUserId, base_url, setActiveItem}) => {
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, data, { withCredentials: true }, {headers}).then(res => {
+      axios.post(postUrl, data, {headers}).then(res => {
         console.log(data)
         console.log("RESPONSE : ",res.data )
 

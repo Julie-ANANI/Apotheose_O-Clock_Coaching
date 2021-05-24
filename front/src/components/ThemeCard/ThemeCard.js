@@ -38,7 +38,7 @@ const ThemeCard = ({
 
   const loadMissions = () => {
     console.log(`${base_url}/v1/api/themes/${id}/missions`)
-    axios.get(`${base_url}/v1/api/themes/${id}/missions`, { withCredentials: true })
+    axios.get(`${base_url}/v1/api/themes/${id}/missions`)
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);
@@ -54,7 +54,7 @@ const ThemeCard = ({
 
   const handleDeleteMission = (e, {idmission}) => {
 
-    axios.delete(`${base_url}/v1/api/admin/missions/${idmission}`, { withCredentials: true })
+    axios.delete(`${base_url}/v1/api/admin/missions/${idmission}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);
@@ -71,7 +71,7 @@ const ThemeCard = ({
 
   const handleDeleteTheme = (e, {id}) => {
 
-    axios.delete(`${base_url}/v1/api/admin/themes/${id}`, { withCredentials: true })
+    axios.delete(`${base_url}/v1/api/admin/themes/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefresh(true);

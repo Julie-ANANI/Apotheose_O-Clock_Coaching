@@ -1,9 +1,9 @@
 const db = require('../database');
 
 
-// ALL classes extends Erro with a personnal message in each context error
+// ALL error classes extends from the JS Error class with a custom message in each context
 /**
- * Extends of Error's class with personnal message :'No mission found in database'
+ * Extends from Error class with custom message :'No mission found in database'
  * @class
  * @Error
  * @message
@@ -13,7 +13,7 @@ class NoMissionError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'No mission found with this id'
+ * Extends from Error class with custom message :'No mission found with this id'
  * @class
  * @Error
  * @message
@@ -23,7 +23,7 @@ class UnknowMissionError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Mission not updated'
+ * Extends from Error class with custom message :'Mission not updated'
  * @class
  * @Error
  * @message
@@ -33,7 +33,7 @@ class MissionNotUpdatedError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'Mission not added'
+ * Extends from Error class with custom message :'Mission not added'
  * @class
  * @Error
  * @message
@@ -43,7 +43,7 @@ class NoMissionAddedError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'No mission deleted'
+ * Extends from Error class with custom message :'No mission deleted'
  * @class
  * @Error
  * @message
@@ -53,7 +53,7 @@ class NoMissionDeletedError extends Error {
 };
 
 /**
- * Extends of Error's class with personnal message :'No mission found for this theme id'
+ * Extends from Error class with custom message:'No mission found for this theme id'
  * @class
  * @Error
  * @message
@@ -66,7 +66,7 @@ class NoMissionFoundInThemeError extends Error {
 
 
 /**
- * An entity representing a coaching mission
+ * An entity representing a mission in the coaching plan
  * @typedef Mission
  * @property {number} id
  * @property {string} title
@@ -79,7 +79,7 @@ class NoMissionFoundInThemeError extends Error {
  */
 
  /**
- * A model representing a coaching mission
+ * A model representing a mission in the coaching plan
  * @class
  */
 class Mission {
@@ -93,7 +93,7 @@ class Mission {
         }
     };
 
-    // All static properties error of Mission's class
+    // All static error properties of the Mission class
     static NoMissionError = NoMissionError;
     static UnknowMissionError = UnknowMissionError;
     static MissionNotUpdatedError = MissionNotUpdatedError;
@@ -102,13 +102,13 @@ class Mission {
     static NoMissionDeletedError = NoMissionDeletedError;
 
     /**
-     * Fetches every mission in the database
+     * Returns all missions in the database
      * 
      * @static
      * @async
      * @function findAll
-     * @returns {Array<Mission>} An array of all missions in the database
-     * @throws {Error} a potential SQL error.
+     * @returns {Array<Mission>} - An array of Mission instances
+     * @throws {Error} - a potential SQL error.
      */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM mission;');
@@ -121,13 +121,13 @@ class Mission {
 
 
     /**
-      * Fetches a single mission.
+      * Returns a specific mission.
       * @async
       * @static
       * @function findOne
       * @param {number} id - A mission ID.
-      * @returns {Mission} Instance of the class Mission.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Mission>} - Instance of the Mission class.
+      * @throws {Error} - a potential SQL error.
       */
     static async findOne(id) {
         const { rows } = await db.query('SELECT * FROM mission WHERE id = $1;', [id]);
@@ -139,12 +139,12 @@ class Mission {
         };
     };
 
-    /** Fetches every mission with a given theme from the database
+    /** Returns all missions with a given theme from the database
      * @param {Number} tid - the theme id
      * @static
      * @async
-     * @returns {Array<Mission>}
-     * @throws {Error} a potential SQL error.
+     * @returns {Array<Mission>} - An array of Mission instances
+     * @throws {Error} - a potential SQL error.
      */
     static async findByTheme(tid) {
         const { rows } = await db.query(`
@@ -162,17 +162,16 @@ class Mission {
     
 
     /**
-      * Inserts a new mission in the Database or updates the database if the record alredy exists.
+      * Creates a new mission or updates the database if the record already exists
       * 
       * @async
       * @function save
-      * @returns {Array} Instances of the class Mission.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Mission>} - Instance of the Mission class.
+      * @throws {Error} - a potential SQL error.
       */
     async save(){
 
         if(this.id){
-            //TODO: do a function update_mission(json)
             const { rows } = await db.query('UPDATE mission SET title= $1, advice= $2, position= $3, theme_id = $4 WHERE id=$5 RETURNING id;', [
                 this.title, 
                 this.advice, 
@@ -188,7 +187,6 @@ class Mission {
             };
 
         }else{
-            //TODO: do a function new_mission(json)
             const{ rows } = await db.query('INSERT INTO mission(title,advice,position,theme_id)VALUES ($1, $2, $3, $4) RETURNING id;', [
                 this.title,
                 this.advice,
@@ -205,13 +203,13 @@ class Mission {
     };
 
     /**
-      * Delete a mission
+      * Deletes a specific mission
       * 
       * @async
       * @static
       * @function delete
-      * @returns {Array} Instances of the class Mission.
-      * @throws {Error} a potential SQL error.
+      * @returns {<Mission>} - Instance of the Mission class.
+      * @throws {Error} - a potential SQL error.
       */
     async delete() {
     

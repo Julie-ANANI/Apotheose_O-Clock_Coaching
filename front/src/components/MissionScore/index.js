@@ -14,7 +14,7 @@ const MissionScore = ({
   
 
   const checkIfDone = () => { 
-    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`, { withCredentials: true })
+    axios.get(`${base_url}/v1/api/missions/${id}/users/${userId}`)
       .then((response)=> {
         console.log(response.data);
         setIschecked(true);

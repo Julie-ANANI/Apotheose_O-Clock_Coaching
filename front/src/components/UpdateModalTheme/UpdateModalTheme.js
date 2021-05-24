@@ -29,7 +29,7 @@ function UpdateModalTheme({
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, { withCredentials: true }, data, {headers}).then(res => {
+      axios.post(postUrl, data, {headers}).then(res => {
         console.log(postUrl)
         setTitleTheme(currentThemeTitle);
         setDescriptionTheme(currentThemeDescription);

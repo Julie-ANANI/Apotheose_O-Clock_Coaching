@@ -32,7 +32,7 @@ if(positive){
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, data, { withCredentials: true }, {headers}).then(res => {
+      axios.post(postUrl, data, {headers}).then(res => {
         setResult("Vous avez ajouté un nouvel administrateur ! Bienvenue à lui!")
         setPositive(true);
         showMessage()

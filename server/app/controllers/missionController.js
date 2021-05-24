@@ -8,18 +8,11 @@ const missionController = {
     */
     getAllMissions: async (_, res) => {
         try {
-            /* *
-             * All the missions are retrieved from the database
-             */
-            
+            // we get all the missions from the database
             const theMissions = await Mission.findAll();
             res.status(200).json(theMissions);
 
         } catch (err) {
-            /**
-           * There are no missions in the database
-           * In the model, there is an error with a custom message
-           */
             res.status(404).json(err.message);
         }
     },
@@ -30,21 +23,14 @@ const missionController = {
     getOneMission: async (req, res) => {
 
         try {
-            /**
-            * We get the id in the parameters of the request
-            */
+            // We get the id in the parameters of the request
             const { id } = req.params.id
 
             const onlyOneMission = await Mission.findOne(id);
             res.status(200).json(onlyOneMission);
-            }
+        }
 
         catch (err) {
-              /**
-                * There is no this mission in the database
-                * In the model, there is an error with a custom message
-                */
-
             res.status(404).json(err.message);
         }
     },
@@ -53,23 +39,17 @@ const missionController = {
     * Controls endpoint GET /v1/api/themes/:id/missions/
     */
     getAllByThemeId: async (req, res) => {
-        
+
         try {
-            /**
-            * We get the id in the parameters of the request
-            */
+            // We get the id in the parameters of the request
             const { id } = req.params;
             await Theme.findOne(id);
 
             const theMissions = await Mission.findByTheme(id);
             res.status(200).json(theMissions);
-    
-        
+
+
         } catch (err) {
-            /**
-            * There is no mission in the database for this theme id
-            * In the model, there is an error with a custom message
-            */
             res.status(404).json(err.message);
         }
     },
@@ -80,34 +60,24 @@ const missionController = {
     addMission: async (req, res) => {
 
         try {
-            /**
-            * We get the theme id in the parameters of the request
-            */
+            // We get the theme id in the parameters of the request
             const { themeId } = req.params;
 
-            //verify id 
+            // we check the theme id 
             await Theme.findOne(themeId);
 
-            /**
-            * We get the title, advice, position in the body
-            */
+            // We get the title, advice in the body
             const { title, advice } = req.body;
 
-            /**
-            * Create the new mission and save it int the database
-            */
-        
-            const newMission = new Mission({title, advice, 'position': 0, 'theme_id': themeId });
-      
+            // We create a new mission and save it in the database
+            // For v1, we don't handle the position so we hardcode it for now
+            const newMission = new Mission({ title, advice, 'position': 0, 'theme_id': themeId });
+
             await newMission.save();
             res.status(201).json(newMission);
-   
+
         }
         catch (err) {
-            /**
-           * The mission can't be create
-           * In the model, there is an error with a custom message
-           */
             res.status(404).json(err.message);
         };
     },
@@ -119,91 +89,50 @@ const missionController = {
     modifyMission: async (req, res) => {
 
         try {
-            /**
-            * We get the mission id in the parameters of the request
-            */
+            // We get the mission id in the parameters of the request
             const { missionId } = req.params;
 
-            /**
-            * We have to find the mission with his id 
-            */
+            // We check the mission id
             const mission = await Mission.findOne(missionId);
 
-           
-            /**
-            * Verify if the mission is in the database
-            */
-            if (!mission) {
-                res.status(404).json(`There is no mission with this id :${missionId}!`);
-            } else {
+            // We get the title, advice, position in the body
+            const { title, advice } = req.body;
 
-                /**
-                * We get the title, advice, position in the body
-                */
-                const {title, advice } = req.body;
-
-                /**
-                * Verify : 
-                *           IF parameter is not empty SO we change the parameter's mission
-                */
-                if (title) {
-                    mission.title = title;
-                };
-
-                if (advice) {
-                    mission.advice = advice;
-                };
-
-                /**
-                * The mission is update
-                */
-                const save = await mission.save();
-                res.status(200).json(save);
+            //  If a parameter is provided, we update the mission accordingly
+            if (title) {
+                mission.title = title;
             };
 
+            if (advice) {
+                mission.advice = advice;
+            };
+
+            // Then we save the changes in database
+            const save = await mission.save();
+            res.status(200).json(save);
+
         } catch (err) {
-            /**
-           * The mission can't be update
-           * In the model, there is an error with a custom message
-           */
             res.status(404).json(err.message)
         };
     },
 
 
     /**
-    * It's control the road DELETE /v1/api/admin/missions/:missionId
+    * Controls endpoint DELETE /v1/api/admin/missions/:missionId
     */
     deleteMission: async (req, res) => {
         try {
-            /**
-            * We get the mission id in the parameters of the request
-            */
+            // We get the mission id in the parameters of the request
             const { missionId } = req.params;
 
-            /**
-            * We have to find the mission with his id
-            */
+            // We check the mission id
             const mission = await Mission.findOne(missionId);
 
-            /**
-            * Verify if the mission is in the database
-            */
-            if (!mission) {
-                res.status(404).json(`There is no misson with this id : ${missionId} `);
-            } else {
-                /**
-                * Delete the mission
-                */
-                const deletedMission = await mission.delete();
-                res.status(200).json(deletedMission);
-            };
+            // If found, we delete the mission
+            const deletedMission = await mission.delete();
+            res.status(200).json(deletedMission);
 
         } catch (err) {
-            /**
-           * The mission can't be delete
-           * In the model, there is an error with a custom message
-           */
             res.status(500).json(err.message);
         };
     },
