@@ -119,8 +119,10 @@ const userController = {
 
     logout: (req, res) => {
 
+        console.log (`****************************LE GROS OBJET REQUEST`);
+        // console.log(req);
         console.log(req.sessionID)
-        console.log(req.header.cookie);
+        // console.log(req.header.cookie);
         // console.log(req.rawheaders.cookie);
         res.status(200).clearCookie("connect.sid", {
         path: "/"
@@ -130,14 +132,17 @@ const userController = {
 
 
         res.clearCookie("key");
-        console.log(req.session.id);
-        console.log(req.session.cookie);
+        // console.log(req.session.id);
+        // console.log(req.session.cookie);
         req.session.destroy(err => {
             if (err) {
                 return console.log(err);
             }
             console.log('***** req.session logout');
-         
+            // sessionID: 'MJIrwlfO2SJ-B7KZoNNxkmpOZQRmGRqe',
+
+
+
             //l'id est bien supprimé
             // console.log(req.session);
             // const http = require('http');
@@ -153,7 +158,8 @@ const userController = {
         // console.log(res.header())
         // console.log(res.sessionStore)
         // console.log(res.rawheaders)
-        // console.log(res);
+        console.log (`****************************LE GROS OBJET RESPONSE`);
+        console.log(res);
 
     }
 
