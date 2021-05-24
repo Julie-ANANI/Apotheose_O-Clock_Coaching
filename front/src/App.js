@@ -35,7 +35,7 @@ import LoginPage from './pages/LoginPage';
 // import AccueilAdmin from './pages/AccueilAdmin';
 import students from 'src/data/users.js';
 import ScorePage from 'src/pages/ScorePage';
-
+import heros from 'src/data/equipe.js';
 
 // A mettre dans le .env et utiliser process.env.base_url
 
@@ -249,7 +249,7 @@ const App = ({base_url}) => {
             setUserId={setUserId}
           />
           <Header titre={titre.adminAccueil.description} />
-          <AccueilAdmin />
+          <AccueilAdmin heros={heros}/>
         </Route>
 
         <Route path='/parcours-coaching'>

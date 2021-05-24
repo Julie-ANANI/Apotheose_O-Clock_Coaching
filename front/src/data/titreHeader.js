@@ -17,7 +17,7 @@ export default
     },
 
     adminAccueil :{
-      description: `Bonne journée ! Courage, force et honneur ! On lâche rien !!`,
+      description: `Présentation de l'équipe de dev !`,
       page: 'admin',
     },
 
