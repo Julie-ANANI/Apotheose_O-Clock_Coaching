@@ -8,8 +8,6 @@ const session = require('express-session');
 const connectRedis = require('connect-redis');
 const redisClient = require('./app/session_store');
 
-const userMW = require('./app/middleware/userMW');
-
 
 const router = require('./app/router');
 
@@ -67,7 +65,8 @@ app.use(session({
     cookie: {
         secure: false, // false allow us not to be in https
         httpOnly: true,
-        maxAge: 1000 * 60 * 120 // in milliseconds
+        maxAge: 1000 * 60 * 120, // in milliseconds
+        name: 'sessionID'
     }
 }));
 
@@ -75,12 +74,8 @@ app.use(function (req, res, next) {
     if (!req.session) {
         return next(new Error('oh no')) // handle error
     }
-    next() // otherwise continue
+    next(); // otherwise continue
 });
-
-// Middleware which creates a user property in req.session
-// app.use(userMW);
-
 
 // Allowing cross-origin requests in development
 // if (process.env.NODE_ENV === 'development') {
