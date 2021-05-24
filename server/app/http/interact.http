@@ -19,12 +19,12 @@ GET http://localhost:3000/v1/api/missions/4/users/3
 
 
 # La valeur de la case à cocher pour la mission 1 et l'utilisateur 300 qui n'existe pas 
-GET http://localhost:3000/v1/api/missions/1/users/3
+GET http://localhost:3000/v1/api/missions/1/users/300
 ###
 
 
 # La valeur de la case à cocher pour la mission 22 et l'utilisateur 4
-GET http://localhost:3000/v1/api/missions/22/users/4
+GET http://localhost:3000/v1/api/missions/10/users/6
 ###
 
 # La valeur de la case à cocher pour la mission 5 et l'utilisateur 3
