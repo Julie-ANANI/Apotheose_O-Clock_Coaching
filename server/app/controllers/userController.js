@@ -117,16 +117,14 @@ const userController = {
     },
 
     logout: (req, res) => {
-        req.session.destroy(err => {
-            if (err) {
-                return console.log(err);
-            }
-            console.log('***** req.session dans la route logout');
-            console.log(req.session);
-            res.clearCookie('sessionId', { path: '/', domain: 'localhost' }).status(200).json(`Vous êtes bien déconnecté`);
-        });
-
-    }
+        // req.session.destroy(err => {
+        //     if (err) {
+        //         return console.log(err);
+        //     }
+        //     console.log('***** req.session dans la route logout');
+        //     console.log(req.session);
+        res.status(200).json(`Vous êtes bien déconnecté`);
+    },
 
 };
 

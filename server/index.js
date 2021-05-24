@@ -4,9 +4,9 @@ const express = require('express');
 const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
 const PORT = process.env.PORT || 3000;
-const session = require('express-session');
-const connectRedis = require('connect-redis');
-const redisClient = require('./app/session_store');
+// const session = require('express-session');
+// const connectRedis = require('connect-redis');
+// const redisClient = require('./app/session_store');
 
 
 const router = require('./app/router');
@@ -49,33 +49,33 @@ app.use(express.json());
 
 // Passing express session to connect-redis which adds support of Redis
 // This initializes the session
-const RedisStore = connectRedis(session);
+// const RedisStore = connectRedis(session);
 
 // Establishing a session system
 // All our requests will now have a new 'session' parameter which automatically matches the session of the client making the request
-app.use(session({
-    // we pass the Redis store information
-    store: new RedisStore({ client: redisClient }),
-    //resave is used to reset the lifetime of the session with each new request
-    resave: true,
-    //saveUninitialized is used to save the session in the system event if we didn't store any data inside
-    saveUninitialized: true,
-    //secret is used to encrypt  the session identifier placed in the cookie sent to the client
-    secret: process.env.SESSION_SECRET,
-    cookie: {
-        secure: false, // false allow us not to be in https
-        httpOnly: true,
-        maxAge: 1000 * 60 * 120, // in milliseconds
-        name: 'sessionID'
-    }
-}));
+// app.use(session({
+//     // we pass the Redis store information
+//     store: new RedisStore({ client: redisClient }),
+//     //resave is used to reset the lifetime of the session with each new request
+//     resave: true,
+//     //saveUninitialized is used to save the session in the system event if we didn't store any data inside
+//     saveUninitialized: true,
+//     //secret is used to encrypt  the session identifier placed in the cookie sent to the client
+//     secret: process.env.SESSION_SECRET,
+//     cookie: {
+//         secure: false, // false allow us not to be in https
+//         httpOnly: true,
+//         maxAge: 1000 * 60 * 120, // in milliseconds
+//         name: 'sessionID'
+//     }
+// }));
 
-app.use(function (req, res, next) {
-    if (!req.session) {
-        return next(new Error('oh no')) // handle error
-    }
-    next(); // otherwise continue
-});
+// app.use(function (req, res, next) {
+//     if (!req.session) {
+//         return next(new Error('oh no')) // handle error
+//     }
+//     next(); // otherwise continue
+// });
 
 // Allowing cross-origin requests in development
 // if (process.env.NODE_ENV === 'development') {

@@ -15,7 +15,6 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
-    "connect-redis": "^5.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
@@ -23,7 +22,8 @@
     "express-swagger-generator": "^1.1.17",
     "joi": "^17.4.0",
     "pg": "^8.6.0",
-    "redis": "^3.1.2"
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.1"
   },
   "description": ""
 }
