@@ -113,7 +113,7 @@ const userController = {
 
         } catch (err) {
 
-            res.status(500).json(err.message);
+            res.status(500).json(`L'email doit être celui utilisé dans le cockpit`);
         };
     },
 
