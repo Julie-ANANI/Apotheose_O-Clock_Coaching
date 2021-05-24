@@ -132,7 +132,7 @@ router.get('/themes/:id(\\d+)/missions', connectedUserMW, missionController.getA
  * @param {string} advice- the description
  * @returns {Object} 201 - An object of the new mission
  */
-router.post('/admin/themes/:themeId(\\d+)/missions', adminMW, validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:theme_id(\\d+)/missions', adminMW, validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Modify and returns the id of the modify mission

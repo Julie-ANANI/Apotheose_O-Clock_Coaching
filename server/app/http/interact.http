@@ -48,8 +48,8 @@ POST http://localhost:3000/v1/api/student/interact/
 Content-Type: application/json
 
 {
-    "mission_id": 14,
-    "user_id": 3
+    "mission_id": 13,
+    "user_id": 6
 }
 ###
 
@@ -76,6 +76,6 @@ Content-Type: application/json
 
 
 # Modifier la valeur d'une case en bdd pour la mission 12 et l'utilisateur 3 
-DELETE http://localhost:3000/v1/api/student/interact/missions/14/users/3
+DELETE http://localhost:3000/v1/api/student/interact/missions/13/users/6
 Content-Type: application/json
 ###

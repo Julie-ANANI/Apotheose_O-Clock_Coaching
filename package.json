@@ -9,11 +9,6 @@
     "start": "node server/index.js",
     "heroku-postbuild": "npm run-script build"
   },
-  "proxy": {
-    "/api/v1/": {
-        "target": "http://localhost:8080"
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
