@@ -13,7 +13,7 @@ const StudentCard = ({student, base_url, getSpeName}) => {
   const loadGeneralScore = () => {
 
     console.log('COMPUTE GENERAL SCORE');
-    axios.get(`${base_url}/v1/api/students/${student.oap_id}/score`)
+    axios.get(`${base_url}/v1/api/students/${student.oap_id}/score`, { withCredentials: true })
       .then((response)=> {
         console.log('SCORE', response.data);
         setStudentScore(response.data);

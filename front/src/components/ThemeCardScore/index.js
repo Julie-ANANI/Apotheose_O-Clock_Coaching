@@ -24,7 +24,7 @@ const ThemeCardScore = ({
 
   const loadThemeScore = () => {
     console.log('COMPUTE THEME SCORE');
-    axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`)
+    axios.get(`${base_url}/v1/api/students/${student.oap_id}/themes/${id}/score`, { withCredentials: true })
       .then((response)=> {
         console.log('SCORE', response.data);
         setThemeScore(response.data);  
@@ -42,7 +42,7 @@ const ThemeCardScore = ({
 
   const loadMissions = () => {
     console.log(`${base_url}/v1/api/themes/${id}/missions`)
-    axios.get(`${base_url}/v1/api/themes/${id}/missions`)
+    axios.get(`${base_url}/v1/api/themes/${id}/missions`, { withCredentials: true })
       .then((response) => {
         // console.log(response.data);
         setMissions(response.data);

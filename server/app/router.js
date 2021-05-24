@@ -7,8 +7,9 @@ const userController = require('./controllers/userController');
 const interactController = require('./controllers/interactController');
 const adminController = require('./controllers/adminController');
 
-// const adminMW = require('./middleware/adminMW');
-// const studentMW = require('./middleware/studentMW');
+const adminMW = require('./middleware/adminMW');
+const studentMW = require('./middleware/studentMW');
+const connectedUserMW = require('./middleware/connectedUserMW');
 
 //Schema(Missio, Theme) and the ValidateBody
 const { validateBody } = require('./services/validator');
@@ -25,15 +26,14 @@ const router = Router();
 
 /**
  * Authenticates the user with the O'Clock API, adds the user in the OAP database if new, and saves them in session 
- *  POST /login
+ * @route POST /login
  * @group Login
  * @returns {<User>} 200 - A user object
  */
 router.post('/login', validateBody(loginSchema.newLogin), userController.login);
 
-/**
- * Logs out the user from the backend
- *  POST /login
+
+/** Logs out the user from the backend
  * @route GET /logout
  * @group Login
  * @returns 200 - A message confirming the user is logged out in backend
@@ -58,7 +58,7 @@ router.get('/themes', themeController.getAllThemes);
  * @param {number} id.path.required - the theme id
  * @returns {<Theme>} 200 - An instance of one theme
  */
-router.get('/themes/:id(\\d+)', themeController.getOneTheme);
+router.get('/themes/:id(\\d+)', connectedUserMW, themeController.getOneTheme);
 
 
 /**
@@ -89,7 +89,7 @@ router.post('/admin/themes/:themeId(\\d+)', validateBody(themeSchema.updateTheme
  * @param {number} themeId.path.required - the theme id
  * @returns {<Theme>} 200 - Suppression the id theme in the database
  */
-router.delete('/admin/themes/:themeId(\\d+)', themeController.deleteTheme);
+router.delete('/admin/themes/:themeId(\\d+)', adminMW, themeController.deleteTheme);
 //
 //
 // --------------------------------------END THEME ROUTE------------------------------------------
@@ -103,7 +103,7 @@ router.delete('/admin/themes/:themeId(\\d+)', themeController.deleteTheme);
  * @group Missions
  * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/missions', missionController.getAllMissions);
+router.get('/missions', connectedUserMW, missionController.getAllMissions);
 
 /**
  * Returns a mission from the database with id
@@ -112,7 +112,7 @@ router.get('/missions', missionController.getAllMissions);
  * @param {number} missionId.path.required - the mission id
  * @returns {<Mission>} 200 - An instance of one mission
  */
-router.get('/missions/:id(\\d+)', missionController.getOneMission);
+router.get('/missions/:id(\\d+)', connectedUserMW, missionController.getOneMission);
 
 /**
  * Returns all missions for a given theme
@@ -121,7 +121,7 @@ router.get('/missions/:id(\\d+)', missionController.getOneMission);
  * @param {number} id.path.required - the theme id
  * @returns {Array<Mission>} 200 - An array of missions
  */
-router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
+router.get('/themes/:id(\\d+)/missions', connectedUserMW, missionController.getAllByThemeId);
 
 /**
  * Create and return the new mission
@@ -132,7 +132,7 @@ router.get('/themes/:id(\\d+)/missions', missionController.getAllByThemeId);
  * @param {string} advice- the description
  * @returns {Object} 201 - An object of the new mission
  */
-router.post('/admin/themes/:themeId(\\d+)/missions', validateBody(missionSchema.newMission), missionController.addMission);
+router.post('/admin/themes/:theme_id(\\d+)/missions', adminMW, validateBody(missionSchema.newMission), missionController.addMission);
 
 /**
  * Modify and returns the id of the modify mission
@@ -143,7 +143,7 @@ router.post('/admin/themes/:themeId(\\d+)/missions', validateBody(missionSchema.
  * @param {string} advice- the description
  * @returns {Object} 200 - An object of the id's mission modified
  */
-router.post('/admin/missions/:missionId(\\d+)', validateBody(missionSchema.updateMission), missionController.modifyMission);
+router.post('/admin/missions/:missionId(\\d+)', adminMW, validateBody(missionSchema.updateMission), missionController.modifyMission);
 
 
 /**
@@ -153,13 +153,14 @@ router.post('/admin/missions/:missionId(\\d+)', validateBody(missionSchema.updat
  * @param {number} missionId.path.required - the mission id
  * @returns {Object} 200 - An object of the id's mission deleted
  */
-router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMission);
+router.delete('/admin/missions/:missionId(\\d+)', adminMW, missionController.deleteMission);
 
 //
 //
 // --------------------------------------END MISSION ROUTE------------------------------------------
 
 //  ----------------------------------------- SCORE ------------------------------------------------
+
 
 /**
  * Returns the score of a user for a theme
@@ -169,7 +170,7 @@ router.delete('/admin/missions/:missionId(\\d+)', missionController.deleteMissio
  * @param {number} themeId.path.required - the theme id
  * @returns {Object} 200 - An object of a theme's score of a user
  */
-router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', interactController.getScorebyThemeAndUser);
+router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', connectedUserMW, interactController.getScorebyThemeAndUser);
 
 /**
  * Returns the global score of a user
@@ -178,7 +179,7 @@ router.get('/students/:userId(\\d+)/themes/:themeId(\\d+)/score', interactContro
  * @param {number} userId.path.required - the user id
  * @returns {Object} 200 - An object of a score global of a user
  */
-router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByUser);
+router.get('/students/:userId(\\d+)/score', connectedUserMW, interactController.getGlobalScoreByUser);
 
 //--------------------------------------END SCORE-----------------------------------------------------------------------------
 
@@ -193,7 +194,7 @@ router.get('/students/:userId(\\d+)/score', interactController.getGlobalScoreByU
  * @param {number} userId.path.required - the user id
  * @returns {Array<Interact>} 200 - An array of Interact instances
  */
-router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
+router.get('/missions/users/:userId(\\d+)', connectedUserMW, interactController.getAllByUserId);
 
 /**
  * Returns the checkbox value for a mission id and a user id
@@ -203,7 +204,7 @@ router.get('/missions/users/:userId(\\d+)', interactController.getAllByUserId);
  * @param {number} userId.path.required - the user id
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.getOneByMissionAndUser);
+router.get('/missions/:missionId(\\d+)/users/:userId(\\d+)', connectedUserMW, interactController.getOneByMissionAndUser);
 
 /**
  * Adds a record in database for a mission id and a user id
@@ -221,7 +222,8 @@ router.post('/student/interact/', validateBody(interactSchema.newInteract), inte
  * @param {number} userId.path.required - the user id
  * @returns {<Interact>} 200 - One instance of the Interact class
  */
-router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', interactController.uncheckBox);
+
+router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)', studentMW, interactController.uncheckBox);
 //
 //
 // --------------------------------------END INTERACT ROUTE------------------------------------------
@@ -233,7 +235,7 @@ router.delete('/student/interact/missions/:missionId(\\d+)/users/:userId(\\d+)',
  * @group Users
  * @returns {Array<Themes>} 200 - An array of user
  */
-router.get('/users', userController.getAllusers);
+router.get('/users', adminMW, userController.getAllusers);
 
 
 /**
@@ -243,7 +245,7 @@ router.get('/users', userController.getAllusers);
  * @param {number} userId.path.required - the user id
  * @returns {<User>} 200 - An instance of one user
  */
-router.get('/users/:id(\\d+)', userController.getOneUser);
+router.get('/users/:id(\\d+)', adminMW, userController.getOneUser);
 
 /**
  * Creates/updates a user record with admin status

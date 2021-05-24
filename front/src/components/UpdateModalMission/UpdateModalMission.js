@@ -26,7 +26,7 @@ function UpdateModalMission({
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, data, {headers}).then(res => {
+      axios.post(postUrl, { withCredentials: true }, data, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
         setTitleMission(currentTitle);

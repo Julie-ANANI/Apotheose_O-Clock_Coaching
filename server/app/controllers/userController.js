@@ -52,7 +52,7 @@ const userController = {
 
 
     /**
-    * Controls endpoint  POST /v1/api/login
+    * Route POST /v1/api/login
     */
     login: async (req, res) => {
 
@@ -100,31 +100,32 @@ const userController = {
                 apiUser.oap_id = theInternalUser.id;
                 apiUser.oap_admin_status = theInternalUser.admin_status;
             };
-/*
+
             // Now the user is connected, we store their info in the session
             req.session.user = {
                 oap_admin_status: apiUser.oap_admin_status,
                 is_student: apiUser.data.is_student
-            };*/
+            };
 
             // We send this full object containing external and internal API info to the client
             res.status(200).json(apiUser);
 
 
         } catch (err) {
-
-            res.status(500).json(err.message);
+            res.status(500).json(`L'email doit être celui utilisé dans le cockpit`);
         };
     },
 
-
-
-    /**
-    * Controls endpoint GET /v1/api/logout
-    */
     logout: (req, res) => {
-        req.session.user = false;
-        res.status(200).json(`Vous êtes bien déconnecté`);
+        req.session.destroy(err => {
+            if (err) {
+                return console.log(err);
+            }
+            console.log('***** req.session dans la route logout');
+            console.log(req.session);
+            res.clearCookie('sessionId', { path: '/', domain: 'localhost' }).status(200).json(`Vous êtes bien déconnecté`);
+        });
+
     }
 
 };

@@ -27,7 +27,7 @@ function NewModalMission({
     const headers = {
       'Content-Type': 'application/json'
     };
-      axios.post(postUrl, data, {headers}).then(res => {
+      axios.post(postUrl, data, { withCredentials: true }, {headers}).then(res => {
         console.log(res.data);
         setData(res.data);
         setTitleTheme('');
