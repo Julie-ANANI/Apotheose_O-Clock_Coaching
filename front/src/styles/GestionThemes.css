@@ -15,7 +15,7 @@
   background-color: #FFFDD8;
   border-radius: 2.5em;
   color: #00c4a7;
-  border: solid 3px #FFFDD8 ;
+  border: solid 3px #FFFDD8;
   transition: all 150ms ease-in;
 }
 
@@ -23,15 +23,6 @@
 
 
 .themesGestion .addtheme-container:hover {
-  /* width: fit-content;
-  margin : 1em auto 2.5em;
-  padding : 0.5em 1em;
-  display: flex;
-  align-items: baseline;
-  background-color: #00c4a7;
-  border-radius: 2.5em;
-  color: #FFFDD8;
-  border: solid 3px #FFFDD8 ; */
   opacity: 0.8;
   cursor: pointer;
   transition: all 50ms ease-in;
@@ -51,7 +42,7 @@
 
 .ui.modal .actions>.button.button-cancel {
 
-  max-width: 120px;
+  min-width: fit-content;
   padding : 0.5em 1em;
   display: inline-block;
   align-items: baseline;
@@ -61,8 +52,7 @@
   border: solid 3px #FFFDD8 ;
   transition: all 150ms ease-in;
   font-size: 1.1em;
-  margin : 0 0.2em;
-  /* font-style: italic; */
+  margin : 0 0.2em 0 0.7em;
   font-weight: 700;
   letter-spacing: .12em;
   font-family: Oclock;
@@ -75,7 +65,7 @@
 
 .ui.modal .actions>.button.button-submit {
 
-  max-width: 120px;
+  min-width: fit-content;
   padding : 0.5em 1em;
   display: inline-block;
   align-items: baseline;
@@ -85,7 +75,7 @@
   border: solid 3px #FFFDD8 ;
   transition: all 150ms ease-in;
   font-size: 1.1em;
-  margin : 0 0.2em;
+  margin : 0 0.2em 0 0.7em;
   /* font-style: italic; */
   font-weight: 700;
   letter-spacing: .12em;

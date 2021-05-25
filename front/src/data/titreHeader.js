@@ -12,7 +12,7 @@ export default
     },
 
     studentMissions : {
-      description: `Il est temps d'avancer dans ta quête initiatique ! Accomplis missions et valide les quand tu les as terminées. `,
+      description: `Il est temps d'avancer dans ta quête initiatique ! Accomplis des missions et valide-les quand tu les as terminées.`,
       page: `student-missions`,
     },
 
@@ -38,7 +38,7 @@ export default
       page: 'score-page',
     },
     loginPage : {
-      description: "Entre tes identifiants Cockpit et poursuis ton destin . Telle est la voie .",
+      description: "Entre tes identifiants Cockpit et poursuis ton destin. Telle est la voie.",
       page: 'loginPage',
     },
   }
