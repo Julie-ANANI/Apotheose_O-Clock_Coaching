@@ -47,10 +47,10 @@ const Accueil = () => {
           <Card.Content>
             <Card.Header> Louise </Card.Header>
             <Card.Meta>
-              <span className='date'>Fais toi plaiz Lucas !</span>
+              <span className='date'>Chef de l'équipe post-formation</span>
             </Card.Meta>
             <Card.Description>
-              Oui oui fais toi plaise
+              Connue et reconnue pour son doux accent et son humour à tout épreuve, Louise est là pour vous accompagner. 
             </Card.Description>
           </Card.Content>
         </Card>
@@ -59,10 +59,10 @@ const Accueil = () => {
           <Card.Content>
             <Card.Header> Laurine </Card.Header>
             <Card.Meta>
-              <span className='date'>Fais toi plaiz Lucas !</span>
+              <span className='date'>Seconde du Chef de l'équipe post-formation</span>
             </Card.Meta>
             <Card.Description>
-              Oui oui fais toi plaise
+              Laurine sera d'aussi bon conseil pour les étudiants que pour les entreprises cherchant à joindre l'école O'clock afin d'embaucher.
             </Card.Description>
           </Card.Content>
         </Card>
