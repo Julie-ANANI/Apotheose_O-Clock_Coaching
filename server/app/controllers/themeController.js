@@ -96,29 +96,18 @@ const themeController = {
     deleteTheme: async (req, res) => {
 
         try {
-            /**
-             * We get the id in the parameters of the request
-             */
+            // We get the id in the parameters of the request
             const { themeId } = req.params;
-            // verify theme id is exists in the database
+            // We check the theme id in the database
             const theme = await Theme.findOne(themeId);
 
-            if (!theme) {
-                res.status(404).send(`id does not exist`);
-            } else {
-                // active methode async delete in the model theme
-                const deleteTheme = await theme.delete();
-                res.status(200).json(deleteTheme);
-            };
-
-        } catch (err) {
-            /**
-            * There is no this theme in the database
-            * In the model, there is an error with a custom message
-            */
-            res.status(404).json(err.message);
-        };
-    }
+            // If it exists, we delete the record in database
+            const deleteTheme = await theme.delete();
+            res.status(200).json(deleteTheme);
+    } catch(err) {
+        res.status(404).json(err.message);
+    };
+}
 
 };
 
