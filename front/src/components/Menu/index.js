@@ -161,12 +161,12 @@ const MenuHeader = ({
           // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
         />
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         as ='a'
         className = 'header-menu-item navbar-name' 
       >
         {`Michel M.`}
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item
         className='header-menu-item deconnexion'
         name='deconnexion'

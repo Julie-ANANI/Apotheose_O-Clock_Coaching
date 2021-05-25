@@ -208,6 +208,7 @@ a.header-menu-item.deconnexion {
   font-family: Oclock;
   border-radius: 1.2em;
   border: 2px solid #FFFDD8 ;
+  min-width: 220px;
 }
   /* font-size: 1.1em; */
   /* border-radius: 1em;*/
@@ -231,3 +232,4 @@ a.header-menu-item.deconnexion {
   border-color: none; 
   background-color: #01a088ed;
 }
+

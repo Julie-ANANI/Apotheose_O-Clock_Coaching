@@ -11,20 +11,24 @@ import { Card, Image } from 'semantic-ui-react'
 const AccueilAdmin = ({heros}) => {
   return (
     <div className="accueilAdmin">
-    {heros.map((hero) => (
-      <Card key={hero.prenom}>
-        <Image src={hero.avatar} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>{hero.prenom}</Card.Header>
-          <Card.Meta>
-            <span className='date'>{hero.alias}</span>
-          </Card.Meta>
-          <Card.Description>
-            {hero.description}
-          </Card.Description>
-        </Card.Content>
-      </Card>
-    ))}
+
+    <Card.Group centered >
+      {heros.map((hero) => (
+        <Card key={hero.prenom}>
+          <Image src={hero.avatar} wrapped ui={false} />
+          <Card.Content>
+            <Card.Header>{hero.prenom}</Card.Header>
+            <Card.Meta>
+              <span className='date'>{hero.alias}</span>
+            </Card.Meta>
+            <Card.Description>
+              {hero.description}
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      ))}
+    
+    </Card.Group>
     </div>
   )
       }
