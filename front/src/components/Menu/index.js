@@ -153,39 +153,35 @@ const MenuHeader = ({
             name={navlink.label}
             active={activeItem === navlink.label}
           />
-
-        ))}
-
-
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Input
-              type='text'
-              className='searchbar'
-              icon='search'
-              placeholder={(activeRole == 'student') ? 'Rechercher un thème...' : 'Rechercher un étudiant'}
-              value={searchedText}
-              onChange={handleSearchBar}
-            // onFocus={()=>{this.this.placeholder=''}}
-            // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
-            />
-          </Menu.Item>
-          <Menu.Item
-            as='a'
-            className='header-menu-item navbar-name'
-          >
-            {`Michel M.`}
-          </Menu.Item>
-          <Menu.Item
-            className='header-menu-item deconnexion'
-            name='deconnexion'
-            active={activeItem === 'deconnexion'}
-            onClick={handleItemClickLogout}
-          />
-        </Menu.Menu>
-        <div className="logo-menu"></div>
-      </Menu>
-    </div>
+    <Menu.Menu position='right'>
+      <Menu.Item>
+        <Input 
+          type='text' 
+          className='searchbar' 
+          icon='search' 
+          placeholder= { (activeRole == 'student') ? 'Rechercher un thème...' : 'Rechercher un étudiant'} 
+          value={searchedText}
+          onChange={handleSearchBar}
+          // onFocus={()=>{this.this.placeholder=''}}
+          // onBlur={()=>{this.this.placeholder='Rechercher un thème...'}}
+        />
+      </Menu.Item>
+      {/* <Menu.Item
+        as ='a'
+        className = 'header-menu-item navbar-name' 
+      >
+        {`Michel M.`}
+      </Menu.Item> */}
+      <Menu.Item
+        className='header-menu-item deconnexion'
+        name='deconnexion'
+        active={activeItem === 'deconnexion'}
+        onClick={handleItemClickLogout}
+      />
+    </Menu.Menu>
+    <div className="logo-menu"></div>
+  </Menu>
+  </div>
   )
 
 

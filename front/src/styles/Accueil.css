@@ -32,10 +32,22 @@
   text-align: left;
 }
 
+.accueil .card-container {
+  width: 75%;
+  margin : 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.accueil .ui.cards .card {
+  margin : 0 4em;
+  border : solid 2px #fffdd8;
+}
+
 
 
 .accueil .img-container .img-accueil {
-  background-image: url('src/assets/image/OG_Jc_Simon.png');
+  background-image: url('src/assets/image/images/jobsearch.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -53,4 +65,15 @@
 
 .accueil p {
   font-size: 1.2em;
+}
+
+.accueil .theme-title {
+
+  color : #1a4c79;
+  width : fit-content;
+  background-color: white;
+  margin : 1em auto 2em;
+  padding: 0.5em 2em;
+  font-style: italic;
+  box-shadow: .4em -0.4em #1a4c79;
 }

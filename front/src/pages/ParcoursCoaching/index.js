@@ -49,7 +49,7 @@ const ParcoursCoaching = ({
         <div className="parcourscoaching__progress-container">
           <Progress className='general-progress-bar' percent={generalScore} indicating progress />
           {/* importer composant message pour le message ci-dessous */}
-          <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span>
+          {/* <span className='progressbar-message'>Message qui évolue en fonction de l'état d'avancement</span> */}
         </div>
       <Divider hidden />
       <Divider hidden />

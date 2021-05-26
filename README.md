@@ -1,111 +1,116 @@
-# Projet-03-oap
+# Hello World :earth_americas:
 
-![o'Coaching](/front/src/assets/logos/Logo%20de%20O_coaching%20-%20green%20and%20red%20svg.svg)
+<img src="https://media.giphy.com/media/3oz8xSjBmD1ZyELqW4/giphy.gif" alt="hello" width="400"/>
+
+# Projet-03-oap 
+
+
+![o'Coaching](/front/src/assets/logos/Logo%20de%20O_coaching%20-black%20and%20red.png?raw=true)
+
  [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-## Présentation du projet 
+## Présentation du projet 📝
 
-Le but de l’OAP est de permettre aux apprenants O’clock de suivre un coaching professionnel qualitatif (sous forme d’une checklist) au rythme qu’ils souhaitent, sans avoir besoin de prendre rdv auprès de l’équipe Placement. De plus, il permettra à l’équipe Placement d’avoir un œil sur les avancements de chacun.
+Le but de l’OAP est de permettre aux __apprenants de l’école O’clock__ de suivre un coaching professionnel qualitatif pour la __recherche d’emploi__ (sous forme d’une checklist) au rythme qu’ils souhaitent, sans avoir besoin de prendre rendez-vous auprès de l’équipe coaching. De plus, il permettra à __cette équipe__ d’avoir un œil sur les __avancements de chacun__.
 
-
-## Détails du projet 
+## Détails du projet 🔍
 
 ### Fonctionnalité 
-
+Dés l'arrivée de l'utilisateur sur le site (étudiant ou l'équipe coaching), il devra __s'authentifier__ pour
+accéder aux contenu ci-dessous.
 #### Côté étudiant
-* La checklist sera composée : 
+* Une __page d'accueil__ présentant l'application web et l'équipe d'Oclock post-formation.
+* Une __page checklist__ composée : 
+ 
+  * Thèmes (cliquable) présentant :
+       * Missions (et des astuces) cochable
+  * L'avancement sera représenté par des bars de progression (globale et par thème).
 
-  * Thème
-  * Mission (et des astuces)
+* Une __barre de recherche__ pour rechercher des thèmes.
 
-* L'avancement sera représenté par des bars de progression (globale et par thème).
-* Rechercher des thèmes
+#### Côté équipe de coaching
 
-#### Côté équipe de Placement
-
-* Possibilité de rechercher un étudiant et de voir sa progression
-* Ajouter, modifier et supprimer des thèmes, missions et astuces
+* Une __page d'accueil__ présentant l'équipe qui a développé l'application.
+* Une __barre de recherche__ pour rechercher un étudiant par le biais de son nom, prénom, promotion, spécialité et ainsi voir sa progression.
+* Une __page de gestion__ pour ajouter, modifier et supprimer des thèmes, missions et astuces.
 
 ### Précision 
-Notre projet utilise une __API externe d'oclock__ qui référencie tous les étudiant et professeur de l'école.
-## Statut du projet
- Le projet est en cours de __developpement__.
 
- Néanmoins, les routes du back qui se trouvent [ici](/server/app/router.js) sont fonctionnels et peuvent déservir des données.
-Une documentation précise de celles-ci sera bientôt disponible avec [swagger](https://swagger.io/) (plus d'information dans les prochains jours).
+Notre projet utilise une __API externe de O'clock__ qui référencie tous les étudiants et professeurs de l'école (dont les membres de l'équipe post-formation).
+## Statut du projet :mega:
 
-L'interface [front](/front) est aussi fonctionnel comme la page d'accueil, l'affichage des thèmes et des missions avec leurs astuces. La bar de progression est fictive pour le moment et n'a pas de lien avec un étudiant donné.
+ La première version de l'application est __maintenant disponible__ à cette [adresse](https://coachingoap.herokuapp.com/).
+Toutes les fonctionnalités citées ci-dessus sont opérationnelles !
 
-Plusieurs feature sont en cours dont une est __importante__: la page login/connexion.
+:soon: Une deuxième version est prévu avec plusieurs idées d'améliorations :
+     
+     * La mise en place de sessions et donc de cookies pour une meilleure sécurité.
+     * Quelques bugs fictives remarqué lors de la conception de la première version vont être réglé.
+     * Mise en place d'une page profil pour les étudiants.
+     * D'autres petites surprises
 
-Un __déploiement__ du projet sur [Heroku](https://www.heroku.com/) est prévu la semaine prochaine.
-
-
- 
-
-## Stack technique
+## Stack technique :wrench:
 
 * [NodeJS 15.14.0](https://nodejs.org/fr/download/)
 * [NPM 7.7.4](https://www.npmjs.com/get-npm)
 * [PostgreSQL 12.5](https://www.postgresql.org/download/)
 * [Sqicth 0.9999](https://sqitch.org/download/)
 
-Ces outils sont nécessaires au bon fonctionnement de l'app. Installez-les avant de continuer.
+Ces outils sont nécessaires au bon fonctionnement de l'application. __Installez-les avant de continuer__.
 
-## Installation 
+## Installation :construction_worker:
 
-Cloner le repository en local (c'est la branche "develop" qui sera cloné).
+__Cloner__ le repository en local (pour l'instant c'est la branche "develop" qui sera cloné).
 
 ```bash
 git clone <url de ce repo>
 ```
-Puis il faut se diriger dans le dossier *front* et installer les dépendances nécessaire.
+Puis il faut se diriger dans le dossier *front* et __installer les dépendances__ nécessaire.
 
 
 ```bash
 cd front/ && yarn
 ```
 
-Après la fin du téléchargement des packages, il faut se diriger vers le dossier 'server'.
+Après la fin du téléchargement des packages, il faut revenir à la racine du projet et __installer les packages npm__
 
 
 ```bash
-cd ../server && npm i
+cd ../ && npm i
 ```
 
-Pour finir, revenir à la racine du projet et créer [une base de données](https://www.postgresql.org/docs/12/app-createdb.html) PostgreSQL et déployer le projet Sqitch.
+Pour finir, __créer__ [une base de données](https://www.postgresql.org/docs/12/app-createdb.html) PostgreSQL et __déployer__ le projet Sqitch.
 
 ```bash
 createdb oap
 sqitch deploy db:pg:oap
 ```
-Penser à configurer PostgreSQL (ou à fournir les variables d'environnement nécessaires) pour que les commandes createdb et sqitch puisse s'exécuter correctement.
+Penser à __configurer__ PostgreSQL (ou à fournir les variables d'environnement nécessaires) pour que les commandes createdb et sqitch puisse s'exécuter correctement.
 
-Si la manipulation ne fonctionne pas, il faut se connecter avec l'utilisateur *postgres* : 
-
+Si __la manipulation ne fonctionne pas__, il faut se connecter avec l'utilisateur *postgres* : 
 
 ```bash
 sudo -i -u postgres
 psql
 ```
-A partir d'ici vous pouvez créer votre [database](https://www.postgresql.org/docs/12/sql-createdatabase.html).
+A partir d'ici vous pouvez __créer__ votre [database](https://www.postgresql.org/docs/12/sql-createdatabase.html) et ainsi __exécuter__ la commande sqitch.
 
-## Importer des données
+## Importer des données :floppy_disk:
 
-Si vous voulez faire des tests, lancer cette commande :
+Si vous voulez faire des tests, __lancer__ cette commande :
 
 ```bash
 psql -d oap -f /server/data/import.sql
 ```
 
-## Lancement
+## Lancement :rocket:
 
-Il faut se diriger vers le dossier *server* et lancer le script suivant :
+Il faut lancer le __script__ suivant à la racine (plus d'informations dans la partie *scripts* de ce [fichier](/package.json)) :
 ```bash
-cd server/ && npm start
+npm run dev
 ```
 
-## Contributeurs 
+## Contributeurs <img src="https://emoji.slack-edge.com/T01F46EL0U8/quill1/0755fe36a5bb4bbf.png" alt="quill" width="30"/>
 
 Product Owner: [Lucas Chouillou (alias xuxu278)](https://github.com/lucasquill)
 
