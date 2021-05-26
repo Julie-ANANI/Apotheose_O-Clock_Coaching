@@ -10,52 +10,44 @@ const interactController = {
     */
     getAllByUserId: async (req, res) => {
         try {
-            /**
-                 * We get the id in the parameters of the request
-                 */
+            // We get the id in the parameters of the request
             const { userId } = req.params;
-            
-            //verify id of user
+
+            // we check the user id
             await User.findOne(userId);
-            
+
             const theInteracts = await Interact.findAll(userId);
             res.status(200).json(theInteracts);
 
         } catch (err) {
-            /**
-           * There are no checkbox values stored in the database for this user id
-           * In the model, there is an error with a custom message
-           */
+            // There are no checkbox values stored in the database for this user id
+            // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         }
     },
-    
+
 
     /**
     * Controls endpoint GET /api/missions/:missionId/users/:userId
     */
     getOneByMissionAndUser: async (req, res) => {
-        
+
         try {
-            /**
-                 * We get the id in the parameters of the request
-                 */
+            // We get the id in the parameters of the request
             const { missionId, userId } = req.params;
-         
-            // verify id of missionet user id
+
+            // we check the mission id and the user id
             const checkMissionID = await Mission.findOne(req.params.missionId);
             const checkUserID = await User.findOne(req.params.userId);
-        
-            //we show informations
+
+            //we show information
             const theInteract = await Interact.findOne(missionId, userId);
             res.status(200).json(theInteract);
-        
+
 
         } catch (err) {
-            /**
-           * There is no checkbox value stored in the database for this user id and this mission id
-           * In the model, there is an error with a custom message
-           */
+            // There is no checkbox value stored in the database for this user id and this mission id
+            // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         }
     },
@@ -70,13 +62,13 @@ const interactController = {
             // we get the theme id and user id from the request body
             const { themeId, userId } = req.params;
 
-            //verify id  of theme et user id 
+            // we check the theme id and user id 
             const checkThemeID = await Theme.findOne(themeId);
             const checkUserID = await User.findOne(userId);
-            
+
             // we obtain the number of completed missions for this theme and this user
             const scoreByTheme = await Theme.findTheScoreOfOneThemeOfOneUser(themeId, userId);
-            
+
             // we get all the missions in database related to this theme
             const allMissionsByTheme = await Mission.findByTheme(themeId);
 
@@ -86,10 +78,8 @@ const interactController = {
             res.status(200).json({ bytheme_ratio: `${scoreRatio}` });
 
         } catch (err) {
-            /**
-           * There is no id user or theme id value stored in the database for this user id and this theme id
-           * In the model, there is an error with a custom message
-           */
+            // There is no id user or theme id value stored in the database for this user id and this theme id
+            // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         };
 
@@ -104,9 +94,9 @@ const interactController = {
             // We get the id in the parameters of the request
             const { userId } = req.params;
 
-            // verify id if exist inthe database
+            // we check if such id exists in the database
             const checkUserID = await User.findOne(userId);
-                       
+
 
             // we get the total number of completed missions for this user 
             const globalScore = await Interact.findGlobalScoreOfOneUser(userId);
@@ -119,10 +109,8 @@ const interactController = {
             res.status(200).json({ global_ratio: `${globalScoreRatio}` });
 
         } catch (err) {
-              /**
-           * There are not score stored in the database for this user id 
-           * In the model, there is an error with a custom message
-           */
+            // There is no score for this user id 
+            // In the model, there is an error with a custom message
             res.status(404).json(err.message);
         };
     },
@@ -132,32 +120,20 @@ const interactController = {
     * Controls endpoint POST /api/student/interact
     */
     checkBox: async (req, res) => {
+
         try {
-            // We get the body parameters of the request from req.body
+            // We get the body parameters of the request
             const { mission_id, user_id } = req.body;
 
+            // We check if the mission id and the user id exist
+            // If not, it will generate an error that will be intercepted in the catch
             const checkMissionID = await Mission.findOne(mission_id);
             const checkUserID = await User.findOne(user_id);
-                       
-            // we check that all parameters have been passed on and add any errors to an array
-            let bodyErrors = [];
 
-            if (!mission_id) {
-                bodyErrors.push(`Le champ mission_id ne peut pas être vide`);
-            }
-            if (!user_id) {
-                bodyErrors.push(`Le champ user_id ne peut pas être vide`);
-            }
-
-            // if there are any errors, we return themq
-            if (bodyErrors.length) {
-                res.status(400).json(bodyErrors);
-            } else {
-                // if there are no errors, we can save this new record in the database
-                const newInteract = new Interact({ mission_id, user_id });
-                await newInteract.save();
-                res.status(201).json(newInteract);
-            }
+            // if there are no errors, we can save this new record in the database
+            const newInteract = new Interact({ mission_id, user_id });
+            await newInteract.save();
+            res.status(201).json(newInteract);
 
         } catch (err) {
             res.status(404).json(err.message);
@@ -174,15 +150,10 @@ const interactController = {
 
             // We check that the record exists before updating it
             const interact = await Interact.findOne(missionId, userId);
-          
-            if (!interact) {
-                // if it doesn't exist, we return an error
-                return res.status(404).json(`Cannot find record with user id ${userId} and mission id {$mission_id}`);
-            } else {
-                // if it exists, we delete it and send a confirmation message to the client
-                await interact.delete();
-                res.status(200).json(`l'enrengistrement a bien été supprimé`);
-            }
+
+            // if it exists, we delete it and send a confirmation message to the client
+            await interact.delete();
+            res.status(200).json(`L'enregistrement a bien été supprimé`);
 
         } catch (err) {
             res.status(500).json(err.message);

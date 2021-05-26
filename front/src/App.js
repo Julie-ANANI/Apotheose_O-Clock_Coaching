@@ -225,6 +225,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.studentAccueil.description} />
           <Accueil />
@@ -249,6 +250,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.adminAccueil.description} />
           <AccueilAdmin heros={heros}/>
@@ -273,6 +275,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.parcoursCoaching.description}  />
           <ParcoursCoaching 
@@ -309,6 +312,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.studentMissions.description} />
           <ThemePage 
@@ -347,6 +351,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.addAdmin.description} />
           <AddAdmin
@@ -373,6 +378,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.gestionThemes.description} />
           <GestionThemes 
@@ -402,6 +408,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.gestionThemes.description} />
           <SearchAdmin />
@@ -426,6 +433,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.searchAdmin.description} />
           <SearchAdmin
@@ -455,6 +463,7 @@ const App = ({base_url}) => {
             getSpeName={getSpeName}
             setActiveRole={setActiveRole}
             setUserId={setUserId}
+            base_url={base_url}
           />
           <Header titre={titre.scorePage.description} />
           <ScorePage
