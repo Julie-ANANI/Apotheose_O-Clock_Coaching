@@ -40,7 +40,7 @@ Notre projet utilise une __API externe de O'clock__ qui référencie tous les é
 ## Statut du projet :mega:
 
  La première version de l'application est __maintenant disponible__ à cette [adresse](https://coachingoap.herokuapp.com/).
-Toutes les fonctionnalités cités ci-dessus sont opérationnels !
+Toutes les fonctionnalités citées ci-dessus sont opérationnelles !
 
 :soon: Une deuxième version est prévu avec plusieurs idées d'améliorations :
      
