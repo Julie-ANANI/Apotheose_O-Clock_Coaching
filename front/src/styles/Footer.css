@@ -1,0 +1,12 @@
+.footer-container {
+  height: 4em;
+  font-size: 1.7em;
+  margin-top: 3em;
+  text-align: center;
+  border-top: 1px solid #fffdd8;
+  padding-top: 1.7em;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #fffdd8;
+}
+

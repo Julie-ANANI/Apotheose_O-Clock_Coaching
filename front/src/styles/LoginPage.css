@@ -1,0 +1,76 @@
+i.huge.icon.iconlogin {
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 4em;
+  margin-bottom: .7em;
+}
+
+.inputicon>.ui.form>.ui.icon.input>i.icon:not(.link) {
+  color: #000000;
+  opacity: .9;
+}
+
+
+.login-page .ui.button {
+  min-width: fit-content ;
+  padding : 0.5em 1em;
+  display: inline-block;
+  align-items: baseline;
+  background-color: #FFFDD8;
+  border-radius: 2.5em;
+  color: #00c4a7;
+  border: solid 3px #FFFDD8 ;
+  transition: all 150ms ease-in;
+  font-size: 1.1em;
+  margin : 1em 0.2em;
+  /* font-style: italic; */
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-family: Oclock;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.login-page .ui.button:hover {
+
+  background-color: #00c4a7;
+  border-radius: 2.5em;
+  color: #FFFDD8;
+  border: solid 3px #FFFDD8 ;
+}
+
+.login-page .ui.form .field .ui.input input, .ui.form .fields .field .ui.input input {
+  background-color: #00c4a7;
+  color: #FFFDD8;
+  font-weight: bold;
+  font-family: Oclock;
+  border-radius: 1.5em;
+  padding: 0.8em;
+  /* margin : 1em; */
+  border: 3px solid #FFFDD8 ;
+}
+  /* font-size: 1.1em; */
+  /* border-radius: 1em;*/
+
+
+.login-page .ui.form .field .ui.input input::placeholder, .ui.form .fields .field .ui.input input::placeholder  {
+  color: #FFFDD8;
+  opacity: 0.7;
+}
+
+.login-page i.icon.user.iconlogin:before {
+  color :#FFFDD8;
+  /* text-shadow: 4px -1px 0px #FFFDD8; */
+}
+
+.login-page .ui.form .field {
+  margin : 1.2em;
+}
+
+.login-page i.huge.icon.iconlogin {
+  margin-bottom: 0.2em;
+}
+
+.login-page .message {
+  min-width: 90%;
+}

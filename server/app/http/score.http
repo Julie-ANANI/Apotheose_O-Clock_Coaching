@@ -1,0 +1,33 @@
+# Le score du theme 7 d'un user 4
+GET http://localhost:3000/v1/api/students/4/themes/7/score
+###
+
+
+# Le score du theme 1 d'un user 5
+GET http://localhost:3000/v1/api/students/5/themes/1/score
+###
+
+
+# 404 - Le score du theme 700 d'un user 4 - THEME DO NOT EXIST
+GET http://localhost:3000/v1/api/students/4/themes/700/score
+###
+
+
+# 404 - Le score du theme 700 d'un user 400 - USER DO NOT EXIST
+GET http://localhost:3000/v1/api/students/400/themes/7/score
+###
+
+
+# Le score global d'un user 4
+GET http://localhost:3000/v1/api/students/3/score
+###
+
+
+# Le score global d'un user 5
+GET http://localhost:3000/v1/api/students/5/score
+###
+
+
+# 404 - Le score global d'un student 300 - STUDENT DO NOT EXISTS
+GET http://localhost:3000/v1/api/students/300/score
+###

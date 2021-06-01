@@ -1,0 +1,38 @@
+/* .header.student-card-header {
+  color: #000000;
+  font-family: Oclock;
+} */
+
+.search-page  .ui.card>.content>.header.student-card-header:not(.ui), .student-card-header .ui.cards>.card>.content>.header.student-card-header:not(.ui) {
+  color: #000000;
+  /* font-family: Oclock;
+  text-transform: uppercase;
+  letter-spacing: 0.12em; */
+}
+
+.search-page .ui.card .meta, .search-page .ui.cards>.card .meta {
+  padding-bottom:  0.25em;
+}
+
+.search-page {
+  width : 80%;
+  margin: 0 auto;
+}
+
+.search-page .ui.cards .card {
+  padding : 0.2em;
+  margin : 0.5em;
+}
+
+.search-page .ui.cards .card:hover {
+  opacity : 0.8;
+}
+
+.search-title{
+  text-align: center;
+  margin-bottom: 2em;
+}
+.profi-card-container{
+display: flex;
+justify-content: center;
+}

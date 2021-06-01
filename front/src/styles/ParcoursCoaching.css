@@ -1,0 +1,161 @@
+.parcourscoaching__student-dashboard {
+  padding: 0 ;
+  font-family: Oclock;
+  height: 100% ;
+  /* height : max-content; */
+}
+
+.ui.medium.image.logo-inpage {
+  width : 40%
+}
+
+.ui.progress.parcourscoaching__general-progress-bar {
+  width: 100%;
+  margin-bottom: 1em ;
+
+}
+
+.ui.header.header-progress {
+  margin : 1em 0;
+}
+
+.ui.header.header-dashboard {
+  color : #fffdd8;
+  font-family: Oclock;
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+
+/* Pour contourner le fait qu'on puisse avoir des titres très longs */
+
+/* .ui.centered.cards a {
+  display: 60%;
+} */
+
+.parcourscoaching__theme-card-container {
+  margin : 1em 1em;
+  
+}
+
+.parcourscoaching__student-dashboard .ui.cards {
+  /* padding: 0 10%; */
+  /* align-items: center; */
+  width : 80%;
+  margin : 0 12.3% 0 7.7%;
+}
+
+.parcourscoaching__student-dashboard .ui.card.theme-card {
+  /* width : 100%; */
+  text-align: center;
+  box-shadow: none;
+  /* display : flex;
+  align-items: center; */
+  margin : 1em;
+  transition: opacity 150ms ease-out;
+}
+
+.parcourscoaching__student-dashboard .ui.card.theme-card:hover {
+  opacity: 0.8;
+  transition: opacity 60ms ease-in;
+  cursor: pointer;
+
+}
+
+
+
+.ui.card.theme-card .theme-card-header {
+  background-color: #0CAD93;
+  /* min-height : 46px;
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+
+
+.ui.card.theme-card .theme-card-header .header {
+  color : white;
+  padding : auto 0;
+  /* display :  inline; */
+  /* white-space: nowrap;
+  overflow: unset;
+  text-overflow: ellipsis; */
+  
+}
+
+.progressbar-message {
+  color : #fffdd8;
+  font-size: 2em;
+  padding: 0 auto;
+  
+}
+
+.ui.cards>.card>.content>.header.theme-card-header {
+  color : #fffdd8;
+  font-family: Oclock;
+}
+
+
+.ui.progress:last-child {
+  margin : 0;
+}
+
+.parcourscoaching__progress-container {
+  display: block;
+  padding: 1em 25%;
+  text-align: center;
+  /* position: -webkit-sticky;
+  position : sticky;
+  top : 3.3em;
+  margin: 0.5em 10%;
+  border-radius: 0.5em 0.5em 0.5em 0.5em ;
+  box-shadow: #1a4c79 0.5em -0.7em ;
+  background-color: #fff; */
+}
+
+/* .student-dashboard {
+  padding: 0 3%;
+} */
+
+.ui.progress.general-progress-bar {
+  width: 100%;
+
+}
+
+.ui.header.header-progress {
+  margin : 1em 0;
+}
+
+.ui.card.theme-card {
+  text-align: center;
+}
+.ui.card.theme-card .theme-card-header {
+  background-color: #0CAD93;
+  color : #fffdd8;
+}
+
+.ui.card.theme-card .theme-card-header .header {
+  color : white;
+}
+
+.ui.progress:last-child {
+  margin : 0;
+}
+
+.progress-container {
+  display: block;
+  padding: 0 10%;
+}
+
+.student-dashboard a {
+  margin-left: 1.2em;
+  margin-bottom: 1em;
+}
+
+.student-dashboard .cards-container {
+
+  width : 85%;
+  margin : 0 auto;
+}

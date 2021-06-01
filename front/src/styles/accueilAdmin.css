@@ -1,0 +1,31 @@
+.button-container {
+width: 70%;
+margin: auto;
+}
+
+.ui.teal.button {
+margin: 2em;
+}
+
+/* .accueilAdmin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+} 
+
+.ui.card:first-child {
+  margin-top: 1em;
+}
+.ui.card:last-child {
+  margin-bottom: 1em;
+} */
+
+img{
+  max-width: 300px;
+  max-height: 290px;
+} 
+
+.accueilAdmin{
+  width : 80%;
+  margin : 0 auto;
+}

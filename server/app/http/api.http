@@ -1,0 +1,4 @@
+# Récupérer tous les étudiants avec leurs infos détaillées et leurs promos
+GET http://localhost:3000/v1/api/admin/students
+Content-Type: application/json
+###

@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "front": "cd front && yarn start",
+    "api": "cd server && nodemon index.js",
+    "dev": "concurrently \"npm run api\" \"npm run front\"",
+    "start": "node server/index.js",
+    "heroku-postbuild": "npm run-script build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-swagger-generator": "^1.1.17",
+    "form-data": "^4.0.0",
+    "joi": "^17.4.0",
+    "node-fetch": "^2.6.1",
+    "pg": "^8.6.0"
+  },
+  "description": ""
+}
