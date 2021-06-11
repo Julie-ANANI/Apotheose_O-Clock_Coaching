@@ -7,7 +7,8 @@
     "api": "cd server && nodemon index.js",
     "dev": "concurrently \"npm run api\" \"npm run front\"",
     "start": "node server/index.js",
-    "heroku-postbuild": "npm run-script build"
+    "heroku-postbuild": "npm run-script build",
+    "test": "mocha cd server && test.theme.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "express-swagger-generator": "^1.1.17",
     "form-data": "^4.0.0",
     "joi": "^17.4.0",
+    "mocha": "^9.0.0",
     "node-fetch": "^2.6.1",
     "pg": "^8.6.0"
   },
