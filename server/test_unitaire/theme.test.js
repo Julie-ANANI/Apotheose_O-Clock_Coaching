@@ -1,12 +1,48 @@
-const shoppingList = [
-    'diapers',
-    'kleenex',
-    'trash bags',
-    'paper towels',
-    'milk',
-  ];
+//return data user in the api 
+// const request = require('request');
+const database = require('../app/database')
+const makeApp  = require('../index')
+
+const app = makeApp(database)
+
+describe("POST /users", () => {
+    describe("given a username and password", () => {
   
-  test('The theme contains at least one title', () => {
-    expect(shoppingList).toContain('milk');
-    expect(new Set(shoppingList)).toContain('milk');
-  });
+      test("should respond with a 200 status code", async () => {
+        const response = await request(app).post("/users").send({
+          username: "username",
+          password: "password"
+        })
+        expect(response.statusCode).toBe(200)
+      })
+      test("should specify json in the content type header", async () => {
+        const response = await request(app).post("/users").send({
+          username: "username",
+          password: "password"
+        })
+        expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+      })
+      test("response has userId", async () => {
+        const response = await request(app).post("/users").send({
+          username: "username",
+          password: "password"
+        })
+        expect(response.body.userId).toBeDefined()
+      })
+    })
+  
+    describe("when the username and password is missing", () => {
+      test("should respond with a status code of 400", async () => {
+        const bodyData = [
+          {username: "username"},
+          {password: "password"},
+          {}
+        ]
+        for (const body of bodyData) {
+          const response = await request(app).post("/users").send(body)
+          expect(response.statusCode).toBe(400)
+        }
+      })
+    })
+  
+  })
