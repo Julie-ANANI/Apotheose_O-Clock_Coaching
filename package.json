@@ -9,7 +9,7 @@
     "start": "node server/index.js",
     "heroku-postbuild": "npm run-script build",
     "migrate": "cd server && sqitch deploy",
-    "migrate:reset": "cd server && sqitch revert && cd ../ && npm run migrate",
+    "migrate:reset": "cd server && sqitch revert -y && cd ../ && npm run migrate",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
