@@ -3,6 +3,10 @@ const request = require('supertest');
 const makeApp = require('../app');
 const themeController = require('../app/controllers/themeController');
 const Theme = require('../app/models/theme');
+
+/** 
+ *  -1 I create database test because reset for each test
+  */
 // const database = require('../app/database')
 // const makeApp  = require('../index')
 
