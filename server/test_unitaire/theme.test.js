@@ -1,48 +1,26 @@
 //return data user in the api 
-// const request = require('request');
-const database = require('../app/database')
-const makeApp  = require('../index')
+const request = require('supertest');
+const app = require('../app');
+const Theme = require('../app/models/theme');
+// const database = require('../app/database')
+// const makeApp  = require('../index')
 
-const app = makeApp(database)
+//equivalent example make app
+// const { themeController } = require('../app/controllers/themeController');
 
-describe("POST /users", () => {
-    describe("given a username and password", () => {
-  
-      test("should respond with a 200 status code", async () => {
-        const response = await request(app).post("/users").send({
-          username: "username",
-          password: "password"
-        })
-        expect(response.statusCode).toBe(200)
-      })
-      test("should specify json in the content type header", async () => {
-        const response = await request(app).post("/users").send({
-          username: "username",
-          password: "password"
-        })
-        expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
-      })
-      test("response has userId", async () => {
-        const response = await request(app).post("/users").send({
-          username: "username",
-          password: "password"
-        })
-        expect(response.body.userId).toBeDefined()
-      })
+const theme = {
+    
+        "id": 2,
+        "title": "Créer un profil Linkedin",
+        "description": "En moyenne, un recruteur passe 15 secondes sur le CV",
+        "position": 2,
+        "created_at": "2021-05-23T11:39:49.978Z",
+        "modified_at": "2021-05-23T11:39:49.978Z"
+      
+}
+
+    describe('#addNewTheme(req,res)', () => {
+
+
+
     })
-  
-    describe("when the username and password is missing", () => {
-      test("should respond with a status code of 400", async () => {
-        const bodyData = [
-          {username: "username"},
-          {password: "password"},
-          {}
-        ]
-        for (const body of bodyData) {
-          const response = await request(app).post("/users").send(body)
-          expect(response.statusCode).toBe(400)
-        }
-      })
-    })
-  
-  })
