@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm run api\" \"npm run front\"",
     "start": "node server/index.js",
     "heroku-postbuild": "npm run-script build",
-    "test": "mocha cd server && test.theme.js"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +26,8 @@
     "node-fetch": "^2.6.1",
     "pg": "^8.6.0"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "jest": "^27.0.4"
+  }
 }
