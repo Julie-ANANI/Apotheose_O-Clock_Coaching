@@ -10,6 +10,12 @@
     "heroku-postbuild": "npm run-script build",
     "test": "jest"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
