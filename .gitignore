@@ -16,3 +16,5 @@ server.cert
 New_user.json
 search.json
 test.md
+.nyc_output
+coverage
