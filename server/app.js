@@ -63,4 +63,9 @@ app.use((req, res, next) => {
 
 app.use('/v1/api/', router);
 
+app.listen(PORT, () => {
+  console.log(`Server running on : localhost:${PORT}/v1`)
+});
+
+
 export default app;
