@@ -17,7 +17,6 @@ const interactSchema = require('./schemas/interactSchema');
 
 const router = Router();
 
-
 // ---------------------------------------- LOGIN SPACE ----------------------------------------
 
 /**

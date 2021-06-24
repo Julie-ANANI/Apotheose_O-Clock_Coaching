@@ -1,7 +1,7 @@
 //config app express.js
 import dotenv from 'dotenv'
 dotenv.config({ silent: true })
-import logger from 'morgan';
+// import logger from 'morgan';
 import express from 'express';
 const expressSwagger = require('express-swagger-generator')(app);
 //indexRouter (router)
@@ -9,42 +9,42 @@ import router from './app/router';
 
 const app = express();
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 
 const PORT = process.env.PORT || 3000;
 
-let options = {
-    swaggerDefinition: {
+// let options = {
+//     swaggerDefinition: {
 
-        info: {
-            description: 'A coaching REST API',
-            title: 'Coaching',
-            version: '1.0.0',
-        },
-        host: `localhost:${PORT}`,
-        basePath: '/v1/api',
-        produces: [
-            "application/json",
-            "application/xml"
-        ],
-        schemes: ['http', 'https'],
-        securityDefinitions: {
-            JWT: {
-                type: 'apiKey',
-                in: 'header',
-                name: 'Authorization',
-                description: "",
-            }
-        }
-    },
-    basedir: __dirname, //app absolute path
-    files: [
-        './app/router.js',
-        './app/models/*.js'
-    ] //Path to the API handle folder
-};
+//         info: {
+//             description: 'A coaching REST API',
+//             title: 'Coaching',
+//             version: '1.0.0',
+//         },
+//         host: `localhost:${PORT}`,
+//         basePath: '/v1/api',
+//         produces: [
+//             "application/json",
+//             "application/xml"
+//         ],
+//         schemes: ['http', 'https'],
+//         securityDefinitions: {
+//             JWT: {
+//                 type: 'apiKey',
+//                 in: 'header',
+//                 name: 'Authorization',
+//                 description: "",
+//             }
+//         }
+//     },
+//     basedir: __dirname, //app absolute path
+//     files: [
+//         './app/router.js',
+//         './app/models/*.js'
+//     ] //Path to the API handle folder
+// };
 
-expressSwagger(options);
+// expressSwagger(options);
 
 // Middleware which parses incoming requests with JSON payloads
 app.use(express.json());
