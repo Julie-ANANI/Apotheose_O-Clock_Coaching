@@ -2,8 +2,10 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+// const expressSwagger = require('express-swagger-generator')(app);
 
 const router = require('./app/router');
+
 
 // Middleware which parses incoming requests with JSON payloads
 app.use(express.json());
